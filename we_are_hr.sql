@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2016 at 03:33 AM
+-- Generation Time: Feb 17, 2016 at 04:29 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -46,7 +46,7 @@ select Topic_id from topic where Topic_Name=T_Name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectOption`(IN `Opt_id` INT(11))
     NO SQL
-select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc
+select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Name
 from Question
 where Question_Id=Opt_id
 LIMIT 1$$
@@ -57,9 +57,9 @@ select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc
 from Question
 ORDER BY Question_Id ASC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQuestionAns`(IN `Q_id` INT(11), IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_opt` VARCHAR(200), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQuestionAns`(IN `Q_id` INT(11), IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_opt` VARCHAR(200), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500), IN `T_Name` VARCHAR(30), IN `T_id` INT(11))
     NO SQL
-update `we_are_hr`.`question` set `Question_Name`=Q_Name,Question_Type=Q_Type,Answer_Option=A_opt,Answer=Ans,Question_Desc=Q_Desc
+update `we_are_hr`.`question` set `Question_Name`=Q_Name,Question_Type=Q_Type,Answer_Option=A_opt,Answer=Ans,Question_Desc=Q_Desc,Topic_Name=T_Name,Topic_Id=T_id
 where `question`.Question_Id=Q_id$$
 
 DELIMITER ;
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Name` varchar(30) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `question`
@@ -115,10 +115,9 @@ CREATE TABLE IF NOT EXISTS `question` (
 INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`) VALUES
 (1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java'),
 (2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java'),
-(3, '', 'Single Choice', ',', '', '', 1005, 'Construction Management'),
-(4, '', 'Single Choice', ',', '', '', 1005, 'Construction Management'),
-(5, '', 'Single Choice', ',', '', '', 1005, 'Construction Management'),
-(6, '', 'Single Choice', ',', '', '', 1005, 'Construction Management');
+(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java'),
+(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java'),
+(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java');
 
 -- --------------------------------------------------------
 
