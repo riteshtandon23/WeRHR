@@ -131,6 +131,45 @@
     hljs.configure({tabReplace: '    '});
     hljs.initHighlightingOnLoad();
     </script>
+    <!--script src="js/custom/typeahead.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    $('input.typeahead').typeahead({
+        name: 'typeahead',
+        remote:'search.php?key=%QUERY',
+        limit : 10
+        });
+    });
+    </script-->
+    <script type="text/javascript">
+        $(document).ready(function(e){
+            $('#searchtopic').keyup(function(){
+                var x=$(this).val();
+                $('#display').show();
+                if(x!="")
+                {
+                    $.ajax({
+                    type: 'GET',
+                    url:'search.php',
+                    data:'key='+x,
+                    success:function(data)
+                    {
+                        $('#display').html(data);
+                    },
+
+                });
+                }else
+                {
+                    $('#display').css('display','none');
+                }
+            });
+            $('#display').on('click','li',function(){
+                //alert($(this).text());
+                $('#searchtopic').val($(this).text());
+                $('#display').css('display','none');
+            });
+        });
+    </script>
 </body>
 
 </html>
