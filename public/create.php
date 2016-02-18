@@ -1,6 +1,9 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
-
+<!--**********************************************************************-->
+<!--**      This page is for Insert Topic into Database                ***-->
+<!--**      Create By Da O Hi Paya Lamare                              ***-->
+<!--**********************************************************************-->
 <?php
 if(isset($_POST['submit']))
 {
@@ -14,7 +17,11 @@ if(isset($_POST['submit']))
     $result = $stmt->execute();
     if($result)
     {
-        echo "Success";
+        echo "<script>
+        $(document).ready(function(){
+            $('.bs-example-modal-sm').modal('show');
+        });
+        </script>";
         redirect_to("addChallenge.php");
     }else
     {
@@ -34,3 +41,4 @@ if(isset($connection))
 	mysqli_close($connection);
 }
 ?>
+<script type="text/javascript"></script>

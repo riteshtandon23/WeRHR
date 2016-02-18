@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--**********************************************************************-->
+<!--**      This page is Header                                        ***-->
+<!--**      Create By Da O Hi Paya Lamare                              ***-->
+<!--**********************************************************************-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -22,7 +25,8 @@
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
      <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
-     <link href="css/custom/formValidation.min.css" rel="stylesheet">
+     <link href="css/custom/search.css" rel="stylesheet">
+
     <script src="js/jquery.min.js"></script>
    
 
@@ -85,9 +89,9 @@
                                 </li>
                                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="addChallenge.php">Adding challenges</a>
+                                        <li><a href="addChallenge.php">Add/update Topic</a>
                                         </li>
-                                        <li><a href="addProblem.php">Add Problem</a>
+                                        <li><a href="addProblem.php">Add Quiz</a>
                                         </li>
                                         <li><a href="setQuestion.php">Question</a>
                                         </li>

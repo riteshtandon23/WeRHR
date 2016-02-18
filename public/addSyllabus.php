@@ -1,5 +1,9 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
+<!--**********************************************************************-->
+<!--**      This php page is for inserting Question and answer         ***-->
+<!--**      Create By Da O Hi Paya Lamare                              ***-->
+<!--**********************************************************************-->
 <?php
 	if(isset($_POST['submit']))
 	{
@@ -14,7 +18,7 @@
         foreach ($_POST['option'] as $key => $value) {
             $answeroption .=$value .",";
         }
-        $answeroption=substr($answeroption,0,-2);
+        $answeroption=substr($answeroption,0,-1);
     	if(isset($domainID))
     	{
     		 while($row =$domainID->fetch_assoc())

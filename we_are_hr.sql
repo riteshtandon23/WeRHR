@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 17, 2016 at 04:29 AM
+-- Generation Time: Feb 19, 2016 at 05:22 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -62,6 +62,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQuestionAns`(IN `Q_id` INT(11
 update `we_are_hr`.`question` set `Question_Name`=Q_Name,Question_Type=Q_Type,Answer_Option=A_opt,Answer=Ans,Question_Desc=Q_Desc,Topic_Name=T_Name,Topic_Id=T_id
 where `question`.Question_Id=Q_id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTopic`(IN `T_name` VARCHAR(100), IN `N_name` VARCHAR(100))
+    NO SQL
+update topic set Topic_Name=N_name where Topic_Name=T_name$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -106,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Name` varchar(30) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `question`
@@ -117,7 +121,9 @@ INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer
 (2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java'),
 (3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java'),
 (4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java'),
-(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java');
+(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java'),
+(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java'),
+(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java');
 
 -- --------------------------------------------------------
 
@@ -130,15 +136,19 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `Topic_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Topic_id`),
   UNIQUE KEY `Topic_Name` (`Topic_Name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1006 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1010 ;
 
 --
 -- Dumping data for table `topic`
 --
 
 INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
-(1005, 'Construction Management'),
+(1009, '.net'),
+(1006, 'BOO'),
+(1007, 'C'),
+(1008, 'C++'),
 (1002, 'Java'),
+(1005, 'Pascal'),
 (1000, 'Perl'),
 (1004, 'PHP'),
 (1001, 'Python'),

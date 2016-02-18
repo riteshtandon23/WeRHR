@@ -1,6 +1,10 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php include("../includes/layouts/header.php");?>
+<!--**********************************************************************-->
+<!--**      This page is for Editing Topic Name, Option and Ans        ***-->
+<!--**      Create By Da O Hi Paya Lamare                              ***-->
+<!--**********************************************************************-->
 <form class="form-horizontal form-label-left" action="updateOption.php" method="POST" novalidate>
     <span class="section">Adding Question and Answer</span>
     <?php

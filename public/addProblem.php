@@ -1,6 +1,10 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php include("../includes/layouts/header.php");?>
+<!--**********************************************************************-->
+<!--**      This page is for adding Question option and Answer         ***-->
+<!--**      Create By Da O Hi Paya Lamare                              ***-->
+<!--**********************************************************************-->
 <div class="x_content">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
@@ -54,6 +58,13 @@
                             </div>
                             </div>
                             <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questionType">Add More Option<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <button type="button" class="btn btn-primary addButton"><i class="fa fa-plus"></i></button>
+                            </div>
+                            </div>
+                            <div class="item form-group">
                                 <div class="item form-group">
                                     <div class="col-xs-offset-3 col-xs-5">
                                         <label><i><b>Hint: </b>Tick the checkbox for the correct option</i></label>
@@ -65,7 +76,7 @@
                                     <div class="col-xs-offset-3 col-xs-5">
                                         <input class="form-control" type="text" id="option1" name="option[]" placeholder="Option 1" />
                                     </div>
-                                    <button type="button" class="btn btn-primary addButton"><i class="fa fa-plus"></i></button><label><input type="checkbox" id="ans" class="checkbo"/></label>   
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-minus"></i></button><label><input type="checkbox" id="ans" class="checkbo"/></label>   
                                  </div>   
                             </div>
                             <!--div class="form-group hide" id="optionTemplate">
@@ -89,7 +100,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <button id="submit" name="submit" type="submit" class="btn btn-success">Submit</button>
+                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Submit</button>
                              </div>
                         </div>
                     </form>

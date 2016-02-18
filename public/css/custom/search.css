@@ -1,0 +1,13 @@
+
+#display li{
+	display: block;
+	width: 90%;
+	padding: 1%;
+	font-size: 20px;
+	
+}
+#display li:hover{
+        color: #fff;
+        background: #939393;
+    }
+    
