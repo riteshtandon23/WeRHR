@@ -1,9 +1,12 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
+<<<<<<< HEAD
 <!--**********************************************************************-->
 <!--**      This php page is for updating topic name    			   ***-->
 <!--**      Create By Da O Hi Paya Lamare                              ***-->
 <!--**********************************************************************-->
+=======
+>>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
 <?php 
 	if(isset($_POST['submit'])){
 

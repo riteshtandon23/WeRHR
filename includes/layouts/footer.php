@@ -144,7 +144,10 @@
         });
     });
     </script-->
+<<<<<<< HEAD
     <!--search using Ajax and Jquery-->
+=======
+>>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
     <script type="text/javascript">
         $(document).ready(function(e){
             $('#searchtopic').keyup(function(){
@@ -174,7 +177,10 @@
             });
         });
     </script>
+<<<<<<< HEAD
     
+=======
+>>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
 </body>
 
 </html>
