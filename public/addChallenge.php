@@ -44,10 +44,22 @@
                 <span class="section">Update Topic</span>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="topicName">Enter Topic name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="searchtopic">Enter Old Topic name <span class="required">*</span>
+                        </label>
+                        <div class="dropdown">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="searchtopic" class="form-control col-md-7 col-xs-12" autocomplete="off" name="searchtopic" placeholder="e.g PHP,JAVA, etc" required="required" type="text">
+                            
+                            <ul id="display" class="dropdown-menu" role="menu">
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="newtopic">Enter New Topic name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="topicName" class="form-control col-md-7 col-xs-12"  name="topicName" placeholder="e.g PHP,JAVA, etc" required="required" type="text">
+                            <input id="newtopic" class="form-control col-md-7 col-xs-12"  name="newtopic" placeholder="e.g PHP,JAVA, etc" required="required" type="text">
                         </div>
                     </div>
 
@@ -55,7 +67,8 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
 
-                            <button id="submit" name="submit" type="submit" class="btn btn-success">Update</button>
+                            <button id="submit" name="submit" type="submit" class="btn btn-primary">Update</button>
+                            <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
                         </div>
                     </div>
             </form>
