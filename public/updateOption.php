@@ -1,9 +1,5 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
-<!--***************************************************************************-->
-<!--**      This page is for updating Question Name,type,details and Ans    ***-->
-<!--**      Create By Da O Hi Paya Lamare                              		***-->
-<!--***************************************************************************-->
 <?php
 if(isset($_POST['submit']))
 {

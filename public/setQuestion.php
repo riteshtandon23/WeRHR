@@ -1,10 +1,6 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php include("../includes/layouts/header.php");?>
-<!--*************************************************************************************-->
-<!--**      This page is for Display all the Question and also edit it if required    ***-->
-<!--**      Create By Da O Hi Paya Lamare                                             ***-->
-<!--*************************************************************************************-->
 <form class="form-horizontal form-label-left" action="<?php $_SERVER['PHP_SELF']?>" method="POST" novalidate>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">

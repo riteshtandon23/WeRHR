@@ -1,7 +1,7 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <!DOCTYPE html>
-<html>
+<html data-ng-app="TestApp">
 <head>
 	<title>WeRHR</title>
      <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,8 +30,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/custom/jquery.countdownTimer.min.js"></script>
     <script src="js/custom/gettingQuestion.js"></script>
+    <script src="js/custom/angular.js"></script>
+    <script src="js/custom/refreshresume.js"></script>
 </head>
-<body>
+<body data-ng-controller="TestController">
 <form role="form">
     <div class="container">
 	<div id="answersheet" style="margin-top:50px" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-xm-8 col-sm-offset-2">
@@ -41,10 +43,11 @@
             <div class="panel-title">
                 <div class="col-xs-6">
                     <h6>Course Name:</h6>
-                    <h6>Course Code:</h6>
+                    <h6>Course Code:<label id="tim"></label></h6>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <h5>Time:<label id="timer"></label></h5>
+                <input type="text" ng-model="appTitle">
+                    <h5>Time:<label id="timer">{{appTitle}}</label></h5>
                 </div>
                 <input type="hidden" id="topicId" value="1002"></input>
             </div>
@@ -90,6 +93,8 @@
             minutes :1,
             seconds : 0
         });
+
+
     });
     //setTimeout(function(){ alert("Hello"); }, (1000*60));
 

@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--**********************************************************************-->
-<!--**      This page is Header                                        ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->

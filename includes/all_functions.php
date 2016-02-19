@@ -1,7 +1,3 @@
-<!--**********************************************************************-->
-<!--**      This page Contain all the select function				   ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->
 <?php
 function redirect_to($new_location)
 {

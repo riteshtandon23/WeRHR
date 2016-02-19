@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var myObject;
 	var ulname;
 	var usname;
-	var j=1;
+	var j=0;
+	var questionlength;
 	$.ajax({
 	    type: 'GET',
 	    dataType:'json',
@@ -56,13 +57,29 @@ $(document).ready(function(){
 	$('#next').on('click',function(){
 		if(temp!=null)
 		{
-			$('.option').empty();
-			var ql=myObject.length;
-			Display(ulname[j],usname[j]);
+			questionlength=myObject.length;
 			j++;
-			
-
-
+			if(j<questionlength)
+			{
+				$('.option').empty();
+				Display(ulname[j],usname[j]);
+			}else{
+				j=questionlength-1;
+			}
+		}
+	});
+	$('#prev').on('click',function(){
+		if(temp!=null)
+		{
+			j--;
+			if(j>=0)
+			{
+				$('.option').empty();
+				Display(ulname[j],usname[j]);
+			}else
+			{
+				j=0;
+			}
 		}
 	});
 
@@ -78,7 +95,6 @@ $(document).ready(function(){
 			$('.option').append('<div class="radio"><label class="radio-label"><input type="radio" name="choice" id="opt"'+index+'>'+value+'</label></div>');
 		});
 	}
+
 });
-	$(window).bind('onbeforeunload',function(){
-		alert("refreshing");
-	});
+ 
