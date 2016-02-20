@@ -1,0 +1,59 @@
+<?php
+include_once("connection.php");
+require("../vendor/autoload.php");
+use Mailgun\Mailgun;
+
+session_start();
+
+$fileloc = fopen("../email_templates/account_created_employer.php", 'r');
+$fileread = fread($fileloc, filesize("../email_templates/account_created_employer.php"));
+
+
+if(isset($_POST['submit'])){
+	$fname = $_POST['fname'];
+	$lname = $_POST['lname'];
+	$email = $_POST['email'];
+	$mobile = ($_POST['mobile']);
+	$company = $_POST['company'];
+	$web = $_POST['website'];
+	$address = $_POST['address'];
+	$city = ($_POST['city']);
+	$state = ($_POST['state']);
+	$country = ($_POST['country']);
+	$password = ($_POST['password']);
+	
+	$query1 = mysqli_query($con,"SELECT * FROM users WHERE username='$email'");
+	if(mysqli_num_rows($query1)>0){
+		print '<script type="text/javascript">'; 
+		print 'alert("The email address  is already registered!")';
+		print 'window.location="http://localhost/WeRHR_Login/employer_register.php";'; 
+		print '</script>';	
+	}
+	else
+	{
+		$query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,username,contact,companyName,companyWebsite,address,city,state,country,password) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password')");
+		print '<script type="text/javascript">'; 
+		print 'alert("Successfully registered");';
+		print 'window.location="http://localhost/WeRHR_Login/login.php";';
+		print '</script>';
+
+		# Instantiate the client.
+        $mg = new Mailgun('key-1450c038c9c4c1a803cfa607ceff9fe6');
+        $domain = "werhr.in";
+
+        # Make the call to the client.
+        $mg->sendMessage($domain, array('from'    => 'noreply@werhr.in', 
+                                'to'      => $email, 
+                                'subject' => 'Welcome to We\'R\'HR', 
+                                'html'    => $fileread));
+	}
+	
+}	
+else
+{
+    print '<script type="text/javascript">'; 
+    print 'alert("POST is empty");'; 
+    print '</script>'; 
+}
+
+?>
