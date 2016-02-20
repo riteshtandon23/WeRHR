@@ -29,7 +29,7 @@
     </style>
     <script src="js/jquery.min.js"></script>
     <script src="js/custom/jquery.countdownTimer.min.js"></script>
-    <script src="js/custom/gettingQuestion.js"></script>
+    <script src="js/custom/gettingquestion/gettingQuestion.js"></script>
     <script src="js/custom/angular.js"></script>
     <script src="js/custom/refreshresume.js"></script>
 </head>
@@ -43,10 +43,9 @@
             <div class="panel-title">
                 <div class="col-xs-6">
                     <h6>Course Name:</h6>
-                    <h6>Course Code:<label id="tim"></label></h6>
+                    <h6>Course Code:<label id="tim">{{test}}</label></h6>
                 </div>
                 <div class="col-xs-6 text-right">
-                <input type="text" ng-model="appTitle">
                     <h5>Time:<label id="timer">{{appTitle}}</label></h5>
                 </div>
                 <input type="hidden" id="topicId" value="1002"></input>
@@ -55,7 +54,7 @@
         </div>
         <div class="panel-body">
             <div class="container-fluid panel-container">
-                <div class="col-xs-8">
+                <div class="col-xs-8 question">
                     <div class="row">
                         <h4> <label id="question"></label></h4>
                      </div>
@@ -70,8 +69,9 @@
         <div class="container">
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                    <button id="prev" name="previous" type="button" class="btn btn-primary">Previous</button>
-                    <button id="next" type="button" name="next" class="btn btn-primary">Next</button>
+                    <button id="prev" name="previous" type="button" data-ng-click="saveTime()" class="btn btn-primary">Previous</button>
+                    <button id="next" type="button" data-ng-click="saveTime()" name="next" class="btn btn-primary">Next</button>
+                     <button id="reset" type="button" data-ng-click="reset()" name="reset" class="btn btn-primary">reset</button>
                 </div>
                 <div class="">
                         <p class="pull-right">We are the Human Resource <a>WAH</a>.. |
@@ -86,7 +86,7 @@
     </div>
     </form>
 <script src="js/bootstrap.min.js"></script>
- <script>
+ <!--script>
     $(function(){
         $('#timer').countdowntimer({
             hours : 0,
@@ -98,7 +98,7 @@
     });
     //setTimeout(function(){ alert("Hello"); }, (1000*60));
 
-</script>
+</script-->
 </body>
 </html>
 <?php
