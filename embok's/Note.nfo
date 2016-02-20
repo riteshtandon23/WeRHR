@@ -1,0 +1,5 @@
+- Files from the templates are not uploaded
+- Mailgun is used for email automation
+- Mailgun requires 'composer' for installation
+- Composer can be installed via 'curl' or via binary installer available from its official website
+- Composer.json included for composer's installation to local folder
