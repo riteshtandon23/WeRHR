@@ -17,7 +17,7 @@ if(isset($_POST["submit"])){
     $email = $_POST['email'];
     $password = ($_POST['password']);
     //$_SESSION['fname4email'] = $firstname;
-    $query1 = mysqli_query($con,"SELECT * FROM users WHERE username='$email'");
+    $query1 = mysqli_query($con,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
     
     if(mysqli_num_rows($query1)>0){
         print '<script type="text/javascript">'; 
@@ -27,7 +27,7 @@ if(isset($_POST["submit"])){
         print '</script>'; 
     }
     else{
-        $query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,username,password) VALUES('$firstname','$lastname','$email','$password')");
+        $query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,email,password,act_status) VALUES('$firstname','$lastname','$email','$password','0')");
         print '<script type="text/javascript">'; 
         print 'alert("Successfully registered");'; 
         //print 'window.location="http://www.werhr.in/login.php";';

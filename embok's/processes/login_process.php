@@ -20,12 +20,15 @@ else{
 }
 
     
-//check if user is present in the db
-$query = "SELECT username FROM users WHERE username='$username' AND password='$passw'";
+#check if user is present in the db
+$query = "SELECT id,firstname,lastname FROM users WHERE email='$username' AND password='$passw' UNION ALL SELECT id,firstname,lastname FROM employers WHERE email='$username' AND password='$passw'";
+#although union, result can't be of both tables as registration allowed one unique email for both tables
 $result = $con->query($query);
 $row = mysqli_fetch_assoc($result);
-$username1 = $row['username'];
+//$username1 = $row['username'];
+$usertype = $row['type'];
 if($result->num_rows > 0){
+    /*
     $fname_query = "SELECT firstname FROM users WHERE username='$username1'";
     $lname_query = "SELECT lastname FROM users WHERE username='$username1'";
     $id_query = "SELECT Id FROM users WHERE username='$username1'";
@@ -34,10 +37,10 @@ if($result->num_rows > 0){
     $result3 = $con->query($id_query);
     $row1 = mysqli_fetch_assoc($result1);
     $row2 = mysqli_fetch_assoc($result2);
-    $row3 = mysqli_fetch_assoc($result3);
-    $_SESSION["fname"] = $row1['firstname'];
-    $_SESSION["lname"] = $row2['lastname'];
-    $_SESSION["id"] = $row3['Id'];
+    $row3 = mysqli_fetch_assoc($result3);*/
+    $_SESSION["fname"] = $row['firstname'];
+    $_SESSION["lname"] = $row['lastname'];
+    $_SESSION["id"] = $row['Id'];
     header('Location: ../index.php');
 }
 else	//user does not exist

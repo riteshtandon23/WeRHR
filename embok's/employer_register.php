@@ -124,7 +124,7 @@
     <div class="container">
     
     <!-- Logo -->
-    <div class="logo"><a href="index.html" id="logo"></a></div>
+    <div class="logo"><a href="index.php" id="logo"></a></div>
     
 	<div class="right_links">
         
@@ -162,7 +162,7 @@
 
     <div class="title"><h1>Registration Form</h1></div>
     
-    <div class="pagenation">&nbsp;<a href="index.html">Home</a> <i>/</i> <a href="#">Register</a> <i>/</i> Employer Registration Form</div>
+    <div class="pagenation">&nbsp;<a href="index.php">Home</a> <i>/</i> <a href="#">Registration</a> <i>/</i> Employer Registration Form</div>
     
 </div>
 </div><!-- end page title --> 
