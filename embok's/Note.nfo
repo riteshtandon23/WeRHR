@@ -1,5 +1,9 @@
-- Files from the templates are not uploaded
-- Mailgun is used for email automation
+20/2/2016 11:00
+- Files from the templates are not pushed (folder 'images' and 'js')
+- Mailgun (3rd party API) is used for email automation
 - Mailgun requires 'composer' for installation
 - Composer can be installed via 'curl' or via binary installer available from its official website
 - Composer.json included for composer's installation to local folder
+
+21/2/2016 15:00
+- Improvements and bug fixes

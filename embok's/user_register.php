@@ -122,7 +122,7 @@
     <div class="container">
     
     <!-- Logo -->
-    <div class="logo"><a href="index.html" id="logo"></a></div>
+    <div class="logo"><a href="index.php" id="logo"></a></div>
     
 	<div class="right_links">
         
@@ -159,7 +159,7 @@
 
     <div class="title"><h1>Registration Form</h1></div>
     
-    <div class="pagenation">&nbsp;<a href="index.html">Home</a> <i>/</i> <a href="#">Registration</a> <i>/</i> Users Registration Form</div>
+    <div class="pagenation">&nbsp;<a href="index.php">Home</a> <i>/</i> <a href="#">Registration</a> <i>/</i> Users Registration Form</div>
     
 </div>
 </div><!-- end page title --> 
@@ -176,32 +176,21 @@
         <div class="reg_form">
         <form id="sky-form" class="sky-form" method="post" action="processes/user_register_process.php">
 				<header>Registration form</header>
-								<fieldset>
-							 
-               
-                           
-								
+					<fieldset>			
 					<div class="row">
 						<section class="col col-6">
 							<label class="input">
-								<input type="text" name="firstname" id="firstname" placeholder="First name">
+							<i class="icon-append fa fa-user"></i>
+								<input type="text" name="firstname" id="firstname" placeholder="First Name">
 							</label>
 						</section>
 						<section class="col col-6">
 							<label class="input">
+							<i class="icon-append fa fa-user"></i>
 								<input type="text" name="lastname" id="lastname" placeholder="Last name">
 							</label>
 						</section>
 					</div>
-					
-					
-							<i></i>
-						</label>
-					</section>
-					
-					
-									
-					
 					<section>
 						<label class="input">
 							<i class="icon-append icon-envelope-alt"></i>
@@ -209,7 +198,6 @@
 							<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
 						</label>
 					</section>
-					
 					<section>
 						<label class="input">
 							<i class="icon-append icon-lock"></i>
@@ -217,7 +205,6 @@
 							<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
 						</label>
 					</section>
-					
 					<section>
 						<label class="input">
 							<i class="icon-append icon-lock"></i>

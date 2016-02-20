@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
 	$lname = $_POST['lname'];
 	$email = $_POST['email'];
 	$mobile = ($_POST['mobile']);
-	$company = $_POST['company'];
+	$company = $_POST['cname'];
 	$web = $_POST['website'];
 	$address = $_POST['address'];
 	$city = ($_POST['city']);
@@ -22,16 +22,16 @@ if(isset($_POST['submit'])){
 	$country = ($_POST['country']);
 	$password = ($_POST['password']);
 	
-	$query1 = mysqli_query($con,"SELECT * FROM users WHERE username='$email'");
+	$query1 = mysqli_query($con,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
 	if(mysqli_num_rows($query1)>0){
 		print '<script type="text/javascript">'; 
-		print 'alert("The email address  is already registered!")';
+		print 'alert("The email address  is already registered!");';
 		print 'window.location="http://localhost/WeRHR_Login/employer_register.php";'; 
 		print '</script>';	
 	}
 	else
 	{
-		$query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,username,contact,companyName,companyWebsite,address,city,state,country,password) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password')");
+		$query1 = mysqli_query($con,"INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password','0')");
 		print '<script type="text/javascript">'; 
 		print 'alert("Successfully registered");';
 		print 'window.location="http://localhost/WeRHR_Login/login.php";';
