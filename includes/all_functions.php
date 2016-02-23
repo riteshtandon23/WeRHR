@@ -1,7 +1,3 @@
-<!--**********************************************************************-->
-<!--**      This page Contain all the select function				   ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->
 <?php
 function redirect_to($new_location)
 {
@@ -53,6 +49,43 @@ function selectOption($id)
 	global $connection;
 	$stmt=$connection->prepare("call selectOption(?)");
 	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+#mahesh function
+function selectquery()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectquery()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+function selectquery1()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectquery1()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+function selecthtml1()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selecthtml1()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+function htmlmenu2()
+{
+	global $connection;
+	$stmt=$connection->prepare("call htmlmenu2()");
 	$stmt->execute();
 	$result=$stmt->get_result();
 	confirm_query($result);

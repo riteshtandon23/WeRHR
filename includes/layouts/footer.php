@@ -1,7 +1,3 @@
-<!--**********************************************************************-->
-<!--**      This page is footer                                        ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->     
          </div>
     </div>
 </div>       
@@ -64,7 +60,62 @@
             
         });
     </script>
-    
+        <!-- Gash-->
+<script>
+function setCookie(cname,cvalue,exdays)
+{
+     var d = new Date();
+     d.setTime(d.getTime()+(exdays*24*60*60*1000));
+     var expires = "expires="+d.toGMTString();
+     document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+function getCookie(cname)
+{
+     var name = cname + "=";
+     var ca = document.cookie.split(';');
+     for(var i=0; i<ca.length; i++) 
+     {
+          var c = ca[i].trim();
+          if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+     }
+return "";
+}
+
+//check existing cookie
+cook=getCookie("my_cookie");
+
+if(cook==""){
+   //cookie not found, so set seconds=60
+   var seconds = 10800;
+}else{
+     seconds = cook;
+     console.log(cook);
+}
+
+function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var hours = Math.round((minutes-30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds; 
+    }
+
+    //store seconds to cookie
+    setCookie("my_cookie",seconds,5);
+
+    document.getElementById('countdown').innerHTML = hours + ":" + minutes + ":" +    remainingSeconds;
+    if (seconds == 0) {
+        clearInterval(countdownTimer);
+        document.getElementById('countdown').innerHTML = "Finished";
+    } else {    
+        seconds--;
+    }
+}
+
+var countdownTimer = setInterval(secondPassed, 1000);
+//end gash
+</script>
+
     <script>
         // initialize the validator function
         validator.message['date'] = 'not a real date';
@@ -144,10 +195,7 @@
         });
     });
     </script-->
-<<<<<<< HEAD
     <!--search using Ajax and Jquery-->
-=======
->>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
     <script type="text/javascript">
         $(document).ready(function(e){
             $('#searchtopic').keyup(function(){
@@ -177,10 +225,6 @@
             });
         });
     </script>
-<<<<<<< HEAD
-    
-=======
->>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
 </body>
 
 </html>

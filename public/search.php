@@ -1,11 +1,4 @@
 <?php require_once("../includes/dbconnection.php");?>
-<<<<<<< HEAD
-<!--**********************************************************************-->
-<!--**      This page is for search topic call by AJAX                 ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->
-=======
->>>>>>> abb971bf645d02bb5bd60dc1459679a099f3f77c
 <?php
     if(isset($_GET['key']))
     {

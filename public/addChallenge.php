@@ -1,10 +1,6 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php include("../includes/layouts/header.php");?>
-<!--**********************************************************************-->
-<!--**      This page is for adding Topic Name update and Exam date    ***-->
-<!--**      Create By Da O Hi Paya Lamare                              ***-->
-<!--**********************************************************************-->
 <div class="x_content">
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
