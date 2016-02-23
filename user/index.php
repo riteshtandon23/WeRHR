@@ -10,54 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
-		
-		<!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
-			
-	<link rel="stylesheet" href="selectize/css/normalize.css">
-		<link rel="stylesheet" href="selectize/css/stylesheet.css">
-		<link rel="stylesheet" href="selectize/css/selectize.default.css">
-		<script src="selectize/js/jquery.js"></script>
-		<script src="selectize/js/selectize.js"></script>
-		<script src="selectize/js/index.js"></script>
-
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- gauge js -->
-    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
-    <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
-    <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-    <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
-    <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-
-    <script src="js/custom.js"></script>
-
-
-
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script> 
-    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
-
- <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="js/flot/date.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
-    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
-   
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	
 
+ 
+ 
+ 
  
  
  
@@ -93,7 +53,7 @@
         background: #939393;
     }
 	</style>
-    
+   
     <script src="js/nprogress.js"></script>
     <script>
         NProgress.start();
@@ -410,48 +370,48 @@
   
   
   <form class="form-inline" role="form" align="center" method="get" action="" >
-    <div class="form-group" style="margin-right:55px">
+    <div class="form-group" >
+	&nbsp&nbsp&nbsp&nbsp
       <label for="dropdown">Exam:</label>
-	  <select class="btn" type="dropdown">
+	  <select class="btn" type="dropdown"  style="width:200px">
 	  <option value="">Select Exam</option>
       <option>HTML</option>
        <option>JAVA</option>
       <option>PHP</option>
 	  </select>
     </div>
-	</br></br>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp
     <div class="form-group"  >
 	
       <label for="date">Date:</label>
-      <input type="date" class="form-control" id="pwd">
+      <input type="date" class="form-control" id="pwd" style="width:200px">
     </div>
 	</br></br>&nbsp&nbsp
-     <div class="form-group"  style="width:100px">
+     <div class="form-group" >
       <label for="email">Email:</label>
-		<div id='email' ><input type="email" class="form-control" id="email"  ></div>
+      <input type="email" class="form-control" id="email" style="width:200px">
                              <div class="dropdown">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <ul id="display" class="dropdown-menu" role="menu" >
+                           
+                            
+                            <ul id="display" class="dropdown-menu" role="menu">
                             </ul>
                             </div>
                         </div>
-    
-     
-
-     </div>
-	</br></br>
+    </div>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 	<div class="form-group" style="margin-right:95px" >
 	
       <label for="time">Start Time:</label>
-      <input type="time" class="form-control" id="pwd">
-    </div></br></br>
+      <input type="time" class="form-control" id="pwd" style="width:200px">
+    </div></br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <div class="form-group" style="margin-right:90px" >
 	
       <label for="time">End Time:</label>
-      <input type="time" class="form-control" id="pwd">
+      <input type="time" class="form-control" id="pwd" style="width:200px">
     </div>
 
-	</br></br>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button type="submit" class="btn btn-default">Save</button>
   </form>
   
@@ -504,8 +464,36 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- gauge js -->
+    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
+    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
+    <!-- chart js -->
+    <script src="js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="js/icheck/icheck.min.js"></script>
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
+
+    <script src="js/custom.js"></script>
+
     <!-- flot js -->
     <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" src="js/flot/date.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
     <script>
         $(document).ready(function () {
             // [17, 74, 6, 39, 20, 85, 7]
@@ -568,6 +556,10 @@
     </script>
 
     <!-- worldmap -->
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script>
+    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
     <script>
         $(function () {
             $('#world-map-gdp').vectorMap({
@@ -710,48 +702,54 @@
         NProgress.done();
     </script>
 <script type="text/javascript">
-        $(document).ready(function(){
-           
- $('#email').keyup(function(){
-         
-              var x=$(this).val();
-                console.log(x);
-                $('#display').show();
-                if(x!="")
-                {
-                    $.ajax({
-                    type: 'GET',
-                    url:'search.php',
-                    data:'key='+x,
-                    success:function(data)
-                    {
-                     alert(data);   
-                     $('#display').html(data);
-                    },
-                });
-                }else
-                {
-                    $('#display').css('display','none');
-                }
-            });
-            $('#display').on('click','li',function(){
-                //alert($(this).text());
-                $('#emails').val($(this).text());
-                $('#display').css('display','none');
-            });
+       
+$(function() {
+    $( "#email" ).autocomplete({
+        source: 'demo1.php'
+    });
+});
 
-$('#email').selectize({
-					persist: false,
-					createOnBlur: true,
-					create: true
-				});
-
-        });
-
-				
     </script>
+	<script>
+$(function() {
+    function split( val ) {
+        return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+        return split( term ).pop();
+    }
+    
+    $( "#email" ).bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+        }
+    })
+    .autocomplete({
+        minLength: 1,
+        source: function( request, response ) {
+            // delegate back to autocomplete, but extract the last term
+            $.getJSON("demo1.php", { term : extractLast( request.term )},response);
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        select: function( event, ui ) {
+            var terms = split( this.value );
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( ", " );
+            return false;
+        }
+    });
+});
+</script>
 
-				
 
     <!-- /datepicker -->
     <!-- /footer content -->
