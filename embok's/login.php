@@ -339,7 +339,8 @@
     
 		
       <div class="login_form">		
-			<form id="sky-form" class="sky-form" action="processes/login_process.php" method="post">
+			<form id="sky-form" class="sky-form" action="session.php" method="post">
+			<div class="message"><?php if($message!="") { echo $message; } ?></div>
 				<header>Login form</header>
 				
 				<fieldset>					
@@ -349,7 +350,7 @@
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append icon-user"></i>
-									<input type="email" name="email">
+									<input type="email" name="email" id="email">
 								</label>
 							</div>
 						</div>
@@ -361,7 +362,7 @@
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append icon-lock"></i>
-									<input type="password" name="password">
+									<input type="password" name="password" id="password">
 								</label>
 								<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
 							</div>
@@ -379,7 +380,7 @@
 				</fieldset>
 				<footer>
 					<div class="fright">
-                    <a href="user_register.php" class="button button-secondary">Register</a>
+                    <a href="register.php" class="button button-secondary">Register</a>
                     <button type="submit" class="button" name="loginbut">Log in</button>
                     </div>
 					

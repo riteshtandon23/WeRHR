@@ -1,4 +1,32 @@
-<?php include_once('include/connect_open.php'); ?>
+<?php include_once('include/connect_open.php');
+session_start(); 
+     
+ if(!$connection)
+{die("connection failed:".mysqli_connect_error());}
+
+?>
+<?php
+
+if(isset($_POST['submit']))
+{
+
+	$fname= ($_POST['fname']);
+		$lname = $_POST['lname'];
+		$email = $_POST['email'];
+		$mobile = ($_POST['mobile']);
+		$country = ($_POST['Country']);
+		$state = ($_POST['State']);
+		$city = ($_POST['city']);
+		$date= ($_POST['dob']);
+		
+	$query1 = mysqli_query($connection,"update user1 set firstname='$fname',lastname='$lname',email='$email',mobile='$mobile',dob='$date',state='$state',country='$country',city='$city' WHERE email='" . $_SESSION["email"] . "'");
+	echo $query1;
+	print '<script type="text/javascript">'; 
+ 
+print '</script>';
+}
+ 
+?>
 
 
 <!DOCTYPE html>
@@ -7,9 +35,7 @@
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -221,7 +247,7 @@
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
 
-                        <ul class="nav navbar-nav navbar-right">
+                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img src="images/img.jpg" alt="">John Doe
@@ -482,54 +508,50 @@
 
                                     </div>
              <div class="container">                    
-<form class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" method="post" action="profile.php">
 
-<div class="form-group">
 
- <label class="control-label col-sm-4" for="usr">Username:</label>
-   
- <div class="col-sm-4">
-  <input type="text" class="form-control" id="uname" placeholder="Username">
-
-  </br>
+<div class="form-group" >
+<?php 
+$result = mysqli_query($connection,"SELECT * FROM user1 WHERE email='". $_SESSION["email"]."'");
+$row=mysqli_fetch_array($result,MYSQL_ASSOC)
+	
+ ?>
  
-</div>
-
-<div class="form-group">
-
-<label class="control-label col-sm-4" for="usr">FirstName: </label>
+<label class="control-label col-sm-4">FirstName: </label>
 
 
 <div class="col-sm-4">
 
-  <input type="text" class="form-control" id="usr" placeholder="Enter First Name"></br>
+  <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name" value="<?php echo $row['firstname'];?>"></br>
   </div>
      
 	 <div class="form-group">
- <label class="control-label col-sm-4" for="usr">LastName:</label>
+ <label class="control-label col-sm-4" >LastName:</label>
 
  
  <div class="col-sm-4">
-  <input type="text" class="form-control" id="usr" placeholder="Enter Last Name"></br>
+  <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter Last Name" value="<?php echo $row['lastname'];?>"></br>
   </div>
   
   <div class="form-group">
-<label class="control-label col-sm-4" for="email">Email:</label>
+<label class="control-label col-sm-4" >Email:</label>
 <div class="col-sm-4">
-<input type="email" class="form-control" id="email" placeholder="Enter email"></br>
+
+<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="<?php echo $row['email'];?>"></br>
 </div>
 
 
       <div class="form-group">
       <label class="control-label col-sm-4">Date of Birth</label>
 	  <div class="col-sm-4">
-      <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Date of Birth"></br>
+      <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="<?php echo $row['dob'];?>"></br>
 	  </div>
 	  
 	  <div class="form-group">
- <label class="control-label col-sm-4" for="usr">Mobile No:</label>
+ <label class="control-label col-sm-4" >Mobile No:</label>
  <div class="col-sm-4">
-  <input type="text" class="form-control" id="usr" placeholder="Enter Mobile Number"></br>
+  <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" value="<?php echo $row['mobile'];?>"></br>
   </div>
 
 
@@ -540,29 +562,25 @@
  	  <div class="form-group">
  <label class="control-label col-sm-4" >City:</label>
  <div class="col-sm-4">
-  <input type="text" class="form-control" name="city" id="city" placeholder="Enter city name"></br>
+  <input type="text" class="form-control" name="city" id="city" placeholder="Enter city name" value="<?php echo $row['city'];?>"></br>
   </div>
  
    <div class="form-group">
  <label class="control-label col-sm-4" >State:</label>
  <div class="col-sm-4">
-  <input type="text" class="form-control" id="State" name="State" placeholder="Enter state name"></br>
+  <input type="text" class="form-control" id="State" name="State" placeholder="Enter state name" maxlength="25" value="<?php echo $row['state'];?>"></br>
   </div>
   
    <div class="form-group">
  <label class="control-label col-sm-4" >Country:</label>
  <div class="col-sm-4">
-  <input type="text" class="form-control" id="Country" name="Country" placeholder="Enter country Name"></br>
-  
+  <input type="text" class="form-control" id="Country" name="Country" placeholder="Enter country Name" value="<?php echo $row['country'];?>"></br>
   	   </div>
 	
      <div class="form-group">
- 
-
-
  <label class="control-label col-sm-4" ></label>
  <div class="col-sm-4">
-  <button type="button" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" id="submit" name="submit">Update</button>
   
 </div>
    
@@ -836,6 +854,6 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
+<?php include_once('include/connection_close.php'); ?>
 </body>
-
 </html>
