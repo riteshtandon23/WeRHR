@@ -10,15 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/stylesheet.css">
-		<!--[if IE 8]><script src="js/es5.js"></script><![endif]-->
-		<script src="js/jquery.js"></script>
-		<script src="dist/js/standalone/selectize.js"></script>
-		<script src="js/index.js"></script
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	
 
+ 
+ 
+ 
  
  
  
@@ -54,7 +53,7 @@
         background: #939393;
     }
 	</style>
-    <script src="js/jquery.min.js"></script>
+   
     <script src="js/nprogress.js"></script>
     <script>
         NProgress.start();
@@ -371,47 +370,48 @@
   
   
   <form class="form-inline" role="form" align="center" method="get" action="" >
-    <div class="form-group" style="margin-right:55px">
+    <div class="form-group" >
+	&nbsp&nbsp&nbsp&nbsp
       <label for="dropdown">Exam:</label>
-	  <select class="btn" type="dropdown">
+	  <select class="btn" type="dropdown"  style="width:200px">
 	  <option value="">Select Exam</option>
       <option>HTML</option>
        <option>JAVA</option>
       <option>PHP</option>
 	  </select>
     </div>
-	</br></br>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp
     <div class="form-group"  >
 	
       <label for="date">Date:</label>
-      <input type="date" class="form-control" id="pwd">
+      <input type="date" class="form-control" id="pwd" style="width:200px">
     </div>
 	</br></br>&nbsp&nbsp
      <div class="form-group" >
       <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email">
+      <input type="email" class="form-control" id="email" style="width:200px">
                              <div class="dropdown">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                            
                             
-                            <ul id="display" class="dropdown-menu" role="menu" >
+                            <ul id="display" class="dropdown-menu" role="menu">
                             </ul>
                             </div>
                         </div>
     </div>
-	</br></br>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 	<div class="form-group" style="margin-right:95px" >
 	
       <label for="time">Start Time:</label>
-      <input type="time" class="form-control" id="pwd">
-    </div></br></br>
+      <input type="time" class="form-control" id="pwd" style="width:200px">
+    </div></br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       <div class="form-group" style="margin-right:90px" >
 	
       <label for="time">End Time:</label>
-      <input type="time" class="form-control" id="pwd">
+      <input type="time" class="form-control" id="pwd" style="width:200px">
     </div>
 
-	</br></br>
+	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button type="submit" class="btn btn-default">Save</button>
   </form>
   
@@ -702,42 +702,54 @@
         NProgress.done();
     </script>
 <script type="text/javascript">
-        $(document).ready(function(e){
-            $('#email').keyup(function(){
-                var x=$(this).val();
-                $('#display').show();
-                if(x!="")
-                {
-                    $.ajax({
-                    type: 'GET',
-                    url:'search.php',
-                    data:'key='+x,
-                    success:function(data)
-                    {
-                        $('#display').html(data);
-                    },
-                });
-                }else
-                {
-                    $('#display').css('display','none');
-                }
-            });
-            $('#display').on('click','li',function(){
-                //alert($(this).text());
-                $('#email').val($(this).text());
-                $('#display').css('display','none');
-            });
-        });
+       
+$(function() {
+    $( "#email" ).autocomplete({
+        source: 'demo1.php'
+    });
+});
+
     </script>
+	<script>
+$(function() {
+    function split( val ) {
+        return val.split( /,\s*/ );
+    }
+    function extractLast( term ) {
+        return split( term ).pop();
+    }
+    
+    $( "#email" ).bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+        }
+    })
+    .autocomplete({
+        minLength: 1,
+        source: function( request, response ) {
+            // delegate back to autocomplete, but extract the last term
+            $.getJSON("demo1.php", { term : extractLast( request.term )},response);
+        },
+        focus: function() {
+            // prevent value inserted on focus
+            return false;
+        },
+        select: function( event, ui ) {
+            var terms = split( this.value );
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push( ui.item.value );
+            // add placeholder to get the comma-and-space at the end
+            terms.push( "" );
+            this.value = terms.join( ", " );
+            return false;
+        }
+    });
+});
+</script>
 
-
-<script>
-				$('#email').selectize({
-					persist: false,
-					createOnBlur: true,
-					create: true
-				});
-				</script>
 
     <!-- /datepicker -->
     <!-- /footer content -->
