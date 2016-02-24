@@ -1,5 +1,5 @@
 <?php include_once('include/connect_open.php');
-session_start(); 
+
      
  if(!$connection)
 {die("connection failed:".mysqli_connect_error());}
