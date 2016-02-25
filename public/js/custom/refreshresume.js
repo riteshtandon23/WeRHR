@@ -21,13 +21,15 @@ angular.module('TestApp', [])
 });
 function TestController($scope,$timeout) {
 	//$scope.appTitle="00:01:45";
+    $scope.course="Java";
+    $scope.courseCode="1002";
     var val= localStorage.getItem("Time");
     if((JSON.parse(val))!==null)
     { 
-        /*var hour=0;
-        var min=2;
-        var sec=0;
-        Calltimer(hour,min,sec);*/
+        // var hour=0;
+        // var min=2;
+        // var sec=0;
+        // Calltimer(hour,min,sec);
       var finalVal=JSON.parse(val);
        // $scope.test=finalVal[0].Time;
         var timeWithCFormat=finalVal[0].Time;
@@ -48,6 +50,13 @@ function TestController($scope,$timeout) {
     $scope.reset=function()
     {
         $scope.appTitle="00:01:00";  
+        localStorage.removeItem('QuestionName');
+        localStorage.removeItem('QuestionOption');
+        localStorage.removeItem('QuesNo');
+        localStorage.removeItem('UserAns');
+        localStorage.removeItem('unAnswer');
+        localStorage.removeItem('Time');
+        localStorage.removeItem('QuestionNumber');
     }
     $scope.saveTime = function() {
        
@@ -69,7 +78,7 @@ function TestController($scope,$timeout) {
 		$scope.saved = localStorage.getItem('Time');
 		$scope.todos = (localStorage.getItem('Time')!==null) ? JSON.parse($scope.saved) : [ {Time:time}];
 		localStorage.setItem('Time', JSON.stringify($scope.todos));
-        console.log('leaving page'); // Use 'Preserve Log' option in Console
+        console.log('leaving'); // Use 'Preserve Log' option in Console
     });
 	function Calltimer(hour,min,sec)
     {
@@ -135,9 +144,9 @@ function TestController($scope,$timeout) {
     $scope.$on('timer-stopped', function(event, remaining){
         if(remaining === 0)
         {
+            
             localStorage.removeItem('Time');
-            console.log("you ran out of time");
+            console.log("running out of time");
         }
     });
-	
 }

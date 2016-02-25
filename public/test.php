@@ -4,6 +4,7 @@
 <?php
 global $connection;
     //$result=mysqli_query($connection,$query);
+#select TIMEDIFF(End_time,Start_Time)as time from exam_details;
     $stmt = $connection->prepare("call getTopic(1002)");
     $result = $stmt->execute();
     confirm_query($result);

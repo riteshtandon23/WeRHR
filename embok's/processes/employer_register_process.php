@@ -21,6 +21,10 @@ if(isset($_POST['submit'])){
 	$state = ($_POST['state']);
 	$country = ($_POST['country']);
 	$password = ($_POST['password']);
+	$sequence2 = md5($email);		#encrypting email as emal is unique
+	$sequence = sha1($sequence2);	#to be used in activation url
+	$fileread = str_replace("#fname#", ucfirst($fname), $fileread);
+	$fileread = str_replace("#seq#", $sequence, $fileread);
 	
 	$query1 = mysqli_query($con,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
 	if(mysqli_num_rows($query1)>0){
@@ -31,7 +35,11 @@ if(isset($_POST['submit'])){
 	}
 	else
 	{
-		$query1 = mysqli_query($con,"INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password','0')");
+		//$query1 = mysqli_query($con,"INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status,sequence) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password','0','$sequence')");
+		$res = $con->query("INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status,sequence) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$country','$password','0','$sequence')");
+		$row = mysqli_fetch_assoc($res);
+		$_SESSION['id'] = $row['id'];
+		$_SESSION['sequence'] = $sequence;
 		print '<script type="text/javascript">'; 
 		print 'alert("Successfully registered");';
 		print 'window.location="http://localhost/WeRHR_Login/login.php";';

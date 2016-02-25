@@ -54,41 +54,5 @@ function selectOption($id)
 	confirm_query($result);
 	return $result;
 }
-#mahesh function
-function selectquery()
-{
-	global $connection;
-	$stmt=$connection->prepare("call selectquery()");
-	$stmt->execute();
-	$result=$stmt->get_result();
-	confirm_query($result);
-	return $result;
-}
-function selectquery1()
-{
-	global $connection;
-	$stmt=$connection->prepare("call selectquery1()");
-	$stmt->execute();
-	$result=$stmt->get_result();
-	confirm_query($result);
-	return $result;
-}
-function selecthtml1()
-{
-	global $connection;
-	$stmt=$connection->prepare("call selecthtml1()");
-	$stmt->execute();
-	$result=$stmt->get_result();
-	confirm_query($result);
-	return $result;
-}
-function htmlmenu2()
-{
-	global $connection;
-	$stmt=$connection->prepare("call htmlmenu2()");
-	$stmt->execute();
-	$result=$stmt->get_result();
-	confirm_query($result);
-	return $result;
-}
+
 ?>
