@@ -54,5 +54,16 @@ function selectOption($id)
 	confirm_query($result);
 	return $result;
 }
+//select Exam Time from Database
+function SelectExamTime($id)
+{
+	global $connection;
+	$stmt=$connection->prepare("call ExamTime(?)");
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
 
 ?>
