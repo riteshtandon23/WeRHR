@@ -8,5 +8,8 @@
 21/2/2016 15:00
 - Improvements and bug fixes
 
-24/1/2016 15:42
+24/2/2016 15:42
 - Email activation added: Registered users will remain 'unactivated' if activation mail is not checked.
+
+25/2/2016 15:45
+- Warning banner (reminding users to activate their account) is added once logged into the site.

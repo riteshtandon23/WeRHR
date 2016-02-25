@@ -129,8 +129,8 @@
         
         <ul>
             <!--li class="link"><a class="fancybox fancybox.ajax" href="login-frame.html"><i class="fa fa-envelope"></i> info@yourwebsite.com</a></li-->
-            <li class="link"><a class="fancybox fancybox.ajax" href="register.php"><i class="fa fa-edit"></i> User Register</a></li>
-            <li class="link"><a class="fancybox fancybox.ajax" href="register1.php"><i class="fa fa-edit"></i> Company Register</a></li>
+            <li class="link"><a class="fancybox fancybox.ajax" href="user_register.php"><i class="fa fa-edit"></i> User Register</a></li>
+            <li class="link"><a class="fancybox fancybox.ajax" href="employer_register.php"><i class="fa fa-edit"></i> Company Register</a></li>
             <li class="social"><a href="#"><i class="fa fa-facebook"></i></a></li>
             <li class="social"><a href="#"><i class="fa fa-twitter"></i></a></li>
             <li class="social"><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -339,8 +339,7 @@
     
 		
       <div class="login_form">		
-			<form id="sky-form" class="sky-form" action="session.php" method="post">
-			<div class="message"><?php if($message!="") { echo $message; } ?></div>
+			<form id="sky-form" class="sky-form" action="processes/login_process.php" method="post">
 				<header>Login form</header>
 				
 				<fieldset>					
@@ -350,7 +349,7 @@
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append icon-user"></i>
-									<input type="email" name="email" id="email">
+									<input type="email" name="email">
 								</label>
 							</div>
 						</div>
@@ -362,7 +361,7 @@
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append icon-lock"></i>
-									<input type="password" name="password" id="password">
+									<input type="password" name="password">
 								</label>
 								<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
 							</div>
@@ -380,7 +379,7 @@
 				</fieldset>
 				<footer>
 					<div class="fright">
-                    <a href="register.php" class="button button-secondary">Register</a>
+                    <a href="user_register.php" class="button button-secondary">Register</a>
                     <button type="submit" class="button" name="loginbut">Log in</button>
                     </div>
 					
