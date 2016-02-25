@@ -129,8 +129,8 @@
         
         <ul>
             <!--li class="link"><a class="fancybox fancybox.ajax" href="login-frame.html"><i class="fa fa-envelope"></i> info@yourwebsite.com</a></li-->
-            <li class="link"><a class="fancybox fancybox.ajax" href="user_register.php"><i class="fa fa-edit"></i> User Register</a></li>
-            <li class="link"><a class="fancybox fancybox.ajax" href="employer_register.php"><i class="fa fa-edit"></i> Company Register</a></li>
+            <li class="link"><a class="fancybox fancybox.ajax" href="register.php"><i class="fa fa-edit"></i> User Register</a></li>
+            <li class="link"><a class="fancybox fancybox.ajax" href="register1.php"><i class="fa fa-edit"></i> Company Register</a></li>
             <li class="social"><a href="#"><i class="fa fa-facebook"></i></a></li>
             <li class="social"><a href="#"><i class="fa fa-twitter"></i></a></li>
             <li class="social"><a href="#"><i class="fa fa-google-plus"></i></a></li>
