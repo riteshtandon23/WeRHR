@@ -19,32 +19,39 @@ angular.module('TestApp', [])
 .run(function (beforeUnload) {
     // Must invoke the service at least once
 });
-function TestController($scope,$timeout) {
+function TestController($scope,$timeout,$window,$http) {
 	//$scope.appTitle="00:01:45";
-    $scope.course="Java";
-    $scope.courseCode="1002";
+    // $scope.course="Java";
+    // $scope.courseCode="1002";
     var val= localStorage.getItem("Time");
     if((JSON.parse(val))!==null)
     { 
-        // var hour=0;
-        // var min=2;
-        // var sec=0;
-        // Calltimer(hour,min,sec);
-      var finalVal=JSON.parse(val);
-       // $scope.test=finalVal[0].Time;
-        var timeWithCFormat=finalVal[0].Time;
-        var arr=timeWithCFormat.split(':');
-        var val1=Number(arr[0]);
-        var val2=Number(arr[1]);
-        var val3=Number(arr[2]);
-        Calltimer(val1,val2,val3);
+        
+        var time=$window.timetogo;
+        $scope.appTitle=time;
+        var arr=time.split(':');
+        var hour=Number(arr[0]);
+        var min=Number(arr[1]);
+        var sec=Number(arr[2]);
+        Calltimer(hour,min,sec); 
+        //Resume time
+        // var finalVal=JSON.parse(val);
+        // var timeWithCFormat=finalVal[0].Time;
+        // var arr=timeWithCFormat.split(':');
+        // var val1=Number(arr[0]);
+        // var val2=Number(arr[1]);
+        // var val3=Number(arr[2]);
+        // Calltimer(val1,val2,val3);
         
        
-    }else
-        {
-        var hour=0;
-        var min=1;
-        var sec=0;
+    }else{
+        //Start New Time
+        var time=$window.timetogo;
+        $scope.appTitle=time;
+        var arr=time.split(':');
+        var hour=Number(arr[0]);
+        var min=Number(arr[1]);
+        var sec=Number(arr[2]);
         Calltimer(hour,min,sec);  
     }
     $scope.reset=function()
@@ -145,7 +152,14 @@ function TestController($scope,$timeout) {
         if(remaining === 0)
         {
             
-            localStorage.removeItem('Time');
+            // localStorage.removeItem('QuestionName');
+            // localStorage.removeItem('QuestionOption');
+            // localStorage.removeItem('QuesNo');
+            // localStorage.removeItem('UserAns');
+            // localStorage.removeItem('unAnswer');
+            // localStorage.removeItem('Time');
+            // localStorage.removeItem('QuestionNumber');
+            localStorage.clear();
             console.log("running out of time");
         }
     });

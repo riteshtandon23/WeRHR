@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var selectedOption;
 	var questionlength;
 	//checking for Question Exixst or not to resume
-	
+	//localStorage.clear();
 	$.ajax({
 	    type: 'GET',
 	    dataType:'json',
@@ -35,6 +35,7 @@ $(document).ready(function(){
 	    	
 		    	for(var i in myObject)
 		    	{
+		    		localStorage.clear();
 		    		//console.log(myObject[i].Question);
 	    			//console.log(myObject[i].QuestionOption);
 	    			var Data1=myObject[i].Question;
