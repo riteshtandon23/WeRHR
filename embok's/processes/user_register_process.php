@@ -16,7 +16,10 @@ if(isset($_POST["submit"])){
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
     $password = ($_POST['password']);
-    //$_SESSION['fname4email'] = $firstname;
+    $sequence1 = md5($email);       #encrypting email as email is unique
+    $sequence = sha1($sequence1);   #to be used in activation url
+    $fileread = str_replace("#fname#", ucfirst($firs), $fileread);
+    $fileread = str_replace("#seq#", $sequence, $fileread);
     $query1 = mysqli_query($con,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
     
     if(mysqli_num_rows($query1)>0){
@@ -27,7 +30,7 @@ if(isset($_POST["submit"])){
         print '</script>'; 
     }
     else{
-        $query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,email,password,act_status) VALUES('$firstname','$lastname','$email','$password','0')");
+        $query1 = mysqli_query($con,"INSERT INTO users(firstname,lastname,email,password,act_status,sequence) VALUES('$firstname','$lastname','$email','$password','0','$sequence')");
         print '<script type="text/javascript">'; 
         print 'alert("Successfully registered");'; 
         //print 'window.location="http://www.werhr.in/login.php";';
