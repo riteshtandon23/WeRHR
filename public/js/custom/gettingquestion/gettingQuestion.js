@@ -20,6 +20,7 @@ $(document).ready(function(){
 	    	var myOb=JSON.stringify(data);
 	    	myObject = JSON.parse(myOb);
 	    	var CheckQuestionExist = JSON.parse(localStorage.getItem('QuestionNumber'));
+	    	//alert(CheckQuestionExist.length);
 	    	optionNotaficationButton(myObject)
 			if(CheckQuestionExist!==null)
 			{
@@ -32,15 +33,16 @@ $(document).ready(function(){
 				temp2=Qname[j];
 				temp=Optname[j];
 			}else{
-	    	
+				localStorage.clear();
 		    	for(var i in myObject)
 		    	{
-		    		localStorage.clear();
-		    		//console.log(myObject[i].Question);
+		    		
+		    		//console.log(myObject.Question);
 	    			//console.log(myObject[i].QuestionOption);
 	    			var Data1=myObject[i].Question;
 	    			var Data2=myObject[i].QuestionOption;
 	    			var QuestionName= JSON.parse(localStorage.getItem('QuestionName'));
+	    			// console.log(QuestionName);
 					var QuestionOption= JSON.parse(localStorage.getItem('QuestionOption'));
 					if (QuestionName=== null)
 					{
@@ -67,7 +69,7 @@ $(document).ready(function(){
 					k=Number(i)+1;	
 		    	}
 		    }
-			 $('#QNumber'+j).css('background-color','red');
+			$('#QNumber'+j).css('background-color','red');
 	    	Display(temp,temp2);
 	    	trackQuestion();
 	    	highlight();
@@ -191,6 +193,10 @@ $(document).ready(function(){
 		UserAns.push(uans);
 		localStorage.setItem("UserAns", JSON.stringify(UserAns))
 		localStorage.setItem("QuesNo", JSON.stringify(QuesNo))
+		//here check me
+		//var tttt=htmlSpecialChars(JSON.parse(localStorage.getItem('UserAns'));
+		$('#UAns').val(JSON.parse(localStorage.getItem('UserAns')));
+		$('#QNum').val(JSON.parse(localStorage.getItem('QuesNo')));
 		
 
 	});
@@ -198,12 +204,15 @@ $(document).ready(function(){
 	{
 		
 		document.getElementById('question').innerHTML = Number(j)+1+".  "+temp2;
-
-		var arr=temp.split(',');
-		$.each(arr,function(index, value){
-			$('.option').append('<div class="radio"><label class="radio-label"><input type="radio" name="choice" value="'+value+'" id="opt"'+index+'>'+value+'</label></div>');
-		});
-		$('.option').append('<input type="hidden" id="Q'+j+'" value="'+j+'">');
+		if(temp!==null)
+		{
+			var arr=temp.split(',');
+				$.each(arr,function(index, value){
+					value=htmlSpecialChars(value);
+					$('.option').append('<div class="radio"><label class="radio-label"><input type="radio" name="choice" value="'+value+'" id="opt"'+index+'>'+value+'</label></div>');
+				});
+				$('.option').append('<input type="hidden" id="Q'+j+'" value="'+j+'">');
+			}
 	}
 	function trackQuestion()
 	{
@@ -246,6 +255,7 @@ $(document).ready(function(){
 					if(Number(QuesNo[a])==j)
 					{
 						selectedOption=UserAns[a];
+						//selectedOption=htmlSpecialCharsrev(selectedOption);
 						$('input:radio[name=choice][value="'+selectedOption+'"]').attr('checked',true);
 					}
 				}
@@ -324,6 +334,26 @@ $(document).ready(function(){
 
 		}
 	}
+	function htmlSpecialChars(text) {
+
+  return text
+  .replace(/&/g, "&amp;")
+  .replace(/"/g, "'")
+  .replace(/'/g, "&#039;")
+  .replace(/</g, "&lt")
+  .replace(/>/g, "&gt");
+
+}
+function htmlSpecialCharsrev(text) {
+
+  return text
+  .replace("&amp;", /&/g)
+  .replace("&quot;", /"/g)
+  .replace("&#039;",/'/g)
+  .replace("&lt",/</g)
+  .replace("&gt",/>/g);
+ 
+}
 });	
 
  

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2016 at 05:22 AM
+-- Generation Time: Feb 27, 2016 at 01:41 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -36,6 +36,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addQuestion`(IN `Q_Name` VARCHAR(50
 insert into question(Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Id,Topic_Name)
 values(Q_Name,Q_Type,A_Option,Ans,Q_Desc,Tid,T_Name)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTopic`(IN `T_Name` VARCHAR(100))
+    NO SQL
+insert into topic(Topic_Name) values(T_Name)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ExamTime`(IN `T_id` INT(11))
+    NO SQL
+select TIMEDIFF(End_time,Start_Time) as Time from exam_details 
+where Topic_id=T_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getQuestion`(IN `C_Name` VARCHAR(100))
+    NO SQL
+select Question_Name,Question_Type,Answer_Option,Question_Id
+from Question where Topic_Id=C_Name
+ORDER BY Question_Id ASC$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopic`()
     NO SQL
 select topic_Name from topic$$
@@ -66,6 +81,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTopic`(IN `T_name` VARCHAR(10
     NO SQL
 update topic set Topic_Name=N_name where Topic_Name=T_name$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `userAnswer`(IN `Q_Num` VARCHAR(200), IN `Ans` VARCHAR(200))
+    NO SQL
+insert into user_answer(Question_Number.Answer)
+values(Q_Num,Ans)$$
+
 DELIMITER ;
 
 -- --------------------------------------------------------
@@ -90,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
 --
 
 INSERT INTO `exam_details` (`Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`, `Positive_Mark`, `Negative_Mark`) VALUES
-(1002, '2016-03-09', '12:00:00', '03:30:00', 50, 4, 1),
-(1004, '2016-02-19', '12:00:00', '03:00:00', 50, 4, 1);
+(1002, '2016-02-26', '12:00:00', '12:02:00', 40, 4, 1),
+(1004, '2016-02-27', '15:00:00', '15:01:00', 10, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -110,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Name` varchar(30) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `question`
@@ -123,7 +143,12 @@ INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer
 (4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java'),
 (9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java'),
 (10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java'),
-(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java');
+(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java'),
+(13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP'),
+(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP'),
+(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP'),
+(16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP'),
+(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP');
 
 -- --------------------------------------------------------
 
@@ -136,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `Topic_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Topic_id`),
   UNIQUE KEY `Topic_Name` (`Topic_Name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1010 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1012 ;
 
 --
 -- Dumping data for table `topic`
@@ -144,15 +169,30 @@ CREATE TABLE IF NOT EXISTS `topic` (
 
 INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
 (1009, '.net'),
+(1011, 'AnjularJS'),
 (1006, 'BOO'),
 (1007, 'C'),
 (1008, 'C++'),
 (1002, 'Java'),
+(1010, 'JavaScript'),
 (1005, 'Pascal'),
 (1000, 'Perl'),
 (1004, 'PHP'),
 (1001, 'Python'),
 (1003, 'Ruby');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_answer`
+--
+
+CREATE TABLE IF NOT EXISTS `user_answer` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Question_Number` varchar(200) NOT NULL,
+  `Answer` varchar(200) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
