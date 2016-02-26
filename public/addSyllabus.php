@@ -35,7 +35,12 @@
     	}
 	}
 ?>
-
+<?php  
+    if(isset($_POST['Agree']))
+    {
+        redirect_to("attempExam.php");
+    }
+?>
 <?php
 if(isset($connection))
 {

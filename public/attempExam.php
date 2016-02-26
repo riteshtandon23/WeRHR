@@ -1,5 +1,4 @@
-<?php require_once("../includes/dbconnection.php");?>
-<?php require_once("../includes/all_functions.php");?>
+ <?php  session_start();  ?>
 <!DOCTYPE html>
 <html data-ng-app="TestApp">
 <head>
@@ -46,8 +45,12 @@
     <script src="js/custom/gettingquestion/gettingQuestion.js"></script>
     <script src="js/custom/angular.js"></script>
     <script src="js/custom/refreshresume.js"></script>
+    <script>
+        var timetogo='<?=$_SESSION["TtoGo"]?>';
+         //console.log(timetogo);
+    </script>
 </head>
-<body data-ng-controller="TestController">
+<body data-ng-controller="TestController" ondragstart="return false" onselectstart="return false">
 <form role="form">
     <div class="container">
 
@@ -58,13 +61,14 @@
             <div class="container-fluid panel-container">
             <div class="panel-title">
                 <div class="col-xs-6">
-                     <label>Course Name: {{course}}</label><br>
-                    <label>Course Code:  {{courseCode}}</label>
+               
+                     <label>Course Name:<?php echo $_SESSION["CName"]; ?></label><br>
+                    <label>Course Code:<?php echo $_SESSION["CId"]; ?></label>
                 </div>
                 <div class="col-xs-6 text-right">
                     <h5>Time:<label id="timer">{{appTitle}}</label></h5>
                 </div>
-                <input type="hidden" id="topicId" value="1002"></input>
+                <input type="hidden" id="topicId" value="<?php echo $_SESSION["CId"]; ?>"></input>
             </div>
             </div>
         </div>
@@ -123,19 +127,7 @@
     </div>
     </form>
 <script src="js/bootstrap.min.js"></script>
- <!--script>
-    $(function(){
-        $('#timer').countdowntimer({
-            hours : 0,
-            minutes :1,
-            seconds : 0
-        });
-
-
-    });
-    //setTimeout(function(){ alert("Hello"); }, (1000*60));
-
-</script-->
+<script src="js/custom/gettingquestion/disableMouserightClick.js"></script>
 </body>
 </html>
 <?php
