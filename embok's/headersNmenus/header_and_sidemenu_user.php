@@ -54,11 +54,19 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-check"></i> Notable Users <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-book"></i> My Subjects <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">User List 1</a>
+                                        <li><a href="#">Preferable Subjects</a>
                                         </li>
-                                        <li><a href="#">User List 2</a>
+                                        <li><a href="#">Edit Subjects</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-pencil"></i> My Exams<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="#">Upcoming</a>
+                                        </li>
+                                        <li><a href="#">Appeared</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -67,16 +75,6 @@
                                         <li><a href="#">All Reminders</a>
                                         </li>
                                         <li><a href="#">Edit Reminders</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-pencil"></i> Exam Manager <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">All Exams</a>
-                                        </li>
-                                        <li><a href="#">Create Exam</a>
-                                        </li>
-                                        <li><a href="#">Edit Exam</a>
                                         </li>
                                     </ul>
                                 </li>
