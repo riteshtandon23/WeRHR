@@ -62,7 +62,13 @@
         <div class="main_container">
 
             <!-- header and side menu -->
-            <?php include 'headersNmenus/header_and_sidemenu.php'; ?>
+            <?php
+                if($_SESSION['usertype']=='employer'){ 
+                    include 'headersNmenus/header_and_sidemenu.php';
+                }else{
+                    include 'headersNmenus/header_and_sidemenu_user.php';
+                }
+            ?>
             <!-- /header and side menu -->
 
             <!-- page content -->

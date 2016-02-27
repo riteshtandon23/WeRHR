@@ -5,7 +5,6 @@
         }
     else
     {
-
 ?>
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
@@ -68,6 +67,16 @@
                                         <li><a href="#">All Reminders</a>
                                         </li>
                                         <li><a href="#">Edit Reminders</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-pencil"></i> Exam Manager <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="#">All Exams</a>
+                                        </li>
+                                        <li><a href="#">Create Exam</a>
+                                        </li>
+                                        <li><a href="#">Edit Exam</a>
                                         </li>
                                     </ul>
                                 </li>

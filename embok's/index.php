@@ -1,9 +1,14 @@
 <?php
+    include_once("processes/connection.php");
     session_start();
     if(isset($_SESSION["fname"])==FALSE && isset($_SESSION["lname"])==FALSE){
         header('Location: login.php');
-        }
-        else{
+    }
+    else{
+        $sess_id = $_SESSION['id'];
+        $result = $con->query("SELECT act_status FROM users WHERE id='$sess_id' UNION ALL SELECT act_status FROM employers WHERE id='$sess_id'");
+        $row = mysqli_fetch_assoc($result);
+        $act_status = $row['act_status'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +40,10 @@
     <script>
         NProgress.start();
     </script>
-    
+
+    <!-- Style for notification banner (for users to activate their account) -->
+    <link rel="stylesheet" type="text/css" href="css/activate_banner.css" />
+
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->
@@ -53,11 +61,22 @@
 
     <div class="container body">
 
-
         <div class="main_container">
+            <!-- Warn if not yet activated -->
+            <?php
+                if($act_status == 0){
+                include 'warning_banner.php';
+                }
+            ?>
 
             <!-- header and side menu -->
-            <?php include 'headersNmenus/header_and_sidemenu.php'; ?>
+            <?php
+                if($_SESSION['usertype']=='employer'){ 
+                    include 'headersNmenus/header_and_sidemenu.php';
+                }else{
+                    include 'headersNmenus/header_and_sidemenu_user.php';
+                }
+            ?>
             <!-- /header and side menu -->
 
 
@@ -1068,6 +1087,7 @@
     </script>
     <!-- /datepicker -->
     <!-- /footer content -->
+    <script src="js/jquery.min.js"></script>
 </body>
 
 </html>

@@ -1,27 +1,29 @@
 <?php
+    include_once("processes/connection.php");
     session_start();
     if(isset($_SESSION["fname"])==FALSE && isset($_SESSION["lname"])==FALSE){
         header('Location: login.php');
-        }
-        else{
-
-        $con = mysqli_connect("localhost","root","belikethat123","wearehr");
-        if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: ".mysqli_connect_errno();
-        }
+    }
+    else{
         $fname = $_SESSION['fname'];
         $lname = $_SESSION['lname'];
-
-        $addrow = mysqli_fetch_assoc($con->query("SELECT address FROM users WHERE firstname = '$fname' AND lastname = '$lname'"));
-        $address = $addrow['address'];
-        $cityrow = mysqli_fetch_assoc($con->query("SELECT city FROM users WHERE firstname = '$fname' AND lastname = '$lname'"));
-        $city = $cityrow['city'];
-        $counrow = mysqli_fetch_assoc($con->query("SELECT country FROM users WHERE firstname = '$fname' AND lastname = '$lname'"));
-        $country = $counrow['country'];
-        $comprow = mysqli_fetch_assoc($con->query("SELECT companyName FROM users WHERE firstname = '$fname' AND lastname = '$lname'"));
-        $company = $comprow['companyName'];
-        $emrow = mysqli_fetch_assoc($con->query("SELECT username FROM users WHERE firstname = '$fname' AND lastname = '$lname'"));
-        $email = $emrow['username'];
+        if($_SESSION['usertype']=='user'){
+            $id = $_SESSION['id'];
+            $row = mysqli_fetch_assoc($con->query("SELECT address,city,country,email FROM users WHERE id = '$id'"));
+            $address = $row['address'];
+            $city = $row['city'];
+            $country = $row['country'];
+            $email = $row['email'];
+        }
+        else{
+            $id = $_SESSION['id'];
+            $row = mysqli_fetch_assoc($con->query("SELECT address,city,country,email,companyName FROM employers WHERE id = '$id'"));
+            $address = $row['address'];
+            $city = $row['city'];
+            $country = $row['country'];
+            $company = $row['companyName'];
+            $email = $row['email'];    
+        }
 
 ?>
 <!DOCTYPE html>
@@ -71,7 +73,13 @@
         <div class="main_container">
 
             <!-- header and side menu -->
-            <?php include 'headersNmenus/header_and_sidemenu.php'; ?>
+            <?php
+                if($_SESSION['usertype']=='employer'){ 
+                    include 'headersNmenus/header_and_sidemenu.php';
+                }else{
+                    include 'headersNmenus/header_and_sidemenu_user.php';
+                }
+            ?>
             <!-- /header and side menu -->
 
             <!-- page content -->
@@ -202,11 +210,13 @@
                                         <h3><?php echo $fname." ".$lname;?></h3>
 
                                         <ul class="list-unstyled user_data">
-                                            <li><i class="fa fa-map-marker user-profile-icon"></i><?php echo $address.", ".$country; ?>
-                                            </li>
-
                                             <li>
-                                                <i class="fa fa-briefcase user-profile-icon"></i><?php echo $company; ?>
+                                                <i class="fa fa-map-marker user-profile-icon"></i>
+                                                <a><?php echo $address.", ".$city; ?></a>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-map user-profile-icon"></i>
+                                                <a><?php echo $country; ?></a>
                                             </li>
 
                                             <li class="m-top-xs">
