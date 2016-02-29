@@ -13,3 +13,7 @@
 
 25/2/2016 15:45
 - Warning banner (reminding users to activate their account) is added once logged into the site.
+- All files pushed (including JSes and images) with updated 'Font Awesome', 'JQuery'.
+
+26/2/2016 12:15
+- Separated sidebar menu for users and employers

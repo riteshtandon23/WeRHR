@@ -51,7 +51,7 @@
     </script>
 </head>
 <body data-ng-controller="TestController" ondragstart="return false" onselectstart="return false">
-<form role="form">
+<form role="form" method="post" ng-submit="submit()">
     <div class="container">
 
     <div class="row">
@@ -91,7 +91,7 @@
                 <button id="clear" name="clear" type="button" class="btn btn-primary">Clear Selection</button>
                     <button id="prev" name="previous" type="button" data-ng-click="saveTime()" class="btn btn-primary">Previous</button>
                     <button id="next" type="button" data-ng-click="saveTime()" name="next" class="btn btn-primary">Next</button>
-                     <button id="reset" type="button" data-ng-click="reset()" name="reset" class="btn btn-primary">Finish</button>
+                    <button id="Finish" type="submit" name="next" class="btn btn-primary">Finish</button>
                 </div>
                 <div class="clearfix">
                         <p class="pull-right">We are the Human Resource <a>WAH</a>.. |
@@ -104,7 +104,8 @@
         </div>
     </div>
     </div>
-        
+        <input type="hidden" id="UAns" name="UAns">
+        <input type="hidden" id="QNum" name="QNum">
         <div class="panel panel-default col-md-2 hidden-xs hidden-sm " style="margin-top:50px;background:#FFFFFF;">
         <div class="panel-heading">
             <h3>Instruction</h3>

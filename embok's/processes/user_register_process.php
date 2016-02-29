@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
     $password = ($_POST['password']);
     $sequence1 = md5($email);       #encrypting email as email is unique
     $sequence = sha1($sequence1);   #to be used in activation url
-    $fileread = str_replace("#fname#", ucfirst($firs), $fileread);
+    $fileread = str_replace("#fname#", ucfirst($firstname), $fileread);
     $fileread = str_replace("#seq#", $sequence, $fileread);
     $query1 = mysqli_query($con,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
     

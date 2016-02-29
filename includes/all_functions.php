@@ -65,5 +65,16 @@ function SelectExamTime($id)
 	confirm_query($result);
 	return $result;
 }
+//Select question for quiz
+function getQuestion($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call getQuestion(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
 
+}
 ?>
