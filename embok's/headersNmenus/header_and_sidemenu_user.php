@@ -46,9 +46,9 @@
                                 </li>
                                 <li><a><i class="fa fa-sticky-note-o"></i> My Stickies <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">All Stickies</a>
+                                        <li><a href="stickies.php">All Stickies</a>
                                         </li>
-                                        <li><a href="#">Add Stickies</a>
+                                        <li><a href="#">Add Sticky</a>
                                         </li>
                                         <li><a href="#">Remove Stickies</a>
                                         </li>

@@ -225,7 +225,7 @@
                                             </li>
                                         </ul>
 
-                                        <a class="btn btn-success" href="edit_profile.php"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                                        <a class="btn btn-success" href="processes/edit_profile_redirect.php"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
                                         <br />
 
                                         <!-- start skills -->
