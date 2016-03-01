@@ -42,10 +42,10 @@
                             echo "<input type=\"checkbox\" class=\"tableflat\">";
                             echo "</td>";
                             echo "<td class=\" \">".$row["Topic_Name"]."</td>";
-                            echo "<td class=\" \">".$row["Question_Name"]."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["Question_Name"])."</td>";
                             echo "<td class=\" \">".$row["Question_Type"]."</td>";
-                            echo "<td class=\" \">".$row["Answer_Option"]."</td>";
-                            echo "<td class=\" \">".$row["Answer"]."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["Answer_Option"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["Answer"])."</td>";
                             echo "<td class=\" \">".$row["Question_Desc"]."</td>";
                             $id=$row["Question_Id"];
                             echo "<td class=\" last\"><div class=\"buttons\"><a href=\"editOption.php?id=$id\"><button type=\"button\" name=\"editquestion\" id=\"editquestion\" class=\"btn btn-info btn-xs\">Edit</button></a>

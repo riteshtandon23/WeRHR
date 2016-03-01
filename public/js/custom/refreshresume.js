@@ -86,7 +86,7 @@ function TestController($scope,$timeout,$window,$rootScope) {
          localStorage.removeItem('QuestionNumber');
         $rootScope.flag=false;
         //$window.location.href='clearSession.php';
-       // $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns')+'&QuesNo='+localStorage.getItem('QuesNo');
+        $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
        
     };
     //$scope.appTitle = 60;
@@ -184,7 +184,7 @@ function TestController($scope,$timeout,$window,$rootScope) {
             //localStorage.clear();
             $rootScope.flag=false;
             // $location.url('addChallenge.php');
-           // $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns')+'&QuesNo='+localStorage.getItem('QuesNo');
+           // $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
             //$window.location.href;
             console.log("running out of time");
 

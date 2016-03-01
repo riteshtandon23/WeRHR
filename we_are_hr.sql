@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2016 at 01:41 AM
+-- Generation Time: Mar 02, 2016 at 04:54 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -81,10 +81,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTopic`(IN `T_name` VARCHAR(10
     NO SQL
 update topic set Topic_Name=N_name where Topic_Name=T_name$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `userAnswer`(IN `Q_Num` VARCHAR(200), IN `Ans` VARCHAR(200))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `userAnswer`(IN `Ans` VARCHAR(200), IN `C_Name` VARCHAR(100))
     NO SQL
-insert into user_answer(Question_Number.Answer)
-values(Q_Num,Ans)$$
+insert into user_answer(Answer,Course_Name)
+values(Ans,C_Name)$$
 
 DELIMITER ;
 
@@ -111,7 +111,8 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
 
 INSERT INTO `exam_details` (`Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`, `Positive_Mark`, `Negative_Mark`) VALUES
 (1002, '2016-02-26', '12:00:00', '12:02:00', 40, 4, 1),
-(1004, '2016-02-27', '15:00:00', '15:01:00', 10, 4, 1);
+(1004, '2016-02-27', '15:00:00', '15:01:00', 10, 4, 1),
+(1012, '2016-03-03', '15:00:00', '15:01:00', 2, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Name` varchar(30) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `question`
@@ -148,7 +149,11 @@ INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer
 (14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP'),
 (15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP'),
 (16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP'),
-(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP');
+(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP'),
+(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'C Programing'),
+(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing'),
+(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP'),
+(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing');
 
 -- --------------------------------------------------------
 
@@ -161,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `Topic_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Topic_id`),
   UNIQUE KEY `Topic_Name` (`Topic_Name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1012 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1013 ;
 
 --
 -- Dumping data for table `topic`
@@ -171,7 +176,7 @@ INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
 (1009, '.net'),
 (1011, 'AnjularJS'),
 (1006, 'BOO'),
-(1007, 'C'),
+(1012, 'C Programing'),
 (1008, 'C++'),
 (1002, 'Java'),
 (1010, 'JavaScript'),
@@ -189,10 +194,18 @@ INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user_answer` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Question_Number` varchar(200) NOT NULL,
   `Answer` varchar(200) NOT NULL,
+  `Course_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `user_answer`
+--
+
+INSERT INTO `user_answer` (`Id`, `Answer`, `Course_Name`) VALUES
+(1, '["0::opt0"]', 'PHP'),
+(2, 'null', 'PHP');
 
 --
 -- Constraints for dumped tables
