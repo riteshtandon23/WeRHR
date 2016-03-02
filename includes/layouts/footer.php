@@ -168,8 +168,10 @@
                 $('#searchtopic').val($(this).text());
                 $('#display').css('display','none');
             });
+
         });
     </script>
+
 </body>
 
 </html>

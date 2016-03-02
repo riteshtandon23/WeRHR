@@ -23,7 +23,6 @@ $(document).ready(function(){
 	    	var CheckQuestionExist = JSON.parse(localStorage.getItem('QuestionNumber'));
 	    	//alert(CheckQuestionExist.length);
 	    	//QuestionType=myObject[0].QuestionType;
-	    	alert(CheckQuestionExist);
 	    	optionNotaficationButton(myObject)
 			if(CheckQuestionExist!==null)
 			{

@@ -25,7 +25,13 @@
 
     <script src="js/jquery.min.js"></script>
    
+    <script>
+    $('#example').find('input:checkbox').on('click',function(){
+        alert("Yahoo!");
+    });
 
+    
+    </script>
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->

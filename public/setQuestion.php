@@ -1,7 +1,7 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php include("../includes/layouts/header.php");?>
-<form class="form-horizontal form-label-left" action="<?php $_SERVER['PHP_SELF']?>" method="POST" novalidate>
+<form class="form-horizontal form-label-left" novalidate>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -10,7 +10,7 @@
                     <thead>
                         <tr class="headings">
                              <th>
-                             <input type="checkbox" class="tableflat">
+                             <input type="checkbox" name="anything" id="anything" class="tableflat"/>
                              </th>
                              <th>Topic Name</th>
                              <th>Question Name</th>
@@ -21,25 +21,29 @@
                              <th class=" no-link last"><span class="nobr">Action</span>
                              </th>
                         </tr>
+                        <script>
+                        $(document).ready(function(){
+                        console.log("anything is "+$("#anything").parent().closest('div').attr('class'));
+                        $("#anything").parent().change(function() {
+                        alert("Welcome");
+                        if(this.checked) {
+                            //Do stuff
+                            alert("Yahooo!");
+                        }                       
+                        });
+                    });
+                        </script>
                     </thead>
                     <tbody>
                     <?php
                    
                     	$result= selectQuestion();
-                        $i=0;
                     	while($row=$result->fetch_assoc())
 						{
-                            if($i==0){
-                                $ep="even pointer";
-                            }
-                            else
-                            {
-                                $ep="odd pointer";
-                            }
-                    	    //echo "";
+                            $QuestionChecked=$row["Final_Question"];
                             echo "<tr class=\"even pointer\">";
                             echo "<td class=\"a-center \">";
-                            echo "<input type=\"checkbox\" class=\"tableflat\">";
+                            echo "<input type=\"checkbox\" class=\"tableflat\"";if($QuestionChecked===1){echo "checked=\"checked\"";}echo ">";
                             echo "</td>";
                             echo "<td class=\" \">".$row["Topic_Name"]."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Question_Name"])."</td>";
