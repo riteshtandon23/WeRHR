@@ -6,6 +6,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_content">
+            <label id="test"></label>
                 <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr class="headings">
@@ -41,9 +42,10 @@
                     	while($row=$result->fetch_assoc())
 						{
                             $QuestionChecked=$row["Final_Question"];
+                            $id=$row["Question_Id"];
                             echo "<tr class=\"even pointer\">";
                             echo "<td class=\"a-center \">";
-                            echo "<input type=\"checkbox\" class=\"tableflat\"";if($QuestionChecked===1){echo "checked=\"checked\"";}echo ">";
+                            echo "<input type=\"checkbox\" name=\"QuestionVisibility\" id=\"QuestionVisibility\" value=".$id." class=\"\"";if($QuestionChecked===1){echo "checked=\"checked\"";}echo ">";
                             echo "</td>";
                             echo "<td class=\" \">".$row["Topic_Name"]."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Question_Name"])."</td>";
@@ -51,7 +53,7 @@
                             echo "<td class=\" \">".htmlspecialchars($row["Answer_Option"])."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Answer"])."</td>";
                             echo "<td class=\" \">".$row["Question_Desc"]."</td>";
-                            $id=$row["Question_Id"];
+                            
                             echo "<td class=\" last\"><div class=\"buttons\"><a href=\"editOption.php?id=$id\"><button type=\"button\" name=\"editquestion\" id=\"editquestion\" class=\"btn btn-info btn-xs\">Edit</button></a>
                                 <input type=\"hidden\" name=\"QuestionId\" id=\"QuestionId\" class=\"tableflat\" value=".$row["Question_Id"]."></div>";
                             echo "</td>";

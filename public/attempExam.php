@@ -1,4 +1,11 @@
+ <?php require_once("../includes/all_functions.php");?>
  <?php  session_start();  ?>
+ <?php 
+    if(!isset($_SESSION['TtoGo']))
+    {
+        redirect_to("success.php");
+    }
+  ?>
 <!DOCTYPE html>
 <html data-ng-app="TestApp">
 <head>

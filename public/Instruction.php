@@ -10,21 +10,7 @@
 <body>
 <?php
 	session_start();  
-	$_SESSION["CName"]=$_GET['CName'];
-	$result=select_Domain_id($_SESSION["CName"]);
-    $id="";
-    $time="";
-    while($row=$result->fetch_assoc())
-    {
-        $id=$row["Topic_id"];
-    }
-    $result2=SelectExamTime($id);
-    while($row=$result2->fetch_assoc())
-    {
-        $time=$row["Time"];
-    }
-    $_SESSION["CId"]=$id;
-    $_SESSION["TtoGo"]=$time;
+    $_SESSION["CName"]=$_GET['CName'];
 ?>
 <div class="container">
 <div id="answersheet" style="margin-top:50px" class="col-md-8 col-md-offset-1 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-3">
@@ -38,7 +24,7 @@
 				<div class="form">
 					<div class="form-group">
 						<ul>
-							<li><label>To Start the Test Click "Start Test" Button Below.<?php echo $_SESSION['CName']; ?></label></li>
+							<li><label>To Start the Test Click "Start Test" Button Below.</label></li>
 							<li><label>Total Number of question 1-30|Time alloted:1-15 minutes.</label></li>
 							<li><label>Each Question carries 1 mark each no negative mark.</label></li>
 							<li><label>Please chose the write option for all question for the write answer</label></li>

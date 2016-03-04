@@ -17,19 +17,19 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="topicId" name="topicId" class="form-control" required>
                                     <?php
+                                    session_start();
                                         $result=select_Domain();
                                         while($row =$result->fetch_assoc())
                                         {
-                                            //var_dump($row);
-                                            if(($_POST['topicId'])==$row["topic_Name"])
-                                            {
-                                                 echo  "<option selected>".$row["topic_Name"]."</option>";     
-                                            }
-                                            else
-                                            {
-                                               echo  "<option>".$row["topic_Name"]."</option>"; 
-                                            }
-                                            
+                                               echo  "<option";
+                                               if(isset($_SESSION["CName"]))
+                                               {
+                                                    if($row["topic_Name"]===$_SESSION["CName"])
+                                                    {
+                                                        echo "selected";
+                                                    }
+                                               }
+                                               echo ">".$row["topic_Name"]."</option>";
                                         }
                                         
                                     ?>

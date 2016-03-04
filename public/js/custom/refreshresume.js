@@ -184,7 +184,7 @@ function TestController($scope,$timeout,$window,$rootScope) {
             //localStorage.clear();
             $rootScope.flag=false;
             // $location.url('addChallenge.php');
-           // $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
+            $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
             //$window.location.href;
             console.log("running out of time");
 

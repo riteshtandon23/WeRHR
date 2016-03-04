@@ -1,3 +1,5 @@
+<?php require_once("../includes/dbconnection.php");?>
+<?php require_once("../includes/all_functions.php");?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +15,19 @@
  <div class="row">
       <div class=".col-md-6">
         <div class="jumbotron">
-        <h1>Ajax Search Box using Node and MySQL <small>Codeforgeek Tutorial</small></h1>
-         <button type="button" class="btn btn-primary btn-lg">Visit Tutorial</button>
+        
+         <?php
+         $d=date("Y-m-d");
+         echo $d;
+         $todayDate=date("Y-m-d::h:m");
+         $examDate="";
+         echo $todayDate;
+         $result4=SelectExamDateTime(1002,$todayDate);
+        while ($row2=$result4->fetch_assoc()) {
+           $examDate=$row2['Exam_Date'];
+        }
+       // echo $examDate;
+        ?>
       </div>
   </div>
   <div class=".col-md-6">
@@ -28,3 +41,9 @@
   </div>
 </body>
 </html>
+<?php
+if(isset($connection))
+{
+  mysqli_close($connection);
+}
+?>
