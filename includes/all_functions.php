@@ -131,4 +131,16 @@ function getNotificationWithId($id)
 	confirm_query($result);
 	return $result;
 }
+//select Question for exam Generation
+function selectQuestionforEgeneration($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call QuestionforEgeneration(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+
+}
 ?>

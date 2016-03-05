@@ -59,8 +59,8 @@
         if($visi !== 0)
         {
             
-            if(isset($examDate))
-            {
+            // if(isset($examDate))
+            // {
                 $result2=SelectExamTime($id);
                 while($row=$result2->fetch_assoc())
                 {
@@ -73,10 +73,10 @@
             {
                 redirect_to("success.php");
             }
-        }else
-        {
-            redirect_to("success.php");
-        }
+        // }else
+        // {
+        //     redirect_to("success.php");
+        // }
     }
 ?>
 <?php

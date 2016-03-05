@@ -5,7 +5,6 @@
     {
         $key=$_GET['key'];
         $data = array();
-        $data2 = array();
         $result=getQuestion($key);
         while($row=$result->fetch_assoc())
         {
