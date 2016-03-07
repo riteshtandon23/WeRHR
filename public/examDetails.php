@@ -33,6 +33,29 @@ if(isset($_POST['submit']))
     		}
     	}
 	}
+    if(isset($_POST['FinalUpdate']))
+    {
+        $id=$_POST['id'];
+        $date=$_POST['Edate'];
+        $start_time = $_POST['Stime'];
+        $end_time = $_POST['Etime'];
+        $total_question = $_POST['TotalQuestion'];
+        $positive_mark = $_POST['Pmark'];
+        $negative_mark = $_POST['Nmark'];
+        $exam_date=date_create($date);
+        $exam_date=date_format($exam_date,"Y-m-d");
+        $stmt=$connection->prepare("call updateExamDetails(?,?,?,?,?,?,?)");
+        $stmt->bind_param('isssiii',$id, $exam_date, $start_time, $end_time, $total_question, $positive_mark,$negative_mark);
+        $result = $stmt->execute();
+        if($result)
+        {
+            
+            redirect_to("index.php");
+        }else
+        {
+            die("Database connection fail".$connection->connect_errno);
+        }    
+    }
 
 ?>
 <?php

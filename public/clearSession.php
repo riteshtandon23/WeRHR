@@ -1,16 +1,15 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
 <?php
-	if(isset($_GET['QuesNo']))
+	if(isset($_GET['UserAns']))
 	{
 		session_start();
 		$CName=$_SESSION["CName"];
 		session_destroy();
 		$userAns=$_GET['UserAns'];
-		$QuestionAnswered=$_GET['QuesNo'];
 		//$userAns=htmlspecialchars($userAns);
-		$stmt=$connection->prepare("call userAnswer(?,?,?)");
-		$stmt->bind_param('sss',$QuestionAnswered,$userAns,$CName);
+		$stmt=$connection->prepare("call userAnswer(?,?)");
+		$stmt->bind_param('ss',$userAns,$CName);
 		$result=$stmt->execute();
 		if($result)
 		{

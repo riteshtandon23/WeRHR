@@ -37,4 +37,3 @@ if(isset($connection))
 	mysqli_close($connection);
 }
 ?>
-<script type="text/javascript"></script>

@@ -1,4 +1,11 @@
+ <?php require_once("../includes/all_functions.php");?>
  <?php  session_start();  ?>
+ <?php 
+    if(!isset($_SESSION['TtoGo']))
+    {
+        redirect_to("success.php");
+    }
+  ?>
 <!DOCTYPE html>
 <html data-ng-app="TestApp">
 <head>
@@ -37,9 +44,17 @@
         min-height: 100%;
         height: auto;
         background-color: blue;
-
-       
     }
+    .btn-circle{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            padding: 0;
+            font-size: 15px;
+            color: black;
+            line-height: 0.1;
+            border-radius: 30px;
+        }
     </style>
     <script src="js/jquery.min.js"></script>
     <script src="js/custom/gettingquestion/gettingQuestion.js"></script>
@@ -104,8 +119,7 @@
         </div>
     </div>
     </div>
-        <input type="hidden" id="UAns" name="UAns">
-        <input type="hidden" id="QNum" name="QNum">
+        <input type="hidden" id="tmpans" name="tmpans">
         <div class="panel panel-default col-md-2 hidden-xs hidden-sm " style="margin-top:50px;background:#FFFFFF;">
         <div class="panel-heading">
             <h3>Instruction</h3>
@@ -116,9 +130,9 @@
             
         </div>
         <div style="bottom: 0; position: absolute;">
-         <label><button id="prev" name="previous" type="button" class="btn btn-round">&nbsp;&nbsp;</button>Not Visit</label>
-         <label><button id="next" type="button" name="next" class="btn btn-round" style="background-color: yellow">&nbsp;&nbsp;</button>Answered</label>
-         <label><button id="reset" type="button" name="reset" class="btn btn-round" style="background-color: red">&nbsp;&nbsp;</button>Not Answered</label>
+         <label><button id="prev" name="previous" type="button" class="btn btn-primary btn-circle"></button>Not Visit</label>
+         <label><button id="next" type="button" name="next" class="btn btn-circle" style="background-color: yellow"></button>Answered</label>
+         <label><button id="reset" type="button" name="reset" class="btn btn-circle" style="background-color: red"></button>Not Answered</label>
         </div>
         </div>
         <div class="panel-footer"></div>

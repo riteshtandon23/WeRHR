@@ -26,7 +26,7 @@
  
     <script src="js/bootstrap.min.js"></script>
 
-
+    <script src="js/custom/gettingquestion/QuestionVisibility.js"></script>
     <!-- chart js -->
     <script src="js/chartjs/chart.min.js"></script>
     <!-- bootstrap progress js -->
@@ -38,6 +38,8 @@
     <!-- form validation -->
     <script src="js/validator/validator.js"></script>
     <script src="js/custom.js"></script>
+        <!-- sparkline -->
+    <script src="js/sparkline/jquery.sparkline.min.js"></script>
     <script src="js/custom/formValidation.min.js"></script>
     <script src="js/custom/bootstrap.min.js"></script>
      <script type="text/javascript" src="js/custom/jquery.validate.min.js"></script>
@@ -130,16 +132,6 @@
     hljs.configure({tabReplace: '    '});
     hljs.initHighlightingOnLoad();
     </script>
-    <!--script src="js/custom/typeahead.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-    $('input.typeahead').typeahead({
-        name: 'typeahead',
-        remote:'search.php?key=%QUERY',
-        limit : 10
-        });
-    });
-    </script-->
     <!--search using Ajax and Jquery-->
     <script type="text/javascript">
         $(document).ready(function(e){
@@ -168,8 +160,11 @@
                 $('#searchtopic').val($(this).text());
                 $('#display').css('display','none');
             });
+
         });
     </script>
+   
+
 </body>
 
 </html>

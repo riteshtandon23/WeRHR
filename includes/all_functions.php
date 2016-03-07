@@ -22,6 +22,17 @@ function select_Domain()
 	confirm_query($result);
 	return $result;
 }
+//select topic name by id
+function select_Domain_Name($id)
+{
+	global $connection;
+	$stmt = $connection->prepare("call getTopicName(?)");
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
 	//select topic Id
 function select_Domain_id($domainName)
 {
@@ -70,6 +81,61 @@ function getQuestion($cname)
 {
 	global $connection;
 	$stmt = $connection->prepare("call getQuestion(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+
+}
+//checking for set/unset question or count the number of set question
+function CountVisibleQuestion($cname)
+{
+	global $connection;
+	$stmt=$connection->prepare("call CountVisibleQuestion(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+} 
+//select Date and Time of Exam
+function SelectExamDateTime($cid,$todayDate)
+{
+	global $connection;
+	$stmt=$connection->prepare("call SelectExamDate(?,?)");
+	$stmt->bind_param('ss',$cid,$todayDate);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+//get exam notification for Admin panel
+function getNotification()
+{
+	global $connection;
+	$stmt=$connection->prepare("call getNotify()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+//get exam notification for update with Id
+function getNotificationWithId($id)
+{
+	global $connection;
+	$stmt=$connection->prepare("call getNotifyWithId(?)");
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+//select Question for exam Generation
+function selectQuestionforEgeneration($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call QuestionforEgeneration(?)");
 	$stmt->bind_param('s',$cname);
 	$stmt->execute();
 	$result = $stmt->get_result();

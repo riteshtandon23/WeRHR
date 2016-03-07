@@ -17,19 +17,19 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="topicId" name="topicId" class="form-control" required>
                                     <?php
+                                    session_start();
                                         $result=select_Domain();
                                         while($row =$result->fetch_assoc())
                                         {
-                                            //var_dump($row);
-                                            if(($_POST['topicId'])==$row["topic_Name"])
-                                            {
-                                                 echo  "<option selected>".$row["topic_Name"]."</option>";     
-                                            }
-                                            else
-                                            {
-                                               echo  "<option>".$row["topic_Name"]."</option>"; 
-                                            }
-                                            
+                                               echo  "<option";
+                                               if(isset($_SESSION["CName"]))
+                                               {
+                                                    if($row["topic_Name"]===$_SESSION["CName"])
+                                                    {
+                                                        echo "selected";
+                                                    }
+                                               }
+                                               echo ">".$row["topic_Name"]."</option>";
                                         }
                                         
                                     ?>
@@ -75,16 +75,6 @@
                                     <button type="button" class="btn btn-primary"><i class="fa fa-minus"></i></button><label><input type="checkbox" id="ans" class="checkbo"/></label>   
                                  </div>   
                             </div>
-                            <!--div class="form-group hide" id="optionTemplate">
-                                <div class="col-xs-offset-3 col-xs-5">
-                                    <input class="form-control" type="text" name="option[]" placeholder="Option 2" />
-                                </div>
-                                <div class="col-xs-4">
-                                    <button type="button" class="btn btn-primary removeButton"><i class="fa fa-minus"></i></button>
-                                    <label><input type="checkbox" class="js-switch"/> Correct Ans</label>
-                                </div>
-
-                        </div-->
                         <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questionDesc">Question Description<span class="required">*</span>
                             </label>

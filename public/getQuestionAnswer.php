@@ -5,11 +5,10 @@
     {
         $key=$_GET['key'];
         $data = array();
-        $data2 = array();
         $result=getQuestion($key);
         while($row=$result->fetch_assoc())
         {
-            $data[]=array("Question"=>$row['Question_Name'],"QuestionOption"=>$row['Answer_Option']);
+            $data[]=array("Question"=>$row['Question_Name'],"QuestionOption"=>$row['Answer_Option'],"QuestionType"=>$row['Question_Type']);
         }
         echo json_encode($data);
     }
