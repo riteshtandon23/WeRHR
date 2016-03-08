@@ -1,5 +1,5 @@
 <?php include_once('include/connect_open.php');
-
+session_start(); 
      
  if(!$connection)
 {die("connection failed:".mysqli_connect_error());}
@@ -9,6 +9,34 @@
 
 if(isset($_POST['submit']))
 {
+	
+	if(!empty($_FILES['image']) || $_FILES['image']['size']>0){
+		
+        $name = mysqli_escape_string($connection,$_FILES['image']['name']);
+	//echo	$name;
+        $type = $_FILES['image']['type'];
+        $error = $_FILES['image']['error'];
+        $size = $_FILES['image']['size'];
+        $temp = $_FILES['image']['tmp_name'];
+
+
+        if($error > 0)
+        {
+         echo "eer";
+        }
+        else
+        {
+            if($size > 10000000)
+                echo "Format not allowed or file size is too big!";
+            elseif (substr($type,0,5)=='image') {
+               
+                    if($name)
+                        move_uploaded_file($temp,"image/".$name);   
+						}
+		}
+		
+}
+
 
 	$fname= ($_POST['fname']);
 		$lname = $_POST['lname'];
@@ -19,11 +47,10 @@ if(isset($_POST['submit']))
 		$city = ($_POST['city']);
 		$date= ($_POST['dob']);
 		
-	$query1 = mysqli_query($connection,"update user1 set firstname='$fname',lastname='$lname',email='$email',mobile='$mobile',dob='$date',state='$state',country='$country',city='$city' WHERE email='" . $_SESSION["email"] . "'");
+		
+	$query1 = mysqli_query($connection,"update user1 set firstname='$fname',lastname='$lname',email='$email',mobile='$mobile',dob='$date',state='$state',country='$country',city='$city', profile='$name' WHERE email='" . $_SESSION["email"] . "'");
 	echo $query1;
-	print '<script type="text/javascript">'; 
- 
-print '</script>';
+
 }
  
 ?>
@@ -265,7 +292,7 @@ print '</script>';
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -377,7 +404,7 @@ print '</script>';
                             <div class="x_panel">
                                 
                                 <div class="x_content">
-
+                                   
                                     <div class="col-md-1 col-sm-1 col-xs-9 profile_left">
 
                                         <div class="profile_img">
@@ -385,70 +412,17 @@ print '</script>';
                                             <!-- end of image cropping -->
                                             <div id="crop-avatar">
                                                 <!-- Current avatar -->
-                                                <div class="avatar-view" title="Change the avatar">
-                                                    <img src="images/picture.jpg" alt="Avatar">
+                                                <div class="avatar-view" title="Change the avatar" enctype='form-data/multipart 	'>
+												<?php
+												$result = mysqli_query($connection,"SELECT profile FROM user1 WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
+                                                    <img src="image/<?php echo $row['profile'];?>" alt="Avatar"  id="img" style='border-radius:10px;  height:220px ;width:220px;position:absolute; z-index:1;' >
+													<input type='x' name='images' id="images" style='border-radius:20px;width:220px; height:220px; position:relative;  z-index:2; opacity:0;'   /> 
                                                 </div>
 
                                                 <!-- Cropping modal -->
-                                                <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
-                                                                <div class="modal-header">
-                                                                    <button class="close" data-dismiss="modal" type="button">&times;</button>
-                                                                    <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <div class="avatar-body">
-
-                                                                        <!-- Upload image and data -->
-                                                                        <div class="avatar-upload">
-                                                                            <input class="avatar-src" name="avatar_src" type="hidden">
-                                                                            <input class="avatar-data" name="avatar_data" type="hidden">
-                                                                            <label for="avatarInput">Local upload</label>
-                                                                            <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
-                                                                        </div>
-
-                                                                        <!-- Crop and preview -->
-                                                                        <div class="row">
-                                                                            <div class="col-md-9">
-                                                                                <div class="avatar-wrapper"></div>
-                                                                            </div>
-                                                                            <div class="col-md-3">
-                                                                                <div class="avatar-preview preview-lg"></div>
-                                                                                <div class="avatar-preview preview-md"></div>
-                                                                                <div class="avatar-preview preview-sm"></div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="row avatar-btns">
-                                                                            <div class="col-md-9">
-                                                                                <div class="btn-group">
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees">Rotate Left</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="-15" type="button">-15deg</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="-30" type="button">-30deg</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button">-45deg</button>
-                                                                                </div>
-                                                                                <div class="btn-group">
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees">Rotate Right</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="15" type="button">15deg</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="30" type="button">30deg</button>
-                                                                                    <button class="btn btn-primary" data-method="rotate" data-option="45" type="button">45deg</button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-3">
-                                                                                <button class="btn btn-primary btn-block avatar-save" type="submit">Done</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- <div class="modal-footer">
-                                                  <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                                                </div> -->
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                 
                                                 <!-- /.modal -->
 
                                                 <!-- Loading state -->
@@ -508,7 +482,7 @@ print '</script>';
 
                                     </div>
              <div class="container">                    
-<form class="form-horizontal" role="form" method="post" action="profile.php">
+<form class="form-horizontal" role="form" method="post" action="profile.php" enctype="multipart/form-data">
 
 
 <div class="form-group" >
@@ -578,12 +552,17 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
   	   </div>
 	
      <div class="form-group">
- <label class="control-label col-sm-4" ></label>
+	 
+ <label class="control-label col-sm-4" >Profile</label>
  <div class="col-sm-4">
+ <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)' </br></br>
+  <div class="col-sm-4">
   <button type="submit" class="btn btn-primary" id="submit" name="submit">Update</button>
   
 </div>
-   
+ </div>
+
+  
   
   
       
@@ -853,6 +832,23 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
 
     google.maps.event.addDomListener(window, 'load', initialize);
 
+</script>
+<script type="text/javascript">
+         function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img')
+                        .attr('src', e.target.result)
+						.width(220)
+                        .height(220);
+                        
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 </script>
 <?php include_once('include/connection_close.php'); ?>
 </body>
