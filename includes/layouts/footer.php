@@ -45,6 +45,7 @@
      <script type="text/javascript" src="js/custom/jquery.validate.min.js"></script>
       <!-- Datatables -->
      <script src="js/datatables/js/jquery.dataTables.js"></script>
+     <!--script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script-->
      <script src="js/datatables/tools/js/dataTables.tableTools.js"></script>
     <script src="js/custom/table.js"></script>
 

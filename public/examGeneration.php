@@ -8,7 +8,7 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="topicId">Select Course Name <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select id="topicId" name="topicId" class="form-control" onchange="getQuestionnDate();">
+                    <select id="topicId" name="topicId" class="form-control" onchange="getQuestionnDate(this.value);">
                     <?php
                         $result=select_Domain();
                         while($row =$result->fetch_assoc())
@@ -21,23 +21,20 @@
                 </div>
             </div>
             <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Edate">Exam Date<span class="required">*</span>
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Examdate">Select Exam Date <span class="required">*</span>
                 </label>
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="col-md-6 col-sm-6 col-xs-12 has-feedback">
-                                <input type="text" name="Edate" class="form-control has-feedback-right col-md-7 col-xs-12" id="Edate" aria-describedby="inputSuccess2Status">
-                                <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
- 
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select id="Examdate" name="Examdate" class="form-control">
+                    
+                    </select>
+                </div>
             </div>
+           
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_content">
-                            <table id="example" class="table table-striped responsive-utilities jambo_table">
+                            <table id="course_details" class="table table-striped responsive-utilities jambo_table">
                                 <thead>
                                     <tr class="headings">
                                          <th>
@@ -50,7 +47,7 @@
                                          </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tbody">
                                     
                                 </tbody>
                              </table>
@@ -67,9 +64,3 @@
 </div>
 
 <?php include("../includes/layouts/footer.php");?>
-<?php
-if(isset($connection))
-{
-    mysqli_close($connection);
-}
-?>

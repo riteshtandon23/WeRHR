@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2016 at 03:52 AM
+-- Generation Time: Mar 09, 2016 at 04:58 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -79,6 +79,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopicName`(IN `T_id` INT(11))
 select Topic_Name from topic
 where Topic_id=T_id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `QuestionforEgeneration`(IN `TName` VARCHAR(100))
+    NO SQL
+select Question_Id,Topic_Name,Question_Name,Exam_Date,Final_Question
+from Question where Topic_Name=TName
+ORDER BY Question_Id ASC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectDate`(IN `id` INT(11))
+    NO SQL
+select Exam_Date from exam_details
+where Topic_id=id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectExamDate`(IN `T_Id` VARCHAR(100), IN `Today_Date` DATE)
     NO SQL
 select Exam_Date,Total_Question from exam_details
@@ -97,9 +108,9 @@ select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc
 from Question
 ORDER BY Question_Id ASC$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setQuesVis`(IN `Q_id` INT(11), IN `Vis` BOOLEAN)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setQuesVis`(IN `Q_id` INT(11), IN `Vis` BOOLEAN, IN `Edate` VARCHAR(20))
     NO SQL
-update `we_are_hr`.`question` set `Final_Question`=Vis
+update `we_are_hr`.`question` set `Final_Question`=Vis,Exam_Date=Edate
 where `question`.Question_Id=Q_id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExamDetails`(IN `id` INT(11), IN `Edate` DATE, IN `Stime` TIME, IN `Etime` TIME, IN `Tques` INT(11), IN `Pmark` INT(11), IN `Nmark` INT(11))
@@ -140,14 +151,16 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
   `Negative_Mark` int(4) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Topic_id` (`Topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `exam_details`
 --
 
 INSERT INTO `exam_details` (`ID`, `Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`, `Positive_Mark`, `Negative_Mark`) VALUES
-(1, 1002, '2016-03-05', '15:00:00', '15:02:00', 40, 4, 1);
+(1, 1002, '2016-03-05', '15:00:00', '15:02:00', 40, 4, 1),
+(2, 1002, '2016-03-10', '12:00:00', '15:00:00', 40, 4, 1),
+(3, 1004, '2016-03-19', '12:00:00', '13:00:00', 30, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -165,6 +178,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Id` int(11) NOT NULL,
   `Topic_Name` varchar(30) NOT NULL,
   `Final_Question` tinyint(1) NOT NULL,
+  `Exam_Date` varchar(30) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
@@ -173,25 +187,25 @@ CREATE TABLE IF NOT EXISTS `question` (
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`, `Final_Question`) VALUES
-(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1),
-(2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1),
-(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1),
-(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1),
-(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1),
-(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 0),
-(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 0),
-(13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP', 0),
-(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 0),
-(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP', 0),
-(16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 0),
-(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP', 0),
-(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'C Programing', 0),
-(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 0),
-(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP', 0),
-(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 0),
-(24, 'Question 4', 'Single Choice', 'D,M,R,H', 'D', 'Testing', 1012, 'C Programing', 0),
-(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 0);
+INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`, `Final_Question`, `Exam_Date`) VALUES
+(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1, '2016-03-10'),
+(2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1, '2016-03-10'),
+(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1, '2016-03-10'),
+(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1, '2016-03-10'),
+(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1, '2016-03-10'),
+(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 1, '2016-03-10'),
+(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 1, '2016-03-10'),
+(13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP', 0, 'Not Set'),
+(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 0, 'Not Set'),
+(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP', 0, 'Not Set'),
+(16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 0, 'Not Set'),
+(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP', 0, 'Not Set'),
+(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'C Programing', 0, 'Not Set'),
+(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 0, 'Not Set'),
+(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP', 0, 'Not Set'),
+(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 0, 'Not Set'),
+(24, 'Question 4', 'Single Choice', 'D,M,R,H', 'D', 'Testing', 1012, 'C Programing', 0, 'Not Set'),
+(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 0, 'Not Set');
 
 -- --------------------------------------------------------
 
@@ -235,7 +249,20 @@ CREATE TABLE IF NOT EXISTS `user_answer` (
   `Answer` varchar(200) NOT NULL,
   `Course_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `user_answer`
+--
+
+INSERT INTO `user_answer` (`Id`, `Answer`, `Course_Name`) VALUES
+(1, 'null', 'Java'),
+(2, '["1::opt1","2::opt1"]', 'Java'),
+(3, 'null', 'Java'),
+(4, 'null', 'Java'),
+(5, '["1::opt1"]', 'Java'),
+(6, 'null', 'Java'),
+(7, '["1::opt3"]', 'Java');
 
 --
 -- Constraints for dumped tables
