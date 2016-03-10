@@ -714,7 +714,7 @@
                                                 <div class="temperature"><b>Monday</b>, 07:30 AM
                                                     <span>F</span>
                                                     <span><b>C</b>
-                                        </span>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -816,14 +816,6 @@
                             </div>
                             <!-- end of weather widget -->
                         </div>
-
-
-
-
-
-
-
-
 
                     </div>
 
