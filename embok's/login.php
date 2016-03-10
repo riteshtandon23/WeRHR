@@ -123,7 +123,7 @@
     <div class="container">
     
     <!-- Logo -->
-    <div class="logo"><a href="#" id="logo"></a></div>
+    <div class="logo"><a href="index2.php" id="logo"></a></div>
     
 	<div class="right_links">
         
@@ -164,7 +164,7 @@
       
         <ul class="nav navbar-nav">
         
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index2.php">Home</a></li>
         
         <!--li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle">Layouts</a>
             <ul class="dropdown-menu" role="menu">
@@ -321,7 +321,7 @@
 
 <div class="clearfix"></div>
 
-<div class="page_title2">
+<!--div class="page_title2">
 <div class="container">
 
     <div class="title"><h1>Login Form</h1></div>
@@ -329,7 +329,7 @@
     <div class="pagenation">&nbsp;<a href="index.html">Home</a> <i>/</i> <a href="#">Pages</a> <i>/</i> Login Form</div>
     
 </div>
-</div><!-- end page title -->  
+</div--><!-- end page title -->  
 
 <div class="clearfix"></div>
 

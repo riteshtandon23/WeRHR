@@ -618,7 +618,7 @@
 }
 
 #trueHeader #logo{
-	background:url(../images/logo.png) no-repeat center bottom;
+	background:url(../images/logo.svg) no-repeat center bottom;
 }
 .logo {
 	width: 100%;
@@ -1303,7 +1303,7 @@ ul.clients_home {
 
 #trueHeader #logo{
 	text-align: center;
-	background:url(../images/logo.png) no-repeat center bottom;
+	background:url(../images/logo.svg) no-repeat center bottom;
 }
 .logo {
 	width: 100%;

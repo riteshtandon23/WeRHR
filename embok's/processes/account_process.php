@@ -1,15 +1,15 @@
 <?php
 
+include_once("connection.php");
+require("../vendor/autoload.php");
+use Mailgun\Maigun;
+
 session_start();
 
-$con = mysqli_connect("localhost","root","belikethat123","wearehr");
-
-// Check connection
-if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error()."\n";
-  }
-
+$fileloc = fopen("../email_templates/password_change_alert.php");
+$fileread = fread($fileloc, filesize("../email_templates/password_change_alert.php"));
+$fname = $_SESSION['fname'];
+$fileread = str_replace("#fname#", ucfirst($fname), $fileread);
 //fetching posted details
 if(!empty($_POST['oldpassword']) && !empty($_POST['password'])&& !empty($_POST['password2'])){
     $opass = $_POST['oldpassword'];
@@ -25,14 +25,17 @@ if(!empty($_POST['oldpassword']) && !empty($_POST['password'])&& !empty($_POST['
         //Updating database
         $query = "UPDATE users SET password='$npass' WHERE Id='$id'";
         $result = $con->query($query);
-            /*
-            print '<script type="text/javascript">'; 
-            print 'alert("Profile updated")'; 
-            print '</script>'; */
 
-            //$_SESSION['fname'] = $fname;
-            //$_SESSION['lname'] = $lname;
+        # Emailing the user informing the password updation/change
+        # Instantiate the client.
+        $mg = new Mailgun('key-1450c038c9c4c1a803cfa607ceff9fe6');
+        $domain = "werhr.in";
 
+        # Make the call to the client.
+        $mg->sendMessage($domain, array('from'    => 'noreply@werhr.in', 
+                                'to'      => $email, 
+                                'subject' => 'Password Changed!', 
+                                'html'    => $fileread));
     ?>
         <script type="text/javascript">
         alert("Password updated! Please log in");

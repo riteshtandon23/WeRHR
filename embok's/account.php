@@ -1,18 +1,14 @@
 <?php
     session_start();
     if(isset($_SESSION["fname"])==FALSE && isset($_SESSION["lname"])==FALSE){
-        header('Location: login.php');
+            header('Location: login.php');
         }
         else{
-
-        $con = mysqli_connect("localhost","root","belikethat123","wearehr");
-        if(mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: ".mysqli_connect_errno();
-        }
-        $fname = $_SESSION['fname'];
-        $lname = $_SESSION['lname'];
-        $id = $_SESSION['id'];
-        $settingvar = $_SESSION['settingvar'];
+            include_once("/processes/connection.php");
+            $fname = $_SESSION['fname'];
+            $lname = $_SESSION['lname'];
+            $id = $_SESSION['id'];
+            $settingvar = $_SESSION['settingvar'];
 
 ?>
 <!DOCTYPE html>
