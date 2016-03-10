@@ -10,9 +10,6 @@
                 <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr class="headings">
-                             <th>
-                             <input type="checkbox" name="anything" id="anything" class="tableflat"/>
-                             </th>
                              <th>Topic Name</th>
                              <th>Question Name</th>
                              <th>Question Type</th>
@@ -44,9 +41,6 @@
                             $QuestionChecked=$row["Final_Question"];
                             $id=$row["Question_Id"];
                             echo "<tr class=\"even pointer\">";
-                            echo "<td class=\"a-center \">";
-                            echo "<input type=\"checkbox\" name=\"QuestionVisibility\" id=\"QuestionVisibility\" value=".$id." class=\"\"";if($QuestionChecked===1){echo "checked=\"checked\"";}echo ">";
-                            echo "</td>";
                             echo "<td class=\" \">".$row["Topic_Name"]."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Question_Name"])."</td>";
                             echo "<td class=\" \">".$row["Question_Type"]."</td>";

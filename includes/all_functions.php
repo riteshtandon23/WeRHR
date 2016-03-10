@@ -131,4 +131,31 @@ function getNotificationWithId($id)
 	confirm_query($result);
 	return $result;
 }
+//select Question for exam Generation
+function selectQuestionforEgeneration($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call QuestionforEgeneration(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+
+}
+//select exam date for a partcular course
+function selectDate($cname)
+{
+	global $connection;
+	$result1=select_Domain_id($cname);
+	while ($row=$result1->fetch_assoc()) {
+		$id=$row['Topic_id'];
+	}
+	$stmt=$connection->prepare("call selectDate(?)");
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
 ?>

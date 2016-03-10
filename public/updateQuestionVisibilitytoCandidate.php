@@ -4,8 +4,9 @@
 	{
 		$id=$_GET['id'];
 		$vis=$_GET['vis'];
-		$stmt=$connection->prepare('call setQuesVis(?,?)');
-		$stmt->bind_param('ii',$id,$vis);
+		$Edate=$_GET['Edate'];
+		$stmt=$connection->prepare('call setQuesVis(?,?,?)');
+		$stmt->bind_param('iis',$id,$vis,$Edate);
 		$result=$stmt->execute();
 		if($result)
 		{

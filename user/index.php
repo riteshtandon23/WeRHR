@@ -240,14 +240,15 @@
 
             <!-- top navigation -->
             <div class="top_nav">
-
+                    
                 <div class="nav_menu">
+				
                     <nav class="" role="navigation">
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
+					
+                        
 
                         <ul class="nav navbar-nav navbar-right">
+						
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img src="images/img.jpg" alt="">John Doe
@@ -353,7 +354,7 @@
 
             <!-- page content -->
             <div class="right_col" role="main">
-
+<div class="dashboard_graph" style="height:5000px">
                 <!-- top tiles -->
                 <div class="row tile_count">
                    
@@ -363,82 +364,73 @@
 
 
                             <!-- start of weather widget -->
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+							<h1 style="margin-left:10px"><hr style="margin-left:10px">Create Exam<hr></h1>
+							
+							 <div class="row">
+                               <div class="col-md-12 col-sm-12 col-xs-12">
                             
-							<div class="container">
+							    <div class="container">
 							
   
   
-  <form class="form-inline" role="form" align="center" method="get" action="" >
-    <div class="form-group" >
-	&nbsp&nbsp&nbsp&nbsp
-      <label for="dropdown">Exam:</label>
-	  <select class="btn" type="dropdown"  style="width:200px">
-	  <option value="">Select Exam</option>
-      <option>HTML</option>
-       <option>JAVA</option>
-      <option>PHP</option>
-	  </select>
-    </div>
-	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp
-    <div class="form-group"  >
+                                <form class="form-inline" role="form" align="center" method="get" action="" >
+                                 <div class="form-group" >
+	                                &nbsp&nbsp&nbsp&nbsp
+                                       <label for="dropdown" style="font-size:18px">Exam:</label>
+	                                  <select class="btn" type="dropdown"  style="border:1px solid grey ;width:200px">
+	                                       <option value="">Select Exam</option>
+                                          <option>HTML</option>
+                                        <option>JAVA</option>
+                                          <option>PHP</option>
+	                                           </select>
+                                              </div>
+	                                        </br></br>&nbsp&nbsp&nbsp&nbsp&nbsp
+                                             <div class="form-group"  >
 	
-      <label for="date">Date:</label>
-      <input type="date" class="form-control" id="pwd" style="width:200px">
-    </div>
-	</br></br>&nbsp&nbsp
-     <div class="form-group" >
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" style="width:200px">
-                             <div class="dropdown">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                   <label for="date" style="font-size:20px">Date:</label>
+                                               <input type="date" class="form-control" id="pwd" style="border:1px solid grey ; width:200px">
+                                                   </div>
+	                                                </br></br>&nbsp&nbsp&nbsp&nbsp
+                                                   <div class="form-group" >
+                                              <label for="email" style="font-size:18px">Email:</label>
+                                           <textarea class="form-control" id="email" style="border:1px solid grey; width:200px" rows="3"></textarea>
+                                       <div class="dropdown">
+                                       <div class="col-md-6 col-sm-6 col-xs-12">
                            
                             
-                            <ul id="display" class="dropdown-menu" role="menu">
-                            </ul>
-                            </div>
-                        </div>
-    </div>
-	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-	<div class="form-group" style="margin-right:95px" >
+                                               <ul id="display" class="dropdown-menu" role="menu">
+                                     </ul>
+                                   </div>
+                                         </div>
+                                          </div>
+	                                   </br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	                                      <div class="form-group" style="margin-right:95px" >
 	
-      <label for="time">Start Time:</label>
-      <input type="time" class="form-control" id="pwd" style="width:200px">
-    </div></br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-      <div class="form-group" style="margin-right:90px" >
+                                      <label for="time" style="font-size:18px">Start Time:</label>
+                                           <input type="time" class="form-control" id="pwd" style="border:1px solid grey ; width:200px">
+                                     </div></br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <div class="form-group" style="margin-right:90px" >
 	
-      <label for="time">End Time:</label>
-      <input type="time" class="form-control" id="pwd" style="width:200px">
-    </div>
+                                         <label for="time" style="font-size:18px">End Time:</label>
+                                          <input type="time" class="form-control" id="pwd" style="border:1px solid grey ; width:200px">
+                                             </div>
 
-	</br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <button type="submit" class="btn btn-default">Save</button>
-  </form>
-  
-</div>
+	                                       </br></br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                               </form>
+                                                </div>
+                                                 </div>
 							
 							
-                            </div>
+                                                 </div>
 							   
 							   
                                     </div>
                                 </div>
 
-                            </div>
-                            <!-- end of weather widget -->
-                        </div>
-
-
-
-
-
-
-
-
-
-                    </div>
-
-                </div>
+                              </div>
+                             </div>
+                       
 
                 <!-- footer content -->
 
