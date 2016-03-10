@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>weRhr! | </title>
-
+    <noscript>
+      <meta http-equiv="refresh" content="0.0;url=success.php">
+    </noscript>
     <!-- Bootstrap core CSS -->
 
     <link href="css/bootstrap.min.css" rel="stylesheet">

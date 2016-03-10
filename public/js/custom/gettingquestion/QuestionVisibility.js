@@ -33,6 +33,7 @@
 
    }
    setTimeout(function(){DisplayTableData(cname);},100);
+   //DisplayTableData(cname);
 
    });
  function getQuestionnDate(cname)
