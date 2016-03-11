@@ -17,11 +17,9 @@
 
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/dist/bootstrap-clockpicker.min.css">
     <link rel="stylesheet" type="text/css" href="css/github.min.css">
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
-     <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
     <link href="css/icheck/flat/green.css" rel="stylesheet">
     <link href="css/floatexamples.css" rel="stylesheet" />
      <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
@@ -77,7 +75,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.php">Home</a>
+                                        <li><a href="index1.php">Home</a>
                                         </li>
                                         <li><a href="#">Dashboard2</a>
                                         </li>

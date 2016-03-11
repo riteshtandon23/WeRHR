@@ -1,2 +1,0 @@
-# WeAreHr
-Project Demo
