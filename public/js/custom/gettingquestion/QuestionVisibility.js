@@ -38,6 +38,7 @@
    });
  function getQuestionnDate(cname)
  {
+	 
     $('#Examdate').find('option').remove();//.not(':first')
     $.ajax({
         type:'GET',
@@ -58,6 +59,7 @@
  }
  function DisplayTableData(cname)
  {
+	 //alert("xx");
     $.ajax({
         type:'GET',
         dataType:'json',
@@ -71,7 +73,7 @@
                 'iDisplayLength': 12,
                 "sPaginationType": "full_numbers"
             });
-            table.clear().draw(false);
+			table.clear().draw(false);
             var myOb=JSON.stringify(data);
             var myObject = JSON.parse(myOb);
 
