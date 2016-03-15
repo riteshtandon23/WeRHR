@@ -1,911 +1,446 @@
-<!doctype html>
-<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en-gb" class="no-js"> <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- Favicon --> 
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+	    <meta name="application-name" content="&nbsp;"/>
+	    <meta name="msapplication-TileColor" content="#FFFFFF" />
+	    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
+	    <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
+	    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+	    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
+	    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+		<title>We'R'HR - Hire and Get Hired</title>
+		<!-- Bootstrap core CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
 
-<head>
-	<title>We'R'HR - Hire and Get Hired!</title>
-	
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="css/font-awesome.min.css">
 
-<?php include("../includes/layouts/top_links_scripts.php");?>
-</head>
+		<!-- Custom styles for this template -->
+		<link href="css/owl.carousel.css" rel="stylesheet">
+		<link href="css/owl.theme.default.min.css"  rel="stylesheet">
+		<link href="css/style1.css" rel="stylesheet">
+		<link href="css/form-elements.css" rel="stylesheet">
 
-<body>
-
-<div class="wrapper_boxed">
-
-<div class="site_wrapper">
-
-<?php include("../includes/layouts/mainpage_header.php");?>
-<div class="clearfix"></div>
-<!-- Top slider -->
-<div class="feature_section30 two">
-    <div class="container">
-
-        <section class="slider nosidearrows">
-            <div class="flexslider carousel">
-              <ul class="slides">
-
-                    <li>    
-                        <div class="one_half">
-                            <br />
-                            <h1 class="whitecaps">Want to hire prolific employees? <br /> <strong>We are the HR!</strong></h1>
-                            <p class="white">To hire the best, you've got to make it easy for the best people to apply. With WeRHR you don't need to get them to apply in fact-- we got you all covered. </p>
-                            <br /><br />
-                            <a href="#" class="readmore_but10">Know more</a> <a href="#" class="readmore_but10">Register Now!</a>
-                        </div>
-                        
-                        <div class="one_half last"><img src="images/desktop.png" alt="" class="img_left" /></div>
-                        
-                    </li><!-- end section -->
-                   
-                    <li>
-                        
-                        <div class="one_half">
-                            <br />
-                            <h1 class="whitecaps">Increase your chance of getting hired with us-<br /> <strong>Practice, Learn &amp; Compete</strong></h1>
-                            <p class="white">Improve your skills with the various courses and their examples that will make you industrial-ready.</p>
-                            <br /><br />
-                            <a href="#" class="readmore_but10">Know more</a> <a href="#" class="readmore_but10">Register Now!</a>
-                        </div>
-                        
-                        <div class="one_half last"><img src="images/desktop-2.png" alt="" class="img_left" /></div>
-                        
-                    </li><!-- end section -->
-                    
-                </ul>
-            </div>
-            </section>
-
-
-    </div>
-</div><!-- end features section 30 -->
-
-<div class="clearfix"></div>
-<!-- Why WeRHR -->
-<div class="fusection1" id="whywerhr">
-<h2 class="untext">WHY choose WeRHR?</h2>
-    <div class="container">
-
-        <div class="one_fourth animate" data-anim-type="fadeIn" data-anim-delay="200">
-        
-        	<div class="icon"><img src="images/icon-1.png" alt="" /></div>
-        
-        	<h4>Reveal Actual Skill</h4>
-        	
-            <p>Default model search lorem ipsum many web sites in their infan.</p>
-            <br />
-            <a href="#">Read More</a>
-
-    	</div><!-- end section -->
-        
-        <div class="one_fourth animate" data-anim-type="fadeIn" data-anim-delay="400">
-        
-        	<div class="icon"><img src="images/icon-2.png" alt="" /></div>
-        
-        	<h4>Awesome Sliders</h4>
-        	
-            <p>Default model search lorem ipsum many web sites in their infan.</p>
-            <br />
-            <a href="#">Read More</a>
-
-    	</div><!-- end section -->
-        
-        <div class="one_fourth animate" data-anim-type="fadeIn" data-anim-delay="600">
-        
-        	<div class="icon"><img src="images/icon-3.png" alt="" /></div>
-        
-        	<h4>Amazing Package</h4>
-        	
-            <p>Default model search lorem ipsum many web sites in their infan.</p>
-            <br />
-            <a href="#">Read More</a>
-
-    	</div><!-- end section -->
-        
-        <div class="one_fourth last animate" data-anim-type="fadeIn" data-anim-delay="800">
-        
-        	<div class="icon"><img src="images/icon-4.png" alt="" /></div>
-        
-        	<h4>Use for Any Website</h4>
-        	
-            <p>Default model search lorem ipsum many web sites in their infan.</p>
-            <br />
-            <a href="#">Read More</a>
-
-    	</div><!-- end section -->
-            
-    </div>
-</div><!-- end fusection1 -->
-
-<div class="clearfix"></div>
-<!-- Courses Featured -->
-<div class="fusection6" id="courses">
-    <div class="container">
-        
-        <h2 class="untext"><strong>Courses Featured</strong></h2>
-        
-        <ul class="tt-wrapper">
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="200"><a href="#"> <img src="images/icon-c.svg" alt="" /> <h6>C</h6> <span>C is to Computer Programming as QWERTY is to typing</span></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="300"><a href="#"> <img src="images/icon-java.svg" alt="" /> <h6>Java</h6> <span>Lorem ipsum many web sites still in infancy versions have evolved over the years.</span></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="400"><a href="#"> <img src="images/icon-html-css.svg" alt="" /> <h6>HTML & CSS</h6> <span>Lorem ipsum many web sites still in infancy versions have evolved over the years.</span></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="500"><a href="#"> <img src="images/icon-php.svg" alt="" /> <h6>PHP</h6> <span>Lorem ipsum many web sites still in infancy versions have evolved over the years.</span></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="600"><a href="#"> <img src="images/icon-python.svg" alt="" /> <h6>Python</h6> <span>Lorem ipsum many web sites still in infancy versions have evolved over the years.</span></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="700"><a href="#"> <img src="images/icon-more.svg" alt="" /> <h6>More</h6> <span>Lorem ipsum many web sites still in infancy versions have evolved over the years.</span></a></li>
-        </ul>
-        
-    </div>
-</div><!-- end features section 6 -->
-
-<div class="clearfix"></div>
-
-<div class="features_sec20">
-<div class="container_full">
-
-	<h2 class="untext">Latest <strong>Projects</strong></h2>
-
-	
-	<div id="filters-container" class="cbp-l-filters-alignCenter">
-        <button data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</button>
-        <button data-filter=".identity" class="cbp-filter-item">Identity</button>
-        <button data-filter=".web-design" class="cbp-filter-item">Web Design</button>
-        <button data-filter=".graphic" class="cbp-filter-item">Graphic</button>
-        <button data-filter=".logo" class="cbp-filter-item">Photography</button>
-    </div>
-    
-    <div id="grid-container" class="cbp-l-grid-fullScreen">
-                <ul>
-                    <li class="cbp-item graphic">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="images/sliders/800x600.jpg" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="Took a galley<br>by GSRthemes9">view larger</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </li>
-                    <li class="cbp-item web-design logo">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="images/sliders/800x600.jpg" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="Evolved Over<br>by GSRthemes9">view larger</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </li>
-                    <li class="cbp-item graphic logo">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="http://vimeo.com/14912890" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="Packages Info<br>by GSRthemes9">view video</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </li>
-                    <li class="cbp-item web-design graphic">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="images/sliders/800x600.jpg" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="Software Like<br>by GSRthemes9">view larger</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </li>
-                    <li class="cbp-item identity web-design">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="images/sliders/800x600.jpg" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="From Sections<br>by GSRthemes9">view larger</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </li>
-                    <li class="cbp-item identity web-design">
-                        <div class="cbp-caption">
-                            <div class="cbp-caption-defaultWrap">
-                                <img src="images/sliders/800x600.jpg" alt="" />
-                            </div>
-                            <div class="cbp-caption-activeWrap">
-                                <div class="cbp-l-caption-alignCenter">
-                                    <div class="cbp-l-caption-body">
-                                        <a href="portfolio-one.html" class="cbp-l-caption-buttonLeft">more info</a>
-                                        <a href="images/sliders/800x600.jpg" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="The Industry<br>by GSRthemes9">view larger</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </li>
-
-                </ul>
-            </div>
-          <div class="cbp-l-loadMore-text">
-            <div data-href="#" class="cbp-l-loadMore-text-link"></div>
-          </div>
-      
-</div>
-</div><!-- end features section 20 -->
-
-<div class="clearfix"></div>
-
-
-<!--section3.0 removed-->
-
-
-<div class="clearfix"></div>
-
-<div class="fusection2">
-<div class="container">
-
-	<h2 class="untext">Who <strong>we are</strong></h2>
-	
-    <div class="one_half">
-    
-		<h3 class="colored">About Company</h3>
-        
-        <p>Will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy evolved over the years sometimes on purpose.</p>
-        
-        <br />
-        
-        <div class="one_half animate" data-anim-type="fadeInUp">
-            <ul class="list_1">
-                <li><i class="fa fa-check-circle fa-lg"></i> Want to Improve Business</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Start a Business Thinking</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Succcess your Business</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Succcess your Business</li>
-            </ul>
-        </div>
-        
-        <div class="one_half last animate" data-anim-type="fadeInUp">
-            <ul class="list_1">
-                <li><i class="fa fa-check-circle fa-lg"></i> Want to Improve Business</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Start a Business Thinking</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Succcess your Business</li>
-                <li><i class="fa fa-check-circle fa-lg"></i> Succcess your Business</li>
-            </ul>
-        </div>
-
-	</div>
-    
-    <div class="one_half last">
-    
-		<h3 class="colored">Meet Our Team</h3>
-        
-        <div class="hteam animate" data-anim-type="fadeInUp">
-        
-        	<img src="http://placehold.it/140x150" alt="" />
-            
-            <h5>Aiden Savannah <i>- CEO</i></h5>
-
-            <p>Many desktop publishin packages and web page editors sites still in versions have evolved over the years.</p>
-            
-            <ul class="footer_social_links five">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                <li><a href="#"><i class="fa fa-flickr"></i></a></li>
-        	</ul>
-            
-        </div><!-- end section -->
-        
-        <div class="hteam animate" data-anim-type="fadeInUp">
-        
-        	<img src="http://placehold.it/140x150" alt="" />
-            
-            <h5>Kevin Cameron <i>- Manager</i></h5>
-
-            <p>Many desktop publishin packages and web page editors sites still in versions have evolved over the years.</p>
-            
-            <ul class="footer_social_links five">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                <li><a href="#"><i class="fa fa-flickr"></i></a></li>
-        	</ul>
-            
-        </div><!-- end section -->
-        
-	</div>
-    
-    
-</div>
-</div><!-- end features section 2 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection3">
-<div class="container">
-	
-    	<h1 class="animate" data-anim-type="zoomIn"><strong>love Awesome</strong> Unique designs? <br /> so <strong>join us.</strong></h1>
-       
-</div>
-</div><!-- end features section 3 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection4">
-<div class="container">
-	
-    <h2 class="untext">People says / <strong>clients</strong></h2>
-    
-    <br />
-    
-    <div class="one_half animate" data-anim-type="fadeIn" data-anim-delay="100">
-    
-    	<section class="slider nosidearrows">
-        <div class="flexslider carousel">
-          <ul class="slides">
-    
-                <li>
-                    
-                <div class="peoplesays">
-                <img src="http://placehold.it/96x96" alt="" />
-                <p><i class="fa fa-quote-left fa-2x"></i> &nbsp; Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years. Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet to repeat predefined chunks as necessary. versions have evolved over the years. Lorem Ipsum, you need.</p>
-                <br />
-                <strong>- Connor Mackenzie <i>&nbsp;&nbsp;&nbsp;Company Name</i></strong>
-   
+		<!-- Google fonts -->
+		<link rel="stylesheet" type="text/css" href="css/fonts.css">
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="js/ie-emulation-modes-warning.js"></script>
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body id="page-top">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand page-scroll" href="#page-top"><img src="images/Logo_Minimal.svg" alt="Lattes theme logo"></a>
 				</div>
-                
-              	</li><!-- end section -->
-               
-               <li>
-                    
-                <div class="peoplesays">
-                <img src="http://placehold.it/96x96" alt="" />
-                <p><i class="fa fa-quote-left fa-2x"></i> &nbsp; Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years. Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet to repeat predefined chunks as necessary. versions have evolved over the years. Lorem Ipsum, you need.</p>
-                <br />
-                <strong>- Keon Keyshawn <i>&nbsp;&nbsp;&nbsp;Company Name</i></strong>
-   
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="hidden">
+							<a href="#page-top"></a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#about">About</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#team">Team</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="login.php">Login</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#contact">Contact</a>
+						</li>
+					</ul>
 				</div>
-
-              	</li><!-- end section -->
-                
-                <li>
-                    
-                <div class="peoplesays">
-                <img src="http://placehold.it/96x96" alt="" />
-                <p><i class="fa fa-quote-left fa-2x"></i> &nbsp; Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years. Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet to repeat predefined chunks as necessary. versions have evolved over the years. Lorem Ipsum, you need./p>
-                <br />
-                <strong>- Chloe Martha <i>&nbsp;&nbsp;&nbsp;Company Name</i></strong>
-   
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="slider-container">
+					<div class="intro-text">
+						<div class="intro-lead-in">Welcome To We'R'HR!</div>
+						<div class="intro-heading">It's Nice To Meet You</div>
+						<a href="#about" class="page-scroll btn btn-xl">Tell Me More</a>
+					</div>
 				</div>
+			</div>
+		</header>
+		<section id="about" class="light-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>ABOUT</h2>
+							<p>To <b>hire the best</b>, you've got to make it easy for the best people to apply. With WeRHR you don't need to get them to apply in fact-- we got you all covered!</p>
+							<p>Or are you <b>looking for a job?</b> Again with WeRHR you can improve your skills with the various courses and their examples that will make you industrial ready</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- about module -->
+					<div class="col-md-3 text-center">
+						<div class="mz-module-about">
+							<i class="fa fa-briefcase ot-circle"></i>
+							<h3>Web Development</h3>
+							<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+						</div>
+					</div>
+					<!-- end about module -->
+					<!-- about module -->
+					<div class="col-md-3 text-center">
+						<div class="mz-module-about">
+							<i class="fa fa-photo ot-circle"></i>
+							<h3>Visualisation</h3>
+							<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
+						</div>
+					</div>
+					<!-- end about module -->
+					<!-- about module -->
+					<div class="col-md-3 text-center">
+						<div class="mz-module-about">
+							<i class="fa fa-camera-retro ot-circle"></i>
+							<h3>Photography</h3>
+							<p>Accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+						</div>
+					</div>
+					<!-- end about module -->
+					<!-- about module -->
+					<div class="col-md-3 text-center">
+						<div class="mz-module-about">
+							<i class="fa fa-cube ot-circle"></i>
+							<h3>UI/UX Design</h3>
+							<p> Itaque earum rerum hic tenetur a sapiente, ut aut reiciendis maiores</p>
+						</div>
+					</div>
+					<!-- end about module -->
+				</div>
+			</div>
+			<!-- /.container -->
+		</section>
+		<section >
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="skills-text">
+							<h2>WE`RE CREATIVE</h2>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.<br><br>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur?</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<!-- skill bar item -->
+						<div class="skillbar-item">
+							<div class="skillbar-score">
+								<span class="score">90</span><span class="percent">%</span>
+							</div>
+							<div class="skillbar" data-percent="90%">
+								<h3>Web design</h3>
+								<div class="skillbar-bar">
+									<div class="skillbar-percent" style="width: 90%;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- skill bar item -->
+						<div class="skillbar-item">
+							<div class="skillbar-score">
+								<span class="score">80</span><span class="percent">%</span>
+							</div>
+							<div class="skillbar" data-percent="80%">
+								<h3>Development</h3>
+								<div class="skillbar-bar">
+									<div class="skillbar-percent" style="width: 80%;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- skill bar item -->
+						<div class="skillbar-item">
+							<div class="skillbar-score">
+								<span class="score">85</span><span class="percent">%</span>
+							</div>
+							<div class="skillbar" data-percent="85%">
+								<h3>Photography</h3>
+								<div class="skillbar-bar">
+									<div class="skillbar-percent" style="width: 85%;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- skill bar item -->
+						<div class="skillbar-item">
+							<div class="skillbar-score">
+								<span class="score">70</span><span class="percent">%</span>
+							</div>
+							<div class="skillbar" data-percent="70%">
+								<h3>Marketing</h3>
+								<div class="skillbar-bar">
+									<div class="skillbar-percent" style="width: 70%;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="overlay-dark bg-img1 dark-bg short-section">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<h2 data-count="59">59</h2>
+							<h6>awards</h6>
+						</div>
+					</div>
+					<div class="col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<h2 data-count="1054">1054</h2>
+							<h6>Clients</h6>
+						</div>
+					</div>
+					<div class="col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<h2 data-count="34">34</h2>
+							<h6>Team</h6>
+						</div>
+					</div>
+					<div class="col-md-3 mb-sm-30">
+						<div class="counter-item">
+							<h2 data-count="154">154</h2>
+							<h6>Project</h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>Our Partners</h2>
+							<p>Mida sit una namet, cons uectetur adipiscing adon elit.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="owl-carousel">
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-1.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-2.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-3.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-4.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-5.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-6.png" alt="partners"></div>
+							</div>
+							<div class="item">
+								<div class="partner-logo"><img src="images/demo/partners-7.png" alt="partners"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="team" class="light-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>Our Team</h2>
+							<p>A creative agency based on Candy Land, ready to boost your business with some beautifull templates. Lattes Agency is one of the best in town see more you will be amazed.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- team member item -->
+					<div class="col-md-3">
+						<div class="team-item">
+							<div class="team-image">
+								<img src="images/demo/author-2.jpg" class="img-responsive" alt="author">
+							</div>
+							<div class="team-text">
+								<h3>D Lamare </h3>
+								<div class="team-location">Shillng, India</div>
+								<div class="team-position">– Developer + –</div>
+								<p>Mida sit una namet, cons uectetur adipiscing adon elit. Aliquam vitae barasa droma.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end team member item -->
+					<!-- team member item -->
+					<div class="col-md-3">
+						<div class="team-item">
+							<div class="team-image">
+								<img src="images/demo/author-6.jpg" class="img-responsive" alt="author">
+							</div>
+							<div class="team-text">
+								<h3>M Lamin</h3>
+								<div class="team-location">Shillong, India</div>
+								<div class="team-position">– Developer + –</div>
+								<p>Worsa dona namet, cons uectetur dipiscing adon elit. Aliquam vitae fringilla unda mir.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end team member item -->
+					<!-- team member item -->
+					<div class="col-md-3">
+						<div class="team-item">
+							<div class="team-image">
+								<img src="images/demo/author-3.jpg" class="img-responsive" alt="author">
+							</div>
+							<div class="team-text">
+								<h3>Vishal</h3>
+								<div class="team-location">India</div>
+								<div class="team-position">– Developer + –</div>
+								<p>Aradan bes namet, cons uectetur moiscing adon elit. Aliquam vitae fringilla unda augue.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end team member item -->
+					<!-- team member item -->
+					<div class="col-md-3">
+						<div class="team-item">
+							<div class="team-image">
+								<img src="images/demo/author-4.jpg" class="img-responsive" alt="author">
+							</div>
+							<div class="team-text">
+								<h3>Embok</h3>
+								<div class="team-location">Shillong, India</div>
+								<div class="team-position">– Developer + –</div>
+								<p>Dolor sit don namet, cons uectetur beriscing adon elit. Aliquam vitae fringilla unda.</p>
+							</div>
+						</div>
+					</div>
+					<!-- end team member item -->
+				</div>
+			</div>
+		</section>
+		<section id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<div class="section-title">
+							<h2>Contact Us</h2>
+							<p>If you have some Questions or need Help! Please Contact Us!<br>We are very happy to assist you</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<h3>Our Business Office</h3>
+						<p>Lovely Infotech, Block 29, Lovely Professional Univesity, GT Road, Punjab</p>
+						<p><i class="fa fa-phone"></i> +91 123 456 7890</p>
+						<p><i class="fa fa-envelope"></i> mail@werhr.in</p>
+					</div>
+					<div class="col-md-3">
+						<h3>Business Hours</h3>
+						<p><i class="fa fa-clock-o"></i> <span class="day">Weekdays:</span><span>9am to 8pm</span></p>
+						<p><i class="fa fa-clock-o"></i> <span class="day">Saturday:</span><span>9am to 2pm</span></p>
+						<p><i class="fa fa-clock-o"></i> <span class="day">Sunday:</span><span>Closed</span></p>
+					</div>
+					<div class="col-md-6">
+						<form name="sentMessage" id="contactForm" novalidate="">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Your Name *" id="name" required="" data-validation-required-message="Please enter your name.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="Your Email *" id="email" required="" data-validation-required-message="Please enter your email address.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<textarea class="form-control" placeholder="Your Message *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 text-center">
+									<div id="success"></div>
+									<button type="submit" class="btn">Send Message</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<p id="back-top">
+			<a href="#top"><i class="fa fa-angle-up"></i></a>
+		</p>
+		<footer>
+			<div class="container text-center">
+				<p>©2016 <a href="#"><span>WERHR</span>.in</a></p>
+			</div>
+		</footer>
 
-              	</li><!-- end section -->
-                
-			</ul>
-        </div>
-        </section>
-
-	</div>
-    
-    
-    <div class="one_half last animate" data-anim-type="fadeIn" data-anim-delay="200">
-   	
-        <ul class="clients_home">
-            <li><img src="images/client-logo1.png" alt="" /></li>
-            <li><img src="images/client-logo2.png" alt="" /></li>
-            <li><img src="images/client-logo3.png" alt="" /></li>
-            <li><img src="images/client-logo4.png" alt="" /></li>
-            <li><img src="images/client-logo5.png" alt="" /></li>
-            <li><img src="images/client-logo6.png" alt="" /></li>
-            <li><img src="images/client-logo7.png" alt="" /></li>
-            <li><img src="images/client-logo8.png" alt="" /></li>
-            <li><img src="images/client-logo9.png" alt="" /></li>
-        </ul>
-    
-	</div>
-
-</div>
-</div><!-- end features section 4 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection5">
-<div class="container">
-
-	<h2 class="untext">Why Choose <strong>Us?</strong></h2>
-    
-    <br />
-    
-    <div class="one_third animate" data-anim-type="fadeInUp" data-anim-delay="200">
-    	
-        <img src="http://placehold.it/345x180" alt="" />
-        <br /><br />
-    	<h4>Well Structured Pages</h4>
-        
-        <p>All lorem Ipsum generators on the Internet repeat predefined chunks as necessary.</p>
-        <br /><br />
-        <a href="#">Read More</a>
-    
-    </div>
-    
-    <div class="one_third animate" data-anim-type="fadeInUp" data-anim-delay="350">
-    	
-        <img src="http://placehold.it/345x180" alt="" />
-        <br /><br />
-    	<h4>Diffrent Websites</h4>
-        
-        <p>All lorem Ipsum generators on the Internet repeat predefined chunks as necessary.</p>
-        <br /><br />
-        <a href="#">Read More</a>
-    
-    </div>
-    
-    <div class="one_third last animate" data-anim-type="fadeInUp" data-anim-delay="500">
-    	
-        <img src="http://placehold.it/345x180" alt="" />
-        <br /><br />
-    	<h4>Cross Browser Support</h4>
-        
-        <p>All lorem Ipsum generators on the Internet repeat predefined chunks as necessary.</p>
-        <br /><br />
-        <a href="#">Read More</a>
-    
-    </div>
-
-</div>
-</div><!-- end features section 5 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection7">
-<div class="container">
-	
-    <h2 class="whitecaps">Latest News / <strong>Blogs</strong></h2>
-    <br />
-    
-    <div class="one animate" data-anim-type="fadeInUp" data-anim-delay="200">
-    
-    	<a href="#">
-        <img src="http://placehold.it/260x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal a distribution letters evolved years. <strong>- June 09, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    <div class="two animate" data-anim-type="fadeInUp" data-anim-delay="250">
-    
-    	<a href="#">
-        <img src="http://placehold.it/618x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal a distribution letters evolved years orem Ipsum which looks reasonable. <strong>- June 08, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    <div class="three lessmar animate" data-anim-type="fadeInUp" data-anim-delay="300">
-    
-    	<a href="#">
-        <img src="http://placehold.it/260x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal letters. <strong>- June 07, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    <div class="three animate" data-anim-type="fadeInUp" data-anim-delay="350">
-    
-    	<a href="#">
-        <img src="http://placehold.it/256x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal letters. <strong>- June 06, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    <div class="three animate" data-anim-type="fadeInUp" data-anim-delay="400">
-    
-    	<a href="#">
-        <img src="http://placehold.it/256x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal letters. <strong>- June 05, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    <div class="four animate" data-anim-type="fadeInUp" data-anim-delay="450">
-    
-    	<a href="#">
-        <img src="http://placehold.it/350x192" alt="" class="img_left" />
-        <p>Many desktop lora publish packages webpage editors have ormal letters. <strong>- June 04, 2014</strong></p>
-        </a>
-        
-    </div><!-- end section -->
-    
-    
-</div>
-</div><!-- end features section 7 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection8">
-<div class="container">
-	
-    <div class="one_fourth animate" data-anim-type="fadeIn" data-anim-delay="200">
-    	
-        <h3>Recent News</h3>
-        <br />
-        <ul class="recentnews">
-        
-        	<li><a href="#"> <img src="http://placehold.it/64x64" alt="" /> Lorem Ipsum in passages more recently desktop. <strong>09/05/2014</strong></a></li>
-            
-            <li><a href="#"> <img src="http://placehold.it/64x64" alt="" /> Aldus Pageaker including versions of orem Ipsum. <strong>08/05/2014</strong></a></li>
-            
-            <li class="last"><a href="#"> <img src="http://placehold.it/64x64" alt="" /> The generated as Ipsum therefore always free. <strong>07/05/2014</strong></a></li>
-		
-        </ul>
-
-	</div><!-- end section -->
-    
-    <div class="one_half animate" data-anim-type="fadeIn" data-anim-delay="250">
-    
-		<h3>Tabbed Content Section</h3>
-    	<br />
-        <ul class="tabs3">
-        <li><a href="#example-3-tab-1" target="_self">Business</a></li>
-        <li><a href="#example-3-tab-2" target="_self">Technology</a></li>
-        <li><a href="#example-3-tab-3" target="_self">Marketing</a></li>
-        </ul>
-         
-        <div class="tabs-content3 two">
-        
-        <div id="example-3-tab-1" class="tabs-panel3">
-            <img src="http://placehold.it/170x170" alt="" class="img_left2" />
-             <p>Lorem Ipsum is simply dummy text the printing typesetting Has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley type and scrambled it to make type specimen book. Ithas survived not only five centuries, but also the leap into the electronic making this the first true words which web sites still in their infancy.</p>
-        </div><!-- end tab 1 -->
-        
-        <div id="example-3-tab-2" class="tabs-panel3">
-            <img src="http://placehold.it/170x170" alt="" class="img_left2" />
-             <p>Lorem Ipsum is simply dummy text the printing typesetting Has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley type and scrambled it to make type specimen book. Ithas survived not only five centuries, but also the leap into the electronic making this the first true words which web sites still in their infancy.</p>
-        </div><!-- end tab 2 -->
-        
-        <div id="example-3-tab-3" class="tabs-panel3">
-			<img src="http://placehold.it/170x170" alt="" class="img_left2" />
-             <p>Lorem Ipsum is simply dummy text the printing typesetting Has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley type and scrambled it to make type specimen book. Ithas survived not only five centuries, but also the leap into the electronic making this the first true words which web sites still in their infancy.</p>
-		</div><!-- end tab 3 -->
-	
-    </div><!-- end all tabs -->
-        
-    </div><!-- end section -->
-    
-    <div class="one_fourth last animate" data-anim-type="fadeIn" data-anim-delay="300">
-    
-    	<h3>Why we are Best!</h3>
-        <br />
-        <div class="clearfix"></div>
-    
-		<div class="accrodation">
-       
-    	<!-- section 1 -->
-        <span class="acc-trigger active"><a href="#">Responsive Theme</a></span>
-        <div class="acc-container">
-        <div class="content">
-        There are many variations of passages available but the majority have words which don't look even believable.
-        </div>
-        </div>
-      
-        <!-- section 2 -->
-        <span class="acc-trigger"><a href="#">6 Diffrent Websites</a></span>
-        <div class="acc-container">
-        <div class="content">
-        Some form, by injected humour, or rando mised words which looks.
-        </div>
-        </div>
-   
-        <!-- section 3 -->
-        <span class="acc-trigger"><a href="#">100+ Feature Sections</a></span>
-        <div class="acc-container">
-        <div class="content">
-        <p>Handful of model sentence structures non charac teristic words etc.</p>
-        </div>
-        </div>
-        
-        <!-- section 4 -->
-        <span class="acc-trigger"><a href="#">Use for Any Website</a></span>
-        <div class="acc-container">
-        <div class="content">
-        <p>Handful of model sentence structures generated Lorem Ipsum is therefore always free from repetition injected.</p>
-        </div>
-        </div>
-        
-    </div>
-    
-    </div>
-    
-
-</div>
-</div><!-- end features section 8 -->
-
-<div class="clearfix"></div>
-
-<div class="fusection9">
-<div class="container">
-	
-    <h1 class="animate" data-anim-type="fadeInDown" data-anim-delay="200">Join The Hoxa and Get Lots of Awesome Features</h1>
-	<h4 class="animate" data-anim-type="fadeInDown" data-anim-delay="250"><i>Theme can be used for any type of website. Complete package of hoxa. We hope that you enjoy it.</i></h4>
-    <br />
-    <a href="#" class="readmore_but9 animate" data-anim-type="zoomIn" data-anim-delay="750">Read More About</a> &nbsp;&nbsp;&nbsp; <a href="#" class="readmore_but9 animate" data-anim-type="zoomIn" data-anim-delay="800">Purchase Now!</a>
-
-</div>
-</div><!-- end features section 9 -->
-
-<div class="clearfix"></div>
-
-
-<div class="footer1">
-<div class="container">
-	    
-	<div class="one_fourth animate" data-anim-type="fadeInUp" data-anim-delay="200">
-        <ul class="faddress">
-            <li><img src="images/logo.svg" alt="" /></li>
-            <li><i class="fa fa-map-marker fa-lg"></i>&nbsp; 2901 Marmora Road, Glassgow,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seattle, WA 98122-1090</li>
-            <li><i class="fa fa-phone"></i>&nbsp; 1 -234 -456 -7890</li>
-            <li><i class="fa fa-print"></i>&nbsp; 1 -234 -456 -7890</li>
-            <li><a href="mailto:info@yourdomain.com"><i class="fa fa-envelope"></i> info@yourdomain.com</a></li>
-            <li><img src="images/footer-wmap.png" alt="" /></li>
-        </ul>
-	</div><!-- end address -->
-    
-    <div class="one_fourth animate" data-anim-type="fadeInUp" data-anim-delay="300">
-    <div class="qlinks">
-    
-    	<h4 class="lmb">Useful Links</h4>
-        
-        <ul>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Home Page Variations</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Awsome Slidershows</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Features and Typography</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Different &amp; Unique Pages</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Single and Portfolios</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Recent Blogs or News</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Layered PSD Files</a></li>
-        </ul>
-        
-    </div>
-	</div><!-- end links -->
-        
-    <div class="one_fourth animate" data-anim-type="fadeInUp" data-anim-delay="400">
-    <div class="siteinfo">
-    
-    	<h4 class="lmb">About Hoxa</h4>
-        
-        <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined an chunks as necessary, making this the first true generator on the Internet. Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites.</p>
-        <br />
-        <a href="#">Read more <i class="fa fa-long-arrow-right"></i></a>
-        
-	</div>
-    </div><!-- end site info -->
-    
-    <div class="one_fourth last animate" data-anim-type="fadeInUp" data-anim-delay="500">
-        
-        <h4>Flickr Photos</h4>
-        
-        <div id="flickr_badge_wrapper">
-            <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=h&amp;source=user&amp;user=93382411%40N07"></script>     
-        </div>
-        
-    </div><!-- end flickr -->
-    
-    
-</div>
-</div><!-- end footer -->
-
-
-<div class="clearfix"></div>
-
-<div class="copyright_info four">
-<div class="container">
-    
-    <div class="one_half">
-    
-        Copyright © 2014 hoxa.com. All rights reserved.  <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
-        
-    </div>
-    
-    <div class="one_half last">
-        
-        <ul class="footer_social_links three">
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="200"><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="250"><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="300"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="350"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="400"><a href="#"><i class="fa fa-skype"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="450"><a href="#"><i class="fa fa-flickr"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="500"><a href="#"><i class="fa fa-html5"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="550"><a href="#"><i class="fa fa-youtube"></i></a></li>
-            <li class="animate" data-anim-type="zoomIn" data-anim-delay="600"><a href="#"><i class="fa fa-rss"></i></a></li>
-        </ul>
-            
-    </div>
-    
-</div>
-</div><!-- end copyright info -->
-
-
-<a href="#" class="scrollup">Scroll</a><!-- end scroll to top of the page-->
-
-
-
-
-
-
-</div>
-</div>
-
-    
-<!-- ######### JS FILES ######### -->
-<!-- get jQuery from the google apis -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-
-<!-- style switcher -->
-<!--script src="js/style-switcher/jquery-1.js"></script-->
-<script src="js/style-switcher/styleselector.js"></script>
-
-<!-- animations -->
-<script src="js/animations/js/animations.min.js" type="text/javascript"></script>
-
-
-<!-- Master Slider -->
-<!--script src="js/masterslider/jquery.easing.min.js"></script>
-<script src="js/masterslider/masterslider.min.js"></script>
-<script type="text/javascript">
-(function($) {
- "use strict";
-
-var slider = new MasterSlider();
- slider.setup('masterslider' , {
-     width: 1400,    // slider standard width
-     height:720,   // slider standard height
-     space:0,
-	 speed:45,
-     fullwidth:true,
-     loop:true,
-     preload:0,
-     autoplay:true,
-	 view:"basic"
-});
-// adds Arrows navigation control to the slider.
-slider.control('arrows');
-slider.control('bullets');
-
-SyntaxHighlighter.all();
-
-})(jQuery);
-</script>
-
-<script type="text/javascript">	
-(function($) {
- "use strict";
-
-	var slider5 = new MasterSlider();
-	slider5.setup('masterslider5' , {
-		loop:true,
-		width:240,
-		height:240,
-		speed:20,
-		view:'focus',
-		preload:0,
-		space:0,
-		space:35,
-		viewOptions:{centerSpace:1.6}
-	});
-	slider5.control('arrows');
-	slider5.control('slideinfo',{insertTo:'#staff-info'});
-
-	SyntaxHighlighter.all();
-
-})(jQuery);
-</script-->
-
-<!-- mega menu -->
-<script src="js/mainmenu/bootstrap.min.js"></script>
-
-<!-- jquery jcarousel -->
-<script type="text/javascript" src="js/carousel/jquery.jcarousel.min.js"></script>
-
-<!-- scroll up -->
-<script src="js/scrolltotop/totop.js" type="text/javascript"></script>
-
-<!-- tabs -->
-<script src="js/tabs/assets/js/responsive-tabs.min.js" type="text/javascript"></script>
-
-<!-- jquery jcarousel -->
-<script type="text/javascript">
-(function($) {
- "use strict";
-
-	jQuery(document).ready(function() {
-			jQuery('#mycarouselthree').jcarousel();
-	});
-	
-})(jQuery);
-</script>
-
-<!-- Scrolling to section-->
-<script>
-        window.smoothScroll = function(target){
-            var scrollContainer = target;
-            do {
-                scrollContainer = scrollContainer.parentNode;
-                if (!scrollContainer) return;
-                scrollContainer.scrollTop += 1;
-            } while (scrollContainer.scrollTop == 0);
-
-            var targetY = 0;
-            do {
-                if (target == scrollContainer) break;
-                targetY += target.offsetTop;
-            } while (target = target.offsetParent);
-
-            scroll = function(c,a,b,i){
-                i++; if (i > 30) return;
-                c.scrollTop = a + (b - a) / 30 * i;
-                setTimeout(function(){ scroll(c,a,b,i); }, 20);
-            }
-
-            scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-        }
-</script>
-    
-
-<!-- accordion -->
-<script type="text/javascript" src="js/accordion/custom.js"></script>
-
-<!-- sticky menu -->
-<script type="text/javascript" src="js/mainmenu/sticky.js"></script>
-<script type="text/javascript" src="js/mainmenu/modernizr.custom.75180.js"></script>
-
-<!-- cubeportfolio -->
-<script type="text/javascript" src="js/cubeportfolio/jquery.cubeportfolio.min.js"></script>
-<script type="text/javascript" src="js/cubeportfolio/main.js"></script>
-
-<!-- carousel -->
-<script defer src="js/carousel/jquery.flexslider.js"></script>
-<script defer src="js/carousel/custom.js"></script>
-
-<!-- lightbox -->
-<script type="text/javascript" src="js/lightbox/jquery.fancybox.js"></script>
-<script type="text/javascript" src="js/lightbox/custom.js"></script>
-
-
-
-</body>
+		<!-- Bootstrap core JavaScript
+			================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/cbpAnimatedHeader.js"></script>
+		<script src="js/theme-scripts.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="js/ie10-viewport-bug-workaround.js"></script>
+	</body>
 </html>
