@@ -1,0 +1,37 @@
+/* CSS used here will be applied after bootstrap.css */
+
+body { 
+ /*background: url('blur.jpg') no-repeat center center fixed; */
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+
+}
+
+.panel-default {
+ opacity: 1.0;
+ position: fixed;
+ width:30%;
+ top: 50%;
+ left: 50%;
+  transform: translate(-50%, -50%);
+}
+.form-group.last {
+ margin-bottom:0px;
+}
+.back{
+	height:100%;
+    width:100%;
+    text-align:center;
+    background:url('blur.jpg') no-repeat center;
+    background-size:cover;
+    -webkit-filter: blur(6px);
+    -moz-filter: blur(6px);
+    -o-filter: blur(6px);
+    -ms-filter: blur(6px);
+    filter: blur(6px);
+    position: absolute;
+    left:0;
+    top: 0;
+}

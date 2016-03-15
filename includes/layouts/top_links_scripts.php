@@ -47,35 +47,6 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- just remove the below comments witch color skin you want to use -->
-    <!--<link rel="stylesheet" href="css/colors/red.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/blue.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/cyan.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/orange.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/lightblue.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/pink.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/purple.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/bridge.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/slate.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/yellow.css" />-->
-    <!--<link rel="stylesheet" href="css/colors/darkred.css" />-->
-
-<!-- just remove the below comments witch bg patterns you want to use --> 
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-default.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-one.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-two.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-three.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-four.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-five.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-six.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-seven.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-eight.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-nine.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-ten.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-eleven.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-twelve.css" />-->
-    <!--<link rel="stylesheet" href="css/bg-patterns/pattern-thirteen.css" />-->
     
     <!-- mega menu -->
     <link href="css/mainmenu/stickytwo.css" rel="stylesheet">

@@ -15,7 +15,7 @@
                     <ul>
                       <li class="link"><a href="login.php"><i class="fa fa-sign-in"></i> Log In</a></li>
                       <li class="link"><a id="registerlink" href="user_register.php"><i class="fa fa-user"></i> Register as User</a></li>
-                      <li class="link"><a id="registerlink" href="employer_register.phpe"><i class="fa fa-users"></i> Register as Employer</a></li>
+                      <li class="link"><a id="registerlink" href="employer_register.php"><i class="fa fa-users"></i> Register as Employer</a></li>
                     </ul>
                   </div>
                   <!-- end right links -->
@@ -43,41 +43,9 @@
                     <li><a href="index2.php" class="active">Home</a></li>
                     
                     <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle" onclick="smoothScroll(document.getElementById('whywerhr'))">Why WERHR?</a>
-                        <!--ul class="dropdown-menu" role="menu">
-                        <li><a href="http://gsrthemes.com/hoxa/layout1/fullwidth/index.html">Business</a> </li>
-                        <li><a href="http://gsrthemes.com/hoxa/fullwidth/index-1.html">Creative</a> </li>
-                        <li><a href="http://gsrthemes.com/hoxa/fullwidth/index-2.html">Portfolio</a> </li>
-                        <li><a href="http://gsrthemes.com/hoxa/layout2/index.html">One Page Theme</a> </li>
-                        <li><a href="http://gsrthemes.com/hoxa/fullwidth/index-3.html">Landing Page</a> </li>
-                        <li><a href="http://gsrthemes.com/hoxa/fullwidth/index.html">Corporate</a> </li>
-                        </ul-->
                     </li>
 
                     <li class="dropdown"> <a href="#" data-toggle="dropdown" class="dropdown-toggle" onclick="smoothScroll(document.getElementById('courses'))">Courses</a>
-                      <!--ul class="dropdown-menu multilevel" role="menu">
-                        <li><a href="about.html">About Page Style 1</a></li>
-                        <li><a href="about-2.html">About Page Style 2</a></li>
-                        <li><a href="about-3.html">About Page Style 3</a></li>
-                        <li><a href="team.html">Our Team</a></li>
-                        <li><a href="services.html">Services Style 1</a></li>
-                        <li><a href="services-2.html">Services Style 2</a></li>
-                        <li><a href="services-3.html">Services Style 3</a></li>
-                        <li><a href="full-width.html">Full Width Page</a></li>
-                        <li><a href="left-sidebar.html">Left Sidebar Page</a></li>
-                        <li><a href="right-sidebar.html">Right Sidebar Page</a></li>
-                        <li><a href="left-nav.html">Left Navigation</a></li>
-                        <li><a href="right-nav.html">Right Navigation</a></li>
-                        <li><a href="login.html">Login Form</a></li>
-                        <li><a href="register.html">Registration Form</a></li>
-                        <li><a href="404.html">404 Error Page</a></li>
-                        <li class="dropdown-submenu mul"> <a tabindex="-1" href="#">Sub Menu + </a>
-                          <ul class="dropdown-menu">
-                              <li><a href="#">Menu Item 1</a></li>
-                              <li><a href="#">Menu Item 2</a></li>
-                              <li><a href="#">Menu Item 3</a></li>
-                          </ul>
-                        </li>
-                      </ul-->
                     </li>
                    
                     <li class="dropdown yamm-fw"> <a href="#" data-toggle="dropdown" class="dropdown-toggle">Features</a>

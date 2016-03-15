@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 12, 2016 at 12:49 AM
+-- Generation Time: Mar 15, 2016 at 11:57 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -26,6 +26,11 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addAdmin`(IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `Apass` VARCHAR(50), IN `type` VARCHAR(20), IN `Acontact` VARCHAR(20), IN `Aaddress` VARCHAR(200))
+    NO SQL
+insert into we_are_hr_admin(Admin_Name,Admin_Lastname,Admin_password,type,Contact,Address)
+values(Aname,Alname,Apass,type,Acontact,Aaddress)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `T_id` INT(11), IN `E_date` DATE, IN `S_time` TIME, IN `E_time` TIME, IN `T_question` INT(4), IN `P_mark` INT(4), IN `N_mark` INT(4))
     NO SQL
 insert into exam_details(Topic_id,Exam_Date,Start_time,End_time,Total_Question,Positive_Mark,Negative_Mark)
@@ -39,6 +44,11 @@ values(Q_Name,Q_Type,A_Option,Ans,Q_Desc,Tid,T_Name)$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTopic`(IN `T_Name` VARCHAR(100))
     NO SQL
 insert into topic(Topic_Name) values(T_Name)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AdminPfofilepic`(IN `id` INT(11))
+    NO SQL
+select Profile_pic
+from we_are_hr_admin where A_ID=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CountVisibleQuestion`(IN `T_Name` VARCHAR(100))
     NO SQL
@@ -79,11 +89,21 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopicName`(IN `T_id` INT(11))
 select Topic_Name from topic
 where Topic_id=T_id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Profilepic`(IN `eml` VARCHAR(50))
+    NO SQL
+select Profile_pic
+from users where email=eml$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `QuestionforEgeneration`(IN `TName` VARCHAR(100))
     NO SQL
 select Question_Id,Topic_Name,Question_Name,Exam_Date,Final_Question
 from Question where Topic_Name=TName
 ORDER BY Question_Id ASC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAddress`(IN `eml` VARCHAR(50))
+    NO SQL
+select address,city,state,country
+from users where email=eml$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectDate`(IN `id` INT(11))
     NO SQL
@@ -102,6 +122,11 @@ from Question
 where Question_Id=Opt_id
 LIMIT 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectPwdUnm`(IN `Aid` INT(11), IN `pwd` VARCHAR(100))
+    NO SQL
+select Admin_Name,Admin_Lastname,Contact,Address,A_ID,type
+from we_are_hr_admin where Admin_password=pwd AND A_ID=Aid$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectQuestion`()
     NO SQL
 select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Question_Id,Final_Question
@@ -112,6 +137,16 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `setQuesVis`(IN `Q_id` INT(11), IN `
     NO SQL
 update `we_are_hr`.`question` set `Final_Question`=Vis,Exam_Date=Edate
 where `question`.Question_Id=Q_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `slectAdminProfile`(IN `aid` INT(11))
+    NO SQL
+select Admin_Name,Admin_Lastname,Contact,Address
+from we_are_hr_admin where A_ID=aid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAdminProfile`(IN `id` INT(11), IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `contact` VARCHAR(20), IN `address` VARCHAR(200), IN `pic` VARCHAR(50))
+    NO SQL
+update `we_are_hr`.`we_are_hr_admin` set `Admin_Name`=Aname,Admin_Lastname=Alname,Contact=contact,Address=address,Profile_pic=pic
+where ID=id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExamDetails`(IN `id` INT(11), IN `Edate` DATE, IN `Stime` TIME, IN `Etime` TIME, IN `Tques` INT(11), IN `Pmark` INT(11), IN `Nmark` INT(11))
     NO SQL
@@ -188,15 +223,17 @@ CREATE TABLE IF NOT EXISTS `employers` (
   `country` varchar(50) NOT NULL,
   `companyName` varchar(100) NOT NULL,
   `companyWebsite` varchar(100) NOT NULL,
+  `Profile_pic` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `employers`
 --
 
-INSERT INTO `employers` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `address`, `contact`, `city`, `state`, `country`, `companyName`, `companyWebsite`) VALUES
-(15, 'employer', 1, '695032eb15dea5c8e9836192d3072365ddf1b15c', '123456', 'Embok', 'Ramde', 'smearcampaigner@gmail.com', 'Lovely Professional University, BH 6, Block 54(B),', 1234567890, 'Phagwara', 'Punjab', 'ABC Pvt. Ltd.', 'ABC Pvt. Ltd.', 'abcdev.com');
+INSERT INTO `employers` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `address`, `contact`, `city`, `state`, `country`, `companyName`, `companyWebsite`, `Profile_pic`) VALUES
+(15, 'employer', 1, '695032eb15dea5c8e9836192d3072365ddf1b15c', '123456', 'Embok', 'Ramde', 'smearcampaigner@gmail.com', 'Lovely Professional University, BH 6, Block 54(B),', 1234567890, 'Phagwara', 'Punjab', 'ABC Pvt. Ltd.', 'ABC Pvt. Ltd.', 'abcdev.com', ''),
+(16, 'employer', 1, '45a21a8045d8e66dc87de342cbba17def92d1156', 'bmw', 'Bmw', 'Bmw', 'bmw@gmail.com', 'Delhi', 2147483647, 'Delhi', 'Delhi', 'India', 'BMW', 'www.bmw.com', 'Bmw_16.jpg');
 
 -- --------------------------------------------------------
 
@@ -305,38 +342,6 @@ INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user1`
---
-
-CREATE TABLE IF NOT EXISTS `user1` (
-  `firstname` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `mobile` bigint(20) NOT NULL,
-  `dob` date NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `country` varchar(10) NOT NULL,
-  `city` varchar(10) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `profile` varchar(50) NOT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user1`
---
-
-INSERT INTO `user1` (`firstname`, `lastname`, `email`, `mobile`, `dob`, `state`, `country`, `city`, `password`, `profile`) VALUES
-('ans', 'vis', 'ader@gmail.com', 0, '0000-00-00', '', '', '', 'asd', ''),
-('vishal', 'gupta', 'anki345@gmail.com', 8962252508, '2014-01-01', ' Madhya Pradesh', ' India', 'Dabra', 'asd', 'vlcsnap-2016-01-20-00h25m33s138.png'),
-('vishal', 'gupta', 'shuvam@gmail.com', 0, '0000-00-00', '', '', '', 'asd', ''),
-('vis', 'ans', 'vishalgupta34@gmail.com', 0, '0000-00-00', '', '', '', 'vis', ''),
-('vis', 'ans', 'vishalgupta4567@gmail.com', 0, '0000-00-00', '', '', '', 'asw', 'k25.JPG'),
-('vishal', 'gupta', 'vishanshul1@gmail.com', 0, '0000-00-00', '', '', '', 'Vis', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -349,22 +354,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(20) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `DOB` date NOT NULL,
   `address` varchar(50) NOT NULL,
-  `contact` int(12) NOT NULL,
+  `contact` varchar(20) NOT NULL,
   `city` varchar(30) NOT NULL,
   `state` varchar(30) NOT NULL,
   `country` varchar(30) NOT NULL,
+  `Profile_pic` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `address`, `contact`, `city`, `state`, `country`) VALUES
-(29, 'user', 1, '8ff5660c0f394d2f0b7b80bdf9bdcfe32931e561', '123456', 'Embok', 'Ramde', 'embokramde@icloud.com', '', 0, '', '', ''),
-(34, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '98566', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '', 0, '', '', ''),
-(35, 'user', 1, '608efacf4aceefe1e6bf3fb604c67da7ea972e4e', '987', 'Vishal', 'Gupta', 'vishalgupta4567@gmail.com', '', 0, '', '', '');
+INSERT INTO `users` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `DOB`, `address`, `contact`, `city`, `state`, `country`, `Profile_pic`) VALUES
+(29, 'user', 1, '8ff5660c0f394d2f0b7b80bdf9bdcfe32931e561', '123456', 'Embok', 'Ramde', 'embokramde@icloud.com', '0000-00-00', '', '0', '', '', '', ''),
+(39, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '9856', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '1991-11-22', 'Raliang West Jaintia Hills', '9856600758', 'Shillong', ' Meghalaya', ' India', 'Untitled-1.jpg'),
+(40, 'user', 0, 'ba188fc5cf2da4d626c131e0be3a1c6999c5ce7b', '123', 'John', 'Nongbri', 'aamm@yahoo.com', '0000-00-00', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -386,6 +393,31 @@ CREATE TABLE IF NOT EXISTS `user_answer` (
 INSERT INTO `user_answer` (`Id`, `Answer`, `Course_Name`) VALUES
 (1, '["1::opt2","2::opt1","3::opt2","4::opt2","5::opt1","6::opt2,opt3"]', 'PHP'),
 (2, '["1::opt1","5::opt1","6::opt5","7::opt2","2::opt3"]', 'Java');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `we_are_hr_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `we_are_hr_admin` (
+  `A_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Admin_Name` varchar(100) NOT NULL,
+  `Admin_Lastname` varchar(100) NOT NULL,
+  `Admin_password` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `Contact` varchar(15) NOT NULL,
+  `Address` varchar(200) NOT NULL,
+  `Profile_pic` varchar(50) NOT NULL,
+  PRIMARY KEY (`A_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10802 ;
+
+--
+-- Dumping data for table `we_are_hr_admin`
+--
+
+INSERT INTO `we_are_hr_admin` (`A_ID`, `Admin_Name`, `Admin_Lastname`, `Admin_password`, `type`, `Contact`, `Address`, `Profile_pic`) VALUES
+(10800, 'Da O Hi Paya', 'Lamare', 'Admin', 'Admin', '9856600758', 'Raliang village', '10800.jpg');
 
 --
 -- Constraints for dumped tables
