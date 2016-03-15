@@ -26,7 +26,7 @@ if(isset($_POST['submit']))
             elseif (substr($type,0,5)=='image') {
                
                     if($name)
-                        move_uploaded_file($temp,"images/".$name);   
+                        move_uploaded_file($temp,"images/userImage/".$name);   
                         }
         }
         
@@ -43,10 +43,12 @@ if(isset($_POST['submit']))
         $date= ($_POST['dob']);
         
         
-    $query1 = mysqli_query($connection,"update user1 set firstname='$fname',lastname='$lname',email='$email',mobile='$mobile',dob='$date',state='$state',country='$country',city='$city', profile='$name' WHERE email='" . $_SESSION["email"] . "'");
+    $query1 = mysqli_query($connection,"update users set firstname='$fname',lastname='$lname',email='$email',contact='$mobile',DOB='$date',state='$state',country='$country',city='$city', Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
     if($query1)
     {
         redirect_to("edit_profile_user.php");
+    }else{
+        die("Fail to execute".mysqli_error($connection));
     }
 
 }

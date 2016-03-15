@@ -1,0 +1,28 @@
+/* CSS used here will be applied after bootstrap.css */
+
+body { 
+ /*background: url('blur.jpg') no-repeat center center fixed; */
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+
+}
+
+#field {
+ opacity: 0.8;
+ 
+ 
+}
+
+.content_fullwidth{
+	
+    background:url('../images/blur.jpg') no-repeat center;
+    background-size:cover;
+    -webkit-filter: blur(6px);
+    -moz-filter: blur(6px);
+    -o-filter: blur(6px);
+    -ms-filter: blur(6px);
+    filter: blur(6px);
+   
+}

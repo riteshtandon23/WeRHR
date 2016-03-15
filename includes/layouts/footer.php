@@ -37,6 +37,7 @@
     <!-- form validation -->
     <script src="js/validator/validator.js"></script>
     <script src="js/custom.js"></script>
+        
     <script src="js/custom/formValidation.min.js"></script>
     <script src="js/custom/bootstrap.min.js"></script>
      <script type="text/javascript" src="js/custom/jquery.validate.min.js"></script>
@@ -104,6 +105,26 @@
         }).prop('checked', false);
     </script>
     <script src="js/custom/adddeltexbox.js"></script> 
+ <!--clock-->
+    <script type="text/javascript" src="css/dist/bootstrap-clockpicker.min.js"></script>
+    <script type="text/javascript">
+    $('.clockpicker').clockpicker()
+    .find('input').change(function(){
+        console.log(this.value);
+    });
+    var input = $('#Stime').clockpicker({
+    placement: 'bottom',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+    });
+    var input = $('#Etime').clockpicker({
+    placement: 'bottom',
+    align: 'left',
+    autoclose: true,
+    'default': 'now'
+    });
+    </script>
     <script type="text/javascript" src="js/custom/highlight.min.js"></script>
     
     <script type="text/javascript">
@@ -140,6 +161,24 @@
             });
 
         });
+    </script>
+    //load image
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ADP')
+                        .attr('src', e.target.result)
+                        .width(220)
+                        .height(220);
+                        
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
    
 

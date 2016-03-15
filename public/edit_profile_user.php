@@ -364,10 +364,10 @@ session_start();
                                                 <!-- Current avatar -->
                                                 <div class="avatar-view" title="Change the avatar" enctype='form-data/multipart     '>
                                                 <?php
-                                                $result = mysqli_query($connection,"SELECT profile FROM user1 WHERE email='". $_SESSION["email"]."'");
+                                                $result = mysqli_query($connection,"SELECT Profile_pic FROM users WHERE email='". $_SESSION["email"]."'");
                                                           $row=mysqli_fetch_array($result,MYSQL_ASSOC);
                                                 ?>
-                                                    <img src="images/<?php echo $row['profile'];?>" alt="Avatar"  id="img" style='border-radius:10px;  height:220px ;width:220px;position:absolute; z-index:1;' >
+                                                    <img src="images/userImage/<?php echo $row['Profile_pic'];?>" alt="Avatar"  id="img" style='border-radius:10px;  height:220px ;width:220px;position:absolute; z-index:1;' >
                                                     <input type='x' name='images' id="images" style='border-radius:20px;width:220px; height:220px; position:relative;  z-index:2; opacity:0;'   /> 
                                                 </div>
 
@@ -437,7 +437,7 @@ session_start();
 
 <div class="form-group" >
 <?php 
-$result = mysqli_query($connection,"SELECT * FROM user1 WHERE email='". $_SESSION["email"]."'");
+$result = mysqli_query($connection,"SELECT * FROM users WHERE email='". $_SESSION["email"]."'");
 $row=mysqli_fetch_array($result,MYSQL_ASSOC)
     
  ?>
@@ -469,13 +469,13 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
       <div class="form-group">
       <label class="control-label col-sm-4">Date of Birth</label>
       <div class="col-sm-4">
-      <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="<?php echo $row['dob'];?>"></br>
+      <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="<?php echo $row['DOB'];?>"></br>
       </div>
       
       <div class="form-group">
  <label class="control-label col-sm-4" >Mobile No:</label>
  <div class="col-sm-4">
-  <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" value="<?php echo $row['mobile'];?>"></br>
+  <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" value="<?php echo $row['contact'];?>"></br>
   </div>
 
 
@@ -505,7 +505,7 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
      
  <label class="control-label col-sm-4" >Profile</label>
  <div class="col-sm-4">
- <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)' </br></br>
+ <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'> </br></br>
   <div class="col-sm-4">
   <button type="submit" class="btn btn-primary" id="submit" name="submit">Update</button>
   

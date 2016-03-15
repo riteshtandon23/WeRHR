@@ -14,7 +14,7 @@
     
     <!-- Favicon --> 
 	<link rel="shortcut icon" href="images/favicon.ico">
-    
+   
     <!-- this styles only adds some repairs on idevices  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -140,16 +140,6 @@
 
 <div class="clearfix"></div>
 
-<!--div class="page_title2">
-<div class="container">
-
-    <div class="title"><h1>Login Form</h1></div>
-    
-    <div class="pagenation">&nbsp;<a href="index.html">Home</a> <i>/</i> <a href="#">Pages</a> <i>/</i> Login Form</div>
-    
-</div>
-</div--><!-- end page title -->  
-
 <div class="clearfix"></div>
 
 <div class="container">
@@ -180,7 +170,7 @@
 							<div class="col col-8">
 								<label class="input">
 									<i class="icon-append icon-lock"></i>
-									<input type="password" name="password">
+									<input type="password" name="passwd">
 								</label>
 								<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
 							</div>

@@ -127,7 +127,7 @@
     
 		
         <div class="reg_form">
-        <form id="sky-form" class="sky-form" method="post" action="processes/employer_register_process.php">
+        <form id="sky-form" class="sky-form" method="post" action="employer_register_process.php">
 				<header>Registration form</header>
 					<fieldset>
 					   <section >

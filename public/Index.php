@@ -782,59 +782,6 @@
 <!-- animations -->
 <script src="js/animations/js/animations.min.js" type="text/javascript"></script>
 
-
-<!-- Master Slider -->
-<!--script src="js/masterslider/jquery.easing.min.js"></script>
-<script src="js/masterslider/masterslider.min.js"></script>
-<script type="text/javascript">
-(function($) {
- "use strict";
-
-var slider = new MasterSlider();
- slider.setup('masterslider' , {
-     width: 1400,    // slider standard width
-     height:720,   // slider standard height
-     space:0,
-	 speed:45,
-     fullwidth:true,
-     loop:true,
-     preload:0,
-     autoplay:true,
-	 view:"basic"
-});
-// adds Arrows navigation control to the slider.
-slider.control('arrows');
-slider.control('bullets');
-
-SyntaxHighlighter.all();
-
-})(jQuery);
-</script>
-
-<script type="text/javascript">	
-(function($) {
- "use strict";
-
-	var slider5 = new MasterSlider();
-	slider5.setup('masterslider5' , {
-		loop:true,
-		width:240,
-		height:240,
-		speed:20,
-		view:'focus',
-		preload:0,
-		space:0,
-		space:35,
-		viewOptions:{centerSpace:1.6}
-	});
-	slider5.control('arrows');
-	slider5.control('slideinfo',{insertTo:'#staff-info'});
-
-	SyntaxHighlighter.all();
-
-})(jQuery);
-</script-->
-
 <!-- mega menu -->
 <script src="js/mainmenu/bootstrap.min.js"></script>
 

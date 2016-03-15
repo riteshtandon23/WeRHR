@@ -158,4 +158,47 @@ function selectDate($cname)
 	confirm_query($result);
 	return $result;
 }
+//select uname and pword for Admin
+function selectPwdUnm($uname,$pword)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectPwdUnm(?,?)");
+	$stmt->bind_param('ss',$uname,$pword);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+//select Admin profile
+function slectAdminProfile($aid)
+{
+	global $connection;
+	$stmt=$connection->prepare("call slectAdminProfile(?)");
+	$stmt->bind_param('i',$aid);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+//select Admin profile pic
+function AdminPfofilepic($id)
+{
+	global $connection;
+	$stmt=$connection->prepare("call AdminPfofilepic(?)");
+	$stmt->bind_param('s',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
+function profilepic($email)
+{
+	global $connection;
+	$stmt=$connection->prepare("call Profilepic(?)");
+	$stmt->bind_param('s',$email);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
 ?>
