@@ -477,11 +477,11 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
  <div class="col-sm-4">
   <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile Number" value="<?php echo $row['contact'];?>"></br>
   </div>
-
-
-
-
-
+  <div class="form-group">
+ <label class="control-label col-sm-4" >Address</label>
+ <div class="col-sm-4">
+  <textarea id="Address" name="Address" class="form-control col-md-7 col-xs-12" placeholder="Address where he/she stay"><?php echo $row['address'];?></textarea>
+  </div>
   
       <div class="form-group">
  <label class="control-label col-sm-4" >City:</label>

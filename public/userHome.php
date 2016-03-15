@@ -83,18 +83,17 @@
 
         </div>
         <h3><?php  echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
-
+        <?php 
+            $resul10=selectAddress($_SESSION["email"]);
+            while ($row1=$resul10->fetch_assoc()) {
+               $Address=$row1['address'];
+               $city=$row1['city'];
+               $state=$row1['state'];
+               $country=$row1['country'];
+            }
+         ?>
         <ul class="list-unstyled user_data">
-            <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
-            </li>
-
-            <li>
-                <i class="fa fa-briefcase user-profile-icon"></i> Software Engineer
-            </li>
-
-            <li class="m-top-xs">
-                <i class="fa fa-external-link user-profile-icon"></i>
-                <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+            <li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $Address.", ".$city.", ".$state.", ".$country; ?>
             </li>
         </ul>
 

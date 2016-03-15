@@ -41,12 +41,13 @@ if(isset($_POST['submit']))
         $state = ($_POST['State']);
         $city = ($_POST['city']);
         $date= ($_POST['dob']);
+        $address= ($_POST['Address']);
         
         
-    $query1 = mysqli_query($connection,"update users set firstname='$fname',lastname='$lname',email='$email',contact='$mobile',DOB='$date',state='$state',country='$country',city='$city', Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
+    $query1 = mysqli_query($connection,"update users set firstname='$fname',lastname='$lname',email='$email',contact='$mobile',DOB='$date',address='$address',state='$state',country='$country',city='$city', Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
     if($query1)
     {
-        redirect_to("edit_profile_user.php");
+        redirect_to("userHome.php");
     }else{
         die("Fail to execute".mysqli_error($connection));
     }

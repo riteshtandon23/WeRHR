@@ -201,4 +201,15 @@ function profilepic($email)
 	confirm_query($result);
 	return $result;
 }
+//select Address
+function selectAddress($email)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectAddress(?)");
+	$stmt->bind_param('s',$email);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;
+}
 ?>
