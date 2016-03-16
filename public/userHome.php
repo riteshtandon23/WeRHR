@@ -21,7 +21,7 @@
                             <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
                                 <div class="modal-header">
                                     <button class="close" data-dismiss="modal" type="button">&times;</button>
-                                    <h4 class="modal-title" id="avatar-modal-label">Change Avatar</h4>
+                                    <h4 class="modal-title" id="avatar-modal-label">Change Profile Picture</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="avatar-body">
@@ -31,7 +31,7 @@
                                             <input class="avatar-src" name="avatar_src" type="hidden">
                                             <input class="avatar-data" name="avatar_data" type="hidden">
                                             <label for="avatarInput">Local upload</label>
-                                            <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                            <input class="avatar-input" id="avatarInput" name="image" type="file">
                                         </div>
 
                                         <!-- Crop and preview -->
@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
-                                                <button class="btn btn-primary btn-block avatar-save" type="submit">Done</button>
+                                                <button class="btn btn-primary btn-block avatar-save" type="submit" name="setProfile">Done</button>
                                             </div>
                                         </div>
                                     </div>

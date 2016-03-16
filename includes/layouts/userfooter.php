@@ -42,6 +42,7 @@
     <!-- image cropping -->
     <script src="js/cropping/cropper.min.js"></script>
     <script src="js/cropping/main.js"></script>
+    <script src="js/cropping/main2.js"></script>
 
     
     <!-- daterangepicker -->

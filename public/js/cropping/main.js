@@ -125,11 +125,13 @@
     },
 
     click: function () {
+
       this.$avatarModal.modal('show');
       this.initPreview();
     },
 
     change: function () {
+
       var files,
           file;
 
@@ -158,6 +160,7 @@
     },
 
     submit: function () {
+
       if (!this.$avatarSrc.val() && !this.$avatarInput.val()) {
         return false;
       }
@@ -181,6 +184,7 @@
     },
 
     isImageFile: function (file) {
+
       if (file.type) {
         return /^image\/\w+$/.test(file.type);
       } else {
@@ -189,6 +193,7 @@
     },
 
     startCropper: function () {
+
       var _this = this;
 
       if (this.active) {
@@ -225,10 +230,11 @@
     },
 
     ajaxUpload: function () {
+
       var url = this.$avatarForm.attr('action'),
           data = new FormData(this.$avatarForm[0]),
           _this = this;
-
+          alert(url);
       $.ajax(url, {
         type: 'post',
         data: data,
