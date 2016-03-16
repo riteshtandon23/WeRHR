@@ -441,3 +441,9 @@
 </div>
 
 <?php include("../includes/layouts/footer.php");?>
+<?php
+if(isset($connection))
+{
+    mysqli_close($connection);
+}
+?>

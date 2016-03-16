@@ -25,8 +25,7 @@ if(isset($_POST["submit"])){
     if(mysqli_num_rows($query1)>0){
         print '<script type="text/javascript">'; 
         print 'alert("The email address  is already registered!");';
-        //print 'window.location="http://www.werhr.in/user_register.php";';
-        print 'window.location="http://localhost/WeRHR/public/user_register.php";';
+        print 'window.history.back();';
         print '</script>'; 
     }
     else{
@@ -41,7 +40,8 @@ if(isset($_POST["submit"])){
                                 'to'      => $email, 
                                 'subject' => 'Welcome to We\'R\'HR', 
                                 'html'    => $fileread));
-        redirect_to("login.php");
+        $msg = 'Succesfully Registered! Please check your email';
+        redirect_to("login.php?msg=".urlencode($msg));
     }
     
 }

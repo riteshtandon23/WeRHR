@@ -1,4 +1,5 @@
 <?php require_once("../includes/dbconnection.php");?>
+<?php require_once("../includes/all_functions.php");?>
 <?php
 require("vendor/autoload.php");
 use Mailgun\Mailgun;
@@ -30,7 +31,7 @@ if(isset($_POST['submit'])){
 	if(mysqli_num_rows($query1)>0){
 		print '<script type="text/javascript">'; 
 		print 'alert("The email address  is already registered!");';
-		print 'window.location="http://localhost/WeRHR/public/employer_register.php";'; 
+		print 'window.history.back();'; 
 		print '</script>';	
 	}
 	else
@@ -40,10 +41,6 @@ if(isset($_POST['submit'])){
 		$row = mysqli_fetch_assoc($res);
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['sequence'] = $sequence;
-		print '<script type="text/javascript">'; 
-		print 'alert("Successfully registered");';
-		print 'window.location="http://localhost/WeRHR/public/login.php";';
-		print '</script>';
 
 		# Instantiate the client.
         $mg = new Mailgun('key-1450c038c9c4c1a803cfa607ceff9fe6');
@@ -54,6 +51,8 @@ if(isset($_POST['submit'])){
                                 'to'      => $email, 
                                 'subject' => 'Welcome to We\'R\'HR', 
                                 'html'    => $fileread));
+        $msg = 'Successfully Registered! Please check your email';
+		redirect_to("login.php?msg=".urlencode($msg));
 	}
 	
 }	

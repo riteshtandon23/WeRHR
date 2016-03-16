@@ -1,6 +1,5 @@
 {
     "require": {
-    	"guzzlehttp/guzzle": "5.2",
         "mailgun/mailgun-php": "~1.7.2"
     }
 }
