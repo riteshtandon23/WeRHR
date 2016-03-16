@@ -23,7 +23,13 @@ if($result->num_rows > 0){
     $_SESSION["lname"] = $row['lastname'];
     $_SESSION["id"] = $row['id'];
     $_SESSION["email"]=$username;
-    header('Location:home.php');
+
+    if($row['type']==="user")
+    {
+        header('Location:userHome.php');
+    }else{
+       header('Location:home.php'); 
+    }
 }
 else	//user does not exist
 {

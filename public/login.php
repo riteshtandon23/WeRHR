@@ -86,7 +86,7 @@
 				                        	<div class="help-block with-errors"></div>
 				                        </div>
 				                        <div class="form-group">
-				                        	<input type="password" data-minlength="6" name="password" placeholder="Password..." class="form-password form-control" id="password" data-error="Password too short" required>
+				                        	<input type="password" data-minlength="3" name="password" placeholder="Password..." class="form-password form-control" id="password" data-error="Password too short" required>
 				                        	<div class="help-block with-errors"></div>
 				                        </div>
 				                        <div class="form-group">

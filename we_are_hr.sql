@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 15, 2016 at 11:57 AM
+-- Generation Time: Mar 16, 2016 at 10:43 AM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -172,38 +172,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `company`
---
-
-CREATE TABLE IF NOT EXISTS `company` (
-  `Name` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `date` date NOT NULL,
-  `employee` int(200) NOT NULL,
-  `web` varchar(50) NOT NULL,
-  `country` varchar(20) NOT NULL,
-  `state` varchar(20) NOT NULL,
-  `city` varchar(20) NOT NULL,
-  `pincode` varchar(20) NOT NULL,
-  `contact` int(20) NOT NULL,
-  `logo` varchar(100) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`Name`, `email`, `date`, `employee`, `web`, `country`, `state`, `city`, `pincode`, `contact`, `logo`, `password`) VALUES
-('sodhi', 'myname@gmail.com', '2016-12-31', 2147483647, 'sodhi', ' India', ' Himachal Pradesh', 'Gwal Pathar', '21', 55645, 'icon-1.png', 'vis'),
-('vishal', 'visans09@gmail.com', '2016-03-03', 123, 'www.xyz.com', ' India', ' Madhya Pradesh', 'Dabra', '475110', 2147483647, 'admit.JPG', '1234'),
-('vishal', 'vishanshul91@gmail.c', '2017-03-01', 852, 'vishal.com', ' India', ' Uttar Pradesh', 'Gwalior Grint', '475110', 2147483647, 'client-logo8.png', 'vis'),
-('weRhr', 'vishanshul9@gmail.co', '2016-12-05', 89, 'asd.com', ' India', ' Madhya Pradesh', 'Dabra', '475110', 2147483647, 'client-logo1.png', 'asd');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `employers`
 --
 
@@ -362,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `country` varchar(30) NOT NULL,
   `Profile_pic` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `users`
@@ -370,8 +338,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `DOB`, `address`, `contact`, `city`, `state`, `country`, `Profile_pic`) VALUES
 (29, 'user', 1, '8ff5660c0f394d2f0b7b80bdf9bdcfe32931e561', '123456', 'Embok', 'Ramde', 'embokramde@icloud.com', '0000-00-00', '', '0', '', '', '', ''),
-(39, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '9856', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '1991-11-22', 'Raliang West Jaintia Hills', '9856600758', 'Shillong', ' Meghalaya', ' India', 'Untitled-1.jpg'),
-(40, 'user', 0, 'ba188fc5cf2da4d626c131e0be3a1c6999c5ce7b', '123', 'John', 'Nongbri', 'aamm@yahoo.com', '0000-00-00', '', '', '', '', '', '');
+(40, 'user', 0, 'ba188fc5cf2da4d626c131e0be3a1c6999c5ce7b', '123', 'John', 'Nongbri', 'aamm@yahoo.com', '0000-00-00', '', '', '', '', '', ''),
+(41, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '9856600758', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '1991-11-22', 'Raliang Village', '9856600758', 'Shillong', ' Meghalaya', ' India', 'Untitled-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -410,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `we_are_hr_admin` (
   `Address` varchar(200) NOT NULL,
   `Profile_pic` varchar(50) NOT NULL,
   PRIMARY KEY (`A_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10802 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10801 ;
 
 --
 -- Dumping data for table `we_are_hr_admin`
