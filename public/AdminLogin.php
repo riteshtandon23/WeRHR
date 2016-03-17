@@ -18,7 +18,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" action="addAdmintoDB.php" method="POST">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">Email/username</label>
+                            <label for="inputEmail3" class="col-sm-3 control-label">username</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="inputUname" name="inputUname" placeholder="Email/Username" required="">
                             </div>

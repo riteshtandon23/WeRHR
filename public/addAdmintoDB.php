@@ -7,10 +7,11 @@
         $AdminLName=$_POST['AdminLName'];
         $AdminContact=$_POST['AdminContact'];
         $AdminAddress=$_POST['AdminAddress'];
+        $AEmail=$_POST['AEmail'];
         $Adminpword='Admin';
         $type="Admin";
-        $stmt=$connection->prepare("call addAdmin(?,?,?,?,?,?)");
-        $stmt->bind_param('ssssss',$AdminName,$AdminLName,$Adminpword,$type,$AdminContact,$AdminAddress);
+        $stmt=$connection->prepare("call addAdmin(?,?,?,?,?,?,?)");
+        $stmt->bind_param('sssssss',$AdminName,$AdminLName,$Adminpword,$type,$AdminContact,$AdminAddress,$AEmail);
         $result=$stmt->execute();
         if($result)
         {
@@ -51,7 +52,8 @@
     {
         session_start();
         $id=$_SESSION['AID'];
-        if(!empty($_FILES["image"]['name']) || $_FILES["image"]['size']>0){
+            $profilepic = $_POST['temp'];
+             if(!empty($_FILES["image"]['name']) || $_FILES["image"]['size']>0){
         
             $profilepic = mysqli_escape_string($connection,$_FILES['image']['name']);
             //taking extension
@@ -82,12 +84,16 @@
             }
         
         }
+        
+
+       
         $AdminName=$_POST['AdminName'];
         $AdminLName=$_POST['AdminLName'];
         $AdminContact=$_POST['AdminContact'];
         $AdminAddress=$_POST['AdminAddress'];
-        $stmt=$connection->prepare("call UpdateAdminProfile(?,?,?,?,?,?)");
-        $stmt->bind_param('isssss',$id,$AdminName,$AdminLName,$AdminContact,$AdminAddress,$profilepic);
+        $AEmail=$_POST['AEmail'];
+        $stmt=$connection->prepare("call UpdateAdminProfile(?,?,?,?,?,?,?)");
+        $stmt->bind_param('issssss',$id,$AdminName,$AdminLName,$AdminContact,$AdminAddress,$profilepic,$AEmail);
         $result=$stmt->execute();
         if($result)
         {

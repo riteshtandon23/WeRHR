@@ -9,6 +9,8 @@ if(isset($_POST['submit']))
 		$question_name=$_POST['QuestionName'];
 		$question_details=$_POST['Questiondetails'];
 		$questionans=$_POST['questionAns'];
+		$positive_mark = $_POST['Pmark'];
+		$negative_mark = $_POST['Nmark'];
 		$answeroption="";
 		$domainID= select_Domain_id($domain_id);
 		foreach ($_POST['choice'] as $key => $value) {
@@ -21,8 +23,8 @@ if(isset($_POST['submit']))
 			{
 				$temp=$row["Topic_id"];
 			}
-			$stmt=$connection->prepare("call updateQuestionAns(?,?,?,?,?,?,?,?)");
-			$stmt->bind_param('issssssi',$questionid, $question_name, $question_Type, $answeroption, $questionans, $question_details, $domain_id, $temp);
+			$stmt=$connection->prepare("call updateQuestionAns(?,?,?,?,?,?,?,?,?,?)");
+			$stmt->bind_param('issssssiss',$questionid, $question_name, $question_Type, $answeroption, $questionans, $question_details, $domain_id, $temp,$positive_mark,$negative_mark);
 			$result = $stmt->execute();
 			if($result)
 			{

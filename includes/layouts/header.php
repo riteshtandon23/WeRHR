@@ -40,6 +40,11 @@
    
  <?php 
  session_start(); 
+    $type=$_SESSION['Type'];
+    if($type!=="Admin")
+    {
+        header('Location: AdminLogin.php');
+    }
     if(!isset($_SESSION['Name']))
     {
         header('Location: AdminLogin.php');
@@ -99,7 +104,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> Exam <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="addChallenge.php">Add/update Topic</a>
                                         </li>
@@ -107,9 +112,9 @@
                                         </li>
                                         <li><a href="setQuestion.php">Question</a>
                                         </li>
-                                        <li><a href="examGeneration.php">Exam Generation</a>
+                                        <li><a href="Exam_Details.php">Exam Date/Time</a>
                                         </li>
-                                        <li><a href="#">Form Upload</a>
+                                        <li><a href="examGeneration.php">Exam Generation</a>
                                         </li>
                                         <li><a href="#">Form Buttons</a>
                                         </li>
@@ -211,7 +216,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="logout_process.php">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>

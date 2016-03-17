@@ -20,8 +20,6 @@ if(isset($_GET['id']))
         $Stime=$row['Start_Time'];
         $Etime=$row['End_Time'];
         $Tques=$row['Total_Question'];
-        $Pmark=$row['Positive_Mark'];
-        $Nmark=$row['Negative_Mark'];
         $exam_date=date_create($Edate);
         $exam_date=date_format($exam_date,"d-m-Y");
     }
@@ -94,20 +92,7 @@ if(isset($_GET['id']))
                     <input type="number" id="TotalQuestion" name="TotalQuestion" value="<?php echo $Tques; ?>" required="required" min="1" data-validate-minmax="1,100" class="form-control col-md-7 col-xs-12">
                 </div>
             </div> 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Pmark">Positive Marks<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="Pmark" class="form-control col-md-7 col-xs-12"  name="Pmark" value="<?php echo $Pmark; ?>" required="required" type="text">
-                </div>
-            </div> 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nmark">Negative Marks <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="Nmark" class="form-control col-md-7 col-xs-12"  name="Nmark" value="<?php echo $Nmark; ?>" required="required" type="text">
-                </div>
-            </div>
+           
         </div>
 
         <div class="ln_solid"></div>

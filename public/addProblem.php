@@ -17,16 +17,17 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="topicId" name="topicId" class="form-control" required>
                                     <?php
-                                    session_start();
+                                    
                                         $result=select_Domain();
                                         while($row =$result->fetch_assoc())
                                         {
                                                echo  "<option";
-                                               if(isset($_SESSION["CName"]))
+                                               if(isset($_SESSION["DomainId"]))
                                                {
-                                                    if($row["topic_Name"]===$_SESSION["CName"])
+                                                    if($row["topic_Name"]==$_SESSION["DomainId"])
                                                     {
-                                                        echo "selected";
+                                                        echo " selected"; 
+
                                                     }
                                                }
                                                echo ">".$row["topic_Name"]."</option>";
@@ -52,6 +53,20 @@
                                     <option>Multiple Choice</option>
                                 </select>
                             </div>
+                            </div>
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Pmark">Positive Marks<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="Pmark" class="form-control col-md-7 col-xs-12"  name="Pmark" placeholder="Marks per question" value="<?php if(isset($_SESSION["Pmark"])){echo $_SESSION["Pmark"];} ?>" required=" required" type="text">
+                                </div>
+                            </div> 
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nmark">Negative Marks <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="Nmark" class="form-control col-md-7 col-xs-12"  name="Nmark" value="<?php if(isset($_SESSION["Nmark"])){echo $_SESSION["Nmark"];} ?>" placeholder="Minus Mark if wrong attempt" required="required" type="text">
+                                </div>
                             </div>
                             <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questionType">Add More Option<span class="required">*</span>

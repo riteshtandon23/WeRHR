@@ -8,8 +8,6 @@ if(isset($_POST['submit']))
         $start_time = $_POST['Stime'];
     	$end_time = $_POST['Etime'];
     	$total_question = $_POST['TotalQuestion'];
-    	$positive_mark = $_POST['Pmark'];
-    	$negative_mark = $_POST['Nmark'];
     	$exam_date=date_create($date);
     	$exam_date=date_format($exam_date,"Y-m-d");
     	$domainID= select_Domain_id($domain_id);
@@ -20,16 +18,16 @@ if(isset($_POST['submit']))
 			{
 				$temp=$row["Topic_id"];
 			}
-            $stmt = $connection->prepare("call addExam(?,?,?,?,?,?,?)");
-            $stmt->bind_param('isssiii', $temp, $exam_date, $start_time, $end_time, $total_question, $positive_mark,$negative_mark);
+            $stmt = $connection->prepare("call addExam(?,?,?,?,?)");
+            $stmt->bind_param('isssi', $temp, $exam_date, $start_time, $end_time, $total_question);
             $result = $stmt->execute();
     		if($result)
     		{
         		echo "Success";
-        		redirect_to("addChallenge.php");
+        		redirect_to("Exam_Details.php");
     		}else
     		{
-	        	die("Database connection fail".$connection->connect_errno." ".$temp);
+	        	die("Database connection fail".$connection->connect_errno);
     		}
     	}
 	}
@@ -40,17 +38,15 @@ if(isset($_POST['submit']))
         $start_time = $_POST['Stime'];
         $end_time = $_POST['Etime'];
         $total_question = $_POST['TotalQuestion'];
-        $positive_mark = $_POST['Pmark'];
-        $negative_mark = $_POST['Nmark'];
         $exam_date=date_create($date);
         $exam_date=date_format($exam_date,"Y-m-d");
-        $stmt=$connection->prepare("call updateExamDetails(?,?,?,?,?,?,?)");
-        $stmt->bind_param('isssiii',$id, $exam_date, $start_time, $end_time, $total_question, $positive_mark,$negative_mark);
+        $stmt=$connection->prepare("call updateExamDetails(?,?,?,?,?)");
+        $stmt->bind_param('isssi',$id, $exam_date, $start_time, $end_time, $total_question);
         $result = $stmt->execute();
         if($result)
         {
             
-            redirect_to("index.php");
+            redirect_to("index1.php");
         }else
         {
             die("Database connection fail".$connection->connect_errno);

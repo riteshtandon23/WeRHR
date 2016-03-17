@@ -106,3 +106,59 @@
         }
     });
  }
+ function getUserEmail(cname)
+ {
+     
+    $('#Examdate').find('option').remove();//.not(':first')
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'selectExamdate.php',
+        data:'cname='+cname,
+        success:function(data)
+        {
+            for(i=0;i<data.length;i++ )
+            {
+               $('#Examdate').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+            
+        }
+
+    });
+ }
+ function displayUser(cname)
+ {
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'getUser.php',
+        data:'id='+cname,
+        success:function(data)
+        {
+            var table = $('#course_details').DataTable({
+                "autoWidth":false,
+                "destroy": true,
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers"
+            });
+            table.clear().draw(false);
+            var myOb=JSON.stringify(data);
+            var myObject = JSON.parse(myOb);
+            for(i=0;i<myObject.length;i++)
+            {
+                var Data1=myObject[i].Question;
+                var Data2=myObject[i].TopicName;
+                if(Number(Data5)===1)
+                {
+                    table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"' checked>",Data1,Data2]).draw(false);
+                }else
+                {
+                  table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"'>",Data1,Data2]).draw(false);  
+                }
+                
+                //table.rows.add({"TopicName":data[i].TopicName,"Question":data[i].Question,"ExamDate":data[i].ExamDate}).draw(false);
+            }
+
+        }
+    });
+ }

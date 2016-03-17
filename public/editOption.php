@@ -14,6 +14,8 @@
             $ans=$row['Answer'];
             $qd=$row['Question_Desc'];
             $tn=$row['Topic_Name'];
+            $pm=$row['Positive_Mark'];
+            $nm=$row['Negative_Mark'];
 
         }
         $res=explode(",", $opt);
@@ -54,7 +56,6 @@
         <select id="questionType" name="questionType" class="form-control" required>
             <option <?php if($qt=="Single Choice"){echo "selected";}?> >Single Choice</option>
             <option <?php if($qt=="Multiple Choice"){echo "selected";}?> >Multiple Choice</option>
-            <option <?php if($qt=="Description"){echo "selected";}?> >Description</option>
         </select>
     </div>
     </div>
@@ -74,6 +75,20 @@
             $i++;
         }
     ?>
+    <div class="item form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Pmark">Positive Marks<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input id="Pmark" class="form-control col-md-7 col-xs-12"  name="Pmark" value="<?php echo $pm;?>" placeholder="Marks per question" required="required" type="text">
+        </div>
+    </div> 
+    <div class="item form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nmark">Negative Marks <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input id="Nmark" class="form-control col-md-7 col-xs-12"  name="Nmark" value="<?php echo $nm;?>" placeholder="Minus Mark if wrong attempt" required="required" type="text">
+        </div>
+    </div>
     <div class="item form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Questiondetails">Question Details<span class="required">*</span>
         </label>

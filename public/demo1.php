@@ -4,7 +4,7 @@
     $searchTerm = $_GET['term'];
     
     //get matched data from skills table
-    $query = mysqli_query($connection,"SELECT * FROM user1 WHERE email LIKE '%".$searchTerm."%' ORDER BY email ASC");
+    $query = mysqli_query($connection,"SELECT * FROM users WHERE email LIKE '%".$searchTerm."%' ORDER BY email ASC");
     while ($row = $query->fetch_assoc()) {
         $data[] = $row['email'];
     }

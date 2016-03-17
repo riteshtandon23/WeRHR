@@ -17,7 +17,7 @@ $query = "SELECT type,id,firstname,lastname FROM users WHERE email='$username' A
 $result = $connection->query($query);
 $row = mysqli_fetch_assoc($result);
 //$username1 = $row['username'];
-$_SESSION['usertype'] = $row['type'];
+$_SESSION['Type'] = $row['type'];
 if($result->num_rows > 0){
     $_SESSION["fname"] = $row['firstname'];
     $_SESSION["lname"] = $row['lastname'];

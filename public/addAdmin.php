@@ -25,6 +25,13 @@
                                 <input id="AdminLName" class="form-control col-md-7 col-xs-12"  name="AdminLName" placeholder="Last Name" required="required" type="text">
                                 </div>
                             </div>
+                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" id="AEmail" name="AEmail" required="required" class="form-control col-md-7 col-xs-12" placeholder="Enter Admin Email">
+                                </div>
+                            </div>
                             <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Admin Contact No<span class="required">*</span>
                             </label>

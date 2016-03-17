@@ -21,6 +21,7 @@
                                 <div class="item form-group">
                                 <div class="avatar-view col-lg-4" title="Change the avatar">
                                 <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "admin.png";}?>" id="ADP" name="ADP" alt="Avatar">
+                                <input type="hidden" id="temp" name="temp" value="<?php echo $pic;?>">
                                 </div>
                                 <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'>
                                 </div> 
@@ -38,6 +39,13 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="AdminLName" class="form-control col-md-7 col-xs-12"  name="AdminLName" Value="<?php echo $row['Admin_Lastname']; ?>" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" id="AEmail" name="AEmail" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['Email']; ?>">
                                 </div>
                             </div>
                             <div class="item form-group">

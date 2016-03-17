@@ -15,6 +15,8 @@
                              <th>Question Type</th>
                              <th>Question Option</th>
                              <th>Question Answer</th>
+                             <th>Positive Mark</th>
+                             <th>Negative mark</th>
                              <th>Question Description</th>
                              <th class=" no-link last"><span class="nobr">Action</span>
                              </th>
@@ -46,6 +48,8 @@
                             echo "<td class=\" \">".$row["Question_Type"]."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Answer_Option"])."</td>";
                             echo "<td class=\" \">".htmlspecialchars($row["Answer"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["Positive_Mark"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["Negative_Mark"])."</td>";
                             echo "<td class=\" \">".$row["Question_Desc"]."</td>";
                             
                             echo "<td class=\" last\"><div class=\"buttons\"><a href=\"editOption.php?id=$id\"><button type=\"button\" name=\"editquestion\" id=\"editquestion\" class=\"btn btn-info btn-xs\">Edit</button></a>

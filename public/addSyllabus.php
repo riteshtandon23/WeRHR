@@ -10,6 +10,10 @@
         $questiont_type = $_POST['questionType'];
     	$question_desc = $_POST['questionDesc'];
         $question_ans = $_POST['questionAns'];
+        $positive_mark = $_POST['Pmark'];
+        $negative_mark = $_POST['Nmark'];
+        $_SESSION["Pmark"]=$positive_mark ;
+        $_SESSION["Nmark"]=$negative_mark;
     	$domainID= select_Domain_id($domain_id);
         $question_ans=ltrim($question_ans,",");
         $answeroption="";
@@ -23,8 +27,8 @@
 			{
 				$temp=$row["Topic_id"];
 			}
-            $stmt = $connection->prepare("call addQuestion(?,?,?,?,?,?,?)");
-            $stmt->bind_param('sssssis', $question_name, $questiont_type, $answeroption, $question_ans, $question_desc, $temp, $domain_id);
+            $stmt = $connection->prepare("call addQuestion(?,?,?,?,?,?,?,?,?)");
+            $stmt->bind_param('sssssisss', $question_name, $questiont_type, $answeroption, $question_ans, $question_desc, $temp, $domain_id,$positive_mark,$negative_mark);
             $result = $stmt->execute();
     		if($result)
     		{

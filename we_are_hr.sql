@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 16, 2016 at 10:43 AM
+-- Generation Time: Mar 17, 2016 at 02:56 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -26,20 +26,20 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addAdmin`(IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `Apass` VARCHAR(50), IN `type` VARCHAR(20), IN `Acontact` VARCHAR(20), IN `Aaddress` VARCHAR(200))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addAdmin`(IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `Apass` VARCHAR(50), IN `type` VARCHAR(20), IN `Acontact` VARCHAR(20), IN `Aaddress` VARCHAR(200), IN `Email` VARCHAR(100))
     NO SQL
-insert into we_are_hr_admin(Admin_Name,Admin_Lastname,Admin_password,type,Contact,Address)
-values(Aname,Alname,Apass,type,Acontact,Aaddress)$$
+insert into we_are_hr_admin(Admin_Name,Admin_Lastname,Admin_password,type,Contact,Address,Email)
+values(Aname,Alname,Apass,type,Acontact,Aaddress,Email)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `T_id` INT(11), IN `E_date` DATE, IN `S_time` TIME, IN `E_time` TIME, IN `T_question` INT(4), IN `P_mark` INT(4), IN `N_mark` INT(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `T_id` INT(11), IN `E_date` DATE, IN `S_time` TIME, IN `E_time` TIME, IN `T_question` INT(4))
     NO SQL
-insert into exam_details(Topic_id,Exam_Date,Start_time,End_time,Total_Question,Positive_Mark,Negative_Mark)
-values(T_id,E_date,S_time,E_time,T_question,P_mark,N_mark)$$
+insert into exam_details(Topic_id,Exam_Date,Start_time,End_time,Total_Question)
+values(T_id,E_date,S_time,E_time,T_question)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addQuestion`(IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_Option` VARCHAR(300), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500), IN `Tid` INT(11), IN `T_Name` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addQuestion`(IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_Option` VARCHAR(300), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500), IN `Tid` INT(11), IN `T_Name` VARCHAR(100), IN `P_mark` VARCHAR(5), IN `N_mark` VARCHAR(5))
     NO SQL
-insert into question(Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Id,Topic_Name)
-values(Q_Name,Q_Type,A_Option,Ans,Q_Desc,Tid,T_Name)$$
+insert into question(Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Id,Topic_Name,Positive_Mark,Negative_Mark)
+values(Q_Name,Q_Type,A_Option,Ans,Q_Desc,Tid,T_Name,P_mark,N_mark)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTopic`(IN `T_Name` VARCHAR(100))
     NO SQL
@@ -63,12 +63,14 @@ where Topic_id=T_id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getNotify`()
     NO SQL
 select Topic_id,Exam_Date,Start_Time,End_Time,Total_Question,ID
-from exam_details$$
+from exam_details
+where Exam_Date > DATE_SUB(CURDATE(),INTERVAL 1 DAY)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getNotifyWithId`(IN `id` INT(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getNotifyWithId`(IN `iddd` INT(11))
     NO SQL
-select Topic_id,Exam_Date,Start_Time,End_Time,Total_Question,Positive_Mark,Negative_Mark,ID
-from exam_details where ID=id$$
+select Topic_id,Exam_Date,Start_Time,End_Time,Total_Question,ID
+FROM  exam_details
+WHERE ID =iddd$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getQuestion`(IN `C_Name` VARCHAR(100))
     NO SQL
@@ -117,7 +119,7 @@ where Topic_id=T_Id AND Exam_Date=Today_Date$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectOption`(IN `Opt_id` INT(11))
     NO SQL
-select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Name
+select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Name,Positive_Mark,Negative_Mark
 from Question
 where Question_Id=Opt_id
 LIMIT 1$$
@@ -129,7 +131,7 @@ from we_are_hr_admin where Admin_password=pwd AND A_ID=Aid$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectQuestion`()
     NO SQL
-select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Question_Id,Final_Question
+select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Question_Id,Final_Question,Positive_Mark,Negative_Mark
 from Question
 ORDER BY Question_Id ASC$$
 
@@ -140,22 +142,22 @@ where `question`.Question_Id=Q_id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `slectAdminProfile`(IN `aid` INT(11))
     NO SQL
-select Admin_Name,Admin_Lastname,Contact,Address
+select Admin_Name,Admin_Lastname,Contact,Address,Email
 from we_are_hr_admin where A_ID=aid$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAdminProfile`(IN `id` INT(11), IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `contact` VARCHAR(20), IN `address` VARCHAR(200), IN `pic` VARCHAR(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAdminProfile`(IN `id` INT(11), IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `contact` VARCHAR(20), IN `address` VARCHAR(200), IN `pic` VARCHAR(50), IN `email` VARCHAR(100))
     NO SQL
-update `we_are_hr`.`we_are_hr_admin` set `Admin_Name`=Aname,Admin_Lastname=Alname,Contact=contact,Address=address,Profile_pic=pic
+update `we_are_hr`.`we_are_hr_admin` set `Admin_Name`=Aname,Admin_Lastname=Alname,Contact=contact,Address=address,Profile_pic=pic,Email=email
 where ID=id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExamDetails`(IN `id` INT(11), IN `Edate` DATE, IN `Stime` TIME, IN `Etime` TIME, IN `Tques` INT(11), IN `Pmark` INT(11), IN `Nmark` INT(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateExamDetails`(IN `id` INT(11), IN `Edate` DATE, IN `Stime` TIME, IN `Etime` TIME, IN `Tques` INT(11))
     NO SQL
-update `we_are_hr`.`exam_details` set `Exam_Date`=Edate,Start_time=Stime,End_time=Etime,Total_Question=Tques,Positive_Mark=Pmark,Negative_Mark=Nmark
+update `we_are_hr`.`exam_details` set `Exam_Date`=Edate,Start_time=Stime,End_time=Etime,Total_Question=Tques
 where ID=id$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQuestionAns`(IN `Q_id` INT(11), IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_opt` VARCHAR(200), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500), IN `T_Name` VARCHAR(30), IN `T_id` INT(11))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateQuestionAns`(IN `Q_id` INT(11), IN `Q_Name` VARCHAR(500), IN `Q_Type` VARCHAR(30), IN `A_opt` VARCHAR(200), IN `Ans` VARCHAR(100), IN `Q_Desc` VARCHAR(500), IN `T_Name` VARCHAR(30), IN `T_id` INT(11), IN `P_mark` VARCHAR(5), IN `N_mark` VARCHAR(5))
     NO SQL
-update `we_are_hr`.`question` set `Question_Name`=Q_Name,Question_Type=Q_Type,Answer_Option=A_opt,Answer=Ans,Question_Desc=Q_Desc,Topic_Name=T_Name,Topic_Id=T_id
+update `we_are_hr`.`question` set `Question_Name`=Q_Name,Question_Type=Q_Type,Answer_Option=A_opt,Answer=Ans,Question_Desc=Q_Desc,Topic_Name=T_Name,Topic_Id=T_id,Positive_Mark=P_mark,Negative_Mark=N_mark
 where `question`.Question_Id=Q_id$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTopic`(IN `T_name` VARCHAR(100), IN `N_name` VARCHAR(100))
@@ -216,20 +218,18 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
   `Start_time` time NOT NULL,
   `End_time` time NOT NULL,
   `Total_Question` int(4) NOT NULL,
-  `Positive_Mark` int(4) NOT NULL,
-  `Negative_Mark` int(4) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Topic_id` (`Topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `exam_details`
 --
 
-INSERT INTO `exam_details` (`ID`, `Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`, `Positive_Mark`, `Negative_Mark`) VALUES
-(1, 1002, '2016-03-05', '15:00:00', '15:02:00', 40, 4, 1),
-(2, 1002, '2016-03-10', '12:00:00', '15:00:00', 40, 4, 1),
-(3, 1004, '2016-03-19', '12:00:00', '13:00:00', 30, 4, 1);
+INSERT INTO `exam_details` (`ID`, `Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`) VALUES
+(9, 1002, '2016-03-17', '00:00:00', '00:05:00', 20),
+(10, 1004, '2016-03-17', '00:00:00', '00:05:00', 20),
+(11, 1012, '2016-03-17', '00:00:00', '00:05:00', 20);
 
 -- --------------------------------------------------------
 
@@ -248,33 +248,40 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Topic_Name` varchar(30) NOT NULL,
   `Final_Question` tinyint(1) NOT NULL,
   `Exam_Date` varchar(30) NOT NULL,
+  `Positive_Mark` varchar(5) NOT NULL,
+  `Negative_Mark` varchar(5) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`, `Final_Question`, `Exam_Date`) VALUES
-(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1, '2016-03-10'),
-(2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1, '2016-03-10'),
-(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1, '2016-03-10'),
-(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1, '2016-03-10'),
-(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1, '2016-03-10'),
-(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 1, '2016-03-10'),
-(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 1, '2016-03-10'),
-(13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP', 1, '2016-03-19'),
-(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 1, '2016-03-19'),
-(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP', 1, '2016-03-19'),
-(16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 1, '2016-03-19'),
-(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP', 1, '2016-03-19'),
-(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'C Programing', 0, 'Not Set'),
-(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 0, 'Not Set'),
-(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP', 1, '2016-03-19'),
-(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 0, 'Not Set'),
-(24, 'Question 4', 'Single Choice', 'D,M,R,H', 'D', 'Testing', 1012, 'C Programing', 0, 'Not Set'),
-(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 0, 'Not Set');
+INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`, `Final_Question`, `Exam_Date`, `Positive_Mark`, `Negative_Mark`) VALUES
+(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1, '2016-03-17', '4', '2'),
+(2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(20, 'Question 1', 'Single Choice', 'A,B,C,D,E', 'A', 'Sample', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(24, 'Question 4', 'Multiple Choice', 'D,M,R,H', 'D,M', 'Testing', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(26, 'A macro can execute faster than a function.', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(27, 'The C library function rewind() reposition the file pointer at the begining of the file', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
+(28, 'What is oak?', 'Single Choice', 'Java First Name,Java CEO name,None of the above', 'Java First Name', 'testing', 1002, 'Java', 0, 'Not Set', '4', '1'),
+(29, 'hhhhhhhhhhhhhhh', 'Single Choice', 'a,c', 'a', 'xxx', 1002, 'Java', 0, 'Not Set', '4', '1'),
+(30, 'nnnnnnnnnnnnnnnn', 'Single Choice', 'A,x', 'A', 'ddd', 1002, 'Java', 0, 'Not Set', '4', '1');
 
 -- --------------------------------------------------------
 
@@ -352,15 +359,14 @@ CREATE TABLE IF NOT EXISTS `user_answer` (
   `Answer` varchar(200) NOT NULL,
   `Course_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user_answer`
 --
 
 INSERT INTO `user_answer` (`Id`, `Answer`, `Course_Name`) VALUES
-(1, '["1::opt2","2::opt1","3::opt2","4::opt2","5::opt1","6::opt2,opt3"]', 'PHP'),
-(2, '["1::opt1","5::opt1","6::opt5","7::opt2","2::opt3"]', 'Java');
+(1, '["1::opt1","2::opt2,opt3","3::opt1","4::opt3,opt4","5::opt2,opt3","6::opt1","7::opt1"]', 'C Programing');
 
 -- --------------------------------------------------------
 
@@ -376,6 +382,7 @@ CREATE TABLE IF NOT EXISTS `we_are_hr_admin` (
   `type` varchar(20) NOT NULL,
   `Contact` varchar(15) NOT NULL,
   `Address` varchar(200) NOT NULL,
+  `Email` varchar(100) NOT NULL,
   `Profile_pic` varchar(50) NOT NULL,
   PRIMARY KEY (`A_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10801 ;
@@ -384,8 +391,8 @@ CREATE TABLE IF NOT EXISTS `we_are_hr_admin` (
 -- Dumping data for table `we_are_hr_admin`
 --
 
-INSERT INTO `we_are_hr_admin` (`A_ID`, `Admin_Name`, `Admin_Lastname`, `Admin_password`, `type`, `Contact`, `Address`, `Profile_pic`) VALUES
-(10800, 'Da O Hi Paya', 'Lamare', 'Admin', 'Admin', '9856600758', 'Raliang village', '10800.jpg');
+INSERT INTO `we_are_hr_admin` (`A_ID`, `Admin_Name`, `Admin_Lastname`, `Admin_password`, `type`, `Contact`, `Address`, `Email`, `Profile_pic`) VALUES
+(10800, 'Da O Hi Paya', 'Lamare', 'Admin', 'Admin', '9856600758', 'Raliang village', 'lamaredaoyit@yahoo.com', '10800.jpg');
 
 --
 -- Constraints for dumped tables
