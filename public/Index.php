@@ -81,6 +81,9 @@
 						<li>
 							<a class="page-scroll" href="login.php">Login</a>
 						</li>
+                        <li>
+							<a href="register.php">Register</a>
+						</li>
 						<li>
 							<a class="page-scroll" href="#contact">Contact</a>
 						</li>

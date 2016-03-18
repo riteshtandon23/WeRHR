@@ -48,7 +48,6 @@
 		<link href="css/owl.theme.default.min.css"  rel="stylesheet">
 		<link href="css/style1.css" rel="stylesheet">
 		<link href="css/form-elements.css" rel="stylesheet">
-		<link href="css/bootstrap-dialog.min.css" rel="stylesheet">
 
 		<!-- Google fonts -->
 		<link rel="stylesheet" type="text/css" href="css/fonts.css">
@@ -67,7 +66,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
-						<div class="section-title"><img align="text-center" src="images/Logo_Minimal.svg"></div>
+                        <div class="section-title"><a href="Index.php"><img align="text-center" src="images/Logo_Minimal.svg"></a></div>
 						<div class="col-md-6 col-md-offset-3">
 							<div class="form-box">
 	                        	<div class="form-top">
