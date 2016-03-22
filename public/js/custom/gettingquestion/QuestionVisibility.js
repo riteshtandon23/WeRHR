@@ -11,7 +11,11 @@
                 type:'GET',
                 dataType:'json',
                 url:'updateQuestionVisibilitytoCandidate.php',
-                data:'id='+QuestionId+'&vis='+vis+'&Edate='+Edate,
+                data:'id='+QuestionId+'&vis='+vis+'&Edate='+Edate+'&cname='+cname,
+                success:function(data)
+                {
+                    alert(data);
+                }
             });
         }
         else
@@ -22,7 +26,11 @@
                 type:'GET',
                 dataType:'json',
                 url:'updateQuestionVisibilitytoCandidate.php',
-                data:'id='+QuestionId+'&vis='+vis+'&Edate='+Edate,
+                data:'id='+QuestionId+'&vis='+vis+'&Edate='+Edate+'&cname='+cname,
+                 success:function(data)
+                {
+                    alert(data);
+                }
             });
         }
    }
@@ -155,8 +163,6 @@
                 {
                   table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"'>",Data1,Data2]).draw(false);  
                 }
-                
-                //table.rows.add({"TopicName":data[i].TopicName,"Question":data[i].Question,"ExamDate":data[i].ExamDate}).draw(false);
             }
 
         }

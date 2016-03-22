@@ -26,7 +26,7 @@
     <link href="css/floatexamples.css" rel="stylesheet" />
      <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
      <link href="css/custom/search.css" rel="stylesheet">
-
+     <link href="css/select/select2.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -120,9 +120,9 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-area-chart"></i> Algorithm <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">General Elements</a>
+                                        <li><a href="addAlgoDetails.php">Add Details</a>
                                         </li>
                                         <li><a href="#">Media Gallery</a>
                                         </li>
@@ -341,7 +341,7 @@
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>Page</h3>
+                            <h3>weRHR</h3>
                         </div>
 
                         <div class="title_right">
@@ -360,7 +360,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2><i class="fa fa-bars"></i> Tabs <small>Float left</small></h2>
+                    
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                              </li>

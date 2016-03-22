@@ -6,6 +6,7 @@ $(document).ready(function() {
     var wrapper = $('.wrapper'); //Input field wrapper
     var x = 2;
     
+    
     $('#surveyForm')
         .on('click','#submit',function(e){
             var isValid=true;
@@ -59,11 +60,14 @@ $(document).ready(function() {
         .on('change','#ans',function(){
            var anss = $('#questionAns').val();
            var bla = $('#option1').val();
+           var Qtype=$('#questionType').val();
            if(bla!="")
            {
             if(this.checked)
            {
+                checkForChoice(Qtype);
                 anss =anss+","+bla;
+                this.checked=true;
            }else
            {
                 bla=","+bla;
@@ -71,17 +75,24 @@ $(document).ready(function() {
                 //alert("hh");
            }
             $('#questionAns').val(anss);
+        }else{
+          this.checked=false;
+          alert('fill the Option first');
         }
 
         })
         .on('change','#ans2',function(){
            var anss = $('#questionAns').val();
            var bla = $('#option2').val();
+           var Qtype=$('#questionType').val();
+           
            if(bla!="")
            {
             if(this.checked)
            {
+                checkForChoice(Qtype);
                 anss =anss+","+bla;
+                this.checked=true;
            }else
            {
                 bla=","+bla;
@@ -89,60 +100,91 @@ $(document).ready(function() {
                 //alert("hh");
            }
             $('#questionAns').val(anss);
+        }else{
+          this.checked=false;
+          alert('fill the Option first');
         }
         })
         .on('change','#ans3',function(){
            var anss = $('#questionAns').val();
            var bla = $('#option3').val();
+           var Qtype=$('#questionType').val();
            if(bla!="")
            {
             if(this.checked)
            {
+                checkForChoice(Qtype);
                 anss =anss+","+bla;
+                this.checked=true;
            }else
            {
                 bla=","+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
+           
             $('#questionAns').val(anss);
+        }else{
+          this.checked=false;
+          alert('fill the Option first');
         }
         })
         .on('change','#ans4',function(){
            var anss = $('#questionAns').val();
            var bla = $('#option4').val();
+           var Qtype=$('#questionType').val();
            if(bla!="")
            {
             if(this.checked)
            {
+                checkForChoice(Qtype);
                 anss =anss+","+bla;
+                this.checked=true;
            }else
            {
                 bla=","+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
+           
             $('#questionAns').val(anss);
+        }else{
+          this.checked=false;
+          alert('fill the Option first');
         }
         })
         .on('change','#ans5',function(){
            var anss = $('#questionAns').val();
            var bla = $('#option5').val();
+           var Qtype=$('#questionType').val();
            if(bla!="")
            {
             if(this.checked)
            {
+                checkForChoice(Qtype);
                 anss =anss+","+bla;
+                this.checked=true;
            }else
            {
                 bla=","+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
+           
             $('#questionAns').val(anss);
+        }else{
+          this.checked=false;
+          alert('fill the Option first');
         }
         });
 
         
 });
+function checkForChoice(val)
+{
+  if(val==="Single Choice")
+  {
+    $('input[type=checkbox]').attr('checked',false);
+  }
+}
 

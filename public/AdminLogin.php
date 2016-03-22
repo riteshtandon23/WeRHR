@@ -1,60 +1,84 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>WeRHR</title>
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-	 <link rel="stylesheet" href="css/file3.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentallela Alela! | </title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/icheck/flat/green.css" rel="stylesheet">
+
+
+    <script src="js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
 </head>
-<body>
-<div class="back"> 
-</div>
-<div class="container" id="box">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-7">
-            <div class="panel panel-default">
-                <div class="panel-heading"> <strong class="">Administrator Login</strong>
 
-                </div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" action="addAdmintoDB.php" method="POST">
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-3 control-label">username</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputUname" name="inputUname" placeholder="Email/Username" required="">
-                            </div>
+<body style="background:#F7F7F7;">
+    
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+                <section class="login_content">
+                    <form role="form" action="addAdmintoDB.php" method="POST"> 
+                        <h1>Administrator</h1>
+                        <div>
+                            <input type="text" class="form-control" id="inputUname" name="inputUname" placeholder="Username" required="" />
                         </div>
-                        <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required="">
-                            </div>
+                        <div>
+                            <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required="" />
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <div class="checkbox">
-                                    <label class="">
-                                        <input type="checkbox" class="">Remember me</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group last">
+                            <div class="form-group last">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <button type="submit" class="btn btn-success btn-sm" name="Login" id="Login">LogIn</button>
                                 <button type="reset" class="btn btn-default btn-sm">Reset</button>
                             </div>
+                        
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <div class="clearfix"></div>
+                            <br />
+                            <div>
+                                <h1><i class="fa fa-paw" style="font-size: 26px;"></i>WeRHR!</h1>
+
+                                <p>©2016 This is WeRHR Administrator Login</p>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <div class="panel-footer">Not Registered? <a href="#" class="">Register here</a>
-                </div>
+                    <!-- form -->
+                </section>
+                <!-- content -->
             </div>
         </div>
     </div>
-</div>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-          
+
 </body>
+
 </html>

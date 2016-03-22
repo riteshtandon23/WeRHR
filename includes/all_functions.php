@@ -212,4 +212,63 @@ function selectAddress($email)
 	confirm_query($result);
 	return $result;
 }
+//selcet total question from given date
+function selectTotalQuestion22($Edate)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectTotalQuestion(?)");
+	$stmt->bind_param('s',$Edate);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+//count total question from given date
+function countTotalQuestion($Edate,$TopicName)
+{
+	global $connection;
+	$stmt=$connection->prepare("call countTotalQuestion(?,?)");
+	$stmt->bind_param('ss',$Edate,$TopicName);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+//select algorithm details
+function selectAgeRange()
+{
+	global $connection;
+	$stmt=$connection->prepare("call SelectAgeRange()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectAcademic()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectAcademic()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectBackground()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectBackground()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectTest()
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectTest()");
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
 ?>
