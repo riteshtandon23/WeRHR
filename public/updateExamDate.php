@@ -21,7 +21,7 @@ if(isset($_GET['id']))
         $Etime=$row['End_Time'];
         $Tques=$row['Total_Question'];
         $exam_date=date_create($Edate);
-        $exam_date=date_format($exam_date,"d-m-Y");
+        $exam_date=date_format($exam_date,"m/d/Y");
     }
 }
 

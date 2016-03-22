@@ -416,7 +416,8 @@
         });
     </script>
     <!-- /datepicker -->
-
+<script src="js/input_mask/jquery.inputmask.js"></script>
+<script src="js/select/select2.full.js"></script>
     <script>
     //load image
         function readURL(input) {
