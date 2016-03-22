@@ -198,8 +198,8 @@
 		<!-- Bootstrap core JavaScript
 			================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.easing.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/owl.carousel.min.js"></script>
 		<script src="js/cbpAnimatedHeader.js"></script>

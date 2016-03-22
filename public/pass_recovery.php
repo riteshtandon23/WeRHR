@@ -1,10 +1,12 @@
+<?php require_once("../includes/dbconnection.php");?>
 <?php
-	#Pop up message when redirected from registration page
-	if(isset($_GET['msg'])){ 
-		print '<script type="text/javascript">';
-		print 'alert("'.$_GET['msg'].'");';
-        print '</script>';
-	}
+session_start();
+
+$_SESSION['recover'] = $_GET['id']; 	#Saved as session var for pass_recovery_prcess
+$id = $_SESSION['recover']; 			#simplified for query
+$query1 = mysqli_query($connection,"SELECT id FROM users WHERE sequence='$id' UNION ALL SELECT id FROM employers WHERE sequence='$id'");
+
+if(mysqli_num_rows($query1)>0){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +38,7 @@
 	    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
 	    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
 	    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
-		<title>We'R'HR - Login</title>
+		<title>We'R'HR - Password Update</title>
 		<!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -66,62 +68,35 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
-                        <div class="section-title"><a href="Index.php"><img align="text-center" src="images/Logo_Minimal.svg"></a></div>
+						<div class="section-title"><img align="text-center" src="images/Logo_Minimal.svg"></div>
 						<div class="col-md-6 col-md-offset-3">
 							<div class="form-box">
 	                        	<div class="form-top">
 	                        		<div class="form-top-left">
-	                        			<h3>Login to our site</h3>
-	                            		<p>Enter email and password to log in:</p>
+	                        			<h3>Password Recovery</h3>
+	                            		<p>Enter your new password</p>
 	                        		</div>
 	                        		<div class="form-top-right">
 	                        			<a href="index.php"><i class="fa fa-home"></i></a>
 	                        		</div>
 	                            </div>
 	                            <div class="form-bottom">
-				                    <form id="form" role="form" action="login_process.php" method="post" class="login-form" data-toggle="validator">
+				                    <form id="form" role="form" action="pass_recovery_process.php" method="post" class="login-form" data-toggle="validator">
 				                    	<div class="form-group">
-				                        	<input type="email" name="email" placeholder="Email..." class="form-username form-control" id="email" data-error="Email not valid!">
-				                        	<div class="help-block with-errors"></div>
+				                        	<input type="password" data-minlength="6" name="password" id="password" placeholder="Password..." class="form-password form-control" required>
+				                        	<div class="help-block">Minimum of 6 characters</div>
 				                        </div>
 				                        <div class="form-group">
-				                        	<input type="password" data-minlength="3" name="password" placeholder="Password..." class="form-password form-control" id="password" data-error="Password too short" required>
+				                        	<input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm..." class="form-password form-control" data-match="#password" data-match-error="Password did not match" required>
 				                        	<div class="help-block with-errors"></div>
-				                        </div>
-				                        <div class="form-group" style="text-align: center;">
-										    <div class="checkbox" >
-										      <label style="color: #323232">
-										        <input type="checkbox" id="check" name="check">
-										        Keep me logged in
-										      </label>
-										    </div>
-										    <div class="help-block" >Uncheck on a public computer</div>
-										    <a href="forgot_pass.php">Forgot password</a>
-										</div>
 				                        <div class="form-group">
-					                        <button type="submit" class="btn">Sign in!</button>
-					                        <div class="btn-divider"></div>
-					                        <div style="text-align:center"><a href="user_register.php"><strong>Register as User</strong></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="employer_register.php"><strong>Register as Employer</strong></a></div>
-					                     </div>
+					                        <button type="submit" id="submit" name="submit" class="btn">Submit</button>
+					                    </div>
 					                     
 				                    </form>
 			                    </div>
 		                    </div>
-		                
-		                	<div class="social-login">
-	                        	<h3>...or login with:</h3>
-	                        	<div class="social-login-buttons">
-		                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
-		                        		<i class="fa fa-facebook"></i> Facebook
-		                        	</a>
-		                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
-		                        		<i class="fa fa-twitter"></i> Twitter
-		                        	</a>
-		                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-		                        		<i class="fa fa-google-plus"></i> Google Plus
-		                        	</a>
-	                        	</div>
-	                        </div>
+		               
 	                    </div>
 					</div>
 				</div>
@@ -147,8 +122,14 @@
 		<script src="js/cbpAnimatedHeader.js"></script>
 		<script src="js/theme-scripts.js"></script>
 		<script src="js/validator.min.js"></script>
-		<script src="js/bootstrap-dialog.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 </html>
+<?php
+}
+else
+{
+	echo "link modified!";
+}
+?>

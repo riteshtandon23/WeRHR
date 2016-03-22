@@ -7,7 +7,6 @@
 
         <div class="profile_img">
 
-            <!-- end of image cropping -->
             <div id="crop-avatar">
                 <!-- Current avatar -->
                 <div class="avatar-view" title="Change Profile Picture">
