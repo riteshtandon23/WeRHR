@@ -45,7 +45,7 @@
 
                     <span class="section">Academic Details</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Academic">Academic<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Academic">Course<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
                             <input id="Academic" class="form-control col-md-7 col-xs-12"  name="Academic" placeholder="course prefer e.g MBA,MCA etc." required="required" type="text">
