@@ -1,6 +1,7 @@
+<?php require_once("../includes/dbconnection.php");?>
+<?php require_once("../includes/all_functions.php");?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -16,7 +17,6 @@
 
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-
     <script src="js/jquery.min.js"></script>
 </head>
 <body class="nav-md">
@@ -27,8 +27,7 @@
 					<div class="panel panel-info">
 
 					    <div class="panel-heading">
-						    
-					
+					    <h3>Graphical representation of your score</h3>
 						</div>
 						<div class="panel-body">
 							<form id="infoform1" method="POST" class="form-horizontal" role="form">  
@@ -37,7 +36,7 @@
 					            <div class="col-md-9 col-md-offset-1 col-sm-9 col-sm-offset-1" align="center">
 									<div class="x_panel">
 										<div class="x_title">
-											<h2><label ><h4>&nbsp&nbsp Course Code:&nbsp&nbspJava</h4></label> <small></small></h2>
+											<h2><label ><h4>&nbsp;&nbsp; Course Name:&nbsp;&nbsp;<?php echo $_GET['cname']; ?></h4></label> <small></small></h2>
 											<div class="clearfix"></div>
 										</div>
 										<div class="x_content">
@@ -76,13 +75,23 @@
     <script src="js/icheck/icheck.min.js"></script>
 
     <script src="js/custom.js"></script>
-
+    <?php 
+    	$result=getUserAnswer($_GET['cname']);
+    	while ($row=$result->fetch_assoc()) {
+    		$ans=$row['Answer'];
+    	}
+    	$Edate="2016-03-31";
+    	$totalquestion=CountVisibleQuestion($_GET['cname']);
+    	while ($row=$totalquestion->fetch_assoc()) {
+    		$TotalQuestion=$row['Visible'];
+    	}
+     ?>
     <script>    
-	    var max=100;
-	    var total1=40;
-		var per=100;
-		var wrongans=50;
-		var unans=10;
+	    var max=<?php echo $TotalQuestion; ?>;
+		//var per=100;
+		var wrongans=2;
+		var unAns=0;
+		var totalMarks=(max-(wrongans+unAns));
         var randomScalingFactor = function () {
             return Math.round(Math.random() * 100)
         };
@@ -98,7 +107,7 @@
                     strokeColor: "#26B99A", //rgba(151,187,205,0.8)
                     highlightFill: "#36CAAB", //rgba(151,187,205,0.75)
                     highlightStroke: "#36CAAB", //rgba(151,187,205,1)
-					data: [max,total1,wrongans,unans]
+					data: [max,totalMarks,wrongans,unAns]
 					
 					
 					

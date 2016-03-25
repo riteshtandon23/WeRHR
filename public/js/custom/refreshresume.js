@@ -27,7 +27,8 @@ function TestController($scope,$timeout,$window,$rootScope) {
     var val= localStorage.getItem("Time");
     if((JSON.parse(val))!==null)
     { 
-        
+        // var time=$scope.appTitle;
+        // $window.alert(time);
         // var time=$window.timetogo;
         // $scope.appTitle=time;
         // var arr=time.split(':');
@@ -86,7 +87,10 @@ function TestController($scope,$timeout,$window,$rootScope) {
          localStorage.removeItem('QuestionNumber');
         $rootScope.flag=false;
         //$window.location.href='clearSession.php';
-        $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
+        var UserAnswer=localStorage.getItem('UserAns');
+        // UserAnswer=JSON.stringify(UserAnswer);
+        UserAnswer.replace(/"/g,"");
+        $window.location.href='clearSession.php?UserAns='+UserAnswer;
        
     };
     //$scope.appTitle = 60;
@@ -94,11 +98,17 @@ function TestController($scope,$timeout,$window,$rootScope) {
     $scope.$on('onBeforeUnload', function (e, confirmation) {
         if($rootScope.flag)
         {
-            localStorage.removeItem('Time');
+
             var time=$scope.appTitle;
-            $scope.saved = localStorage.getItem('Time');
-            $scope.todos = (localStorage.getItem('Time')!==null) ? JSON.parse($scope.saved) : [ {Time:time}];
-            localStorage.setItem('Time', JSON.stringify($scope.todos));
+            if(time!=="undefined")
+            {
+                
+                localStorage.removeItem('Time');
+                $scope.saved = localStorage.getItem('Time');
+                $scope.todos = (localStorage.getItem('Time')!==null) ? JSON.parse($scope.saved) : [ {Time:time}];
+                localStorage.setItem('Time', JSON.stringify($scope.todos)); 
+            }
+            
             confirmation.message = "All data willl be lost.";  
             e.preventDefault();
         }
@@ -184,7 +194,10 @@ function TestController($scope,$timeout,$window,$rootScope) {
             //localStorage.clear();
             $rootScope.flag=false;
             // $location.url('addChallenge.php');
-            $window.location.href='clearSession.php?UserAns='+localStorage.getItem('UserAns');
+            var UserAnswer=localStorage.getItem('UserAns');
+            // UserAnswer=JSON.stringify(UserAnswer);
+            // UserAnswer.replace(/"/g,'');
+            $window.location.href='clearSession.php?UserAns='+UserAnswer;
             //$window.location.href;
             console.log("running out of time");
 

@@ -271,4 +271,16 @@ function selectTest()
 	confirm_query($result);
 	return $result;	
 }
+//end of algoritm
+//select user results
+function getUserAnswer($cname)
+{
+	global $connection;
+	$stmt=$connection->prepare("call getUserAnswer(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
 ?>

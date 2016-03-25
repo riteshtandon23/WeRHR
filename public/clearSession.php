@@ -8,12 +8,13 @@
 		session_destroy();
 		$userAns=$_GET['UserAns'];
 		//$userAns=htmlspecialchars($userAns);
+		$userAns=substr($userAns, 1,-1);
 		$stmt=$connection->prepare("call userAnswer(?,?)");
 		$stmt->bind_param('ss',$userAns,$CName);
 		$result=$stmt->execute();
 		if($result)
 		{
-			redirect_to("success.php");
+			redirect_to("success.php?cname=".$CName);
 		}else
 		{
 			 die("Database connection fail".mysqli_error($connection));
