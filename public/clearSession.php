@@ -9,6 +9,7 @@
 		$userAns=$_GET['UserAns'];
 		//$userAns=htmlspecialchars($userAns);
 		$userAns=substr($userAns, 1,-1);
+		$userAns=preg_replace('/"/','', $userAns);
 		$stmt=$connection->prepare("call userAnswer(?,?)");
 		$stmt->bind_param('ss',$userAns,$CName);
 		$result=$stmt->execute();

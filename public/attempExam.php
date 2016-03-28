@@ -81,7 +81,8 @@
                     <label>Course Code:<?php echo $_SESSION["CId"]; ?></label>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <h5>Time:<label id="timer">{{appTitle}}</label></h5>
+                    <h5>Time:<label id="timer1" ng-model="appTitle">{{appTitle}}</label></h5>
+
                 </div>
                 <input type="hidden" id="topicId" value="<?php echo $_SESSION["CId"]; ?>"></input>
             </div>

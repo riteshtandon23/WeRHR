@@ -22,8 +22,9 @@ if(isset($_POST['AddAge']))
 
 	$Academic=$_POST['Academic'];
 	$AcademicPercentage=$_POST['AcademicPercentage'];
-	$stmt1=$connection->prepare("call addacademicnAPercentage(?,?)");
-	$stmt1->bind_param('ss',$Academic,$AcademicPercentage);
+	$PercentageRange=$_POST['PercentageRange'];
+	$stmt1=$connection->prepare("call addacademicnAPercentage(?,?,?)");
+	$stmt1->bind_param('sss',$Academic,$AcademicPercentage,$PercentageRange);
 	$result1=$stmt1->execute();
 	if($result1)
 	{

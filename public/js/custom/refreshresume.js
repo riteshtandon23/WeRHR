@@ -26,9 +26,7 @@ function TestController($scope,$timeout,$window,$rootScope) {
 
     var val= localStorage.getItem("Time");
     if((JSON.parse(val))!==null)
-    { 
-        // var time=$scope.appTitle;
-        // $window.alert(time);
+    {
         // var time=$window.timetogo;
         // $scope.appTitle=time;
         // var arr=time.split(':');
@@ -39,12 +37,18 @@ function TestController($scope,$timeout,$window,$rootScope) {
         //Resume time
         var finalVal=JSON.parse(val);
         var timeWithCFormat=finalVal[0].Time;
-        var arr=timeWithCFormat.split(':');
-        var val1=Number(arr[0]);
-        var val2=Number(arr[1]);
-        var val3=Number(arr[2]);
-        Calltimer(val1,val2,val3);
-        
+        $scope.appTitle=timeWithCFormat;
+        try
+        {
+            var arr=timeWithCFormat.split(':');
+            var val1=Number(arr[0]);
+            var val2=Number(arr[1]);
+            var val3=Number(arr[2]);
+            Calltimer(val1,val2,val3);
+        }catch(e)
+        {
+            console.log("time format is incorrect");
+        }
        
     }else{
         //Start New Time
@@ -67,6 +71,7 @@ function TestController($scope,$timeout,$window,$rootScope) {
     //     localStorage.removeItem('Time');
     //     localStorage.removeItem('QuestionNumber');
     // }
+
     $scope.saveTime = function() {
        
         localStorage.removeItem('Time');
@@ -100,15 +105,10 @@ function TestController($scope,$timeout,$window,$rootScope) {
         {
 
             var time=$scope.appTitle;
-            if(time!=="undefined")
-            {
-                
-                localStorage.removeItem('Time');
-                $scope.saved = localStorage.getItem('Time');
-                $scope.todos = (localStorage.getItem('Time')!==null) ? JSON.parse($scope.saved) : [ {Time:time}];
-                localStorage.setItem('Time', JSON.stringify($scope.todos)); 
-            }
-            
+            localStorage.removeItem('Time');
+            $scope.saved = localStorage.getItem('Time');
+            $scope.todos = (localStorage.getItem('Time')!==null) ? JSON.parse($scope.saved) : [ {Time:time}];
+            localStorage.setItem('Time', JSON.stringify($scope.todos)); 
             confirmation.message = "All data willl be lost.";  
             e.preventDefault();
         }
@@ -176,6 +176,9 @@ function TestController($scope,$timeout,$window,$rootScope) {
         $scope.appTitle=hourL0+":"+minL0+":"+secL0; 
          //$scope.appTitle=hour+":"+min+":"+sec--;
         mytimeout = $timeout($scope.onTimeout, 1000);
+        //$window.alert($scope.appTitle);
+        //var hhh='<?php session_start(); $_SESSION["TtoGo"]='+$scope.appTitle+'?>';
+
         
     };
     mytimeout = $timeout($scope.onTimeout, 1000);

@@ -36,34 +36,33 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12">
+     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
         
             <div class="x_content">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 
-                    <span class="section">Academic Details</span>
+                    <span class="section">Test</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Academic">Course<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestName">Test Name<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="Academic" class="form-control col-md-7 col-xs-12"  name="Academic" placeholder="course prefer e.g MBA,MCA etc." required="required" type="text">
+                            <input id="TestName" class="form-control col-md-7 col-xs-12"  name="TestName" placeholder="Marks for particular test " required="required" type="text">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="AcademicPercentage">Percentage/Marks<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestPercentage">Percentage/Marks<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="AcademicPercentage" class="form-control col-md-7 col-xs-12"  name="AcademicPercentage" placeholder="Percentage for particular course e.g 20%." required="required" type="text">
+                            <input id="TestPercentage" class="form-control col-md-7 col-xs-12"  name="TestPercentage" placeholder="Percentage for particular test e.g 20%." required="required" type="text">
                         </div>
                     </div>
-
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
 
-                            <button id="AddAca" name="AddAca" type="submit" class="btn btn-primary">Add</button>
+                            <button id="AddTest" name="AddTest" type="submit" class="btn btn-primary">Add</button>
                             <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
                         </div>
                     </div>
@@ -108,33 +107,41 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12">
+     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
         
             <div class="x_content">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 
-                    <span class="section">Test</span>
+                    <span class="section">Academic Details</span>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestName">Test Name<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Academic">Course<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="TestName" class="form-control col-md-7 col-xs-12"  name="TestName" placeholder="Marks for particular test " required="required" type="text">
+                            <input id="Academic" class="form-control col-md-7 col-xs-12"  name="Academic" placeholder="course prefer e.g MBA,MCA etc." required="required" type="text">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestPercentage">Percentage/Marks<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="PercentageRange">Percentage Range<span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="TestPercentage" class="form-control col-md-7 col-xs-12"  name="TestPercentage" placeholder="Percentage for particular test e.g 20%." required="required" type="text">
+                            <input id="PercentageRange" class="form-control col-md-7 col-xs-12"  name="PercentageRange" placeholder="Range of Percentage e.g 90%-100%." required="required" type="text">
                         </div>
                     </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="AcademicPercentage">Percentage/Marks<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="AcademicPercentage" class="form-control col-md-7 col-xs-12"  name="AcademicPercentage" placeholder="Percentage for particular course e.g 20%." required="required" type="text">
+                        </div>
+                    </div>
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
 
-                            <button id="AddTest" name="AddTest" type="submit" class="btn btn-primary">Add</button>
+                            <button id="AddAca" name="AddAca" type="submit" class="btn btn-primary">Add</button>
                             <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
                         </div>
                     </div>
@@ -142,6 +149,7 @@
             </div>
         </div>
     </div>
+   
 </div>
     <script>
         $(document).ready(function () {
