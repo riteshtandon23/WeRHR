@@ -283,4 +283,17 @@ function getUserAnswer($cname)
 	confirm_query($result);
 	return $result;	
 }
+
+//gash
+function selectQuestionanswer($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call SelectQuestionanswer(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+
+}
 ?>

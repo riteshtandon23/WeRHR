@@ -79,6 +79,16 @@
 				                        <div class="form-group">
 				                        	<input type="email" name="emailConfirm" placeholder="Confirm..." class="form-username form-control" id="emailConfirm" data-match="#email" data-match-error="Email did not match" required>
 				                        	<div class="help-block with-errors"></div>
+				                        	<span>
+				                        		<?php
+                                                  if (isset($_GET['Error'])) 
+                                                  {
+                                                ?>
+                                                     <label style="color:red"><?php echo $_GET['Error'];?></Label>  
+                                                <?php
+                                                   }
+                                                ?>
+				                        	</span>
 				                        </div>
 				                        <div class="form-group">
 					                        <button type="submit" class="btn">Send</button>

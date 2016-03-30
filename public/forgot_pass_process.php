@@ -38,12 +38,10 @@ if(!empty($_POST['email'])){
     }
     else	//user does not exist
     {
-    ?>
-        <script type="text/javascript">
-            alert("We can't seem to find a user with that email address! Please check");
-            window.history.back();
-            </script>
-<?php
+         $Error="We can't seem to find a user with that email address! Please check"; 
+             header("location:forgot_pass.php?Error=" . $Error); 
+
+    
     }
 }
 else{

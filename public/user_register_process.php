@@ -23,10 +23,9 @@ if(isset($_POST["submit"])){
     $query1 = mysqli_query($connection,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
     
     if(mysqli_num_rows($query1)>0){
-        print '<script type="text/javascript">'; 
-        print 'alert("The email address  is already registered!");';
-        print 'window.history.back();';
-        print '</script>'; 
+       
+        $Error="The email address  is already registered!"; 
+           header("location:user_register.php?Error=" . $Error); 
     }
     else{
         $query1 = mysqli_query($connection,"INSERT INTO users(firstname,lastname,email,password,act_status,sequence) VALUES('$firstname','$lastname','$email','$password','0','$sequence')");

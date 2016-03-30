@@ -15,7 +15,7 @@
 		$result=$stmt->execute();
 		if($result)
 		{
-			redirect_to("success.php?cname=".$CName);
+			redirect_to("userResult.php?cname=".$CName);
 		}else
 		{
 			 die("Database connection fail".mysqli_error($connection));
