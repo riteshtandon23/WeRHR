@@ -22,6 +22,15 @@ function select_Domain()
 	confirm_query($result);
 	return $result;
 }
+function select_Domain2()
+{
+	global $connection;
+	$stmt = $connection->prepare("call getTopic()");
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+	//confirm_query($result);
+	return $result;
+}
 //select topic name by id
 function select_Domain_Name($id)
 {
@@ -194,10 +203,12 @@ function AdminPfofilepic($id)
 function profilepic($email)
 {
 	global $connection;
-	$stmt=$connection->prepare("call Profilepic(?)");
-	$stmt->bind_param('s',$email);
-	$stmt->execute();
-	$result=$stmt->get_result();
+	// $stmt=$connection->prepare("call Profilepic(?)");
+	// $stmt->bind_param('s',$email);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select Profile_pic from users where email='$email'";
+    $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
 }
@@ -205,12 +216,15 @@ function profilepic($email)
 function selectAddress($email)
 {
 	global $connection;
-	$stmt=$connection->prepare("call selectAddress(?)");
-	$stmt->bind_param('s',$email);
-	$stmt->execute();
-	$result=$stmt->get_result();
-	confirm_query($result);
-	return $result;
+	// $stmt=$connection->prepare("call selectAddress(?)");
+	// $stmt->bind_param('s',$email);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+		//$query="selectAddress('$email')";
+	 $query="select address,city,state,country from users where email='$email'";
+     $result = mysqli_query($connection,$query);
+	 confirm_query($result);
+	 return $result;
 }
 //selcet total question from given date
 function selectTotalQuestion22($Edate)
@@ -271,6 +285,49 @@ function selectTest()
 	confirm_query($result);
 	return $result;	
 }
+//with parameter
+function selectAgeRangeValue($range)
+{
+	global $connection;
+	$stmt=$connection->prepare("call SelectAgeRangeValue(?)");
+	$stmt->bind_param('s',$range);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectAcademicValue($ptage,$cname)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectAcademicValue(?,?)");
+	$stmt->bind_param('ss',$ptage,$cname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectBackgroundValue($bgrnd)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectBackgroundValue(?)");
+	$stmt->bind_param('s',$bgrnd);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectTestValue($tname)
+{
+	global $connection;
+	$stmt=$connection->prepare("call selectTestValue(?)");
+	$stmt->bind_param('s',$tname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+
+
 //end of algoritm
 //select user results
 function getUserAnswer($cname)
@@ -278,6 +335,65 @@ function getUserAnswer($cname)
 	global $connection;
 	$stmt=$connection->prepare("call getUserAnswer(?)");
 	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function selectPercentage($id){
+	global $connection;
+	$stmt=$connection->prepare("call selectPercentage(?)");
+	$stmt->bind_param('s',$id);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function SelectQuestionAnswer($cname)
+{
+	global $connection;
+	$stmt=$connection->prepare("call SelectQuestionAnswer(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function Percentage_Result($course,$AcademicPercentage)
+{
+	global $connection;
+	$stmt=$connection->prepare("call Academic_Result(?,?)");
+	$stmt->bind_param('ss',$course,$AcademicPercentage);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function AgeRange_Result($AgeRange)
+{
+	global $connection;
+	$stmt=$connection->prepare("call AgeRange_Result(?)");
+	$stmt->bind_param('s',$AgeRange);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function TestName_Result($TestName)
+{
+	global $connection;
+	$stmt=$connection->prepare("call TestName_Result(?)");
+	$stmt->bind_param('s',$TestName);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	confirm_query($result);
+	return $result;	
+}
+function Background_Result($Background)
+{
+	global $connection;
+	$stmt=$connection->prepare("call Background_Result(?)");
+	$stmt->bind_param('s',$Background);
 	$stmt->execute();
 	$result=$stmt->get_result();
 	confirm_query($result);

@@ -66,11 +66,11 @@ $(document).ready(function() {
             if(this.checked)
            {
                 checkForChoice(Qtype);
-                anss =anss+","+bla;
+                anss =anss+"/"+bla;
                 this.checked=true;
            }else
            {
-                bla=","+bla;
+                bla="/"+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
@@ -91,11 +91,11 @@ $(document).ready(function() {
             if(this.checked)
            {
                 checkForChoice(Qtype);
-                anss =anss+","+bla;
+                anss =anss+"/"+bla;
                 this.checked=true;
            }else
            {
-                bla=","+bla;
+                bla="/"+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
@@ -114,11 +114,11 @@ $(document).ready(function() {
             if(this.checked)
            {
                 checkForChoice(Qtype);
-                anss =anss+","+bla;
+                anss =anss+"/"+bla;
                 this.checked=true;
            }else
            {
-                bla=","+bla;
+                bla="/"+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
@@ -138,11 +138,11 @@ $(document).ready(function() {
             if(this.checked)
            {
                 checkForChoice(Qtype);
-                anss =anss+","+bla;
+                anss =anss+"/"+bla;
                 this.checked=true;
            }else
            {
-                bla=","+bla;
+                bla="/"+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }
@@ -162,11 +162,11 @@ $(document).ready(function() {
             if(this.checked)
            {
                 checkForChoice(Qtype);
-                anss =anss+","+bla;
+                anss =anss+"/"+bla;
                 this.checked=true;
            }else
            {
-                bla=","+bla;
+                bla="/"+bla;
                 anss=anss.replace(bla,'');
                 //alert("hh");
            }

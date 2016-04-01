@@ -26,7 +26,7 @@
     <link href="css/floatexamples.css" rel="stylesheet" />
      <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
      <link href="css/custom/search.css" rel="stylesheet">
-     <link href="css/select/select2.min.css" rel="stylesheet">
+
     <script src="js/jquery.min.js"></script>
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -75,6 +75,7 @@
                         while ($row=$resultpic->fetch_assoc()) {
                             $pic=$row['Profile_pic'];
                         }
+                       $resultpic->close();
                      ?>
                         <div class="profile_pic">
                             <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "admin.png";}?>" alt="..." class="img-circle profile_img">
@@ -98,25 +99,19 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="index1.php">Home</a>
                                         </li>
-                                        <li><a href="#">Dashboard2</a>
-                                        </li>
-                                        <li><a href="#">Dashboard3</a>
-                                        </li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-edit"></i> Exam <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="addChallenge.php">Add/update Topic</a>
                                         </li>
-                                        <li><a href="addProblem.php">Add Quiz</a>
+                                        <li><a href="addProblem.php">Add Question for Quiz</a>
                                         </li>
-                                        <li><a href="setQuestion.php">Question</a>
+                                        <li><a href="setQuestion.php">All Question</a>
                                         </li>
                                         <li><a href="Exam_Details.php">Exam Date/Time</a>
                                         </li>
                                         <li><a href="examGeneration.php">Exam Generation</a>
-                                        </li>
-                                        <li><a href="#">Form Buttons</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -126,20 +121,7 @@
                                         </li>
                                         <li><a href="#">Media Gallery</a>
                                         </li>
-                                        <li><a href="#">Typography</a>
-                                        </li>
-                                        <li><a href="#">Icons</a>
-                                        </li>
-                                        <li><a href="#">Glyphicons</a>
-                                        </li>
-                                        <li><a href="#">Widgets</a>
-                                        </li>
-                                        <li><a href="#">Invoice</a>
-                                        </li>
-                                        <li><a href="#">Inbox</a>
-                                        </li>
-                                        <li><a href="#">Calender</a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
@@ -156,12 +138,7 @@
                                         </li>
                                         <li><a href="#">Chart JS2</a>
                                         </li>
-                                        <li><a href="#">Moris JS</a>
-                                        </li>
-                                        <li><a href="#">ECharts </a>
-                                        </li>
-                                        <li><a href="#">Other Charts </a>
-                                        </li>
+                                        
                                     </ul>
                                 </li>
                             </ul>

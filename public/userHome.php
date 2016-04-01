@@ -84,7 +84,12 @@
         <h3><?php  echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
         <?php 
             $resul10=selectAddress($_SESSION["email"]);
-            while ($row1=$resul10->fetch_assoc()) {
+// mysqli_fetch_assoc($resul10) or die(mysqli_error($connection));
+            $email=$_SESSION["email"];
+            //$resul10=$connection->query("call selectAddress('$email')");
+            // while ($row1=$resul10->fetch_assoc()) {
+           
+        while ($row1=$resul10->fetch_assoc()) {
                $Address=$row1['address'];
                $city=$row1['city'];
                $state=$row1['state'];

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2016 at 02:56 PM
+-- Generation Time: Apr 01, 2016 at 02:00 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -26,10 +26,26 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Academic_Result`(IN `qua` VARCHAR(30), IN `pr` VARCHAR(10))
+    NO SQL
+select Percentage from academic where Qualification=qua AND PercentageRange=pr$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addacademicnAPercentage`(IN `quali` VARCHAR(50), IN `val` VARCHAR(5), IN `Prange` VARCHAR(10), IN `comp` VARCHAR(30))
+    NO SQL
+insert into academic(Qualification,Percentage,PercentageRange,Company) values(quali,val,Prange,comp)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addAdmin`(IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `Apass` VARCHAR(50), IN `type` VARCHAR(20), IN `Acontact` VARCHAR(20), IN `Aaddress` VARCHAR(200), IN `Email` VARCHAR(100))
     NO SQL
 insert into we_are_hr_admin(Admin_Name,Admin_Lastname,Admin_password,type,Contact,Address,Email)
 values(Aname,Alname,Apass,type,Acontact,Aaddress,Email)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addAgeRangePercentage`(IN `A_range` VARCHAR(20), IN `val` VARCHAR(5), IN `comp` VARCHAR(30))
+    NO SQL
+insert into age(Age_Range,Percentage,Company) values(A_range,val,comp)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addBackgroundnPercentage`(IN `exp` VARCHAR(100), IN `val` VARCHAR(5), IN `comp` VARCHAR(30))
+    NO SQL
+insert into background(Experience,Percentage,Company) values(exp,val,comp)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addExam`(IN `T_id` INT(11), IN `E_date` DATE, IN `S_time` TIME, IN `E_time` TIME, IN `T_question` INT(4))
     NO SQL
@@ -41,6 +57,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `addQuestion`(IN `Q_Name` VARCHAR(50
 insert into question(Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Id,Topic_Name,Positive_Mark,Negative_Mark)
 values(Q_Name,Q_Type,A_Option,Ans,Q_Desc,Tid,T_Name,P_mark,N_mark)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addTestnPercentage`(IN `Tname` VARCHAR(50), IN `val` VARCHAR(5), IN `comp` VARCHAR(30))
+    NO SQL
+insert into test_conduct(Test_Name,Percentage,Company) values(Tname,val,comp)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addTopic`(IN `T_Name` VARCHAR(100))
     NO SQL
 insert into topic(Topic_Name) values(T_Name)$$
@@ -50,21 +70,49 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `AdminPfofilepic`(IN `id` INT(11))
 select Profile_pic
 from we_are_hr_admin where A_ID=id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `AgeRange_Result`(IN `agr` VARCHAR(10))
+    NO SQL
+select Percentage from age where Age_Range=agr$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Background_Result`(IN `expe` VARCHAR(30))
+    NO SQL
+select Percentage from background where Experience=expe$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `countTotalQuestion`(IN `E_Date` DATE, IN `T_Name` VARCHAR(30))
+    NO SQL
+select count(Exam_Date) as TotalSet from question
+where Exam_Date=E_Date AND Topic_Name=T_Name$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `CountVisibleQuestion`(IN `T_Name` VARCHAR(100))
     NO SQL
 select count(Final_Question) as Visible from Question 
-where Final_Question=1 AND Topic_Name=T_Name$$
+where Final_Question=1 AND Topic_Name=T_Name LIMIT 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ExamTime`(IN `T_id` INT(11))
     NO SQL
 select TIMEDIFF(End_time,Start_Time) as Time from exam_details 
 where Topic_id=T_id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAcademicId`()
+    NO SQL
+select Academic_id from academic
+ORDER BY Academic_id DESC LIMIT 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAgeId`()
+    NO SQL
+select Age_ID from age
+ORDER BY Age_ID DESC LIMIT 1$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getBackgroundId`()
+    NO SQL
+select Background_Id from background
+ORDER BY Background_Id DESC LIMIT 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getNotify`()
     NO SQL
 select Topic_id,Exam_Date,Start_Time,End_Time,Total_Question,ID
 from exam_details
-where Exam_Date > DATE_SUB(CURDATE(),INTERVAL 1 DAY)$$
+where Exam_Date > DATE_SUB(CURDATE(),INTERVAL 1 DAY) ORDER BY Exam_Date ASC$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getNotifyWithId`(IN `iddd` INT(11))
     NO SQL
@@ -77,6 +125,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getQuestion`(IN `C_Name` VARCHAR(10
 select Question_Name,Question_Type,Answer_Option,Question_Id
 from Question where Topic_Id=C_Name AND Final_Question=1
 ORDER BY Question_Id ASC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getTestId`()
+    NO SQL
+select Test_ID from test_conduct
+ORDER BY Test_ID DESC LIMIT 1$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopic`()
     NO SQL
@@ -91,6 +144,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getTopicName`(IN `T_id` INT(11))
 select Topic_Name from topic
 where Topic_id=T_id$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUserAnswer`(IN `cname` VARCHAR(30))
+    NO SQL
+select Answer from user_answer where course_name=cname 
+ORDER BY Id DESC
+LIMIT 1$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `Profilepic`(IN `eml` VARCHAR(50))
     NO SQL
 select Profile_pic
@@ -102,10 +161,26 @@ select Question_Id,Topic_Name,Question_Name,Exam_Date,Final_Question
 from Question where Topic_Name=TName
 ORDER BY Question_Id ASC$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAcademic`()
+    NO SQL
+select DISTINCT Qualification from academic$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAddress`(IN `eml` VARCHAR(50))
     NO SQL
 select address,city,state,country
 from users where email=eml$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAgeRange`()
+    NO SQL
+select Age_Range from age$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectAgeRangeValue`(IN `Arange` VARCHAR(10))
+    NO SQL
+select Percentage from Age where Age_Range=Arange$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectBackground`()
+    NO SQL
+select Experience from Background$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectDate`(IN `id` INT(11))
     NO SQL
@@ -124,6 +199,10 @@ from Question
 where Question_Id=Opt_id
 LIMIT 1$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectPercentage`(IN `id` VARCHAR(30))
+    NO SQL
+select PercentageRange from academic where Qualification=id$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `selectPwdUnm`(IN `Aid` INT(11), IN `pwd` VARCHAR(100))
     NO SQL
 select Admin_Name,Admin_Lastname,Contact,Address,A_ID,type
@@ -135,6 +214,21 @@ select Topic_Name,Question_Name,Question_Type,Answer_Option,Answer,Question_Desc
 from Question
 ORDER BY Question_Id ASC$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SelectQuestionAnswer`(IN `C_Name` VARCHAR(30))
+    NO SQL
+select Question_Type,Answer_Option,Answer
+from Question where Topic_Name=C_Name AND Final_Question=1
+ORDER BY Question_Id ASC$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectTest`()
+    NO SQL
+select Test_Name from test_conduct$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectTotalQuestion`(IN `E_Date` DATE)
+    NO SQL
+select Total_Question from exam_details 
+where Exam_Date=E_Date$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `setQuesVis`(IN `Q_id` INT(11), IN `Vis` BOOLEAN, IN `Edate` VARCHAR(20))
     NO SQL
 update `we_are_hr`.`question` set `Final_Question`=Vis,Exam_Date=Edate
@@ -144,6 +238,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `slectAdminProfile`(IN `aid` INT(11)
     NO SQL
 select Admin_Name,Admin_Lastname,Contact,Address,Email
 from we_are_hr_admin where A_ID=aid$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TestName_Result`(IN `tnam` VARCHAR(30))
+    NO SQL
+select Percentage from test_conduct where Test_Name=tnam$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `UpdateAdminProfile`(IN `id` INT(11), IN `Aname` VARCHAR(100), IN `Alname` VARCHAR(100), IN `contact` VARCHAR(20), IN `address` VARCHAR(200), IN `pic` VARCHAR(50), IN `email` VARCHAR(100))
     NO SQL
@@ -170,6 +268,76 @@ insert into user_answer(Answer,Course_Name)
 values(Ans,C_Name)$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic`
+--
+
+CREATE TABLE IF NOT EXISTS `academic` (
+  `Academic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Qualification` varchar(50) NOT NULL,
+  `Percentage` varchar(6) NOT NULL,
+  `PercentageRange` varchar(10) NOT NULL,
+  `Company` varchar(30) NOT NULL,
+  PRIMARY KEY (`Academic_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `academic`
+--
+
+INSERT INTO `academic` (`Academic_id`, `Qualification`, `Percentage`, `PercentageRange`, `Company`) VALUES
+(1, 'BCA', '10%', '50-59', ''),
+(2, 'BCA', '15%', '60-70', ''),
+(3, 'BCA', '18%', '71-80', ''),
+(4, 'BCA', '20%', '80-99', ''),
+(5, 'BBA', '10%', '50-59', ''),
+(6, 'BBA', '15%', '60-70', 'XYZ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `age`
+--
+
+CREATE TABLE IF NOT EXISTS `age` (
+  `Age_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Age_Range` varchar(20) NOT NULL,
+  `Percentage` varchar(6) NOT NULL,
+  `Company` varchar(30) NOT NULL,
+  PRIMARY KEY (`Age_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `age`
+--
+
+INSERT INTO `age` (`Age_ID`, `Age_Range`, `Percentage`, `Company`) VALUES
+(1, '18-25', '15%', 'XYZ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `background`
+--
+
+CREATE TABLE IF NOT EXISTS `background` (
+  `Background_Id` int(11) NOT NULL AUTO_INCREMENT,
+  `Experience` varchar(100) NOT NULL,
+  `Percentage` varchar(6) NOT NULL,
+  `Company` varchar(30) NOT NULL,
+  PRIMARY KEY (`Background_Id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `background`
+--
+
+INSERT INTO `background` (`Background_Id`, `Experience`, `Percentage`, `Company`) VALUES
+(1, 'Experience', '30%', ''),
+(2, 'Fresh', '25%', '');
 
 -- --------------------------------------------------------
 
@@ -220,16 +388,81 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
   `Total_Question` int(4) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Topic_id` (`Topic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `exam_details`
 --
 
 INSERT INTO `exam_details` (`ID`, `Topic_id`, `Exam_Date`, `Start_time`, `End_time`, `Total_Question`) VALUES
-(9, 1002, '2016-03-17', '00:00:00', '00:05:00', 20),
-(10, 1004, '2016-03-17', '00:00:00', '00:05:00', 20),
-(11, 1012, '2016-03-17', '00:00:00', '00:05:00', 20);
+(12, 1002, '2016-03-31', '00:00:00', '00:05:00', 10),
+(14, 1004, '2016-04-02', '00:00:00', '00:15:00', 15),
+(15, 1012, '2016-03-19', '00:00:00', '00:03:00', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_generation`
+--
+
+CREATE TABLE IF NOT EXISTS `exam_generation` (
+  `course_name` varchar(20) NOT NULL,
+  `exam_date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `email` text NOT NULL,
+  `total_que` int(20) NOT NULL,
+  `positive_marks` int(20) NOT NULL,
+  `negative_marks` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `exam_generation`
+--
+
+INSERT INTO `exam_generation` (`course_name`, `exam_date`, `start_time`, `end_time`, `email`, `total_que`, `positive_marks`, `negative_marks`) VALUES
+('Java', '0000-00-00', '01:20:00', '03:20:00', 'shuvam.jha007@gmail.', 10, 4, 1),
+('Java', '0000-00-00', '01:20:00', '03:20:00', 'shuvam.jha007@gmail.', 10, 4, 1),
+('Java', '0000-00-00', '01:20:00', '03:20:00', 'shuvam.jha007@gmail.com, vishanshul9@gmail.com', 10, 4, 1),
+('Java', '0000-00-00', '01:20:00', '03:20:00', 'shuvam.jha007@gmail.com, vishanshul9@gmail.com', 10, 4, 1),
+('Java', '0000-00-00', '01:20:00', '03:20:00', 'shuvam.jha007@gmail.com, vishanshul9@gmail.com', 10, 4, 1),
+('Java', '0000-00-00', '11:05:00', '10:30:00', 'vishanshul9@gmail.com, ', 10, 4, 1),
+('Java', '0000-00-00', '11:05:00', '10:30:00', 'vishanshul9@gmail.com, ', 10, 4, 1),
+('Java', '0000-00-00', '11:05:00', '10:30:00', 'vishanshul9@gmail.com', 10, 4, 1),
+('Java', '0000-00-00', '11:05:00', '10:30:00', 'vishanshul9@gmail.com', 10, 4, 1),
+('.net', '0000-00-00', '12:15:00', '12:10:00', 'vishanshul9@gmail.com', 10, 4, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '0000-00-00', '07:30:00', '11:50:00', 'shuvam.jha007@gmail.com', 10, 2, 1),
+('.net', '2016-04-05', '07:30:00', '11:50:00', 'vishanshul9@gmail.com', 10, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_name`
+--
+
+CREATE TABLE IF NOT EXISTS `exam_name` (
+  `name` varchar(20) NOT NULL,
+  `topic` varchar(20) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `exam_name`
+--
+
+INSERT INTO `exam_name` (`name`, `topic`, `date`) VALUES
+('Java', '2016-03-05', '0000-00-00'),
+('PHP', '2016-03-19', '2016-03-19'),
+('Java 2016-03-05', 'Java', '2016-03-05'),
+('PHP_ 2016-03-19', 'PHP', '2016-03-19'),
+('Java_ 2016-03-05', 'Java', '2016-03-05'),
+('Java_ 2016-03-05', 'Java', '2016-03-05'),
+('Java_ 2016-03-05', 'Java', '2016-03-05');
 
 -- --------------------------------------------------------
 
@@ -252,36 +485,64 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Negative_Mark` varchar(5) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `question`
 --
 
 INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer_Option`, `Answer`, `Question_Desc`, `Topic_Id`, `Topic_Name`, `Final_Question`, `Exam_Date`, `Positive_Mark`, `Negative_Mark`) VALUES
-(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1, '2016-03-17', '4', '2'),
-(2, 'What is Garbage collection?', 'Single Choice', 'prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1, '2016-03-10', '4', '1'),
-(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1, '2016-03-10', '4', '1'),
-(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
-(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
-(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 1, '2016-03-10', '4', '1'),
-(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 1, '2016-03-10', '4', '1'),
+(1, 'Which is not a keyword in java?', 'Single Choice', 'Boolean,static,Integer,String', 'Boolean', 'Tutorials point', 1002, 'Java', 1, '2016-03-31', '4', '2'),
+(2, 'What is Garbage collection?', 'Single Choice', 'Prevent from wastage of memory,delete unused variable,throw garbage value,garbage collection not implemented', 'Prevent from wastage of memory', 'tutorials ', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(3, 'What is the default value of long variable?', 'Single Choice', '0,0.0,0L,not define', '0L', 'tutorials points', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(4, 'Which method must be implemented by all threads?', 'Single Choice', 'wait(),run(),Stop(),start(', 'run()', 'tutorials point', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(9, 'What is the default value of byte variable?', 'Single Choice', '0,0.0,null,not define', '0', 'tutorials point', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(10, 'Which of the following is Faster, StringBuilder or StringBuffer?', 'Single Choice', 'StringBuilder,StringBuffer,Both of the Above,None of the Above,Nothin', 'StringBuilder', '', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(12, 'Objects are stored on Stack.', 'Single Choice', 'True,False', 'False', 'tutorials Point', 1002, 'Java', 1, '2016-03-31', '4', '1'),
 (13, 'What does PHP stand for?', 'Single Choice', 'Personal Hypertext Processor,PHP: Hypertext Preprocessor,Private Home Page', 'PHP: Hypertext Preprocessor', 'W3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
-(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
-(15, 'How do you write "Hello World" in PHP', 'Single Choice', '"Hello World";,echo "Hello World";, Document.Write("Hello World");', 'echo "Hello World";', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(14, 'PHP server scripts are surrounded by delimiters, which?', 'Single Choice', '<?php...?>,<&>...</&>,<?php>...</?>, <script>...</script>', '<?php...?>', 'w3school', 1004, 'PHP', 0, '2016-03-19', '4', '1'),
+(15, 'How do you write ', 'Single Choice', 'kkk,echo , Document.Write(', 'echo ', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
 (16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
-(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,</php>,NewLine', ';', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
-(20, 'Question 1', 'Single Choice', 'A,B,C,D,E', 'A', 'Sample', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'testing', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
-(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(24, 'Question 4', 'Multiple Choice', 'D,M,R,H', 'D,M', 'Testing', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(26, 'A macro can execute faster than a function.', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(27, 'The C library function rewind() reposition the file pointer at the begining of the file', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 1, '2016-03-17', '4', '1'),
-(28, 'What is oak?', 'Single Choice', 'Java First Name,Java CEO name,None of the above', 'Java First Name', 'testing', 1002, 'Java', 0, 'Not Set', '4', '1'),
-(29, 'hhhhhhhhhhhhhhh', 'Single Choice', 'a,c', 'a', 'xxx', 1002, 'Java', 0, 'Not Set', '4', '1'),
-(30, 'nnnnnnnnnnnnnnnn', 'Single Choice', 'A,x', 'A', 'ddd', 1002, 'Java', 0, 'Not Set', '4', '1');
+(17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,<php>,NewLine', ';', 'w3school', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'C Programing', 1, '2016-03-19', '4', '1'),
+(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'C Programing', 1, '2016-03-19', '4', '1'),
+(22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A/B', 'testing', 1004, 'PHP', 1, '2016-03-19', '4', '1'),
+(23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'C Programing', 1, '2016-03-19', '4', '1'),
+(24, 'Question 4', 'Multiple Choice', 'D,M,R,H', 'D,M', 'Testing', 1012, 'C Programing', 1, '2016-03-19', '4', '1'),
+(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'C Programing', 1, '2016-03-19', '4', '1'),
+(26, 'A macro can execute faster than a function.', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 0, 'Not Set', '4', '1'),
+(27, 'The C library function rewind() reposition the file pointer at the begining of the file', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'C Programing', 0, 'Not Set', '4', '1'),
+(28, 'What is oak?', 'Single Choice', 'Java First Name,Java CEO name,None of the above', 'Java First Name', 'testing', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(29, 'hhhhhhhhhhhhhhh', 'Single Choice', 'a,c', 'a', 'xxx', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(30, 'nnnnnnnnnnnnnnnn', 'Single Choice', 'A,x', 'A', 'ddd', 1002, 'Java', 1, '2016-03-31', '4', '1'),
+(31, 'Question 5', 'Single Choice', 'L,A,V,H', 'L', 'hhhhhhhh', 1002, 'Java', 0, 'Not Set', '4', '1'),
+(32, 'Question 3', 'Single Choice', 'T,F', 'T', 'nnnn', 1002, 'Java', 0, 'Not Set', '4', '1'),
+(33, 'jkjkjkkkkkkkkkkkkkkkkkkkkkkkk', 'Multiple Choice', 'P,A,U,L,S', '/P/A', '', 1002, 'Java', 0, '', '4', '1'),
+(34, 'KKKKKKKKKKKKKKKKKKKKKKKKKKK', 'Multiple Choice', 'JJ/KK/LL/MM/NN', 'JJ/KK', '', 1002, 'Java', 0, '', '4', '1'),
+(35, 'MMMMMMMMMMM', 'Multiple Choice', 'H,K,M,N', 'K/H', '', 1004, 'PHP', 1, '2016-04-02', '4', '1'),
+(36, 'BBBBBBBBBBBB', 'Multiple Choice', 'M,A,P,S', 'M/A', '', 1004, 'PHP', 1, '2016-04-02', '4', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test_conduct`
+--
+
+CREATE TABLE IF NOT EXISTS `test_conduct` (
+  `Test_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Test_Name` varchar(50) NOT NULL,
+  `Percentage` varchar(6) NOT NULL,
+  `Company` varchar(30) NOT NULL,
+  PRIMARY KEY (`Test_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `test_conduct`
+--
+
+INSERT INTO `test_conduct` (`Test_ID`, `Test_Name`, `Percentage`, `Company`) VALUES
+(1, 'Test1', '20%', ''),
+(2, 'Test1', '20%', '');
 
 -- --------------------------------------------------------
 
@@ -337,7 +598,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `country` varchar(30) NOT NULL,
   `Profile_pic` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `users`
@@ -346,7 +607,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `type`, `act_status`, `sequence`, `password`, `firstname`, `lastname`, `email`, `DOB`, `address`, `contact`, `city`, `state`, `country`, `Profile_pic`) VALUES
 (29, 'user', 1, '8ff5660c0f394d2f0b7b80bdf9bdcfe32931e561', '123456', 'Embok', 'Ramde', 'embokramde@icloud.com', '0000-00-00', '', '0', '', '', '', ''),
 (40, 'user', 0, 'ba188fc5cf2da4d626c131e0be3a1c6999c5ce7b', '123', 'John', 'Nongbri', 'aamm@yahoo.com', '0000-00-00', '', '', '', '', '', ''),
-(41, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '9856600758', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '1991-11-22', 'Raliang Village', '9856600758', 'Shillong', ' Meghalaya', ' India', 'Untitled-1.jpg');
+(41, 'user', 1, '107e06ee039304bd0cc1165a9d3c58d830303fc8', '9856600758', 'Da O Hi Paya', 'Lamare', 'lamaredaoyit@yahoo.com', '1991-11-22', 'Raliang Village', '9856600758', 'Shillong', ' Meghalaya', ' India', 'Untitled-1.jpg'),
+(42, 'user', 1, '47456a42ddf5b9c4bf9cd2b40ac0c886d833cfd8', 'testtest', 'John', 'John', 'riteshtandon23@gmail.com', '1981-10-09', 'jalandhar', '934934943934', 'Jalandhar', ' Punjab', ' India', '010.jpg');
 
 -- --------------------------------------------------------
 
@@ -359,14 +621,23 @@ CREATE TABLE IF NOT EXISTS `user_answer` (
   `Answer` varchar(200) NOT NULL,
   `Course_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `user_answer`
 --
 
 INSERT INTO `user_answer` (`Id`, `Answer`, `Course_Name`) VALUES
-(1, '["1::opt1","2::opt2,opt3","3::opt1","4::opt3,opt4","5::opt2,opt3","6::opt1","7::opt1"]', 'C Programing');
+(1, '1::opt2,2::opt2,3::opt2,4::opt2,5::opt3,6::opt2,7::opt2,8::opt2,9::opt2,10::opt2', 'Java'),
+(2, '5::opt1/opt2', 'PHP'),
+(3, '1::opt1,2::opt1,4::opt2,6::opt1,8::opt2,7::opt1', 'Java'),
+(4, '3::opt2', 'PHP'),
+(5, '5::opt1/opt2,6::opt1/opt2,7::opt1/opt2', 'PHP'),
+(6, '5::opt2/opt1', 'PHP'),
+(7, '5::opt2/opt1', 'PHP'),
+(8, '1::opt2,2::opt2,5::opt2/opt1,6::opt1/opt2', 'PHP'),
+(9, '1::opt1,3::opt3', 'Java'),
+(10, '1::opt1,4::opt2,5::opt1', 'Java');
 
 -- --------------------------------------------------------
 

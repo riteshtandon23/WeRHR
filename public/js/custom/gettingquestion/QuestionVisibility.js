@@ -168,3 +168,62 @@
         }
     });
  }
+ function getPercentage(value)
+ {
+    $('#SelectPercentage').find('option').remove();
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/getPercentage.php',
+        data:'id='+value,
+        success:function(data){
+            for(i=0;i<data.length;i++ )
+            {
+               $('#SelectPercentage').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+        }
+    });
+ }
+ $(document).on('click','#showSalary',function(){
+    var ageR=$('#AgeRange').val();
+    var Aper=$('#SelectPercentage').val();
+    var backgrnd=$('#Background').val();
+    var tname=$('#TestName').val();
+    var course=$('#qualification').val();
+    if(Aper!==null)
+    {
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/getSalaryforUser.php',
+            data:'Ar='+ageR+'&Apertage='+Aper+'&course='+course+'&background='+backgrnd+'&tname='+tname,
+            success:function(data){
+                alert(data+"% of the salary");
+            }
+        });   
+    }
+    
+ });
+ $(document).on('click','#AddAge,#AddTest,#AddBack,#AddAca',function(){
+    var temp=$('#CompanyNameAlgo').val();
+
+    if($('#CompanyNameAlgo').val()==="")
+    {
+        alert("hh");
+        $('#messages').html("Company Name should not be empty");
+        $('#CompanyNameAlgo').focus();
+      $('form').submit(function (e) {
+                return false;
+
+        });
+    }else{
+
+        $('#Company_Name').val(temp);
+        $('#Company_Name1').val(temp);
+        $('#Company_Name2').val(temp);
+        $('#Company_Name3').val(temp);
+        //alert($('#Company_Name').val());
+    }
+    //alert($('#CompanyNameAlgo').val());
+    
+ });

@@ -209,7 +209,7 @@ $(document).ready(function(){
 				}else
 				{
 					
-				tmp=tmp+","+uans;
+				tmp=tmp+"/"+uans;
 				tmp=(Number(j)+1)+"::"+tmp;		
 				}
 				
@@ -334,7 +334,7 @@ $(document).ready(function(){
 						//split array inside array
 						// alert(arr[0]);
 						// alert(arr[1]);
-						var arr2=arr[1].split(",");
+						var arr2=arr[1].split("/");
 						if(Number(arr[0])==(Number(j)+1))
 						{
 							for(b=0;b<arr2.length;b++)
