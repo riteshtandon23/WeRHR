@@ -70,6 +70,16 @@
 	                        		<div class="form-top-right">
 	                        			<a href="index.php"><i class="fa fa-home"></i></a>
 	                        		</div>
+	                        		<span>
+				                        	<?php
+                                                if (isset($_GET['Error'])) 
+                                                {
+                                            ?>
+                                                 <label style="color:red"><?php echo $_GET['Error'];?></Label>  
+                                            <?php
+                                                 }
+                                            ?>
+				                        	</span>
 	                            </div>
 	                            <div class="form-bottom">
 				                    <form id="form" role="form" action="user_register_process.php" method="post" class="login-form" data-toggle="validator">
@@ -92,6 +102,7 @@
 				                        <div class="form-group">
 				                        	<input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm..." class="form-password form-control" data-match="#password" data-match-error="Password did not match" required>
 				                        	<div class="help-block with-errors"></div>
+				                        	
 				                        </div>
 				                        <div class="form-group">
 					                        <button type="submit" id="submit" name="submit" class="btn">Sign Up!</button>

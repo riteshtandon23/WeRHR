@@ -1,11 +1,4 @@
-<?php
-	#Pop up message when redirected from registration page
-	if(isset($_GET['msg'])){ 
-		print '<script type="text/javascript">';
-		print 'alert("'.$_GET['msg'].'");';
-        print '</script>';
-	}
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -87,6 +80,16 @@
 				                        <div class="form-group">
 				                        	<input type="password" data-minlength="3" name="password" placeholder="Password..." class="form-password form-control" id="password" data-error="Password too short" required>
 				                        	<div class="help-block with-errors"></div>
+				                        	<span>
+				                        		<?php
+                                                  if (isset($_GET['Error'])) 
+                                                  {
+                                                ?>
+                                                       <label style="color:red"><?php echo $_GET['Error'];?></Label>  
+                                                <?php
+                                                   }
+                                                ?>
+				                        	</span>
 				                        </div>
 				                        <div class="form-group" style="text-align: center;">
 										    <div class="checkbox" >

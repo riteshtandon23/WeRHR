@@ -57,6 +57,30 @@
 			</div>  
 		</div>
     </div>
+    <pre>
+    <?php 
+     $arr6=array();
+     $arr2=array();
+
+     $arr=array();
+     $arr1=array();
+     //echo $_GET['cname'];
+     $result=selectQuestionanswer($_GET['cname']);
+     while($row=$result->fetch_assoc())
+        {
+          $arr=$row['Answer_Option'];
+          $arr6=$row['Answer'];
+
+          $arr1[]=explode(",",$arr);
+          $arr2[]=explode(",",$arr6);
+
+           
+        }
+         print_r($arr1);
+         print_r($arr2);
+        
+     ?>
+     </pre>
     <div id="custom_notifications" class="custom-notifications dsp_none">
         <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
         </ul>
@@ -186,8 +210,27 @@
      ?>
      </pre>
     <?php 
+        $arr7=array();
+        $arr8=array();
     	$result=getUserAnswer($_GET['cname']);
-    	
+
+    	 while ($row=$result->fetch_assoc()) {
+            $ans=$row['Answer'];
+
+        }
+        //$ans="1::bb,2::cc";
+       //$ans=substr($an, 1,-1);
+        $ans=explode(",",$ans);
+         //var_dump($ans);
+        //print_r($ans);
+        for($i=0;$i<sizeof($ans);$i++)
+        {
+            $ans[$i]."<br>";
+            $temp=array();
+            $temp=explode("::",$ans[$i]);
+           // var_dump($temp);
+        }
+    	$Edate="2016-03-31";
     	$totalquestion=CountVisibleQuestion($_GET['cname']);
     	while ($row=$totalquestion->fetch_assoc()) {
     		$TotalQuestion=$row['Visible'];

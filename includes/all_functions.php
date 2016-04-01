@@ -340,6 +340,7 @@ function getUserAnswer($cname)
 	confirm_query($result);
 	return $result;	
 }
+
 function selectPercentage($id){
 	global $connection;
 	$stmt=$connection->prepare("call selectPercentage(?)");
@@ -398,5 +399,18 @@ function Background_Result($Background)
 	$result=$stmt->get_result();
 	confirm_query($result);
 	return $result;	
+}
+
+//gash
+function selectQuestionanswer($cname)
+{
+	global $connection;
+	$stmt = $connection->prepare("call SelectQuestionanswer(?)");
+	$stmt->bind_param('s',$cname);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	confirm_query($result);
+	return $result;
+
 }
 ?>

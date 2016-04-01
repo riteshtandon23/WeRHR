@@ -23,7 +23,7 @@ if($result->num_rows > 0){
     $_SESSION["lname"] = $row['lastname'];
     $_SESSION["id"] = $row['id'];
     $_SESSION["email"]=$username;
-
+    
     if($row['type']==="user")
     {
         header('Location:userHome.php');
@@ -33,12 +33,11 @@ if($result->num_rows > 0){
 }
 else	//user does not exist
 {
-?>
-    <script type="text/javascript">
-        alert("Wrong credentials! Please check");
-        window.location="http://localhost/WeRHR/public/login.php"
-        </script>
-<?php
+
+ $Error="Invalid Username or Password"; 
+header("location:login.php?Error=" . $Error); 
+
+ 
 }
 
 
