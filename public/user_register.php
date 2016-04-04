@@ -68,7 +68,7 @@
 	                            		<p>Please fill the fields:</p>
 	                        		</div>
 	                        		<div class="form-top-right">
-	                        			<a href="index.php"><i class="fa fa-home"></i></a>
+	                        			<a href="Index.php"><i class="fa fa-home"></i></a>
 	                        		</div>
 	                        		<span>
 				                        	<?php

@@ -12,7 +12,7 @@ else{
 
     
 #check if user is present in the db
-$query = "SELECT type,id,firstname,lastname FROM users WHERE email='$username' AND password='$passw' UNION ALL SELECT type,id,firstname,lastname FROM employers WHERE email='$username' AND password='$passw'";
+$query = "SELECT type,id,firstname,lastname,act_status FROM users WHERE email='$username' AND password='$passw' UNION ALL SELECT type,id,firstname,lastname,act_status FROM employers WHERE email='$username' AND password='$passw'";
 #although union, result can't be of both tables as registration allowed one unique email for both tables
 $result = $connection->query($query);
 $row = mysqli_fetch_assoc($result);
@@ -24,11 +24,17 @@ if($result->num_rows > 0){
     $_SESSION["id"] = $row['id'];
     $_SESSION["email"]=$username;
     
-    if($row['type']==="user")
+    if($row['type']=="user" AND $row['act_status']=="1")
     {
         header('Location:userHome.php');
-    }else{
+    }
+    elseif($row['type']=="employer" && $row['act_status']=="1")
+    {
        header('Location:home.php'); 
+    }
+    else{
+        $Error="You have not activated your account"; 
+        header("location:login.php?Error=" . $Error); 
     }
 }
 else	//user does not exist

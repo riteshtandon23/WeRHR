@@ -89,6 +89,16 @@
                                                 <?php
                                                    }
                                                 ?>
+                                                <?php
+                                                   if(isset($_GET['msg']))
+                                                     {
+                                                ?>
+                                                       <label style="color:red"><?php echo $_GET['msg'];?></Label>  
+                                                <?php	
+   	
+                                                     }
+
+                                                ?>
 				                        	</span>
 				                        </div>
 				                        <div class="form-group" style="text-align: center;">

@@ -6,8 +6,8 @@
                 <!-- footer content -->
                 <footer>
                     <div class="">
-                        <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
-                            <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+                        <p class="pull-right">We'R'HR by <a>Lovely Infotech</a>. |
+                            <span class="lead"> <i class="fa fa-paw"></i> We'R'HR</span>
                         </p>
                     </div>
                     <div class="clearfix"></div>
@@ -40,9 +40,12 @@
     <script src="js/custom.js"></script>
 
     <!-- image cropping -->
-    <script src="js/cropping/cropper.min.js"></script>
-    <script src="js/cropping/main.js"></script>
-    <script src="js/cropping/main2.js"></script>
+    <!--script src="js/cropping/cropper.min.js"></script>
+    <script src="js/cropping/main.js"></script-->
+    <script src="js/cropper1/cropper.min.js"></script>
+    <script src="js/cropper1/main.js"></script>
+
+    <!--script src="js/cropping/main2.js"></script-->
 
     
     <!-- daterangepicker -->
