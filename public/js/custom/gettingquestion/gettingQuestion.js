@@ -88,7 +88,7 @@ $(document).ready(function(){
 	});
 	
 	$('#next').on('click',function(){
-		
+		$('#QNumber'+j).css('border-width','0px');
 		if(temp!=null)
 		{
 			unAnswered(j);
@@ -117,7 +117,7 @@ $(document).ready(function(){
 		}
 	});
 	$('#prev').on('click',function(){
-		
+		$('#QNumber'+j).css('border-width','0px');
 		if(temp!=null)
 		{
 			unAnswered(j);
@@ -165,7 +165,7 @@ $(document).ready(function(){
 		//localStorage.setItem("QuesNo", JSON.stringify(QuesNo))
 	});
 	$('.notification').on('click','button',function(){
-		
+		$('#QNumber'+j).css('border-width','0px');
 		unAnswered(j);
 		j=$(this).val();
 
@@ -209,7 +209,7 @@ $(document).ready(function(){
 				}else
 				{
 					
-				tmp=tmp+","+uans;
+				tmp=tmp+"/"+uans;
 				tmp=(Number(j)+1)+"::"+tmp;		
 				}
 				
@@ -290,6 +290,8 @@ $(document).ready(function(){
 	function trackQuestion()
 	{
 		//track question number
+		//$('#QNumber'+(j-1).css('border-color','');
+		$('#QNumber'+j).css('border-width','5px');
 			localStorage.removeItem('QuestionNumber');
 			var QN=$('#Q'+j).attr('value');
 			var QuestionNumber = JSON.parse(localStorage.getItem('QuestionNumber'));
@@ -334,7 +336,7 @@ $(document).ready(function(){
 						//split array inside array
 						// alert(arr[0]);
 						// alert(arr[1]);
-						var arr2=arr[1].split(",");
+						var arr2=arr[1].split("/");
 						if(Number(arr[0])==(Number(j)+1))
 						{
 							for(b=0;b<arr2.length;b++)

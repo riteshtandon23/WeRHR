@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentallela Alela! | </title>
+    <title>WeRHR!|</title>
 
     <!-- Bootstrap core CSS -->
 
@@ -27,7 +27,7 @@
 					<div class="panel panel-info">
 
 					    <div class="panel-heading">
-					    <h3>Graphical representation of your score</h3>
+					    <h3>Your score</h3>
 						</div>
 						<div class="panel-body">
 							<form id="infoform1" method="POST" class="form-horizontal" role="form">  
@@ -76,8 +76,8 @@
 
            
         }
-         print_r($arr1);
-         print_r($arr2);
+         // print_r($arr1);
+         // print_r($arr2);
         
      ?>
      </pre>
@@ -99,10 +99,121 @@
     <script src="js/icheck/icheck.min.js"></script>
 
     <script src="js/custom.js"></script>
+    <pre>
+    <?php 
+        $arr=array();
+        $arr1=array();
+        $arr2=array();
+        $arr3=array();
+        $score=0;
+        $TotalAnswer=0;
+        $result2=SelectQuestionAnswer($_GET['cname']);
+        while ($row=$result2->fetch_assoc()) {
+            $option=$row['Answer_Option'];
+            $ans=$row['Answer'];
+            $quesType[]=$row['Question_Type'];
+            $arr[]=explode(",",$ans);
+            $arr1[]=explode(",",$option); 
+            $mulans=null;
+        }
+        //print_r($quesType);
+       //echo sizeof($quesType);
+        foreach ($arr1 as $key1=>$array) {
+            if($quesType[$key1]!=="Multiple Choice")
+            {
+                foreach ($array as $key => $value) {
+                     $Cans=implode("",$arr[$key1]);
+                     //echo $Cans;
+                      //echo $value;
+                    if($value===$Cans)
+                    {
+                        $arr2[]=($key1+1)."::"."opt".($key+1);
+                    }
+                }
+            }else{
+                $MCans=null;
+                $Cans=implode("",$arr[$key1]);
+                $arr5=explode("/",$Cans);
+                //var_dump($arr5);
+                foreach ($arr5 as $key5 => $value5) {
+                   // echo $value5." ";
+                    foreach ($array as $key => $value) {
+                        if($value5===$value)
+                        {
+                            $MCans=$MCans."opt".($key+1)."/";
+                        }
+                    }
+                }
+                $MCans=rtrim($MCans,"/");
+                //echo $MCans;
+                $arr2[]=($key1+1)."::".$MCans;
+            }  
+        }
+        $result=getUserAnswer($_GET['cname']);
+        while ($row=$result->fetch_assoc()) {
+            $ans1=$row['Answer'];
+        }
+        $ans1=explode(",",$ans1);
+        // var_dump($arr2);
+        // var_dump($ans1);
+        $TotalAnswer=sizeof($ans1);
+      
+         for($i=0;$i<sizeof($arr2);$i++)
+        {
+            if($quesType[$i]!=="Multiple Choice")
+            {
+                for($j=0;$j<sizeof($ans1);$j++)
+                {
+                   if($arr2[$i]===$ans1[$j])
+                    {
+                        $score+=1;
+                    }
+                }
+            }else{
+                $counter=0;
+                $sizeofAns=0;
+                $Oans=explode("::", $arr2[$i]);
+                //var_dump($Oans);
+                for($j=0;$j<sizeof($ans1);$j++){
+                    $Uans=explode("::", $ans1[$j]);
+                    $Oans1=explode("/",$Oans[1]);
+                    $sizeofAns=sizeof($Oans1);
+                    if($Oans[0]===$Uans[0])
+                    {
+                        $Uans1=explode("/", $Uans[1]);
+                        for($k=0;$k<sizeof($Oans1);$k++)
+                        {
+                            for($l=0;$l<sizeof($Uans1);$l++)
+                            {
+                                if($Oans1[$k]===$Uans1[$l])
+                                {
+                                    $counter++;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                if($counter===$sizeofAns)
+                {
+                    //echo "equal";
+                    $score+=1;
+
+                }
+            }
+            
+
+        }
+
+       // echo $score;
+
+     ?>
+     </pre>
     <?php 
         $arr7=array();
         $arr8=array();
     	$result=getUserAnswer($_GET['cname']);
+
     	 while ($row=$result->fetch_assoc()) {
             $ans=$row['Answer'];
 
@@ -128,9 +239,18 @@
     <script>    
 	    var max=<?php echo $TotalQuestion; ?>;
 		//var per=100;
-		var wrongans=2;
-		var unAns=0;
-		var totalMarks=(max-(wrongans+unAns));
+		var unAns=(max-Number(<?php echo $TotalAnswer; ?>));
+        if(unAns<0)
+        {
+            unAns=0;
+        }
+        var totalMarks=<?php echo $score; ?>;
+        if(totalMarks<0)
+        {
+            totalMarks=0;
+        }
+        var wrongans=(max-(unAns+totalMarks));
+        
         var randomScalingFactor = function () {
             return Math.round(Math.random() * 100)
         };

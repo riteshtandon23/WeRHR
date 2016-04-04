@@ -3,7 +3,7 @@
  <?php 
     if(!isset($_SESSION['TtoGo']))
     {
-        redirect_to("success.php");
+        redirect_to("login.php");
     }
   ?>
 <!DOCTYPE html>

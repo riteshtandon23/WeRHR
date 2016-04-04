@@ -15,7 +15,7 @@
         $_SESSION["Pmark"]=$positive_mark ;
         $_SESSION["Nmark"]=$negative_mark;
     	$domainID= select_Domain_id($domain_id);
-        $question_ans=ltrim($question_ans,",");
+        $question_ans=ltrim($question_ans,"/");
         $answeroption="";
         foreach ($_POST['option'] as $key => $value) {
             $answeroption .=$value .",";

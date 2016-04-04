@@ -5,6 +5,23 @@
             <form class="form-horizontal form-label-left"  novalidate>
 
                 <span class="section">Get Your Salary</span>
+                <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="InputCompanyName">Select Company<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select id="InputCompanyName" name="InputCompanyName" class="form-control" onchange="DisplayAloDetails(this.value);" required>
+                            <option value="null">Select Company Name</option>
+                                <?php 
+                                    $result=CompanyAcademin();
+                                    while ($row=$result->fetch_assoc()) {
+                                        echo "<option>".$row['Company']."</option>";
+                                    }
+
+                                 ?>
+                                   
+                                </select>
+                        </div>
+                    </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AgeRange">Age Range<span class="required">*</span>
@@ -12,10 +29,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select id="AgeRange" name="AgeRange" class="form-control" required>
                                 <?php 
-                                    $result=selectAgeRange();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Age_Range']."</option>";
-                                    }
+                                    // $result=selectAgeRange();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Age_Range']."</option>";
+                                    // }
 
                                  ?>
                                    
@@ -26,14 +43,23 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Academic">Academic<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select class="select2_multiple form-control" multiple="multiple" id="qualification">
+                            <select class="form-control" id="qualification" onchange="getPercentage(this.value);">
+                            
                                <?php 
-                                    $result=selectAcademic();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Qualification']."</option>";
-                                    }
+                                    // $result=selectAcademic();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Qualification']."</option>";
+                                    // }
 
                                  ?>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="SelectPercentage">Select Percentage<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select required="required" class="form-control" id="SelectPercentage">
                             </select>
                         </div>
                     </div>
@@ -43,10 +69,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                              <select id="Background" name="Background" class="form-control" required>
                                 <?php 
-                                    $result=selectBackground();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Experience']."</option>";
-                                    }
+                                    // $result=selectBackground();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Experience']."</option>";
+                                    // }
 
                                  ?>
                                 </select>
@@ -58,10 +84,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                              <select id="TestName" name="TestName" class="form-control" required>
                                 <?php 
-                                    $result=selectTest();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Test_Name']."</option>";
-                                    }
+                                    // $result=selectTest();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Test_Name']."</option>";
+                                    // }
 
                                  ?>
                                 </select>
@@ -71,27 +97,11 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
 
-                            <button id="AddTest" name="AddTest" type="button" class="btn btn-primary">Add</button>
+                            <button id="showSalary" name="showSalary" type="button" class="btn btn-primary">Show Salary</button>
                             <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
                         </div>
                     </div>
             </form>
         
-<script>
-    $(document).ready(function () {
-        // $('#AddTest').on('click',function(){
-        //     alert($('#qua').val());
-        // });
-        $(".select2_single").select2({
-            placeholder: "Select a state",
-            allowClear: true
-        });
-        $(".select2_group").select2({});
-        $(".select2_multiple").select2({
-            // maximumSelectionLength: 10,
-            placeholder: "Mutiple Selection your course ",
-            allowClear: true
-        });
-    });
-</script>
+
 <?php include("../includes/layouts/footer.php");?>
