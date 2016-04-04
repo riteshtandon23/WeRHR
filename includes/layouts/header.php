@@ -71,7 +71,7 @@
                     <div class="profile">
                     <?php 
                     
-                        $resultpic=AdminPfofilepic($_SESSION['AID']);
+                        $resultpic=AdminProfilepic($_SESSION['AID']);
                         while ($row=$resultpic->fetch_assoc()) {
                             $pic=$row['Profile_pic'];
                         }
@@ -97,7 +97,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index1.php">Home</a>
+                                        <li><a href="adminHome.php">Home</a>
                                         </li>
                                     </ul>
                                 </li>
