@@ -70,7 +70,7 @@ function selectOption($id)
 	// $stmt->bind_param('i',$id);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Name,Positive_Mark,Negative_Mark from question where Question_Id=Opt_id LIMIT 1";
+	$query="select Question_Name,Question_Type,Answer_Option,Answer,Question_Desc,Topic_Name,Positive_Mark,Negative_Mark from question where Question_Id='$id' LIMIT 1";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -466,5 +466,28 @@ function CompanyAcademin()
 	confirm_query($result);
 	return $result;	
 }
-
+function selectEmail()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select email from users";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function selectUserName($arr)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select firstname from users where email='$arr' LIMIT 1";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>

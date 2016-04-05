@@ -140,6 +140,21 @@
                     <input type="number" id="TotalQuestion" name="TotalQuestion" required="required" min="1" data-validate-minmax="1,100" class="form-control col-md-7 col-xs-12">
                 </div>
             </div> 
+            <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Academic">Select Email<span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <select class="select2_multiple form-control" multiple="multiple" id="multipleemail" name="multipleemail[]">
+                   <?php 
+                        $result=selectEmail();
+                        while ($row=$result->fetch_assoc()) {
+                            echo "<option>".$row['email']."</option>";
+                        }
+
+                     ?>
+                </select>
+            </div>
+        </div>
 
         <div class="ln_solid"></div>
         <div class="form-group">
@@ -150,5 +165,15 @@
     </form>
 </div>
 </div>
+<script>
+    $(document).ready(function () {
+        
+        $(".select2_multiple").select2({
+            // maximumSelectionLength: 10,
+            placeholder: "Mutiple Selection Email here",
+            allowClear: true
+        });
+    });
+</script>
 
 <?php include("../includes/layouts/footer.php");?>
