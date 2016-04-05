@@ -1,6 +1,4 @@
 <?php require_once("../includes/dbconnection.php");?>
-<?php require_once("../includes/all_functions.php");?>
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,30 +9,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>weRhr! | </title>
-    <noscript>
-      <meta http-equiv="refresh" content="0.0;url=success.php">
-    </noscript>
+    <title>WeRhR!| </title>
+
     <!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/dist/bootstrap-clockpicker.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.min.css">
+
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
- 
-    <link href="css/icheck/flat/green.css" rel="stylesheet">
-    <link href="css/floatexamples.css" rel="stylesheet" />
-     <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
-     <link href="css/custom/search.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
+    <link href="css/icheck/flat/green.css" rel="stylesheet" />
+    <link href="css/floatexamples.css" rel="stylesheet" type="text/css" />
 
-  
+    <script src="js/jquery.min.js"></script>
+    <script src="js/nprogress.js"></script>
+    <script>
+        NProgress.start();
+    </script>
     
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -60,7 +54,7 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WeRHR!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -71,9 +65,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2><?php echo  $_SESSION["fname"];
-									echo  $_SESSION["lname"];
-									?></h2>
+                            <h2>Anthony Fernando</h2>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -98,11 +90,11 @@
                                 </li>
                                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="exam_create.php">Create Exam</a>
+                                        <li><a href="form.html">General Form</a>
                                         </li>
-                                        <li><a href="addquestion.php">Add Question</a>
+                                        <li><a href="form_advanced.html">Advanced Components</a>
                                         </li>
-                                        <li><a href="add_topic.php">Add Topic</a>
+                                        <li><a href="form_validation.html">Form Validation</a>
                                         </li>
                                         <li><a href="form_wizards.html">Form Wizard</a>
                                         </li>
@@ -229,9 +221,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt=""><?php echo  $_SESSION["fname"];
-									echo  $_SESSION["lname"];
-									?>
+                                    <img src="images/img.jpg" alt="">John Doe
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -246,7 +236,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li>
-                                    <li><a href="logout_process.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -330,109 +320,123 @@
 
             </div>
             <!-- /top navigation -->
-            <div class="right_col" role="main" style="background-color:white">
-            <form class="form-horizontal form-label-left" action="emailagain.php" method="post">
 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="topicId">Select Course Name <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select id="topicId" name="topicId" class="form-control" required>
-                   <?php
-                        $result=select_Domain();
-                        while($row =$result->fetch_assoc())
-                        {
-                            //var_dump($row);
-                            echo  "<option>".$row["topic_Name"]."</option>";
-                        }
-                    ?>
-                    </select>
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+
+                <!-- top tiles -->
+                <div class="row tile_count">
+				
+                   
+                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                       
+                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                       
+                    </div>
+                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                      
+                    </div>
+                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                        
+                    </div>
+                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
+                       
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Edate">Exam Date<span class="required">*</span>
-                </label>
-                    <div class="control-group">
-                        <div class="controls">
-                            <div class="col-md-6 col-sm-6 col-xs-12 has-feedback">
-                                <input type="text" name="Edate" class="form-control has-feedback-right col-md-7 col-xs-12" id="Edate" placeholder="select Date" aria-describedby="inputSuccess2Status">
-                                <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
- 
+                <!-- /top tiles -->
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="dashboard_graph">
+
+                          
+                            <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                               
+                                <div class="col-md-12 col-sm-12 col-xs-6">
+                                    
+                                   
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-6">
+                                   
+                                   
+                                </div>
+
                             </div>
-                        </div>
-                    </div>
-            </div> 
-             <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Stime">Start Time<span class="required">*</span>
-                </label>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="col-md-6 col-sm-6 col-xs-12 has-feedback">
-                            <input type="text" id="Stime" name="Stime" class="form-control has-feedback-right col-md-7 col-xs-12" id="single_cal" placeholder="E.g 00:00:00" aria-describedby="inputSuccess2Status">
-                            <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
- 
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Etime">End Time<span class="required">*</span>
-                </label>
-                <div class="control-group">
-                    <div class="controls">
-                        <div class="col-md-6 col-sm-6 col-xs-12 has-feedback">
-                            <input type="text" id="Etime" name="Etime" class="form-control has-feedback-right col-md-7 col-xs-12" id="single_cal" placeholder="E.g 00:00:00" aria-describedby="inputSuccess2Status">
-                            <span class="glyphicon glyphicon-time form-control-feedback right" aria-hidden="false"></span>
- 
-                        </div>
-                    </div>
-                </div>
-            </div>
- <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TotalQuestion">Email<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="email" name="email" required="required" min="1" data-validate-minmax="1,100" class="form-control col-md-7 col-xs-12" placeholder="Enter the Email" >
-                </div>
-            </div>
-      
-      
-      
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="TotalQuestion">Total Number of Question<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input type="text" id="que" name="que" required="required" min="1" data-validate-minmax="1,100" class="form-control col-md-7 col-xs-12">
-                </div>
-            </div> 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Pmark">Positive Marks<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="Pmark" class="form-control col-md-7 col-xs-12"  name="Pmark" placeholder="Marks per question" required="required" type="text">
-                </div>
-            </div> 
-            <div class="item form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nmark">Negative Marks <span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input id="Nmark" class="form-control col-md-7 col-xs-12"  name="Nmark" placeholder="Minus Mark if wrong attempt" required="required" type="text">
-                </div>
-            </div>
-        
 
-        <div class="ln_solid"></div>
-        <div class="form-group">
-            <div class="col-md-6 col-md-offset-3">
-                <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
-    
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+
+                <div class="row">
+
+
                   
-                
-  </div>
 
+                  
+
+
+                   
+
+                </div>
+
+
+                <div class="row">
+                    
+
+
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+
+
+
+                        <div class="row">
+
+                           
+                        </div>
+                        <div class="row">
+
+
+                            <!-- Start to do list -->
+                            
+                            </div>
+                            <!-- End to do list -->
+
+
+                            <!-- start of weather widget -->
+                   
+                            <!-- end of weather widget -->
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <!-- footer content -->
+
+                <footer>
+                    <div class="">
+                        <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+                            <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+            <!-- /page content -->
 
         </div>
 
@@ -447,108 +451,242 @@
 
     <script src="js/bootstrap.min.js"></script>
 
-    <script src="js/custom/gettingquestion/QuestionVisibility.js"></script>
+    <!-- gauge js -->
+    <script type="text/javascript" src="js/gauge/gauge.min.js"></script>
+    <script type="text/javascript" src="js/gauge/gauge_demo.js"></script>
     <!-- chart js -->
     <script src="js/chartjs/chart.min.js"></script>
     <!-- bootstrap progress js -->
+    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
     <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
     <!-- icheck -->
-
     <script src="js/icheck/icheck.min.js"></script>
-    <!-- form validation -->
-    <script src="js/validator/validator.js"></script>
-    <script src="js/custom.js"></script>
-        
-    <script src="js/custom/formValidation.min.js"></script>
-    <script src="js/custom/bootstrap.min.js"></script>
-     <script type="text/javascript" src="js/custom/jquery.validate.min.js"></script>
-      <!-- Datatables -->
-     <script src="js/datatables/js/jquery.dataTables.js"></script>
-     <!-- sparkline -->
-    <script src="js/sparkline/jquery.sparkline.min.js"></script>
-     <!-- daterangepicker -->
-    <script type="text/javascript" src="js/moment.min2.js"></script>
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="js/moment.min.js"></script>
     <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
-    <script type="text/javascript">
+
+    <script src="js/custom.js"></script>
+
+    <!-- flot js -->
+    <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="js/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" src="js/flot/date.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="js/flot/curvedLines.js"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
+    <script>
         $(document).ready(function () {
-            $('#Edate').daterangepicker({
-                singleDatePicker: true,
-                calender_style: "picker_1"
-            }, function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
+            // [17, 74, 6, 39, 20, 85, 7]
+            //[82, 23, 66, 9, 99, 6, 2]
+            var data1 = [[gd(2012, 1, 1), 17], [gd(2012, 1, 2), 74], [gd(2012, 1, 3), 6], [gd(2012, 1, 4), 39], [gd(2012, 1, 5), 20], [gd(2012, 1, 6), 85], [gd(2012, 1, 7), 7]];
+
+            var data2 = [[gd(2012, 1, 1), 82], [gd(2012, 1, 2), 23], [gd(2012, 1, 3), 66], [gd(2012, 1, 4), 9], [gd(2012, 1, 5), 119], [gd(2012, 1, 6), 6], [gd(2012, 1, 7), 9]];
+            $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+                data1, data2
+            ], {
+                series: {
+                    lines: {
+                        show: false,
+                        fill: true
+                    },
+                    splines: {
+                        show: true,
+                        tension: 0.4,
+                        lineWidth: 1,
+                        fill: 0.4
+                    },
+                    points: {
+                        radius: 0,
+                        show: true
+                    },
+                    shadowSize: 2
+                },
+                grid: {
+                    verticalLines: true,
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: "#d5d5d5",
+                    borderWidth: 1,
+                    color: '#fff'
+                },
+                colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+                xaxis: {
+                    tickColor: "rgba(51, 51, 51, 0.06)",
+                    mode: "time",
+                    tickSize: [1, "day"],
+                    //tickLength: 10,
+                    axisLabel: "Date",
+                    axisLabelUseCanvas: true,
+                    axisLabelFontSizePixels: 12,
+                    axisLabelFontFamily: 'Verdana, Arial',
+                    axisLabelPadding: 10
+                        //mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
+                },
+                yaxis: {
+                    ticks: 8,
+                    tickColor: "rgba(51, 51, 51, 0.06)",
+                },
+                tooltip: false
             });
-            
+
+            function gd(year, month, day) {
+                return new Date(year, month - 1, day).getTime();
+            }
         });
     </script>
-    <!--clock-->
-    <script type="text/javascript" src="css/dist/bootstrap-clockpicker.min.js"></script>
-    <script type="text/javascript">
-    $('.clockpicker').clockpicker()
-    .find('input').change(function(){
-        console.log(this.value);
-    });
-    var input = $('#Stime').clockpicker({
-    placement: 'bottom',
-    align: 'left',
-    autoclose: true,
-    'default': 'now'
-    });
-    var input = $('#Etime').clockpicker({
-    placement: 'bottom',
-    align: 'left',
-    autoclose: true,
-    'default': 'now'
-    });
-    </script>
-    <script type="text/javascript" src="js/custom/highlight.min.js"></script>
-    <script type="text/javascript">
-       
-$(function() {
-    $( "#email" ).autocomplete({
-        source: 'demo1.php'
-    });
-});
 
+    <!-- worldmap -->
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.1.min.js"></script>
+    <script type="text/javascript" src="js/maps/gdp-data.js"></script>
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script>
+        $(function () {
+            $('#world-map-gdp').vectorMap({
+                map: 'world_mill_en',
+                backgroundColor: 'transparent',
+                zoomOnScroll: false,
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#E6F2F0', '#149B7E'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                onRegionTipShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });
+    </script>
+    <!-- skycons -->
+    <script src="js/skycons/skycons.js"></script>
+    <script>
+        var icons = new Skycons({
+                "color": "#73879C"
+            }),
+            list = [
+                "clear-day", "clear-night", "partly-cloudy-day",
+                "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                "fog"
+            ],
+            i;
+
+        for (i = list.length; i--;)
+            icons.set(list[i], list[i]);
+
+        icons.play();
+    </script>
+
+    <!-- dashbord linegraph -->
+    <script>
+        var doughnutData = [
+            {
+                value: 30,
+                color: "#455C73"
+            },
+            {
+                value: 30,
+                color: "#9B59B6"
+            },
+            {
+                value: 60,
+                color: "#BDC3C7"
+            },
+            {
+                value: 100,
+                color: "#26B99A"
+            },
+            {
+                value: 120,
+                color: "#3498DB"
+            }
+    ];
+        var myDoughnut = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+    </script>
+    <!-- /dashbord linegraph -->
+    <!-- datepicker -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var cb = function (start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+                //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+            }
+
+            var optionSet1 = {
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment(),
+                minDate: '01/01/2012',
+                maxDate: '12/31/2015',
+                dateLimit: {
+                    days: 60
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                opens: 'left',
+                buttonClasses: ['btn btn-default'],
+                applyClass: 'btn-small btn-primary',
+                cancelClass: 'btn-small',
+                format: 'MM/DD/YYYY',
+                separator: ' to ',
+                locale: {
+                    applyLabel: 'Submit',
+                    cancelLabel: 'Clear',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Custom',
+                    daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                    monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    firstDay: 1
+                }
+            };
+            $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+            $('#reportrange').daterangepicker(optionSet1, cb);
+            $('#reportrange').on('show.daterangepicker', function () {
+                console.log("show event fired");
+            });
+            $('#reportrange').on('hide.daterangepicker', function () {
+                console.log("hide event fired");
+            });
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+            });
+            $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+                console.log("cancel event fired");
+            });
+            $('#options1').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+            });
+            $('#options2').click(function () {
+                $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+            });
+            $('#destroy').click(function () {
+                $('#reportrange').data('daterangepicker').remove();
+            });
+        });
     </script>
     <script>
-$(function() {
-    function split( val ) {
-        return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-        return split( term ).pop();
-    }
-    
-    $( "#email" ).bind( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-            event.preventDefault();
-        }
-    })
-    .autocomplete({
-        minLength: 1,
-        source: function( request, response ) {
-            // delegate back to autocomplete, but extract the last term
-            $.getJSON("demo1.php", { term : extractLast( request.term )},response);
-        },
-        focus: function() {
-            // prevent value inserted on focus
-            return false;
-        },
-        select: function( event, ui ) {
-            var terms = split( this.value );
-            // remove the current input
-            terms.pop();
-            // add the selected item
-            terms.push( ui.item.value );
-            // add placeholder to get the comma-and-space at the end
-            terms.push( "" );
-            this.value = terms.join( ", " );
-            return false;
-        }
-    });
-});
-</script>
+        NProgress.done();
+    </script>
+    <!-- /datepicker -->
+    <!-- /footer content -->
 </body>
 
 </html>

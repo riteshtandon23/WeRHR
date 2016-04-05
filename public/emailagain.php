@@ -50,7 +50,7 @@ $i=0;
 while($i<$n)
 {
 $email->addTo($arr[$i])
-      ->setFrom("visans29@gmail.com")
+      ->setFrom("WeRHR@gmail.com")
       ->setSubject("exam schedule " )
       ->setHtml($mytemp);
 // $email->addTo("@gmail.com")

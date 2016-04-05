@@ -15,6 +15,7 @@
 </p>
 <p>end time: {{etime}}</p>
 <p>
+<a href="http://werhr.esy.es/login.php">click here to attempt the Exam</a>
 </p>
 <h4>Thanks</h4> 
 </center>

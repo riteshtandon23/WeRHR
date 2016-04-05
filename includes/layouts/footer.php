@@ -2,8 +2,8 @@
     </div>
 </div>       
      <!-- footer content -->
-                <footer>
-                    <div class="">
+                <footer >
+                    <div class="" >
                         <p class="pull-right">We are the Human Resource <a>WAH</a>.. |
                             <span class="lead"> <i class="fa fa-paw"></i> Lovely Infotech!</span>
                         </p>

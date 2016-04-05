@@ -33,7 +33,7 @@
     		if($result)
     		{
         		echo "Success";
-        		redirect_to("addProblem.php");
+        		redirect_to("addquestion.php");
     		}else
     		{
 	        	die("Database connection fail".$connection->connect_errno." ".$temp);
