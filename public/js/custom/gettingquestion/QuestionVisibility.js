@@ -206,24 +206,81 @@
  });
  $(document).on('click','#AddAge,#AddTest,#AddBack,#AddAca',function(){
     var temp=$('#CompanyNameAlgo').val();
-
-    if($('#CompanyNameAlgo').val()==="")
-    {
-        alert("hh");
-        $('#messages').html("Company Name should not be empty");
-        $('#CompanyNameAlgo').focus();
-      $('form').submit(function (e) {
+   // var submit = true;
+    $('form').submit(function (e) {
+        //alert("jjj");
+            if($('#CompanyNameAlgo').val()==="")
+            {
+                //alert("hh");
+                $('#messages').html("Company Name should not be empty");
+                $('#CompanyNameAlgo').focus();
                 return false;
+            }else{
+                
+                $('#Company_Name').val(temp);
+                $('#Company_Name1').val(temp);
+                $('#Company_Name2').val(temp);
+                $('#Company_Name3').val(temp);
+                //alert($('#Company_Name').val());
+                return true;
+            }
+            
 
         });
-    }else{
-
-        $('#Company_Name').val(temp);
-        $('#Company_Name1').val(temp);
-        $('#Company_Name2').val(temp);
-        $('#Company_Name3').val(temp);
-        //alert($('#Company_Name').val());
-    }
     //alert($('#CompanyNameAlgo').val());
     
  });
+ function DisplayAloDetails(value){
+$('#AgeRange').find('option').remove();
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/getPercentage.php',
+        data:'id1='+value,
+        success:function(data){
+            for(i=0;i<data.length;i++ )
+            {
+               $('#AgeRange').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+        }
+    });
+    $('#qualification').find('option').remove();
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/getPercentage.php',
+        data:'id2='+value,
+        success:function(data){
+            for(i=0;i<data.length;i++ )
+            {
+               $('#qualification').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+        }
+    });
+    $('#Background').find('option').remove();
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/getPercentage.php',
+        data:'id3='+value,
+        success:function(data){
+            for(i=0;i<data.length;i++ )
+            {
+               $('#Background').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+        }
+    });
+    $('#TestName').find('option').remove();
+    $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/getPercentage.php',
+        data:'id4='+value,
+        success:function(data){
+            for(i=0;i<data.length;i++ )
+            {
+               $('#TestName').append($("<option></option>").attr("value",data[i]).text(data[i])); 
+            }
+        }
+    });
+ }

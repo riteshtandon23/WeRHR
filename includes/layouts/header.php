@@ -26,7 +26,7 @@
     <link href="css/floatexamples.css" rel="stylesheet" />
      <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
      <link href="css/custom/search.css" rel="stylesheet">
-
+     <link href="css/select/select2.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -71,7 +71,7 @@
                     <div class="profile">
                     <?php 
                     
-                        $resultpic=AdminPfofilepic($_SESSION['AID']);
+                        $resultpic=AdminProfilepic($_SESSION['AID']);
                         while ($row=$resultpic->fetch_assoc()) {
                             $pic=$row['Profile_pic'];
                         }
@@ -97,7 +97,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index1.php">Home</a>
+                                        <li><a href="adminHome.php">Home</a>
                                         </li>
                                     </ul>
                                 </li>

@@ -10,6 +10,28 @@
 
     <title>WeRHR!| </title>
 
+    <!-- Favicon --> 
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+	    <meta name="application-name" content="&nbsp;"/>
+	    <meta name="msapplication-TileColor" content="#FFFFFF" />
+	    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
+	    <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
+	    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+	    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
+	    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+
     <!-- Bootstrap core CSS -->
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +40,15 @@
     <link href="css/animate.min.css" rel="stylesheet">
 
     <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom_user.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
 
 
     <script src="js/jquery.min.js"></script>
+
+    <!-- Image Cropper -->
+    <link rel="stylesheet" type="text/css" href="css/cropper/main.css">
+    <link rel="stylesheet" type="text/css" href="css/cropper/cropper.min.css">
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -38,11 +64,14 @@
 
 <?php
 session_start();
-$result=profilepic($_SESSION["email"]);
-while($row=$result->fetch_assoc())
-{
-    $pic=$row['Profile_pic'];
-}
+$email = $_SESSION['email'];
+//$result = $connection->query("call profilepic('$email')");
+//$result=profilepic($_SESSION["email"]);
+//$pic = $result;
+//while($row=$result->fetch_assoc())
+//{
+    //$pic=$row['Profile_pic'];
+//} 
 ?>
 <body class="nav-md">
 
@@ -55,14 +84,15 @@ while($row=$result->fetch_assoc())
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WeRHR!</span></a>
+                        <a href="userHome.php" class="site_title"><i class="fa fa-paw"></i> <span>WeRHR!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="..." class="img-circle profile_img">
+                            <!--img src="images/userImage/<?php// if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="..." class="img-circle profile_img"-->
+                            <img src="images/userImage/users.png" " alt="Profile_Picture" class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -83,61 +113,63 @@ while($row=$result->fetch_assoc())
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="userHome.php">Home</a>
                                         </li>
-                                        <li><a href="#">Change Password</a>
-                                        </li>
-                                        
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i>Course Offers<span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-book"></i>Courses<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        
+                                        <li><a href="#">My Courses</a>
+                                        </li>
+                                        <li><a href="userCoursesAvailable.php">Courses Available</a>
+                                        </li>
                                         <?php
-                                            $result=select_Domain();
-                                            while($row =$result->fetch_assoc())
-                                            {
+                                            //$result=select_Domain();
+                                            //while($row =$result->fetch_assoc())
+                                            //{
                                                 //var_dump($row);
-                                                echo "<li><a href=\"#\">".$row["topic_Name"]."</a></li>";
+                                                //echo "<li><a href=\"#\">".$result."</a></li>";
 
-                                            }
+                                            //}
                                         ?>
                                     </ul>
                                 </li>
-                               
+                                <li><a><i class="fa fa-pencil-square"></i>Exams<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="userUpcomingExam.php">Upcoming Exams</a>
+                                        </li>
+                                        <li><a href="userAttemptedExam.php">Attempted Exams</a>
+                                        </li>
+                                        <li><a href="#">Results</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-file-text"></i>Live Exams<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="#">Exams</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                         <div class="menu_section">
-                            <h3>Live On</h3>
+                            <h3>ACCOUNT</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-tasks"></i> Exam Details <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-lock"></i> Password <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="e_commerce.html">Next Exam</a>
-                                        </li>
-                                        <li><a href="projects.html">Previous Exam</a>
-                                        </li>
-                                        <li><a href="project_detail.html">Score</a>
-                                        </li>
-                                        <li><a href="contacts.html">Contacts</a>
-                                        </li>
-                                        <li><a href="profile.html">Profile</a>
+                                        <li><a href="userChangePassword.php">Change Password</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-user"></i> Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="page_404.html">404 Error</a>
+                                        <li><a href="">Edit Profile</a>
                                         </li>
-                                        <li><a href="page_500.html">500 Error</a>
+                                        <li><a href="userDataforAlgo.php">Data Required for Algorithm</a>
                                         </li>
-                                        <li><a href="plain_page.html">Plain Page</a>
-                                        </li>
-                                        <li><a href="login.html">Login Page</a>
-                                        </li>
-                                        <li><a href="pricing_tables.html">Pricing Tables</a>
-                                        </li>
-
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
+                                <li><a><i class="fa fa-file-o"></i> Others <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -180,7 +212,7 @@ while($row=$result->fetch_assoc())
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
+                                    <li><a href="edit_profile_user.php">  Profile</a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
@@ -282,7 +314,7 @@ while($row=$result->fetch_assoc())
                 <div class="">
                     <div class="page-title">
                         <div class="title_left">
-                            <h3>User Profile</h3>
+                            <h3 style="font-size: 18px"> Welcome <?php echo ucfirst($_SESSION["fname"]." ".ucfirst($_SESSION["lname"]));?></i></h3>
                         </div>
 
                         <div class="title_right">
@@ -297,26 +329,3 @@ while($row=$result->fetch_assoc())
                         </div>
                     </div>
                     <div class="clearfix"></div>
-
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>User Report <small>Activity report</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Settings 1</a>
-                                                </li>
-                                                <li><a href="#">Settings 2</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>

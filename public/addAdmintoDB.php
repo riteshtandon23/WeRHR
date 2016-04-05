@@ -34,7 +34,7 @@
             $_SESSION['AID']=$row['A_ID'];
             $_SESSION['UName']=$inputUname;
             $_SESSION['Type']=$row['type'];
-            redirect_to("index1.php");
+            redirect_to("adminHome.php");
             }else{
 
                 ?>

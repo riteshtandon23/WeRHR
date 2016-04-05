@@ -1,7 +1,7 @@
 <?php
-    //session_start();
+    session_start();
     if(isset($_SESSION["fname"])==FALSE && isset($_SESSION["lname"])==FALSE){
-        //header('Location: login.php');
+        header('Location: login.php');
         }
     else
     {

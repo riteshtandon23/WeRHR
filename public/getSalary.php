@@ -5,6 +5,23 @@
             <form class="form-horizontal form-label-left"  novalidate>
 
                 <span class="section">Get Your Salary</span>
+                <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="InputCompanyName">Select Company<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select id="InputCompanyName" name="InputCompanyName" class="form-control" onchange="DisplayAloDetails(this.value);" required>
+                            <option value="null">Select Company Name</option>
+                                <?php 
+                                    $result=CompanyAcademin();
+                                    while ($row=$result->fetch_assoc()) {
+                                        echo "<option>".$row['Company']."</option>";
+                                    }
+
+                                 ?>
+                                   
+                                </select>
+                        </div>
+                    </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AgeRange">Age Range<span class="required">*</span>
@@ -12,10 +29,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select id="AgeRange" name="AgeRange" class="form-control" required>
                                 <?php 
-                                    $result=selectAgeRange();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Age_Range']."</option>";
-                                    }
+                                    // $result=selectAgeRange();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Age_Range']."</option>";
+                                    // }
 
                                  ?>
                                    
@@ -27,12 +44,12 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select class="form-control" id="qualification" onchange="getPercentage(this.value);">
-                            <option value="null"> select Course Here</option>
+                            
                                <?php 
-                                    $result=selectAcademic();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Qualification']."</option>";
-                                    }
+                                    // $result=selectAcademic();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Qualification']."</option>";
+                                    // }
 
                                  ?>
                             </select>
@@ -52,10 +69,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                              <select id="Background" name="Background" class="form-control" required>
                                 <?php 
-                                    $result=selectBackground();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Experience']."</option>";
-                                    }
+                                    // $result=selectBackground();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Experience']."</option>";
+                                    // }
 
                                  ?>
                                 </select>
@@ -67,10 +84,10 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                              <select id="TestName" name="TestName" class="form-control" required>
                                 <?php 
-                                    $result=selectTest();
-                                    while ($row=$result->fetch_assoc()) {
-                                        echo "<option>".$row['Test_Name']."</option>";
-                                    }
+                                    // $result=selectTest();
+                                    // while ($row=$result->fetch_assoc()) {
+                                    //     echo "<option>".$row['Test_Name']."</option>";
+                                    // }
 
                                  ?>
                                 </select>
