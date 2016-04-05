@@ -75,7 +75,8 @@
                         while ($row=$resultpic->fetch_assoc()) {
                             $pic=$row['Profile_pic'];
                         }
-                       $resultpic->close();
+                        //$pic="10800.jpg";
+                       //$resultpic->close();
                      ?>
                         <div class="profile_pic">
                             <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "admin.png";}?>" alt="..." class="img-circle profile_img">

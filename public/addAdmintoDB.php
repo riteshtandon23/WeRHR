@@ -97,7 +97,7 @@
         $result=$stmt->execute();
         if($result)
         {
-            redirect_to("index1.php");
+            redirect_to("adminHome.php");
             //echo "success";
         }
     }

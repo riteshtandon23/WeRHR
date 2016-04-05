@@ -35,11 +35,8 @@
                         <div id="crop-avatar">
                             <!-- Current avatar -->
                             <div class="avatar-view" title="Change the avatar" enctype='form-data/multipart     '>
-                            <?php
-                            $result = mysqli_query($connection,"SELECT Profile_pic FROM users WHERE email='". $_SESSION["email"]."'");
-                                      $row=mysqli_fetch_array($result,MYSQL_ASSOC);
-                            ?>
-                                <img src="images/userImage/<?php echo $row['Profile_pic'];?>" alt="Avatar"  id="img" style='border-radius:10px;  height:220px ;width:220px;position:absolute; z-index:1;' >
+                            
+                                <img src="images/userImage/<?php echo $pic;?>" alt="Avatar"  id="img" style='border-radius:10px;  height:220px ;width:220px;position:absolute; z-index:1;' >
                                 <input type='x' name='images' id="images" style='border-radius:20px;width:220px; height:220px; position:relative;  z-index:2; opacity:0;'   /> 
                             </div>
 

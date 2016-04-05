@@ -453,11 +453,9 @@ function Background_Result($Background)
 	confirm_query($result);
 	return $result;	
 }
-<<<<<<< HEAD
 
 //gash
 
-=======
 //stored procedure is to be created
 function CompanyAcademin()
 {
@@ -495,5 +493,16 @@ function selectUserName($arr)
 	confirm_query($result);
 	return $result;
 }
->>>>>>> 61819b4a7c157fb28823a876e59bd683015b0266
+function selectUserNameAndEmail()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select firstname,email from users";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>

@@ -65,13 +65,12 @@
 <?php
 session_start();
 $email = $_SESSION['email'];
-//$result = $connection->query("call profilepic('$email')");
-//$result=profilepic($_SESSION["email"]);
-//$pic = $result;
-//while($row=$result->fetch_assoc())
-//{
-    //$pic=$row['Profile_pic'];
-//} 
+
+$result=profilepic($_SESSION["email"]);
+while($row=$result->fetch_assoc())
+{
+    $pic=$row['Profile_pic'];
+} 
 ?>
 <body class="nav-md">
 
@@ -91,8 +90,8 @@ $email = $_SESSION['email'];
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <!--img src="images/userImage/<?php// if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="..." class="img-circle profile_img"-->
-                            <img src="images/userImage/users.png" " alt="Profile_Picture" class="img-circle profile_img">
+                            <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="..." class="img-circle profile_img">
+                            
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>

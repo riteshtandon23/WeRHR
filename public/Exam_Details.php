@@ -58,7 +58,18 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
-                                    
+                                   <?php 
+                                         $result = selectUserNameAndEmail();
+                                         while ($row=$result->fetch_assoc()) {
+                                             echo "<tr class=\"even pointer\">";
+                                             echo "<td class=\" \"><input type=\"checkbox\"></td>";
+                                             echo "<td class=\" \">".$row["firstname"]."</td>";
+                                             echo "<td class=\" \">".htmlspecialchars($row["email"])."</td>";
+                                             echo "<td class=\" \"></td>";
+                                             echo "</tr>";
+                                         }
+                                    ?>
+
                                 </tbody>
                              </table>
                         </div>
