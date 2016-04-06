@@ -46,9 +46,10 @@
  	}
   ?>
    <?php 
- 	if(isset($_GET['DisplayAll'])){
+ 	if(isset($_GET['DexamName'])){
+ 		$examName=$_GET['DexamName'];
  		$data=array();
- 		$result=getAllUsers();
+ 		$result=getAllUsers($examName);
  		while ($row=$result->fetch_assoc()) {
  			$data[]=array("Fname"=>$row['firstname'],"username"=>$row['email']);
  		}

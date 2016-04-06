@@ -85,8 +85,6 @@
         
         }
         
-
-       
         $AdminName=$_POST['AdminName'];
         $AdminLName=$_POST['AdminLName'];
         $AdminContact=$_POST['AdminContact'];

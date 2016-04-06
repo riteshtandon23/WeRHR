@@ -116,7 +116,7 @@
  }
  function getUserEmail(cname)
  {
-     
+      $('#DisplayAll').attr('checked',false);
     $('#Examdate').find('option').remove();//.not(':first')
     $.ajax({
         type:'GET',
@@ -320,6 +320,7 @@ $('#AgeRange').find('option').remove();
     }
  });
  function DisplayActiveParticipant(){
+    $('#DisplayAll').attr('checked',false);
     var coursename=$('#topicId').val();
     var Examdate=$('#Examdate').val();
     if(Examdate!=="null")
@@ -352,12 +353,15 @@ $('#AgeRange').find('option').remove();
             
  }
  $(document).on('change','#DisplayAll',function(){
+    var coursename=$('#topicId').val();
+    var Examdate=$('#Examdate').val();
     if(this.checked){
+        var examName=coursename+Examdate;
        $.ajax({
             type:'GET',
             dataType:'json',
             url:'controllers/AdduserAsparticipant.php',
-            data:'DisplayAll=All',
+            data:'DexamName='+examName,
             success:function(data){
                 var table = $('#DisplayParticipant').DataTable({
                 "autoWidth":false,
