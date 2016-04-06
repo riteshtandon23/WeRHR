@@ -20,6 +20,7 @@ if(isset($_POST["submit"])){
     $sequence = sha1($sequence1);   #to be used in activation url
     $fileread = str_replace("#fname#", ucfirst($firstname), $fileread);
     $fileread = str_replace("#seq#", $sequence, $fileread);
+    $date=date("Y-m-d");
     $query1 = mysqli_query($connection,"SELECT email FROM users WHERE email='$email' UNION ALL SELECT email FROM employers WHERE email='$email'");
     
     if(mysqli_num_rows($query1)>0){
@@ -28,7 +29,7 @@ if(isset($_POST["submit"])){
            header("location:user_register.php?Error=" . $Error); 
     }
     else{
-        $query1 = mysqli_query($connection,"INSERT INTO users(firstname,lastname,email,password,act_status,sequence) VALUES('$firstname','$lastname','$email','$password','0','$sequence')");
+        $query1 = mysqli_query($connection,"INSERT INTO users(firstname,lastname,email,password,act_status,sequence,reg_date) VALUES('$firstname','$lastname','$email','$password','0','$sequence','$date')");
         
         # Instantiate the client.
         $mg = new Mailgun('key-1450c038c9c4c1a803cfa607ceff9fe6');

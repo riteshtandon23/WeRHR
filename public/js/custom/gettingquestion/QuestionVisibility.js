@@ -40,7 +40,7 @@
     alert('Date should not be null!!. Add exam Date first');
 
    }
-   setTimeout(function(){DisplayTableData(cname);},100);
+   //setTimeout(function(){DisplayTableData(cname);},100);
    //DisplayTableData(cname);
 
    });
@@ -125,6 +125,7 @@
         data:'cname='+cname,
         success:function(data)
         {
+            $('#Examdate').append($("<option></option>").attr("value","null").text("Select Date here"));
             for(i=0;i<data.length;i++ )
             {
                $('#Examdate').append($("<option></option>").attr("value",data[i]).text(data[i])); 
@@ -134,40 +135,40 @@
 
     });
  }
- function displayUser(cname)
- {
-    $.ajax({
-        type:'GET',
-        dataType:'json',
-        url:'getUser.php',
-        data:'id='+cname,
-        success:function(data)
-        {
-            var table = $('#course_details').DataTable({
-                "autoWidth":false,
-                "destroy": true,
-                'iDisplayLength': 12,
-                "sPaginationType": "full_numbers"
-            });
-            table.clear().draw(false);
-            var myOb=JSON.stringify(data);
-            var myObject = JSON.parse(myOb);
-            for(i=0;i<myObject.length;i++)
-            {
-                var Data1=myObject[i].Question;
-                var Data2=myObject[i].TopicName;
-                if(Number(Data5)===1)
-                {
-                    table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"' checked>",Data1,Data2]).draw(false);
-                }else
-                {
-                  table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"'>",Data1,Data2]).draw(false);  
-                }
-            }
+ // function displayUser(cname)
+ // {
+ //    $.ajax({
+ //        type:'GET',
+ //        dataType:'json',
+ //        url:'getUser.php',
+ //        data:'id='+cname,
+ //        success:function(data)
+ //        {
+ //            var table = $('#course_details').DataTable({
+ //                "autoWidth":false,
+ //                "destroy": true,
+ //                'iDisplayLength': 12,
+ //                "sPaginationType": "full_numbers"
+ //            });
+ //            table.clear().draw(false);
+ //            var myOb=JSON.stringify(data);
+ //            var myObject = JSON.parse(myOb);
+ //            for(i=0;i<myObject.length;i++)
+ //            {
+ //                var Data1=myObject[i].Question;
+ //                var Data2=myObject[i].TopicName;
+ //                if(Number(Data5)===1)
+ //                {
+ //                    table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"' checked>",Data1,Data2]).draw(false);
+ //                }else
+ //                {
+ //                  table.row.add(["<input type='checkbox' name='QuestionVisibility' id='QuestionVisibility' value='"+Data1+"'>",Data1,Data2]).draw(false);  
+ //                }
+ //            }
 
-        }
-    });
- }
+ //        }
+ //    });
+ // }
  function getPercentage(value)
  {
     $('#SelectPercentage').find('option').remove();
@@ -284,3 +285,99 @@ $('#AgeRange').find('option').remove();
         }
     });
  }
+ $(document).on('change','input[type=checkbox][name="selectUserForExam"]',function(){
+    //alert($(this).val());
+    var username=$(this).val();
+    var coursename=$('#topicId').val();
+    var Examdate=$('#Examdate').val();
+    var vis=1;
+    //alert(Examdate);
+    if(Examdate!==null && Examdate!=="null")
+    {
+        $('#error').html("");
+        var examName=coursename+Examdate;
+        if(this.checked)
+        {
+            //alert("checked");
+            vis=1;
+        }else{
+             vis=0;
+            //alert("unchecked");
+        }
+       
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/AdduserAsparticipant.php',
+            data:'uname='+username+'&examName='+examName+'&vis='+vis,
+            success:function(data){
+                alert("done");
+            }
+        });
+    }else{
+        $('#error').html("select exam date first");
+        $(this).removeAttr('checked');
+    }
+ });
+ function DisplayActiveParticipant(){
+    var coursename=$('#topicId').val();
+    var Examdate=$('#Examdate').val();
+    if(Examdate!=="null")
+    {
+        var examName=coursename+Examdate;
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/AdduserAsparticipant.php',
+            data:'examName='+examName,
+            success:function(data){
+                var table = $('#DisplayParticipant').DataTable({
+                "autoWidth":false,
+                "destroy": true,
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers"
+            });
+                 table.clear().draw(false);
+                var myOb=JSON.stringify(data);
+                var myObject = JSON.parse(myOb);
+                for(i=0;i<myObject.length;i++)
+                {
+                    var Data1=myObject[i].Fname;
+                    var Data2=myObject[i].username;
+                    table.row.add(["<input type='checkbox' name='selectUserForExam' id='selectUserForExam' value='"+Data2+"' checked>",Data1,Data2]).draw(false);
+                } 
+            }
+        });
+    }
+            
+ }
+ $(document).on('change','#DisplayAll',function(){
+    if(this.checked){
+       $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/AdduserAsparticipant.php',
+            data:'DisplayAll=All',
+            success:function(data){
+                var table = $('#DisplayParticipant').DataTable({
+                "autoWidth":false,
+                "destroy": true,
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers"
+            });
+                 //table.clear().draw(false);
+                var myOb=JSON.stringify(data);
+                var myObject = JSON.parse(myOb);
+                for(i=0;i<myObject.length;i++)
+                {
+                    var Data1=myObject[i].Fname;
+                    var Data2=myObject[i].username;
+                    table.row.add(["<input type='checkbox' name='selectUserForExam' id='selectUserForExam' value='"+Data2+"'>",Data1,Data2]).draw(false);
+                } 
+            }
+        }); 
+   }else{
+    DisplayActiveParticipant();
+   }
+    
+ });

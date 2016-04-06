@@ -16,40 +16,48 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-caret-square-o-right"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count"><label id="hhh"><?php $result=countTotalusers(); while ($row=$result->fetch_assoc()) {
+                        echo $row['total'];
+                    } ?></label></div>
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Totals users</h3>
+                    <p>register</p>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-comments-o"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count"><?php $result=countTotalusersthisWeek(); while ($row=$result->fetch_assoc()) {
+                        echo $row['total'];
+                    } ?></div>
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Total users</h3>
+                    <p>register this week</p>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-sort-amount-desc"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count"><?php $result=countTotalcompany(); while ($row=$result->fetch_assoc()) {
+                        echo $row['total'];
+                    } ?></div>
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Total Employers</h3>
+                    <p> registers</p>
                 </div>
             </div>
             <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count"><?php $result=countTotalcompanythisWeek(); while ($row=$result->fetch_assoc()) {
+                        echo $row['total'];
+                    } ?></div>
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Total Employers</h3>
+                    <p>register this week.</p>
                 </div>
             </div>
         </div>
@@ -60,6 +68,7 @@
                     <div class="x_title">
                         <h2>Transaction Summary <small>Weekly progress</small></h2>
                         <div class="filter">
+
                             <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                 <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>

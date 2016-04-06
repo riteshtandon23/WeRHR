@@ -3,15 +3,21 @@
 <?php
 require("vendor/autoload.php");
 use Mailgun\Mailgun;
+$fileloc = fopen("email_templates/ExamNotification.php", 'r');
+$fileread = fread($fileloc, filesize("email_templates/ExamNotification.php"));
 if(isset($_POST['submit']))
 	{
     	$domain_id = $_POST['topicId'];
-    	$date=$_POST['Edate'];
+    	$date=$_POST['inputExamdate'];
         $start_time = $_POST['Stime'];
     	$end_time = $_POST['Etime'];
     	$total_question = $_POST['TotalQuestion'];
-    	$exam_date=date_create($date);
-    	$exam_date=date_format($exam_date,"Y-m-d");
+        //echo $date;
+    	// $exam_date=date_create($date);
+    	// $exam_date=date_format($exam_date,"Y-m-d");
+        $exam_date=DateTime::createFromFormat('d/m/Y',$date);
+        $exam_date=$exam_date->format('Y-m-d');
+        //echo $exam_date;
     	$domainID= select_Domain_id($domain_id);
 
     	if(isset($domainID))
@@ -41,10 +47,15 @@ if(isset($_POST['submit']))
                         while ($row=$result->fetch_assoc()) {
                             $fname=$row['firstname'];
                         }
+                        $fileread = str_replace("#fname#", $fname, $fileread);
+                        $fileread = str_replace("#course#", $domain_id, $fileread);
+                        $fileread = str_replace("#date#", $exam_date, $fileread);
+                        $fileread = str_replace("#stime#", $start_time, $fileread);
+                        $fileread = str_replace("#Eime#", $end_time, $fileread);
                             $mg->sendMessage($domain, array('from'    => 'noreply@werhr.in', 
                                         'to'      => $value, 
                                         'subject' => 'Exam Notification', 
-                                        'text'    => 'Hello, '.$fname.' your '.$domain_id.' exam is on '.$exam_date.' from '.$start_time.' to '.$end_time.'. So be prepared.'));
+                                        'html'    => $fileread));
                             $msg = 'Recovery link is being sent! Please check your email';
                     }
 

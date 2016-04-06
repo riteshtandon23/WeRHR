@@ -505,4 +505,76 @@ function selectUserNameAndEmail()
 	confirm_query($result);
 	return $result;
 }
+function countTotalusers()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select count(reg_date) as total from users";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalusersthisWeek()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="SELECT COUNT( reg_date ) as total FROM users WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalcompany()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select count(reg_date) as total from employers";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalcompanythisWeek()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="SELECT COUNT( reg_date ) as total FROM employers WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getParticipant($examName)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select u1.firstname,u1.email from users u1 inner join participant p1 on u1.email=p1.users where ExamName='$examName'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getAllUsers()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email where p1.users is null";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>
