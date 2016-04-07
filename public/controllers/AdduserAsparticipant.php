@@ -48,8 +48,9 @@
    <?php 
  	if(isset($_GET['DexamName'])){
  		$examName=$_GET['DexamName'];
+ 		$coursename=$_GET['coursename'];
  		$data=array();
- 		$result=getAllUsers($examName);
+ 		$result=getAllUsers($examName,$coursename);
  		while ($row=$result->fetch_assoc()) {
  			$data[]=array("Fname"=>$row['firstname'],"username"=>$row['email']);
  		}

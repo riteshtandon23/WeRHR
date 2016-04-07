@@ -565,14 +565,16 @@ function getParticipant($examName)
 	confirm_query($result);
 	return $result;
 }
-function getAllUsers($examName)
+function getAllUsers($examName,$cname)
 {
 	global $connection;
 	// $stmt=$connection->prepare("call Academic_Result(?,?)");
 	// $stmt->bind_param('ss',$course,$AcademicPercentage);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
+	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
+	$query="select email,firstname from users where email in (select username from user_courses where courses REGEXP '$cname') And email not in (select users from participant where ExamName='$examName')";
+	//$query="select email,firstname from users where email in (select username from user_courses where courses REGEXP '$cname')";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
