@@ -14,6 +14,7 @@
 		
 		$query1 = mysqli_query($connection,"INSERT INTO exam_generation(course_name,exam_date,start_time,end_time,email,total_que,positive_marks,negative_marks) VALUES('$course','$e_date','$stime','$etime','$email','$que','$pmark','$nmark')");
 		
+		
 
 ?>
 <?php

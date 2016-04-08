@@ -453,11 +453,9 @@ function Background_Result($Background)
 	confirm_query($result);
 	return $result;	
 }
-<<<<<<< HEAD
+
 
 //gash
-
-=======
 //stored procedure is to be created
 function CompanyAcademin()
 {
@@ -495,5 +493,5 @@ function selectUserName($arr)
 	confirm_query($result);
 	return $result;
 }
->>>>>>> 61819b4a7c157fb28823a876e59bd683015b0266
+
 ?>
