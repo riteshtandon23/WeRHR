@@ -454,6 +454,8 @@ function Background_Result($Background)
 	return $result;	
 }
 
+
+
 //gash
 
 //stored procedure is to be created
@@ -493,6 +495,7 @@ function selectUserName($arr)
 	confirm_query($result);
 	return $result;
 }
+
 function selectUserNameAndEmail()
 {
 	global $connection;
@@ -579,6 +582,7 @@ function getAllUsers($examName,$cname)
 	confirm_query($result);
 	return $result;
 }
+
 function selectuserAlgodetails($user){
 	global $connection;
 	// $stmt=$connection->prepare("call Academic_Result(?,?)");
@@ -650,4 +654,5 @@ function TestName_ResultforUserSalaryPrediction($testname,$compname)
 	confirm_query($result);
 	return $result;	
 }
+
 ?>

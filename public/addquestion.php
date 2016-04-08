@@ -1,6 +1,12 @@
 <?php require_once("../includes/dbconnection.php");?>
 <?php require_once("../includes/all_functions.php");?>
-<?php session_start(); ?>
+<?php session_start();
+$type=$_SESSION['Type'];
+    if($type!=="employer")
+    {
+        header('Location: login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +71,11 @@
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+							<?php
+												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
+                            <img src="images/<?php echo $row['Profile_pic'];?>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -79,26 +89,23 @@
                     <br />
 
                     <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Dashboard</a>
+                                        <li><a href="home.php">Home</a>
                                         </li>
-                                        <li><a href="index2.html">Dashboard2</a>
-                                        </li>
-                                        <li><a href="index3.html">Dashboard3</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> Exam Generation <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="exam_create.php">create Exam</a>
+                                        <li><a href="exam_create.php">Create Exam</a>
                                         </li>
-                                        <li><a href="addquestion.php">Add question</a>
+                                        <li><a href="addquestion.php">Add Question</a>
                                         </li>
                                         <li><a href="add_topic.php">Add Topic</a>
                                         </li>
@@ -132,45 +139,18 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="tables.html">Tables</a>
-                                        </li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="chartjs.html">Chart JS</a>
-                                        </li>
-                                        <li><a href="chartjs2.html">Chart JS2</a>
-                                        </li>
-                                        <li><a href="morisjs.html">Moris JS</a>
-                                        </li>
-                                        <li><a href="echarts.html">ECharts </a>
-                                        </li>
-                                        <li><a href="other_charts.html">Other Charts </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                               
+                                
                             </ul>
                         </div>
                         <div class="menu_section">
                             <h3>Live On</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-bug"></i> Company Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="e_commerce.html">E-commerce</a>
+                                        <li><a href="cprofile.php">Update profile</a>
                                         </li>
-                                        <li><a href="projects.html">Projects</a>
-                                        </li>
-                                        <li><a href="project_detail.html">Project Detail</a>
-                                        </li>
-                                        <li><a href="contacts.html">Contacts</a>
-                                        </li>
-                                        <li><a href="profile.html">Profile</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
@@ -227,13 +207,17 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt=""><?php echo  $_SESSION["fname"];
+									<?php
+												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
+                                    <img src="images/<?php echo $row['Profile_pic'];?>" alt=""><?php echo  $_SESSION["fname"];
 									echo  $_SESSION["lname"];
 									?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
+                                    <li><a href="cprofile.php">  Profile</a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
@@ -244,7 +228,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="logout_process.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>

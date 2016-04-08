@@ -1,4 +1,60 @@
 <?php require_once("../includes/dbconnection.php");?>
+<?php session_start(); 
+$type=$_SESSION['Type'];
+    if($type!=="employer")
+    {
+        header('Location: login.php');
+    }
+	
+if(isset($_POST['submit']))
+{
+	if(!empty($_FILES['image']) || $_FILES['image']['size']>0){
+		
+        $name = mysqli_escape_string($connection,$_FILES['image']['name']);
+	//echo	$name;
+        $type = $_FILES['image']['type'];
+        $error = $_FILES['image']['error'];
+        $size = $_FILES['image']['size'];
+        $temp = $_FILES['image']['tmp_name'];
+
+
+        if($error > 0)
+        {
+       //  echo "eer";
+        }
+        else
+        {
+            if($size > 10000000)
+                echo "Format not allowed or file size is too big!";
+            elseif (substr($type,0,5)=='image') {
+               
+                    if($name)
+                        move_uploaded_file($temp,"images/".$name);   
+						}
+		}
+		
+}
+	
+
+
+	$fname= ($_POST['fname']);
+		$lname = $_POST['lname'];
+		$email = $_POST['email'];
+		$o_name = ($_POST['oname']);
+		$country = ($_POST['country']);
+		$state = ($_POST['state']);
+		$city = ($_POST['city']);
+		$o_url= ($_POST['url']);
+		$contact= ($_POST['contact']);
+		$o_add= ($_POST['address']);
+		
+		
+	$query1 = mysqli_query($connection,"update employers set firstname='$fname',lastname='$lname',email='$email',companyName='$o_name',state='$state',country='$country',city='$city',companyWebsite='$o_url',address='$o_add',contact='$contact',Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
+	//echo $query1;
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,18 +110,24 @@
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WeRhR!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+							<?php
+												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
+                            <img src="images/<?php echo $row['Profile_pic'];?>" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>Anthony Fernando</h2>
+                            <h2><?php echo  $_SESSION["fname"];
+									echo  $_SESSION["lname"];
+									?></h2>
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
@@ -73,28 +135,25 @@
                     <br />
 
                     <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Dashboard</a>
+                                        <li><a href="home.php">Home</a>
                                         </li>
-                                        <li><a href="index2.html">Dashboard2</a>
-                                        </li>
-                                        <li><a href="index3.html">Dashboard3</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-edit"></i> Exam Generation <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="form.html">General Form</a>
+                                        <li><a href="exam_create.php">Create Exam</a>
                                         </li>
-                                        <li><a href="form_advanced.html">Advanced Components</a>
+                                        <li><a href="addquestion.php">Add Question</a>
                                         </li>
-                                        <li><a href="form_validation.html">Form Validation</a>
+                                        <li><a href="add_topic.php">Add Topic</a>
                                         </li>
                                         <li><a href="form_wizards.html">Form Wizard</a>
                                         </li>
@@ -126,45 +185,18 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="tables.html">Tables</a>
-                                        </li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="chartjs.html">Chart JS</a>
-                                        </li>
-                                        <li><a href="chartjs2.html">Chart JS2</a>
-                                        </li>
-                                        <li><a href="morisjs.html">Moris JS</a>
-                                        </li>
-                                        <li><a href="echarts.html">ECharts </a>
-                                        </li>
-                                        <li><a href="other_charts.html">Other Charts </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                               
+                                
                             </ul>
                         </div>
                         <div class="menu_section">
                             <h3>Live On</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-bug"></i> Company Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="e_commerce.html">E-commerce</a>
+                                        <li><a href="cprofile.php">Update profile</a>
                                         </li>
-                                        <li><a href="projects.html">Projects</a>
-                                        </li>
-                                        <li><a href="project_detail.html">Project Detail</a>
-                                        </li>
-                                        <li><a href="contacts.html">Contacts</a>
-                                        </li>
-                                        <li><a href="profile.html">Profile</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
@@ -221,11 +253,14 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+								
+                                    <img src="images/<?php echo $row['Profile_pic'];?>" alt=""><?php echo  $_SESSION["fname"];
+									echo  $_SESSION["lname"];
+									?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
+                                    <li><a href="cprofile.php">  Profile</a>
                                     </li>
                                     <li>
                                         <a href="javascript:;">
@@ -236,7 +271,7 @@
                                     <li>
                                         <a href="javascript:;">Help</a>
                                     </li>
-                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="logout_process.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </li>
@@ -292,7 +327,11 @@
                                     <li>
                                         <a>
                                             <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
+												<?php
+												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
+                                        <img src="images/<?php echo $row['Profile_pic'];?>" alt="Profile Image" />
                                     </span>
                                             <span>
                                         <span>John Smith</span>
@@ -323,58 +362,135 @@
 
 
             <!-- page content -->
-            <div class="right_col" role="main">
+            <div class="right_col" role="main" style="background-color:white">
+			<div class="x_content" >
+    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+             <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Company Profile</a>
+             </li>
+        </ul>
+      
+         <div id="myTabContent" class="tab-content">
+             <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+             
+                 <div class="x_content">
+                    <form class="form-horizontal form-label-left" action="cprofile.php" method="POST" novalidate enctype="multipart/form-data">
+					<?php 
+$result = mysqli_query($connection,"SELECT * FROM employers WHERE email='". $_SESSION["email"]."'");
+$row=mysqli_fetch_array($result,MYSQL_ASSOC)
+	
+ ?>
+                            <div class="col-lg-2 col-md-2 col-sm-2 pull-left">
+                                <div class="item form-group">
+                                <div class="avatar-view col-lg-4" title="Change the avatar">
+								
+                                <img src="images/<?php echo $row['Profile_pic'];?>" id="ADP" name="ADP" alt="Avatar">
+								
+                                <input type="hidden" id="name" name="name" value="">
+                                </div>
+                                <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'>
+								  
+                                </div> 
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pull-right">
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminName">First Name<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="fname" class="form-control col-md-7 col-xs-12"  name="fname" Value="<?php echo $row['firstname'];?>" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminLName">Last Name<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="lname" class="form-control col-md-7 col-xs-12"  name="lname" Value="<?php echo $row['lastname'];?>" required="required" type="text">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['email'];?>">
+                                </div>
+                            </div>
+							 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization Name<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="oname" class="form-control col-md-7 col-xs-12"  name="oname" Value="<?php echo $row['companyName'];?>" required="required" >
+                                </div>
+                            </div>
+								 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">City<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="city" class="form-control col-md-7 col-xs-12"  name="city" Value="<?php echo $row['city'];?>" required="required" >
+                                </div>
+                            </div>
+								 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">State<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="state" class="form-control col-md-7 col-xs-12"  name="state" Value="<?php echo $row['state'];?>" required="required" >
+                                </div>
+                            </div>
+								 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Country<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="country" class="form-control col-md-7 col-xs-12"  name="country" Value="<?php echo $row['country'];?>" required="required" >
+                                </div>
+                            </div>
+								 <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization URL<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="url" class="form-control col-md-7 col-xs-12"  name="url" Value="<?php echo $row['companyWebsite'];?>" required="required" >
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Contact No<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="contact" class="form-control col-md-7 col-xs-12"  name="contact" Value="<?php echo $row['contact'];?>" required="required" type="number">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminAddress">Organization Address<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="address" name="address" class="form-control col-md-7 col-xs-12" value="<?php echo $row['address'];?>"></textarea>
+                            </div>
+                        </div>
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Update</button>
+                             </div>
+                        </div>
+                        </div>
+                    </form>
+                 </div>
+            </div>
+         </div>
+    </div>
+</div>
+ <footer >
+                    <div class="">
+                        <p class="pull-right">We are the Human Resource WAH.. |
+                            <span class="lead"> <i class="fa fa-paw"></i> Lovely Infotech!</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                                  
+			</div>
 
                 <!-- top tiles -->
-                <div class="row tile_count">
-				
-                   
-                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                       
-                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                       
-                    </div>
-                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                      
-                    </div>
-                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                        
-                    </div>
-                    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-                       
-                        </div>
-                    </div>
+             
 
-                </div>
-                <!-- /top tiles -->
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="dashboard_graph">
-
-                          
-                            <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-                               
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                    
-                                   
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-6">
-                                   
-                                   
-                                </div>
-
-                            </div>
-
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-
-                </div>
-                <br />
-
-                <div class="row">
-
+                     
 
                   
 
@@ -383,57 +499,19 @@
 
                    
 
-                </div>
 
-
-                <div class="row">
-                    
-
-
-                    <div class="col-md-8 col-sm-8 col-xs-12">
-
-
-
-                        <div class="row">
-
-                           
-                        </div>
-                        <div class="row">
-
-
-                            <!-- Start to do list -->
-                            
-                            </div>
                             <!-- End to do list -->
 
 
                             <!-- start of weather widget -->
                    
                             <!-- end of weather widget -->
-                        </div>
+                       
 
-
-
-
-
-
-
-
-
-                    </div>
-
-                </div>
+               
 
                 <!-- footer content -->
 
-                <footer>
-                    <div class="">
-                        <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
-                            <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
-                        </p>
-                    </div>
-                    <div class="clearfix"></div>
-                </footer>
                 <!-- /footer content -->
             </div>
             <!-- /page content -->
@@ -681,6 +759,24 @@
                 $('#reportrange').data('daterangepicker').remove();
             });
         });
+    </script>
+	 <script>
+    //load image
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ADP')
+                        .attr('src', e.target.result)
+                        .width(220)
+                        .height(220);
+                        
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
     <script>
         NProgress.done();
