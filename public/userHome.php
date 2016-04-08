@@ -43,41 +43,17 @@
             <h3><?php  echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
             <?php
                 $email=$_SESSION["email"];
-                $row=mysqli_fetch_assoc($connection->query("call selectAddress('$email')"));
-                //$result=selectAddress($email);
-                //while($row = $result->fetch_assoc()){
+               // $row=mysqli_fetch_assoc($connection->query("call selectAddress('$email')"));
+                $result=selectAddress($email);
+                while($row = $result->fetch_assoc()){
                     $Address=$row['address'];
                     $city=$row['city'];
                     $state=$row['state'];
                     $country=$row['country'];
-           //}
-                //}
-             ?>
-            <ul class="list-unstyled user_data">
-                <li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $Address.", ".$city.", ".$state;  ?>
-                </li>
-                <li><i class="fa fa-flag"></i> <?php echo $country; ?>
-                </li>
-            </ul>
-
-            <!-- end of image cropping -->
-
-        </div>
-        <h3><?php  echo $_SESSION['fname']." ".$_SESSION['lname']; ?></h3>
-        <?php 
-            $resul10=selectAddress($_SESSION["email"]);
-// mysqli_fetch_assoc($resul10) or die(mysqli_error($connection));
-            $email=$_SESSION["email"];
-            //$resul10=$connection->query("call selectAddress('$email')");
-            // while ($row1=$resul10->fetch_assoc()) {
            
-        while ($row1=$resul10->fetch_assoc()) {
-               $Address=$row1['address'];
-               $city=$row1['city'];
-               $state=$row1['state'];
-               $country=$row1['country'];
-            }
-         ?>
+                }
+             ?>
+            
         <ul class="list-unstyled user_data">
             <li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $Address.", ".$city.", ".$state.", ".$country; ?>
             </li>

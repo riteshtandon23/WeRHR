@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
 	$state = ($_POST['state']);
 	$country = ($_POST['country']);
 	$password = ($_POST['password']);
+	$date=date("Y-m-d");
 	$sequence2 = md5($email);		#encrypting email as emal is unique
 	$sequence = sha1($sequence2);	#to be used in activation url
 	$fileread = str_replace("#fname#", ucfirst($fname), $fileread);
@@ -35,7 +36,7 @@ if(isset($_POST['submit'])){
 	else
 	{
 		//$query1 = mysqli_query($con,"INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status,sequence) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$company','$password','0','$sequence')");
-		$res = $connection->query("INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status,sequence) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$country','$password','0','$sequence')");
+		$res = $connection->query("INSERT INTO employers(firstname,lastname,email,contact,companyName,companyWebsite,address,city,state,country,password,act_status,sequence,reg_date) VALUES('$fname','$lname','$email','$mobile','$company','$web','$address','$city','$state','$country','$password','0','$sequence','$date')");
 		$row = mysqli_fetch_assoc($res);
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['sequence'] = $sequence;

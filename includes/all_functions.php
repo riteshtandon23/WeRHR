@@ -455,7 +455,9 @@ function Background_Result($Background)
 }
 
 
+
 //gash
+
 //stored procedure is to be created
 function CompanyAcademin()
 {
@@ -489,6 +491,93 @@ function selectUserName($arr)
 	// $stmt->execute();
 	// $result=$stmt->get_result();
 	$query="select firstname from users where email='$arr' LIMIT 1";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+
+function selectUserNameAndEmail()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select firstname,email from users";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalusers()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select count(reg_date) as total from users";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalusersthisWeek()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="SELECT COUNT( reg_date ) as total FROM users WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalcompany()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select count(reg_date) as total from employers";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countTotalcompanythisWeek()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="SELECT COUNT( reg_date ) as total FROM employers WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getParticipant($examName)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select u1.firstname,u1.email from users u1 inner join participant p1 on u1.email=p1.users where ExamName='$examName'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getAllUsers($examName,$cname)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
+	$query="select email,firstname from users where email in (select username from user_courses where courses REGEXP '$cname') And email not in (select users from participant where ExamName='$examName')";
+	//$query="select email,firstname from users where email in (select username from user_courses where courses REGEXP '$cname')";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

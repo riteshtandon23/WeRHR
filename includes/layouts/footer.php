@@ -232,7 +232,7 @@
     <script type="text/javascript" src="js/datepicker/daterangepicker.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#Edate').daterangepicker({
+            $('#inputExamdate').daterangepicker({
                 singleDatePicker: true,
                 calender_style: "picker_1"
             }, function (start, end, label) {
