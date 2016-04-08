@@ -8,29 +8,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>WeRHR | Hire and get Hired!</title>
+    <title>WeRHR!| </title>
 
     <!-- Favicon --> 
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
-        <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
-        <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
-        <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
-        <meta name="application-name" content="&nbsp;"/>
-        <meta name="msapplication-TileColor" content="#FFFFFF" />
-        <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
-        <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
-        <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
-        <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
-        <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="images/favicon/apple-touch-icon-57x57.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/favicon/apple-touch-icon-114x114.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/favicon/apple-touch-icon-72x72.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/favicon/apple-touch-icon-144x144.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="images/favicon/apple-touch-icon-60x60.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/favicon/apple-touch-icon-120x120.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="images/favicon/apple-touch-icon-76x76.png" />
+	    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/favicon/apple-touch-icon-152x152.png" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-196x196.png" sizes="196x196" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-96x96.png" sizes="96x96" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png" sizes="32x32" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png" sizes="16x16" />
+	    <link rel="icon" type="image/png" href="images/favicon/favicon-128.png" sizes="128x128" />
+	    <meta name="application-name" content="&nbsp;"/>
+	    <meta name="msapplication-TileColor" content="#FFFFFF" />
+	    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png" />
+	    <meta name="msapplication-square70x70logo" content="images/favicon/mstile-70x70.png" />
+	    <meta name="msapplication-square150x150logo" content="images/favicon/mstile-150x150.png" />
+	    <meta name="msapplication-wide310x150logo" content="images/favicon/mstile-310x150.png" />
+	    <meta name="msapplication-square310x310logo" content="images/favicon/mstile-310x310.png" />
 
     <!-- Bootstrap core CSS -->
 
@@ -45,6 +45,10 @@
 
 
     <script src="js/jquery.min.js"></script>
+
+    <!-- Image Cropper -->
+    <link rel="stylesheet" type="text/css" href="css/cropper/main.css">
+    <link rel="stylesheet" type="text/css" href="css/cropper/cropper.min.css">
 
     <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -61,12 +65,14 @@
 <?php
 session_start();
 $email = $_SESSION['email'];
-$result =$connection->query("SELECT Profile_pic FROM users WHERE email='$email'");
-while($row=$result->fetch_assoc()){
-    $pic=$row['Profile_pic']; 
-}
+
+$result=profilepic($_SESSION["email"]);
+while($row=$result->fetch_assoc())
+{
+    $pic=$row['Profile_pic'];
+} 
 ?>
-<body class="nav-md" onload="startTime()">
+<body class="nav-md">
 
     <div class="container body">
 
@@ -77,15 +83,15 @@ while($row=$result->fetch_assoc()){
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="userHome.php" class="site_title"><img src="images/Logo_Minimal_Logo_Only.svg" alt="WERHR Logo"> <span>WeRHR!</span></a>
+                        <a href="userHome.php" class="site_title"><i class="fa fa-paw"></i> <span>WeRHR!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="User's DP" class="img-circle profile_img">
-                            <!--img src="images/userImage/users.png" " alt="Profile_Picture" class="img-circle profile_img"-->
+                            <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "users.png";}?>" alt="..." class="img-circle profile_img">
+                            
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -110,7 +116,7 @@ while($row=$result->fetch_assoc()){
                                 </li>
                                 <li><a><i class="fa fa-book"></i>Courses<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="userSelectedCourses.php">My Courses</a>
+                                        <li><a href="#">My Courses</a>
                                         </li>
                                         <li><a href="userCoursesAvailable.php">Courses Available</a>
                                         </li>
@@ -141,14 +147,6 @@ while($row=$result->fetch_assoc()){
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-calculator"></i>Analysis<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="userSalaryPredictor.php">Salary Predictor</a>
-                                        </li>
-                                        <li><a href="#">About Salary Predictor</a>
-                                        </li>
-                                    </ul>
-                                </li>
                             </ul>
                         </div>
                         <div class="menu_section">
@@ -162,7 +160,7 @@ while($row=$result->fetch_assoc()){
                                 </li>
                                 <li><a><i class="fa fa-user"></i> Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="edit_profile_user.php">Edit Profile</a>
+                                        <li><a href="">Edit Profile</a>
                                         </li>
                                         <li><a href="userDataforAlgo.php">Data Required for Algorithm</a>
                                         </li>
@@ -228,7 +226,7 @@ while($row=$result->fetch_assoc()){
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
@@ -302,10 +300,6 @@ while($row=$result->fetch_assoc()){
                                 </ul>
                             </li>
 
-                            <li >
-                <a id="currentTime"><i class="fa fa-hourglass"></i></a>
-                        </li>
-
                         </ul>
                     </nav>
                 </div>
@@ -333,4 +327,4 @@ while($row=$result->fetch_assoc()){
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>        
+                    <div class="clearfix"></div>

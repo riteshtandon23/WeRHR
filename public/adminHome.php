@@ -16,9 +16,9 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-caret-square-o-right"></i>
                     </div>
-                    <div class="count"><label id="hhh"><?php $result=countTotalusers(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><label id="hhh"><a href="#"><?php $result=countTotalusers(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
-                    } ?></label></div>
+                    } ?></a></label></div>
 
                     <h3>Totals users</h3>
                     <p>register</p>
@@ -28,9 +28,9 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-comments-o"></i>
                     </div>
-                    <div class="count"><?php $result=countTotalusersthisWeek(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="#"><?php $result=countTotalusersthisWeek(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
-                    } ?></div>
+                    } ?></a></div>
 
                     <h3>Total users</h3>
                     <p>register this week</p>
@@ -40,9 +40,9 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-sort-amount-desc"></i>
                     </div>
-                    <div class="count"><?php $result=countTotalcompany(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="#"><?php $result=countTotalcompany(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
-                    } ?></div>
+                    } ?></a></div>
 
                     <h3>Total Employers</h3>
                     <p> registers</p>
@@ -52,9 +52,9 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o"></i>
                     </div>
-                    <div class="count"><?php $result=countTotalcompanythisWeek(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="#"><?php $result=countTotalcompanythisWeek(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
-                    } ?></div>
+                    } ?></a></div>
 
                     <h3>Total Employers</h3>
                     <p>register this week.</p>

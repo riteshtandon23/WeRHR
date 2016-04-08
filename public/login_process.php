@@ -23,13 +23,20 @@ if($result->num_rows > 0){
     $_SESSION["lname"] = $row['lastname'];
     $_SESSION["id"] = $row['id'];
     $_SESSION["email"]=$username;
-    
+    $status="Active";
     if($row['type']=="user" AND $row['act_status']=="1")
     {
+
+        $stmt=$connection->prepare("call statususer(?,?)");
+        $stmt->bind_param('ss',$username,$status);
+        $stmt->execute();
         header('Location:userHome.php');
     }
     elseif($row['type']=="employer" && $row['act_status']=="1")
     {
+        $stmt=$connection->prepare("call statuscomp(?,?)");
+        $stmt->bind_param('ss',$username,$status);
+        $stmt->execute();
        header('Location:home.php'); 
     }
     else{

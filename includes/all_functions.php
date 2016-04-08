@@ -579,4 +579,75 @@ function getAllUsers($examName,$cname)
 	confirm_query($result);
 	return $result;
 }
+function selectuserAlgodetails($user){
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select Academics,Percentage,Background from user_data_foralgo where username='$user'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function Percentage_ResultforUserSalaryPrediction($course,$comp)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select PercentageRange,Percentage from academic where Qualification='$course' AND Company='$comp'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function AgeofUser($user)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call AgeRange_Result(?)");
+	// $stmt->bind_param('s',$AgeRange);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select ROUND(DATEDIFF(NOW(),users.DOB)/365.25) as age from users where email='$user'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function AgeRange_ResultforUserSalaryPrediction($comp)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call AgeRange_Result(?)");
+	// $stmt->bind_param('s',$AgeRange);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select Age_Range,Percentage from age where Company='$comp'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function TestResult($testname,$user)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call AgeRange_Result(?)");
+	// $stmt->bind_param('s',$AgeRange);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select Scores,Total from userresults where users='$user' AND ExamName='$testname'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function TestName_ResultforUserSalaryPrediction($testname,$compname)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call TestName_Result(?)");
+	// $stmt->bind_param('s',$TestName);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select Percentage from test_conduct where Test_Name='$testname' AND Company='$compname'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
 ?>
