@@ -16,7 +16,7 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-caret-square-o-right"></i>
                     </div>
-                    <div class="count"><label id="hhh"><a href="#"><?php $result=countTotalusers(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><label id="hhh"><a href="wearehrusers.php?key=111000111"><?php $result=countTotalusers(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
                     } ?></a></label></div>
 
@@ -28,7 +28,7 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-comments-o"></i>
                     </div>
-                    <div class="count"><a href="#"><?php $result=countTotalusersthisWeek(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="wearehrusers.php?key=111000121"><?php $result=countTotalusersthisWeek(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
                     } ?></a></div>
 
@@ -40,7 +40,7 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-sort-amount-desc"></i>
                     </div>
-                    <div class="count"><a href="#"><?php $result=countTotalcompany(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="wearehrusers.php?key=111000211"><?php $result=countTotalcompany(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
                     } ?></a></div>
 
@@ -52,7 +52,7 @@
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o"></i>
                     </div>
-                    <div class="count"><a href="#"><?php $result=countTotalcompanythisWeek(); while ($row=$result->fetch_assoc()) {
+                    <div class="count"><a href="wearehrusers.php?key=111000311"><?php $result=countTotalcompanythisWeek(); while ($row=$result->fetch_assoc()) {
                         echo $row['total'];
                     } ?></a></div>
 

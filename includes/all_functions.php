@@ -654,5 +654,62 @@ function TestName_ResultforUserSalaryPrediction($testname,$compname)
 	confirm_query($result);
 	return $result;	
 }
+function DisplayAllUsers($id)
+{
+	if(isset($id))
+	{
+		switch ($id) {
+			case '111000111':
+				$query="select firstname,lastname,Status from users";
+				break;
+			case '111000121':
+				$query="select firstname,lastname,Status from users WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+				break;
+			case '111000211':
+				$query="select firstname,lastname,Status from employers";
+				break;
+			case '111000311':
+				$query="select firstname,lastname,Status from employers WHERE reg_date > DATE_SUB( NOW( ) , INTERVAL 1 WEEK )";
+				break;
+			default:
+				# code...
+				break;
+		}
+		global $connection;
+	// $stmt=$connection->prepare("call TestName_Result(?)");
+	// $stmt->bind_param('s',$TestName);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+	}
+	
+}
+function DisplayAllUsersDetails($id)
+{
+	if(isset($id))
+	{
+		switch ($id) {
+			case '111111':
+				$query="select email,firstname,lastname,address,city,country,Status,act_status from users";
+				break;
+			case '111112':
+				$query="select email,firstname,lastname,address,city,country,Status,act_status from employers";
+				break;
+			default:
+				# code...
+				break;
+		}
+		global $connection;
+	// $stmt=$connection->prepare("call TestName_Result(?)");
+	// $stmt->bind_param('s',$TestName);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+	}
+}
 
 ?>

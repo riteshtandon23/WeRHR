@@ -125,11 +125,11 @@
                                         
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="tables.html">Tables</a>
+                                        <li><a href="usersAndemployersDetails.php?key=111111">Users</a>
                                         </li>
-                                        <li><a href="#">Table Dynamic</a>
+                                        <li><a href="usersAndemployersDetails.php?key=111112">Employers</a>
                                         </li>
                                     </ul>
                                 </li>

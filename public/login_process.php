@@ -40,7 +40,7 @@ if($result->num_rows > 0){
        header('Location:home.php'); 
     }
     else{
-        $Error="You have not activated your account"; 
+        $Error="You have not activated your account or You have been blocked by the Administrator. Contact Administrator to continuing using the account. Thank You"; 
         header("location:login.php?Error=" . $Error); 
     }
 }

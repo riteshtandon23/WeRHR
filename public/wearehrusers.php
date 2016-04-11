@@ -10,42 +10,23 @@
                 <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr class="headings">
-                             <th>Topic Name</th>
-                             <th>Question Name</th>
-                             <th>Question Type</th>
-                             <th>Question Option</th>
-                             <th>Question Answer</th>
-                             <th>Positive Mark</th>
-                             <th>Negative mark</th>
-                             <th>Question Description</th>
-                             <th class=" no-link last"><span class="nobr">Action</span>
+                             <th>Username</th>
+                             <th>User LastName</th>
+                             <th>User Status</th>
                              </th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
-                   
-                    	$result= selectQuestion();
-                    	while($row=$result->fetch_assoc())
-						{
-                            $QuestionChecked=$row["Final_Question"];
-                            $id=$row["Question_Id"];
-                            echo "<tr class=\"even pointer\">";
-                            echo "<td class=\" \">".$row["Topic_Name"]."</td>";
-                            echo "<td class=\" \">".htmlspecialchars($row["Question_Name"])."</td>";
-                            echo "<td class=\" \">".$row["Question_Type"]."</td>";
-                            echo "<td class=\" \">".htmlspecialchars($row["Answer_Option"])."</td>";
-                            echo "<td class=\" \">".htmlspecialchars($row["Answer"])."</td>";
-                            echo "<td class=\" \">".htmlspecialchars($row["Positive_Mark"])."</td>";
-                            echo "<td class=\" \">".htmlspecialchars($row["Negative_Mark"])."</td>";
-                            echo "<td class=\" \">".$row["Question_Desc"]."</td>";
-                            
-                            echo "<td class=\" last\"><div class=\"buttons\"><a href=\"editOption.php?id=$id\"><button type=\"button\" name=\"editquestion\" id=\"editquestion\" class=\"btn btn-info btn-xs\">Edit</button></a>
-                                <input type=\"hidden\" name=\"QuestionId\" id=\"QuestionId\" class=\"tableflat\" value=".$row["Question_Id"]."></div>";
-                            echo "</td>";
-                            echo "</tr>";
-                    	   //echo "";
-                    	}
+                    if(isset($_GET['key']))
+                    	$result= DisplayAllUsers($_GET['key']);
+                    while ($row=$result->fetch_assoc()) {
+                        echo "<tr class=\"even pointer\">";
+                        echo "<td class=\" \">".$row["firstname"]."</td>";
+                        echo "<td class=\" \">".htmlspecialchars($row["lastname"])."</td>";
+                        echo "<td class=\" \">".$row["Status"]."</td>";
+                        echo "</tr>";
+                    }
                     ?>
                     </tbody>
                  </table>
