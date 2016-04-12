@@ -80,6 +80,22 @@ if(isset($_GET['id4']))
 
 }
  ?>
+   <?php 
+if(isset($_GET['key']))
+{
+	$id=$_GET['key'];
+	if($id!==null)
+	{
+			$data=array();
+		$result=DisplayRole($id);
+		while ($row=$result->fetch_assoc()) {
+			$data[]=$row['Roles'];
+		}
+		echo json_encode($data);
+	}
+
+}
+ ?>
 <?php
 if(isset($connection))
 {

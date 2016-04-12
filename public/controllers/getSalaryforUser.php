@@ -41,6 +41,7 @@
  		$user=$_SESSION["email"];
  		$compname=$_GET['compname'];
  		$testname=$_GET['testname'];
+ 		$role=$_GET['role'];
  		$Aca=null;
 		$Per=null;
 		$Bck=null;
@@ -113,8 +114,15 @@
  		//echo $AcademicValue." ".$Backgrd." ".$AgeValue." ".$testVal."<br>";
 		if($flag!==0)
 		{
+			$salary=0;
 			$total=$AcademicValue+$Backgrd+$AgeValue+$testVal;
-			echo json_encode($total);
+			$result5=DisplaySalaryWithRole($role,$compname);
+			while ($row5=$result5->fetch_assoc()) {
+				$salary=$row5['Salary_P_A'];
+			}
+			$salary=($salary*100000);
+			$total=(($total/100)*$salary);
+			echo json_encode("Your Predicted Salary is Rs. ".$total);
 		}
 		else
 		{
