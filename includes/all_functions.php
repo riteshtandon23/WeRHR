@@ -103,27 +103,27 @@ function getQuestion($cname)
 
 }
 //checking for set/unset question or count the number of set question
-function CountVisibleQuestion($cname)
+function CountVisibleQuestion($cname,$Edate)
 {
 	global $connection;
 	// $stmt=$connection->prepare("call CountVisibleQuestion(?)");
 	// $stmt->bind_param('s',$cname);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select count(Final_Question) as Visible from question where Final_Question=1 AND Topic_Name='$cname' LIMIT 1";
+	$query="select count(Final_Question) as Visible from question where Final_Question=1 AND Topic_Name='$cname' AND Exam_Date='$Edate' LIMIT 1";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
 } 
 //select Date and Time of Exam
-function SelectExamDateTime($cid,$todayDate)
+function SelectExamDateTime($Eid)
 {
 	global $connection;
 	// $stmt=$connection->prepare("call SelectExamDate(?,?)");
 	// $stmt->bind_param('ss',$cid,$todayDate);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select Exam_Date,Total_Question from exam_details where Topic_id='$cid' AND Exam_Date='$todayDate'";
+	$query="select SerialNo from participant where ExamName='$Eid' AND Users='lamaredaoyit@yahoo.com'";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -400,7 +400,7 @@ function SelectQuestionAnswer($cname)
 	// $stmt->bind_param('s',$cname);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select Question_Type,Answer_Option,Answer from question where Topic_Name='$cname' AND Final_Question=1 ORDER BY Question_Id ASC";
+	$query="select Question_Type,Answer_Option,Answer,Positive_Mark,Negative_Mark from question where Topic_Name='$cname' AND Final_Question=1 ORDER BY Question_Id ASC";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;	
@@ -733,7 +733,31 @@ function DisplaySalaryWithRole($id,$comp){
 	// $result=$stmt->get_result();
 	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
 	$query="select Salary_P_A from salarydetails where Roles='$id' AND Company='$comp'";
-	//$query="select email,firstname from users where email in (select username from user_courses where courses REGEXP '$cname')";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function selectUserWithId($id)
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
+	$query="select email from users where id='$id' LIMIT 1";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getUserforDisplay($id){
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
+	$query="SELECT firstname,lastname FROM users WHERE email='$id' LIMIT 1";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

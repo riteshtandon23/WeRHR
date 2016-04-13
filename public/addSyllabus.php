@@ -42,11 +42,14 @@
 	}
 ?>
 <?php  
-    if(isset($_POST['Agree']))
+    if(isset($_POST['Agree']) && isset($_SESSION["email"]))
     {
-        $result3=CountVisibleQuestion($_SESSION["CName"]);
+        //echo $_SESSION["email"];
+        $cn=$_SESSION["CName"];
+          $todayDate=date("Y-m-d");
+        $result3=CountVisibleQuestion($_SESSION["CName"],$todayDate);
         while ($row1=$result3->fetch_assoc()) {
-            $visi=$row1['Visible'];
+            $visi=(int)$row1['Visible'];
         }
         $result=select_Domain_id($_SESSION["CName"]);
         $id="";
@@ -55,16 +58,15 @@
         {
             $id=$row["Topic_id"];
         }
-        //$todayDate=date("Y-m-d");
-        $result4=SelectExamDateTime($id,"2016-03-03");
+        $result4=SelectExamDateTime($_SESSION["CName"].$todayDate);
         while ($row2=$result4->fetch_assoc()) {
-            $examDate=$row2['Exam_Date'];
+            $examDate=$row2['SerialNo'];
         }
         if($visi !== 0)
         {
             
-            // if(isset($examDate))
-            // {
+            if(isset($examDate))
+            {
                 $result2=SelectExamTime($id);
                 while($row=$result2->fetch_assoc())
                 {
@@ -73,14 +75,17 @@
                 $_SESSION["CId"]=$id;
                 $_SESSION["TtoGo"]=$time;
                 redirect_to("attempExam.php");
+               // echo "success";
             }else
             {
-                redirect_to("success.php");
+               redirect_to("Instruction.php?CName=".$cn."&key=111000111");
+                //echo "no exam Available for u";
             }
-        // }else
-        // {
-        //     redirect_to("success.php");
-        // }
+        }else
+        {
+            redirect_to("Instruction.php?CName=".$cn."&key=111111000");
+            //echo "no question";
+        }
     }
 ?>
 <?php

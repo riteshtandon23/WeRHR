@@ -3,7 +3,9 @@
  <?php 
     if(!isset($_SESSION['TtoGo']))
     {
-        redirect_to("login.php");
+        redirect_to("logout_process.php");
+        // session_start();
+        // session_destroy();
     }
   ?>
 <!DOCTYPE html>

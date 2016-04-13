@@ -5,7 +5,8 @@
 	{
 		session_start();
 		$CName=$_SESSION["CName"];
-		session_destroy();
+		//session_destroy();
+		unset($_SESSION['TtoGo']);
 		$userAns=$_GET['UserAns'];
 		//$userAns=htmlspecialchars($userAns);
 		$userAns=substr($userAns, 1,-1);

@@ -19,46 +19,8 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
 </head>
-<body class="nav-md">
-    <div class="container body">
-		 <div class="main_container">
-			<div class="row">
-				<div id="answersheet" style="margin-top:70px" class="mainbox col-md-7 col-md-offset-3 col-sm-7 col-sm-offset-4">
-					<div class="panel panel-info">
-
-					    <div class="panel-heading">
-					    <h3>Your score</h3>
-						</div>
-						<div class="panel-body">
-							<form id="infoform1" method="POST" class="form-horizontal" role="form">  
-								<div class="form">		
-								</div>
-					            <div class="col-md-9 col-md-offset-1 col-sm-9 col-sm-offset-1" align="center">
-									<div class="x_panel">
-										<div class="x_title">
-											<h2><label ><h4>&nbsp;&nbsp; Course Name:&nbsp;&nbsp;<?php echo $_GET['cname']; ?></h4></label> <small></small></h2>
-											<div class="clearfix"></div>
-										</div>
-										<div class="x_content">
-											<canvas id="canvas_bar"></canvas>
-										</div>
-									</div>
-								</div>
-							
-								<div class="col-md-7 col-md-offset-4 col-sm-10 col-sm-offset-2">
-									<a href="#" class="btn btn-info" role="button">Main Menu</a>
-								
-									<a href="#" class="btn btn-info" role="button">Logout</a>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>  
-		</div>
-    </div>
-    <pre>
     <?php 
+    session_start();
      $arr6=array();
      $arr2=array();
 
@@ -80,40 +42,27 @@
          // print_r($arr2);
         
      ?>
-     </pre>
-    <div id="custom_notifications" class="custom-notifications dsp_none">
-        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-        </ul>
-        <div class="clearfix"></div>
-        <div id="notif-group" class="tabbed_notifications"></div>
-    </div>
-
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- chart js -->
-    <script src="js/chartjs/chart.min.js"></script>
-    <!-- bootstrap progress js -->
-    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-    <!-- icheck -->
-    <script src="js/icheck/icheck.min.js"></script>
-
-    <script src="js/custom.js"></script>
-    <pre>
-    <?php 
+ <?php 
         $arr=array();
         $arr1=array();
         $arr2=array();
         $arr3=array();
+        $checkForNegative=array();
         $score=0;
         $TotalAnswer=0;
+        $WrongAnswer25=0;
+        $Total=0;
         $result2=SelectQuestionAnswer($_GET['cname']);
         while ($row=$result2->fetch_assoc()) {
             $option=$row['Answer_Option'];
             $ans=$row['Answer'];
             $quesType[]=$row['Question_Type'];
+            $positiveMarks[]=$row['Positive_Mark'];
+            $Total+=(int)$row['Positive_Mark'];
+            $negativeMarks[]=$row['Negative_Mark'];
             $arr[]=explode(",",$ans);
             $arr1[]=explode(",",$option); 
+
             $mulans=null;
         }
         //print_r($quesType);
@@ -166,15 +115,19 @@
                 {
                    if($arr2[$i]===$ans1[$j])
                     {
-                        $score+=1;
+                        $checkForNegative[]=$arr2[$i];
+                        //$score+=1;
+                        $score+=(int)$positiveMarks[$i];
                     }
                 }
             }else{
                 $counter=0;
                 $sizeofAns=0;
+                //$tempj=0;
                 $Oans=explode("::", $arr2[$i]);
                 //var_dump($Oans);
                 for($j=0;$j<sizeof($ans1);$j++){
+                   // $tempj=$j;
                     $Uans=explode("::", $ans1[$j]);
                     $Oans1=explode("/",$Oans[1]);
                     $sizeofAns=sizeof($Oans1);
@@ -197,7 +150,9 @@
                 if($counter===$sizeofAns)
                 {
                     //echo "equal";
-                    $score+=1;
+                    //$score+=1;
+                    $checkForNegative[]=$arr2[$i];
+                    $score+=(int)$positiveMarks[$i];
 
                 }
             }
@@ -205,16 +160,16 @@
 
         }
 
-       // echo $score;
-
+       // var_dump($checkForNegative);
+       // var_dump($ans1);
      ?>
-     </pre>
+     
     <?php 
         $arr7=array();
         $arr8=array();
-    	$result=getUserAnswer($_GET['cname']);
+        $result=getUserAnswer($_GET['cname']);
 
-    	 while ($row=$result->fetch_assoc()) {
+         while ($row=$result->fetch_assoc()) {
             $ans=$row['Answer'];
 
         }
@@ -230,15 +185,111 @@
             $temp=explode("::",$ans[$i]);
            // var_dump($temp);
         }
-    	$Edate="2016-03-31";
-    	$totalquestion=CountVisibleQuestion($_GET['cname']);
-    	while ($row=$totalquestion->fetch_assoc()) {
-    		$TotalQuestion=$row['Visible'];
-    	}
+        $todayDate=date("Y-m-d");
+        $totalquestion=CountVisibleQuestion($_GET['cname'],$todayDate);
+        while ($row=$totalquestion->fetch_assoc()) {
+            $TotalQuestion=$row['Visible'];
+        }
+        $score=($score/$Total)*$TotalQuestion;
+        //Negative marking
+         for($i=0;$i<sizeof($ans1);$i++)
+        {
+            if(!in_array($ans1[$i], $checkForNegative))
+            {
+                //echo $ans1[$i];
+                $QN=explode("::", $ans1[$i]);
+                $qn=$QN[0];
+                $qn=($qn-1);
+                $Nm=$negativeMarks[$qn];
+                $Pm=$positiveMarks[$qn];
+                //echo $Nm." ".$Pm;
+                $totalminus=($Nm/$Pm);
+                $score=($score-$totalminus);
+                
+            }
+            else{
+                $WrongAnswer25++;
+            }
+        }
+        //echo  $WrongAnswer25;
      ?>
+     <?php 
+     $email=$_SESSION['email'];
+     $CourseName=$_GET['cname'];
+     $todayDate=date("Y-m-d");
+     $testname=$CourseName.$todayDate;
+        $stmt=$connection->prepare("call adduserresult(?,?,?,?,?,?)");
+        $stmt->bind_param('siisss',$email,$score,$TotalQuestion,$CourseName,$todayDate,$testname);
+        $stmt->execute();
+          ?>
+<body class="nav-md">
+    <div class="container body">
+		 <div class="main_container">
+			<div class="row">
+				<div id="answersheet" style="margin-top:70px" class="mainbox col-md-7 col-md-offset-3 col-sm-7 col-sm-offset-4">
+					<div class="panel panel-info">
+                    <?php 
+                        $result25=getUserforDisplay($_SESSION['email']);
+                        while ($row25=$result25->fetch_assoc()) {
+                            $Name=$row25['firstname'];
+                        }
+                     ?>
+					    <div class="panel-heading">
+					    <h3><?php echo $Name; ?>, Your score is <?php echo $score; ?> out of <?php echo $TotalQuestion; ?></h3>
+						</div>
+						<div class="panel-body">
+							<form id="infoform1" method="POST" class="form-horizontal" role="form">  
+								<div class="form">		
+								</div>
+					            <div class="col-md-9 col-md-offset-1 col-sm-9 col-sm-offset-1" align="center">
+									<div class="x_panel">
+										<div class="x_title">
+											<h2><label ><h4>&nbsp;&nbsp; Course Name:&nbsp;&nbsp;<?php echo $_GET['cname']; ?></h4></label> <small></small></h2>
+											<div class="clearfix"></div>
+										</div>
+										<div class="x_content">
+											<canvas id="canvas_bar"></canvas>
+										</div>
+									</div>
+								</div>
+							
+								<div class="col-md-7 col-md-offset-4 col-sm-10 col-sm-offset-2">
+									<a href="controllers/mainmenu.php" class="btn btn-info" role="button">Main Menu</a>
+								
+									<a href="logout_process.php" class="btn btn-info" role="button">Logout</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>  
+		</div>
+    </div>
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+        </ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- chart js -->
+    <script src="js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="js/icheck/icheck.min.js"></script>
+
+    <script src="js/custom.js"></script>
+   
+   
     <script>    
 	    var max=<?php echo $TotalQuestion; ?>;
-		//var per=100;
+        var WrongAnswe25=<?php echo $WrongAnswer25; ?>;
+		var totalAns=<?php echo sizeof($ans1); ?>;
 		var unAns=(max-Number(<?php echo $TotalAnswer; ?>));
         if(unAns<0)
         {
@@ -249,7 +300,8 @@
         {
             totalMarks=0;
         }
-        var wrongans=(max-(unAns+totalMarks));
+        
+        var wrongans=(totalAns-WrongAnswe25);
         
         var randomScalingFactor = function () {
             return Math.round(Math.random() * 100)
@@ -257,7 +309,7 @@
 
         var barChartData = {
 			
-            labels: ["Total Mark","Your Score","Wrong Answer","UnAnswered"],
+            labels: ["Total Mark","Total Answered","Correct Answered","Wrong Answer","UnAnswered","Your Score"],
 			
             datasets: [
                 {
@@ -266,7 +318,7 @@
                     strokeColor: "#26B99A", //rgba(151,187,205,0.8)
                     highlightFill: "#36CAAB", //rgba(151,187,205,0.75)
                     highlightStroke: "#36CAAB", //rgba(151,187,205,1)
-					data: [max,totalMarks,wrongans,unAns]
+					data: [max,totalAns,WrongAnswe25,wrongans,unAns,totalMarks]
 					
 					
 					

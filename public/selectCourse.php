@@ -13,11 +13,14 @@
 		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Course<span class="caret"></span></button>
 		<ul class="dropdown-menu">
 			<?php 
+				$uid=(int)(11111+41);
+				$uid=decbin($uid);
 				$result=select_Domain();
 				while($row=$result->fetch_assoc())
 				{
-						echo "<li><a href=\"Instruction.php?CName=".$row['topic_Name']."\">".$row['topic_Name']."</a></li>";
+						echo "<li><a href=\"Instruction.php?CName=".$row['topic_Name']."&id=".$uid."\">".$row['topic_Name']."</a></li>";
 				}
+				
 			?>
 		</ul>
 	</div>

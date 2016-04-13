@@ -5,17 +5,32 @@
 <head>
 	<title>WeRHR!</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	   <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
 </head>
 <body>
 <?php
 	session_start();  
-    $_SESSION["CName"]=$_GET['CName'];
+    if(isset($_GET['CName']))
+    {
+    	$_SESSION["CName"]=$_GET['CName'];
+    	if(isset($_GET['id']))
+    	{
+    		$id=bindec($_GET['id']);
+    		$id=(int)($id-11111);
+    		//echo $id;
+    		$result=selectUserWithId($id);
+    		while ($row=$result->fetch_assoc()) {
+    			$uid=$row['email'];
+    		}
+    		$_SESSION['email']=$uid;
+    	}
+    }
 ?>
 <div class="container">
 <div id="answersheet" style="margin-top:50px" class="col-md-8 col-md-offset-1 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-3">
 	<div class="panel panel-info">
-				
+				<?php $todayDate=date("Y-m-d");?>
 		<div class="panel-heading">
 			<div class="panel-title">INSTRUCTION</div>
 		</div>
@@ -49,6 +64,23 @@
 			</form>	
 		</div>	
     </div>
+    <div class="form-group">
+	    <span>
+	        <?php
+	             if (isset($_GET['key'])&&$_GET['key']==="111111000") 
+	            {
+	         ?>
+	                <label style="color:red" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label> 
+
+	        <?php
+	            }elseif (isset($_GET['key'])&&$_GET['key']==="111000111"){
+
+	            
+	        ?>
+	        <label style="color:green" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label>
+	        <?php } ?>
+	    </span>
+	</div>
 </div>
 </div>
 <script src="js/bootstrap.min.js"></script>
