@@ -9,8 +9,10 @@
 		$que = $_POST['que'];
 		$pmark = $_POST['Pmark'];
 		$nmark = $_POST['Nmark'];
-		$e_date=date_create($date);
-        $e_date=date_format($e_date,"Y-m-d");
+		
+			$e_date=DateTime::createFromFormat('d/m/Y',$date);
+        $date1=$e_date->format('Y-m-d');
+		
 		
 		$query1 = mysqli_query($connection,"INSERT INTO exam_generation(course_name,exam_date,start_time,end_time,email,total_que,positive_marks,negative_marks) VALUES('$course','$e_date','$stime','$etime','$email','$que','$pmark','$nmark')");
 		
