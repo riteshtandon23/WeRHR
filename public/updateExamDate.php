@@ -52,7 +52,7 @@ if(isset($_GET['id']))
                     <input type="hidden" value="<?php echo $id; ?>" id="id" name="id"></input>
                         <div class="controls">
                             <div class="col-md-6 col-sm-6 col-xs-12 has-feedback">
-                                <input type="text" name="Edate" class="form-control has-feedback-right col-md-7 col-xs-12" id="Edate" value="<?php echo $exam_date; ?>" aria-describedby="inputSuccess2Status">
+                                <input type="text" name="inputExamdate" class="form-control has-feedback-right col-md-7 col-xs-12" id="inputExamdate" value="<?php echo $exam_date; ?>" aria-describedby="inputSuccess2Status">
                                 <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
  
                             </div>

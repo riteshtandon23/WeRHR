@@ -1,3 +1,4 @@
+<?php require_once("../includes/all_functions.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +61,10 @@
 
 <?php
 session_start();
+if(!isset($_SESSION['email']) && !isset($_SESSION["id"]))
+{
+    redirect_to("login.php");
+}
 $email = $_SESSION['email'];
 $result =$connection->query("SELECT Profile_pic FROM users WHERE email='$email'");
 while($row=$result->fetch_assoc()){

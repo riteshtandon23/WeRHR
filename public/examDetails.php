@@ -13,10 +13,10 @@ if(isset($_POST['submit']))
     	$end_time = $_POST['Etime'];
     	$total_question = $_POST['TotalQuestion'];
         //echo $date;
-    	// $exam_date=date_create($date);
-    	// $exam_date=date_format($exam_date,"Y-m-d");
-        $exam_date=DateTime::createFromFormat('d/m/Y',$date);
-        $exam_date=$exam_date->format('Y-m-d');
+    	$exam_date=date_create($date);
+    	$exam_date=date_format($exam_date,"Y-m-d");
+        // $exam_date=DateTime::createFromFormat('d/m/Y',$date);
+        // $exam_date=$exam_date->format('Y-m-d');
         //echo $exam_date;
     	$domainID= select_Domain_id($domain_id);
 
