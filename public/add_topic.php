@@ -109,34 +109,18 @@ $type=$_SESSION['Type'];
                                         </li>
                                         <li><a href="add_topic.php">Add Topic</a>
                                         </li>
-                                        <li><a href="form_wizards.html">Form Wizard</a>
-                                        </li>
-                                        <li><a href="form_upload.html">Form Upload</a>
-                                        </li>
-                                        <li><a href="form_buttons.html">Form Buttons</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-desktop"></i> Company Panel <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="general_elements.html">General Elements</a>
+                                        <li><a href="cspecification.php">Company Specification</a>
                                         </li>
                                         <li><a href="media_gallery.html">Media Gallery</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
-                                        <li><a href="icons.html">Icons</a>
-                                        </li>
-                                        <li><a href="glyphicons.html">Glyphicons</a>
-                                        </li>
-                                        <li><a href="widgets.html">Widgets</a>
-                                        </li>
-                                        <li><a href="invoice.html">Invoice</a>
-                                        </li>
-                                        <li><a href="inbox.html">Inbox</a>
-                                        </li>
-                                        <li><a href="calender.html">Calender</a>
-                                        </li>
+                                       
                                     </ul>
                                 </li>
                                
@@ -146,25 +130,16 @@ $type=$_SESSION['Type'];
                         <div class="menu_section">
                             <h3>Live On</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-bug"></i> Company Profile <span class="fa fa-chevron-down"></span></a>
+                                  <li><a> <span class="glyphicon glyphicon-user"></span>&nbsp&nbspCompany Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="cprofile.php">Update profile</a>
+                                         <li><a href="cprofile.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspUpdate profile</a>
                                         </li>
                                        
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                                  <li><a><span class="glyphicon glyphicon-lock"></span> Password <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="page_404.html">404 Error</a>
-                                        </li>
-                                        <li><a href="page_500.html">500 Error</a>
-                                        </li>
-                                        <li><a href="plain_page.html">Plain Page</a>
-                                        </li>
-                                        <li><a href="login.html">Login Page</a>
-                                        </li>
-                                        <li><a href="pricing_tables.html">Pricing Tables</a>
-                                        </li>
+                                         <li><a href="change_password.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspChange Password</a></li>
 
                                     </ul>
                                 </li>
@@ -333,7 +308,7 @@ $type=$_SESSION['Type'];
     <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
         <div class="x_content">
-            <form class="form-horizontal form-label-left" action="create.php" method="post" novalidate>
+            <form class="form-horizontal form-label-left" action="create.php" method="post" >
 
                 <span class="section">Adding Topic</span>
 

@@ -23,10 +23,18 @@ if($result->num_rows > 0){
     $_SESSION["lname"] = $row['lastname'];
     $_SESSION["id"] = $row['id'];
     $_SESSION["email"]=$username;
+	 $t_date=date("Y-m-d");
+ $query1=mysqli_query($connection,"SELECT course_name FROM exam_generation WHERE exam_date='$t_date'");
+
+	
+      $row1=mysqli_fetch_array($query1,MYSQL_ASSOC);
+   
+$var=$row1['course_name'];
+
     
     if($row['type']=="user" AND $row['act_status']=="1")
     {
-        header('Location:selectCourse.php');
+        header('Location:Instruction.php?CName='.$var);
     }
     elseif($row['type']=="employer" && $row['act_status']=="1")
     {

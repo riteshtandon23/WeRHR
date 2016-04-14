@@ -1,60 +1,12 @@
 <?php require_once("../includes/dbconnection.php");?>
-<?php session_start(); 
+<?php require_once("../includes/all_functions.php");?>
+<?php session_start();
 $type=$_SESSION['Type'];
     if($type!=="employer")
     {
         header('Location: login.php');
     }
-	
-if(isset($_POST['submit']))
-{
-	if(!empty($_FILES['image']) || $_FILES['image']['size']>0){
-		
-        $name = mysqli_escape_string($connection,$_FILES['image']['name']);
-	//echo	$name;
-        $type = $_FILES['image']['type'];
-        $error = $_FILES['image']['error'];
-        $size = $_FILES['image']['size'];
-        $temp = $_FILES['image']['tmp_name'];
-
-
-        if($error > 0)
-        {
-       //  echo "eer";
-        }
-        else
-        {
-            if($size > 10000000)
-                echo "Format not allowed or file size is too big!";
-            elseif (substr($type,0,5)=='image') {
-               
-                    if($name)
-                        move_uploaded_file($temp,"images/".$name);   
-						}
-		}
-		
-}
-	
-
-
-	$fname= ($_POST['fname']);
-		$lname = $_POST['lname'];
-		$email = $_POST['email'];
-		$o_name = ($_POST['oname']);
-		$country = ($_POST['country']);
-		$state = ($_POST['state']);
-		$city = ($_POST['city']);
-		$o_url= ($_POST['url']);
-		$contact= ($_POST['contact']);
-		$o_add= ($_POST['address']);
-		
-		
-	$query1 = mysqli_query($connection,"update employers set firstname='$fname',lastname='$lname',email='$email',companyName='$o_name',state='$state',country='$country',city='$city',companyWebsite='$o_url',address='$o_add',contact='$contact',Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
-	//echo $query1;
-
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,15 +17,18 @@ if(isset($_POST['submit']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>WeRhR!| </title>
+    <title>WeRhR! | </title>
 
     <!-- Bootstrap core CSS -->
+
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
+	
 
+	
     <!-- Custom styling plus plugins -->
     <link href="css/custom.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
@@ -82,6 +37,7 @@ if(isset($_POST['submit']))
 
     <script src="js/jquery.min.js"></script>
     <script src="js/nprogress.js"></script>
+	   <script src="js/custom/adddeltexbox.js"></script> 
     <script>
         NProgress.start();
     </script>
@@ -110,7 +66,7 @@ if(isset($_POST['submit']))
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WeRhR!</span></a>
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>WeRHR!</span></a>
                     </div>
                     <div class="clearfix"></div>
 
@@ -155,18 +111,19 @@ if(isset($_POST['submit']))
                                         </li>
                                         <li><a href="add_topic.php">Add Topic</a>
                                         </li>
-                                      
+                                       
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-desktop"></i>Company Panel <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-desktop"></i> Company Specification <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                    <li><a href="cspecification.php">Company Specification</a>
+                                        <li><a href="cspecification.php">Company Specification</a>
                                         </li>
                                         <li><a href="media_gallery.html">Media Gallery</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
-                                      
+                                       
+                                        </li>
                                     </ul>
                                 </li>
                                
@@ -176,16 +133,17 @@ if(isset($_POST['submit']))
                         <div class="menu_section">
                             <h3>Live On</h3>
                             <ul class="nav side-menu">
-                                 <li><a> <span class="glyphicon glyphicon-user"></span>&nbsp&nbspCompany Profile <span class="fa fa-chevron-down"></span></a>
+                                <li><a> <span class="glyphicon glyphicon-user"></span>&nbsp&nbspCompany Profile <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                         <li><a href="cprofile.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspUpdate profile</a>
+                                          <li><a href="cprofile.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspUpdate profile</a>
                                         </li>
                                        
                                     </ul>
                                 </li>
-                                 <li><a><span class="glyphicon glyphicon-lock"></span> &nbsp&nbspPassword <span class="fa fa-chevron-down"></span></a>
+                                <li><a><span class="glyphicon glyphicon-lock"></span> &nbsp&nbspPassword <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                         <li><a href="change_password.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspChange Password</a></li>
+                                       <li><a href="change_password.php"><span class="glyphicon glyphicon-edit"></span>&nbsp&nbspChange Password</a></li>
+                                       
 
                                     </ul>
                                 </li>
@@ -228,7 +186,10 @@ if(isset($_POST['submit']))
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								
+									<?php
+												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
+                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
+												?>
                                     <img src="images/<?php echo $row['Profile_pic'];?>" alt=""><?php echo  $_SESSION["fname"];
 									echo  $_SESSION["lname"];
 									?>
@@ -302,11 +263,7 @@ if(isset($_POST['submit']))
                                     <li>
                                         <a>
                                             <span class="image">
-												<?php
-												$result = mysqli_query($connection,"SELECT Profile_pic FROM employers WHERE email='". $_SESSION["email"]."'");
-                                                          $row=mysqli_fetch_array($result,MYSQL_ASSOC)
-												?>
-                                        <img src="images/<?php echo $row['Profile_pic'];?>" alt="Profile Image" />
+                                        <img src="images/img.jpg" alt="Profile Image" />
                                     </span>
                                             <span>
                                         <span>John Smith</span>
@@ -338,120 +295,168 @@ if(isset($_POST['submit']))
 
             <!-- page content -->
             <div class="right_col" role="main" style="background-color:white">
-			<div class="x_content" >
-    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-             <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Company Profile</a>
-             </li>
-        </ul>
-      
-         <div id="myTabContent" class="tab-content">
-             <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-             
-                 <div class="x_content">
-                    <form class="form-horizontal form-label-left" action="cprofile.php" method="POST" novalidate enctype="multipart/form-data">
-					<?php 
-$result = mysqli_query($connection,"SELECT * FROM employers WHERE email='". $_SESSION["email"]."'");
-$row=mysqli_fetch_array($result,MYSQL_ASSOC)
-	
- ?>
-                            <div class="col-lg-2 col-md-2 col-sm-2 pull-left">
-                                <div class="item form-group">
-                                <div class="avatar-view col-lg-4" title="Change the avatar">
-								
-                                <img src="images/<?php echo $row['Profile_pic'];?>" id="ADP" name="ADP" alt="Avatar">
-								
-                                <input type="hidden" id="name" name="name" value="">
-                                </div>
-                                <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'>
-								  
-                                </div> 
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pull-right">
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminName">First Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="fname" class="form-control col-md-7 col-xs-12"  name="fname" Value="<?php echo $row['firstname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminLName">Last Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="lname" class="form-control col-md-7 col-xs-12"  name="lname" Value="<?php echo $row['lastname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['email'];?>">
-                                </div>
-                            </div>
-							 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="oname" class="form-control col-md-7 col-xs-12"  name="oname" Value="<?php echo $row['companyName'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">City<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="city" class="form-control col-md-7 col-xs-12"  name="city" Value="<?php echo $row['city'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">State<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="state" class="form-control col-md-7 col-xs-12"  name="state" Value="<?php echo $row['state'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Country<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="country" class="form-control col-md-7 col-xs-12"  name="country" Value="<?php echo $row['country'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization URL<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="url" class="form-control col-md-7 col-xs-12"  name="url" Value="<?php echo $row['companyWebsite'];?>" required="required" >
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Contact No<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="contact" class="form-control col-md-7 col-xs-12"  name="contact" Value="<?php echo $row['contact'];?>" required="required" type="number">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminAddress">Organization Address<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="address" name="address" class="form-control col-md-7 col-xs-12" value="<?php echo $row['address'];?>"></textarea>
-                            </div>
+
+<div class="x_content">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            
+            <div class="x_content">
+                <br />
+                <form class="form-horizontal form-label-left" action="controllers/addalgorithmDetails1.php" method="post" >
+
+                <span class="section">Age Range</span>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="AgeRange">Age<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="AgeRange" class="form-control col-md-7 col-xs-12"  name="AgeRange" placeholder="Set Age range e.g 18-25 etc" data-inputmask="'mask': '99-99'" required="required" type="text">
                         </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Update</button>
-                             </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="AgePercentage">Percentage or Marks<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="AgePercentage" class="form-control col-md-7 col-xs-12"  name="AgePercentage" placeholder="Percentage for particular Age Range e.g 20%." required="required" type="text">
+                            <input id="Company_Name" Name="Company_Name" type="hidden">
+
                         </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+
+                            <button id="AddAge" name="AddAge" type="submit" class="btn btn-primary">Add</button>
+
                         </div>
-                    </form>
-                 </div>
+                    </div>
+            </form>
             </div>
-         </div>
+        </div>
+    </div>
+     <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        
+            <div class="x_content">
+                <br />
+                <form class="form-horizontal form-label-left" action="controllers/addalgorithmDetails1.php" method="post" >
+
+                    <span class="section">Test</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestName">Test Name<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="TestName" class="form-control col-md-7 col-xs-12"  name="TestName" placeholder="Marks for particular test " required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestPercentage">Percentage or Marks<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="TestPercentage" class="form-control col-md-7 col-xs-12"  name="TestPercentage" placeholder="Percentage for particular test e.g 20%." required="required" type="text">
+                            <input id="Company_Name3" Name="Company_Name3" type="hidden">
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+
+                            <button id="AddTest" name="AddTest" type="submit" class="btn btn-primary">Add</button>
+                            <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
     </div>
 </div>
- <footer >
+<div class="x_content">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            
+            <div class="x_content">
+                <br />
+                <form class="form-horizontal form-label-left" action="controllers/addalgorithmDetails1.php" method="post" >
+
+                    <span class="section">Background</span>
+                    
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Background">Background<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="Background" class="form-control col-md-7 col-xs-12"  name="Background" placeholder="Background e.g Fresh, Experienceetc" required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="BackgroundPercentage">Percentage or Mark<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="BackgroundPercentage" class="form-control col-md-7 col-xs-12"  name="BackgroundPercentage" placeholder="Percentage for particular Backgroung e.g 20%." required="required" type="text">
+                            <input id="Company_Name2" Name="Company_Name2" type="hidden">
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+
+                            <button id="AddBack" name="AddBack" type="submit" class="btn btn-primary">Add</button>
+                            <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+     <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="x_panel">
+        
+            <div class="x_content">
+                <br />
+                <form class="form-horizontal form-label-left" action="controllers/addalgorithmDetails1.php" method="post" >
+
+                    <span class="section">Academic Details</span>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="Academic">Course<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="Academic" class="form-control col-md-7 col-xs-12"  name="Academic" placeholder="course prefer e.g MBA,MCA etc." required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="PercentageRange">Percentage Range<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="PercentageRange" class="form-control col-md-7 col-xs-12"  name="PercentageRange" placeholder="Range of Percentage e.g 90%-100%." required="required" type="text">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="AcademicPercentage">Percentage or Marks<span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input id="AcademicPercentage" class="form-control col-md-7 col-xs-12"  name="AcademicPercentage" placeholder="Percentage for particular course e.g 20%." required="required" type="text">
+                            <input id="Company_Name1" Name="Company_Name1" type="hidden">
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+
+                            <button id="AddAca" name="AddAca" type="submit" class="btn btn-primary">Add</button>
+                            <!--button type="submit" name="delete" class="btn btn-primary">Delete</button-->
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+   
+</div>
+                <!-- top tiles -->
+               
+                <!-- /top tiles -->
+				               <!-- footer content -->
+   <footer >
                     <div class="">
                         <p class="pull-right">We are the Human Resource WAH.. |
                             <span class="lead"> <i class="fa fa-paw"></i> Lovely Infotech!</span>
@@ -459,34 +464,15 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
                     </div>
                     <div class="clearfix"></div>
                 </footer>
-                                  
-			</div>
 
-                <!-- top tiles -->
+               </div>
+                <br />
+
              
 
-                     
-
-                  
-
-                  
 
 
-                   
-
-
-                            <!-- End to do list -->
-
-
-                            <!-- start of weather widget -->
-                   
-                            <!-- end of weather widget -->
-                       
-
-               
-
-                <!-- footer content -->
-
+ 
                 <!-- /footer content -->
             </div>
             <!-- /page content -->
@@ -617,6 +603,7 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
         });
     </script>
     <!-- skycons -->
+	
     <script src="js/skycons/skycons.js"></script>
     <script>
         var icons = new Skycons({
@@ -735,27 +722,19 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
             });
         });
     </script>
-	 <script>
-    //load image
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#ADP')
-                        .attr('src', e.target.result)
-                        .width(220)
-                        .height(220);
-                        
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-    </script>
+	
     <script>
         NProgress.done();
     </script>
+	  
+	<script src="js/input_mask/jquery.inputmask.js"></script>
+	 <script>
+        $(document).ready(function () {
+            $(":input").inputmask();
+        });
+    </script>
+	
+
     <!-- /datepicker -->
     <!-- /footer content -->
 </body>
