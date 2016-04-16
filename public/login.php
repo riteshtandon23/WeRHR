@@ -163,5 +163,10 @@
 		<script src="js/bootstrap-dialog.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="js/ie10-viewport-bug-workaround.js"></script>
+		<script type="text/javascript">
+			 $(document).ready(function(){
+          localStorage.clear();
+        });
+		</script>
 	</body>
 </html>

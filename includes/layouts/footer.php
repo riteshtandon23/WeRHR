@@ -436,7 +436,41 @@
             }
         }
     </script>
-   
+   <script type="text/javascript">
+       // $(".child_menu li").click(function(){
+       //      //alert($(this)[0].firstChild.textContent);
+       //      //alert($(this)[0].parent().textContent);
+       // });
+       //  $(".side-menu li ul li").click(function(){
+            
+       //      alert($(this)[0].firstChild.textContent);
+       // });
+       var i=0;
+        $(".side-menu li").click(function(){
+            if(i==0)
+            {
+                //alert("0");
+                var child=$(this)[0].firstChild.textContent;
+                localStorage.setItem('Children',JSON.stringify(child));
+                i=1;
+            }else{
+                //alert("1");
+                var parent=$(this)[0].firstChild.textContent;
+                localStorage.setItem('Parent',JSON.stringify(parent));
+                i=0;
+            }
+            //alert($(this)[0].firstChild.textContent);
+       });
+ $(document).ready(function(){
+          var parent=JSON.parse(localStorage.getItem('Parent'));
+          var child=JSON.parse(localStorage.getItem('Children'));
+         if(parent!==null && child!==null)
+         {
+             $('#parent123').text(parent);
+             $('#child123').text(child);
+         }
+        });
+   </script>
 
 </body>
 

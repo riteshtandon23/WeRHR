@@ -114,6 +114,8 @@
                                         </li>
                                         <li><a href="examGeneration.php">Exam Generation</a>
                                         </li>
+                                         <li><a href="choseParticipant.php">Chose Participant</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-area-chart"></i> Algorithm <span class="fa fa-chevron-down"></span></a>
@@ -133,15 +135,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">Chart JS</a>
-                                        </li>
-                                        <li><a href="#">Chart JS2</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
+                                
                             </ul>
                         </div>
                         <div class="menu_section">
@@ -157,26 +151,7 @@
                                         </li>
                                         <li><a href="#">Contacts</a>
                                         </li>
-                                        <li><a href="#">Profile</a>
-                                        </li>
                                     </ul>
-                                </li>
-                                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">404 Error</a>
-                                        </li>
-                                        <li><a href="#">500 Error</a>
-                                        </li>
-                                        <li><a href="#">Plain Page</a>
-                                        </li>
-                                        <li><a href="#">Login Page</a>
-                                        </li>
-                                        <li><a href="#">Pricing Tables</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -219,12 +194,11 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
+                                    <li><a href="updateAdminProfile.php">  Profile</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
+                                        <a href="changeAdminPass.php">
+                                            <span>Change Password</span>
                                         </a>
                                     </li>
                                     <li>
@@ -338,7 +312,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    
+                     <h2><label id="parent123">Home</label><small><label id="child123">Home</label></small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                              </li>
