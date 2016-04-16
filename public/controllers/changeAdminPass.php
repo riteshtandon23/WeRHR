@@ -23,6 +23,25 @@ if(isset($_POST['newPassword'])){
         }
 
     }
-
-        
 ?>
+<?php 
+   if(isset($_POST['sendfeedback']))
+    {
+        $Name = $_POST['name'];
+        $Email = $_POST['email'];
+        $message = $_POST['message'];
+        $stmt=$connection->prepare("call feedback(?,?,?)");
+        $stmt->bind_param('sss',$Name,$Email,$message);
+        $result=$stmt->execute();
+        if($result)
+        {
+            echo "stringgggggggggg";
+            redirect_to("../Index.php?key=111000111");
+        }
+        else{
+            echo "string";
+            die("Mysql connection failed".$connection->connect_error()."(".$connection->connect_erno().")");
+        }
+    }
+
+ ?>

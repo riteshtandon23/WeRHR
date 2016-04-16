@@ -2,7 +2,7 @@
 <?php require_once("../includes/all_functions.php");?>
 <?php session_start(); ?>
 <?php
-	if(isset($_POST['submit']))
+	if(isset($_POST['submitQuestion']))
 	{
     	$domain_id = $_POST['topicId'];
         $_SESSION["DomainId"]=$domain_id;
@@ -18,7 +18,7 @@
         $question_ans=ltrim($question_ans,"/");
         $answeroption="";
         foreach ($_POST['option'] as $key => $value) {
-            $answeroption .=$value .",";
+            $answeroption .=$value ."/";
         }
         $answeroption=substr($answeroption,0,-1);
     	if(isset($domainID))
@@ -33,7 +33,7 @@
     		if($result)
     		{
         		echo "Success";
-        		redirect_to("addquestion.php");
+        		redirect_to("addProblem.php");
     		}else
     		{
 	        	die("Database connection fail".$connection->connect_errno." ".$temp);

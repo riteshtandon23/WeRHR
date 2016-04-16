@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2016 at 10:30 PM
+-- Generation Time: Apr 16, 2016 at 02:07 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.12
 
@@ -105,6 +105,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ExamTime`(IN `T_id` INT(11))
     NO SQL
 select TIMEDIFF(End_time,Start_Time) as Time from exam_details 
 where Topic_id=T_id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `feedback`(IN `nam` VARCHAR(50), IN `eml` VARCHAR(50), IN `mess` VARCHAR(300))
+    NO SQL
+insert into feedback(Name,Email,Message,status) values(nam,eml,mess,0)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getAcademicId`()
     NO SQL
@@ -506,6 +510,31 @@ INSERT INTO `exam_name` (`name`, `topic`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE IF NOT EXISTS `feedback` (
+  `SerialNo` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Message` varchar(300) NOT NULL,
+  `status` bit(1) NOT NULL,
+  PRIMARY KEY (`SerialNo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`SerialNo`, `Name`, `Email`, `Message`, `status`) VALUES
+(1, 'Da O', 'lamareda', 'fff', b'0'),
+(2, 'Da O', 'lamaredaoyit@yahoo.com', 'Hello sir', b'0'),
+(3, 'Da O', 'aamm@yahoo.com', 'Ok my problem is', b'0'),
+(4, 'Da O', 'lamaredaoyit@yahoo.com', 'I am having problem with login', b'0');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `participant`
 --
 
@@ -548,7 +577,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Negative_Mark` varchar(5) NOT NULL,
   PRIMARY KEY (`Question_Id`),
   KEY `Topic_Id` (`Topic_Id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `question`
@@ -567,12 +596,12 @@ INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer
 (15, 'How do you write ', 'Single Choice', 'kkk,echo , Document.Write(', 'echo ', 'w3school', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
 (16, 'All variables in PHP start with which symbol?', 'Single Choice', '!,$,&', '$', 'w3school', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
 (17, 'What is the correct way to end a PHP statement?', 'Single Choice', ';,.,<php>,NewLine', ';', 'w3school', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
-(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A,B', 'Sample', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
-(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z,Y', 'Sample', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
+(20, 'Question 1', 'Multiple Choice', 'A,B,C,D,E', 'A/B', 'Sample', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
+(21, 'Question 2', 'Multiple Choice', 'U,V,X,Y,Z', 'Z/Y', 'Sample', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
 (22, 'What is htmlspecial chars', 'Multiple Choice', 'A,B,C,D,E', 'A/B', 'testing', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
 (23, 'C is low level language?', 'Single Choice', 'True,false', 'false', 'Testing', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
-(24, 'Question 4', 'Multiple Choice', 'D,M,R,H', 'D,M', 'Testing', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
-(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I,N', 'test', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
+(24, 'Question 4', 'Multiple Choice', 'D,M,R,H', 'D/M', 'Testing', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
+(25, 'Question 5', 'Multiple Choice', 'P,O,I,N,T', 'I/N', 'test', 1012, 'CPrograming', 1, '2016-03-19', '4', '1'),
 (26, 'A macro can execute faster than a function.', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'CPrograming', 0, 'Not Set', '4', '1'),
 (27, 'The C library function rewind() reposition the file pointer at the begining of the file', 'Single Choice', 'True,False', 'True', 'Tutorials point', 1012, 'CPrograming', 0, 'Not Set', '4', '1'),
 (28, 'What is oak?', 'Single Choice', 'Java First Name,Java CEO name,None of the above', 'Java First Name', 'testing', 1002, 'Java', 1, '2016-04-13', '4', '1'),
@@ -580,10 +609,17 @@ INSERT INTO `question` (`Question_Id`, `Question_Name`, `Question_Type`, `Answer
 (30, 'nnnnnnnnnnnnnnnn', 'Single Choice', 'A,x', 'A', 'ddd', 1002, 'Java', 0, 'Not Set', '4', '1'),
 (31, 'Question 5', 'Single Choice', 'L,A,V,H', 'L', 'hhhhhhhh', 1002, 'Java', 1, '2016-04-13', '4', '1'),
 (32, 'Question 3', 'Single Choice', 'T,F', 'T', 'nnnn', 1002, 'Java', 1, '2016-04-13', '4', '1'),
-(33, 'jkjkjkkkkkkkkkkkkkkkkkkkkkkkk', 'Multiple Choice', 'P,A,U,L,S', '/P/A', '', 1002, 'Java', 0, 'Not Set', '4', '1'),
+(33, 'jkjkjkkkkkkkkkkkkkkkkkkkkkkkk', 'Multiple Choice', 'P,A,U,L,S', 'P/A', '', 1002, 'Java', 0, 'Not Set', '4', '1'),
 (34, 'KKKKKKKKKKKKKKKKKKKKKKKKKKK', 'Multiple Choice', 'JJ/KK/LL/MM/NN', 'JJ/KK', '', 1002, 'Java', 0, 'Not Set', '4', '1'),
 (35, 'MMMMMMMMMMM', 'Multiple Choice', 'H,K,M,N', 'K/H', '', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
-(36, 'BBBBBBBBBBBB', 'Multiple Choice', 'M,A,P,S', 'M/A', '', 1004, 'PHP', 1, '2016-04-14', '4', '1');
+(36, 'BBBBBBBBBBBB', 'Multiple Choice', 'M,A,P,S', 'M/A', '', 1004, 'PHP', 1, '2016-04-14', '4', '1'),
+(37, 'Which of the following data types is not supported in python?', 'Single Choice', 'Tuple,Dictionary,Generic,List', 'Generic', 'tutorials point', 1001, 'Python', 0, '', '4', '1'),
+(38, 'Which of the following function of dictionary gets all the values from the dictionary?', 'Single Choice', ' getvalues(),value(),values(),None of the above.', 'values()', 'tutorial', 1001, 'Python', 0, '', '4', '1'),
+(39, 'MMMMMMMMMMM', 'Single Choice', 'A,B,C,D', '', 'ddd', 1001, 'Python', 0, '', '4', '1'),
+(40, 'What is the default value of long variable?', 'Single Choice', 'A,B,C,D', '', 'sss', 1001, 'Python', 0, '', '4', '1'),
+(41, 'KKKKKKKKKKKKKKKKKKKKKKKKKKK', 'Single Choice', 'A/B', 'A', '', 1009, '.net', 0, '', '4', '1'),
+(42, 'Is an empty .java file a valid source file?', 'Single Choice', 'A/B/C', 'A', '', 1009, '.net', 0, '', '4', '1'),
+(43, 'KKKKKKKKKKKKKKKKKKKKKKKKKKK', 'Single Choice', 'a/b/c/d', 'a', 'ccc', 1009, '.net', 0, '', '4', '1');
 
 -- --------------------------------------------------------
 
@@ -643,7 +679,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `Topic_Name` varchar(100) NOT NULL,
   PRIMARY KEY (`Topic_id`),
   UNIQUE KEY `Topic_Name` (`Topic_Name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1014 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1015 ;
 
 --
 -- Dumping data for table `topic`
@@ -657,6 +693,7 @@ INSERT INTO `topic` (`Topic_id`, `Topic_Name`) VALUES
 (1012, 'CPrograming'),
 (1002, 'Java'),
 (1010, 'JavaScript'),
+(1014, 'Jquery'),
 (1005, 'Pascal'),
 (1000, 'Perl'),
 (1004, 'PHP'),

@@ -46,6 +46,9 @@
 		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 		<script src="js/ie-emulation-modes-warning.js"></script>
+				<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.easing.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -53,6 +56,39 @@
 		<![endif]-->
 	</head>
 	<body id="page-top">
+		<?php if(isset($_GET['key']) && $_GET['key']==="111000111"){
+		?>
+		<script type="text/javascript">
+
+		    $(document).ready(function(){
+
+		        $("#myModal").modal('show');
+
+		    });
+
+		</script>
+		<?php
+		} ?>
+		 <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title"><span class="fa fa-check fa-2x" style="color: green"></span>Sucess!!!</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>Your feedback has been succesfully sent to the Administrator. We will work towards your problem.</p>
+		          <p>Thank You!!</p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		      
+		    </div>
+		  </div>
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
@@ -390,17 +426,17 @@
 						<p><i class="fa fa-clock-o"></i> <span class="day">Sunday:</span><span>Closed</span></p>
 					</div>
 					<div class="col-md-6">
-						<form name="sentMessage" id="contactForm" novalidate="">
+						<form name="sentMessage" id="contactForm" action="controllers/changeAdminPass.php" method="post" novalidate="">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Name *" id="name" required="" data-validation-required-message="Please enter your name.">
+										<input type="text" class="form-control" placeholder="Your Name *" name="name" id="name" required="" data-validation-required-message="Please enter your name.">
 										<p class="help-block text-danger"></p>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Your Email *" id="email" required="" data-validation-required-message="Please enter your email address.">
+										<input type="email" class="form-control" placeholder="Your Email *" name="email" id="email" required="" data-validation-required-message="Please enter your email address.">
 										<p class="help-block text-danger"></p>
 									</div>
 								</div>
@@ -408,7 +444,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
-										<textarea class="form-control" placeholder="Your Message *" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
+										<textarea class="form-control" placeholder="Your Message *" name="message" id="message" required="" data-validation-required-message="Please enter a message."></textarea>
 										<p class="help-block text-danger"></p>
 									</div>
 								</div>
@@ -417,13 +453,14 @@
 							<div class="row">
 								<div class="col-lg-12 text-center">
 									<div id="success"></div>
-									<button type="submit" class="btn">Send Message</button>
+									<button type="submit" id="sendfeedback" name="sendfeedback" class="btn">Send Message</button>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
+
 		</section>
 		<p id="back-top">
 			<a href="#top"><i class="fa fa-angle-up"></i></a>
@@ -437,13 +474,30 @@
 		<!-- Bootstrap core JavaScript
 			================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.easing.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+
 		<script src="js/owl.carousel.min.js"></script>
 		<script src="js/cbpAnimatedHeader.js"></script>
 		<script src="js/theme-scripts.js"></script>
+		<script src="js/validator/validator.js"></script>
+	    <script src="js/custom.js"></script>   
+	    <script src="js/custom/formValidation.min.js"></script>
+	    <script src="js/custom/bootstrap.min.js"></script>
+	     <script type="text/javascript" src="js/custom/jquery.validate.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<script src="js/ie10-viewport-bug-workaround.js"></script>
+		<script type="text/javascript">
+			$(document).on('click','#sendfeedback',function(){
+				$('#contactForm').validate({ // initialize the plugin
+			        rules: {
+			            email: {
+			                required: true,
+			                email: true
+			            },
+			            name: {
+			                required: true			            }
+			        }
+			    });
+			});
+		</script>
 	</body>
 </html>
