@@ -212,24 +212,42 @@
                             <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
+                                    <span class="badge bg-green"><?php $result125=countUnreadFeedback(); 
+                                    while ($row125=$result125->fetch_assoc()) {
+                                         echo $row125['unread'];
+                                     } ?></span>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
+                                   <?php 
+                                    $result126=selectFeedback();
+                                    while ($row126=$result126->fetch_assoc()) {
+                                        ?>
                                     <li>
                                         <a>
                                             <span class="image">
                                         <img src="images/img.jpg" alt="Profile Image" />
                                     </span>
                                             <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
+                                        <span><?php echo $row126['Name']; ?></span>
+                                            <span class="time"><?php $fromtime=$row126['Date']." ".$row126['Time']; 
+                                                $fromtime=strtotime($fromtime);
+                                                $totime=Date("Y-m-d")." ".Date("H:m:s");
+                                                $totime=strtotime($totime);
+                                                echo $fromtime;
+                                                //echo round(abs($totime-$fromtime)/60)." Minutes ago";
+                                            ?></span>
                                             </span>
                                             <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                       <?php $message=$row126['Message'];
+                                            $message=substr($message,0,50);
+                                            echo $message.".......";
+                                        ?>
                                     </span>
                                         </a>
                                     </li>
-                                    
+                                <?php
+                                    }
+                                 ?>
                                     <li>
                                         <div class="text-center">
                                             <a>

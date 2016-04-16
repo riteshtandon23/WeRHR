@@ -762,4 +762,20 @@ function getUserforDisplay($id){
 	confirm_query($result);
 	return $result;
 }
+function countUnreadFeedback()
+{
+	global $connection;
+	$query="select count(status) as unread from feedback where status=0";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function selectFeedback()
+{
+	global $connection;
+	$query="select Name,Email,Message,Date,Time from feedback where status=0";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>
