@@ -27,15 +27,16 @@ if(isset($_POST['newPassword'])){
 <?php 
    if(isset($_POST['sendfeedback']))
     {
+        $todayDate=date("Y-m-d");
+        $time=date("h:i:s");
         $Name = $_POST['name'];
         $Email = $_POST['email'];
         $message = $_POST['message'];
-        $stmt=$connection->prepare("call feedback(?,?,?)");
-        $stmt->bind_param('sss',$Name,$Email,$message);
+        $stmt=$connection->prepare("call feedback(?,?,?,?,?)");
+        $stmt->bind_param('sssss',$Name,$Email,$message,$todayDate,$time);
         $result=$stmt->execute();
         if($result)
         {
-            echo "stringgggggggggg";
             redirect_to("../Index.php?key=111000111");
         }
         else{
