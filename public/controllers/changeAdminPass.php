@@ -46,3 +46,18 @@ if(isset($_POST['newPassword'])){
     }
 
  ?>
+ <?php 
+ if(isset($_GET['key'])){
+    $email=$_GET['key'];
+    $stmt=$connection->prepare("call markasread(?)");
+    $stmt->bind_param('s',$email);
+    $stmt->execute();
+
+ }
+  ?>
+  <?php
+if(isset($connection))
+{
+    mysqli_close($connection);
+}
+?>

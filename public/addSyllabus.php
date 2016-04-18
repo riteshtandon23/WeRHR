@@ -58,7 +58,7 @@
         {
             $id=$row["Topic_id"];
         }
-        $result4=SelectExamDateTime($_SESSION["CName"].$todayDate);
+        $result4=SelectExamDateTime($_SESSION["CName"].$todayDate,$_SESSION["email"]);
         while ($row2=$result4->fetch_assoc()) {
             $examDate=$row2['SerialNo'];
         }

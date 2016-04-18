@@ -23,7 +23,64 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
- 
+    <div class="modal fade" id="replyfeedback" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+          <form class="form-horizontal form-label-left" action="controllers/sendemails.php" method="POST" novalidate>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+             <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Messagebody">To:<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                     <input id="multiplesendemail" class="form-control col-md-7 col-xs-12"  name="multiplesendemail[]" placeholder="subject" required="required" type="text">
+                     <input id="Subject" class="form-control col-md-7 col-xs-12"  name="Subject" placeholder="subject" required="required" type="hidden" value="reply to your feedback">
+                </div>
+            </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Messagebody">Message<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea id="Messagebody" name="Messagebody" class="form-control col-md-7 col-xs-12" placeholder="e.g Message body" required="required"></textarea>
+                     <input type="hidden" id="fromfeedback" name="fromfeedback"></input>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button id="sendmail" name="sendmail" type="submit" class="btn btn-primary">Send</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    <div class="modal fade" id="readfeedback" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span class="fa fa-check fa-2x" style="color: green"></span>Email read</h4>
+                </div>
+                <div class="modal-body">
+                    <p><h5><b>From:</b> <label id="from"></h5> </label></p>
+                    <p><h5><b>Message:</b></h5></p>
+                    <p><label id="message"></label></p>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button id="reply" type="button" class="btn btn-info" data-dismiss="modal">Reply</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+          </div>
+        </div>
+
+        
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/custom/gettingquestion/QuestionVisibility.js"></script>
@@ -471,7 +528,33 @@
          }
         });
    </script>
+<script type="text/javascript">
 
+    $(document).on('click','#menu121',function(){
+        //alert($(this).data('id'));
+        var data=$(this).data('id');
+        var res=data.split("$$");
+        $('#inputemail').val(res[0]);
+        $('#multiplesendemail').val(res[0]);
+        $('#from').text(res[0]);
+        $('#message').text(res[1]);
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/changeAdminPass.php',
+            data:'key='+res[0],
+            success:function(data){
+
+            }
+        });
+        $("#readfeedback").modal('show');
+    });
+    $('#reply').on('click',function(){
+        
+         
+          $("#replyfeedback").modal('show');
+    });
+</script>
 </body>
 
 </html>

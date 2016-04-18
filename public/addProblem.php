@@ -94,7 +94,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questionDesc">Question Description<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             <input id="questionAns" class="form-control col-md-7 col-xs-12"  name="questionAns" type="text">
+                             <input id="questionAns" class="form-control col-md-7 col-xs-12"  name="questionAns" type="hidden">
                                 <textarea id="questionDesc" name="questionDesc" class="form-control col-md-7 col-xs-12" placeholder="e.g www.w3school.com"></textarea>
                             </div>
                         </div>

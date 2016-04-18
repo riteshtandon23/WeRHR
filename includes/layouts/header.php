@@ -145,7 +145,7 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="addAdmin.php">Add Admin</a>
                                         </li>
-                                        <li><a href="updateAdminProfile.php">Update Profile</a>
+                                        <li><a href="sendmails.php">Send Email</a>
                                         </li>
                                         <li><a href="#">Project Detail</a>
                                         </li>
@@ -222,7 +222,7 @@
                                     $result126=selectFeedback();
                                     while ($row126=$result126->fetch_assoc()) {
                                         ?>
-                                    <li>
+                                    <li id="menu121" data-id="<?php echo $row126['Email']."$$".$row126['Message']; ?>">
                                         <a>
                                             <span class="image">
                                         <img src="images/img.jpg" alt="Profile Image" />
@@ -230,11 +230,30 @@
                                             <span>
                                         <span><?php echo $row126['Name']; ?></span>
                                             <span class="time"><?php $fromtime=$row126['Date']." ".$row126['Time']; 
+                                               //echo $fromtime;
                                                 $fromtime=strtotime($fromtime);
-                                                $totime=Date("Y-m-d")." ".Date("H:m:s");
+                                                $totime=date("Y-m-d")." ".date("h:i:s");
+                                                 //echo $totime;
                                                 $totime=strtotime($totime);
-                                                echo $fromtime;
+                                                //echo $fromtime;
                                                 //echo round(abs($totime-$fromtime)/60)." Minutes ago";
+                                                $timet=round(abs($totime-$fromtime)/60,2);
+                                                if($timet>=60)
+                                                {
+                                                    $Hours=round(abs($timet)/60,2);
+                                                    if($Hours>24)
+                                                    {
+                                                            echo round(abs($Hours)/24)." Days ago";
+                                                    }else{
+                                                        echo round(abs($timet)/60)." Hours ago";
+                                                    }
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    echo round(abs($totime-$fromtime)/60)." Minutes ago";
+                                                }
+                                                
                                             ?></span>
                                             </span>
                                             <span class="message">
