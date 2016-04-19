@@ -158,6 +158,7 @@ if(!isset($_SESSION['hasVisited'])){
   if($row['date']!==$todaydate)
   {
     //echo "string";
+     $counterVal=1;
     $stmt=$connection->prepare("call addvisitor(?,?)");
     $stmt->bind_param('si',$todaydate,$counterVal);
     $stmt->execute();
