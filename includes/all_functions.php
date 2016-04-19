@@ -790,4 +790,12 @@ function selectAllEmail()
 	confirm_query($result);
 	return $result;	
 }
+function DisplayVisitor(){
+	global $connection;
+	//$query="select Date,totalVisitor from visitors ORDER BY Date ASC";
+	$query="select * FROM (select Date,totalVisitor from visitors ORDER BY Date DESC LIMIT 29) tmp order by tmp.Date asc";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>

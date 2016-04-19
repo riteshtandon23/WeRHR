@@ -34,6 +34,17 @@
             $_SESSION['AID']=$row['A_ID'];
             $_SESSION['UName']=$inputUname;
             $_SESSION['Type']=$row['type'];
+            // $data1=array();
+            // $data2=array();
+            // $result=DisplayVisitor();
+            // while ($row=$result->fetch_assoc()) {
+            //     $date[]=$row['Date'];
+            //     $tot[]=$row['totalVisitor'];
+            //     $data1=implode("$", $date);
+            //     $data2=implode("$", $tot);
+            // }
+            // $_SESSION['$dateOF']=$data1;
+            // $_SESSION['$TotalV']=$data2;
             redirect_to("adminHome.php");
             }else{
 
