@@ -117,7 +117,7 @@ $type=$_SESSION['Type'];
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="cspecification.php">Company Specification</a>
                                         </li>
-                                        <li><a href="media_gallery.html">Media Gallery</a>
+                                       <li><a href="exam_company.php">Exam details</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
@@ -289,6 +289,10 @@ $type=$_SESSION['Type'];
             </div>
             <!-- /top navigation -->
             <div class="right_col" role="main" style="background-color:white">
+			<div >
+			<h3 style="margin-top:70px">Create a Exam</h3>
+			<hr>
+			</div>
             <form class="form-horizontal form-label-left" action="emailagain.php" method="post">
 
             <div class="item form-group">
@@ -388,11 +392,19 @@ $type=$_SESSION['Type'];
     </form>
     
                   
-                
+     <footer >
+                    <div class="">
+                        <p class="pull-right">We are the Human Resource WAH.. |
+                            <span class="lead"> <i class="fa fa-paw"></i> Lovely Infotech!</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>           
   </div>
 
-
+ 
         </div>
+		                
 
     </div>
 

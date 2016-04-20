@@ -162,7 +162,7 @@ if(isset($_POST['submit']))
                                     <ul class="nav child_menu" style="display: none">
                                     <li><a href="cspecification.php">Company Specification</a>
                                         </li>
-                                        <li><a href="exam_company.php">Exam details</a>
+                                        <li><a href="media_gallery.html">Media Gallery</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
@@ -348,120 +348,7 @@ if(isset($_POST['submit']))
          <div id="myTabContent" class="tab-content">
              <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
              
-                 <div class="x_content">
-                    <form class="form-horizontal form-label-left" action="cprofile.php" method="POST" novalidate enctype="multipart/form-data">
-					<?php 
-$result = mysqli_query($connection,"SELECT * FROM employers WHERE email='". $_SESSION["email"]."'");
-$row=mysqli_fetch_array($result,MYSQL_ASSOC)
-	
- ?>
-                            <div class="col-lg-2 col-md-2 col-sm-2 pull-left">
-                                <div class="item form-group">
-                               
-							
-								 <img src="images/<?php echo $row['Profile_pic'];?>" alt="Avatar" name="img"  id="img" style='border-radius:10px;  height:220px ;width:200px;position:absolute; z-index:1;' >
-                                <input type='x' name='image' id="image" style='border-radius:20px;width:220px; height:220px; position:relative;  z-index:2; opacity:0; '   /> 
-								
-                           <!--<img src="images/<?php echo $row['Profile_pic'];?>" id="ADP" name="ADP" alt="Avatar">-->
-								
-                                <input type="hidden" id="name" name="name" value="">	
-                               
-								
-                               <!-- <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'> -->
-								  
-                                </div> 
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pull-right">
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminName">First Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="fname" class="form-control col-md-7 col-xs-12"  name="fname" Value="<?php echo $row['firstname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminLName">Last Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="lname" class="form-control col-md-7 col-xs-12"  name="lname" Value="<?php echo $row['lastname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['email'];?>">
-                                </div>
-                            </div>
-							 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="oname" class="form-control col-md-7 col-xs-12"  name="oname" Value="<?php echo $row['companyName'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">City<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="city" class="form-control col-md-7 col-xs-12"  name="city" Value="<?php echo $row['city'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">State<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="state" class="form-control col-md-7 col-xs-12"  name="state" Value="<?php echo $row['state'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Country<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="country" class="form-control col-md-7 col-xs-12"  name="country" Value="<?php echo $row['country'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization URL<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="url" class="form-control col-md-7 col-xs-12"  name="url" Value="<?php echo $row['companyWebsite'];?>" required="required" >
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Contact No<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="contact" class="form-control col-md-7 col-xs-12"  name="contact" Value="<?php echo $row['contact'];?>" required="required" type="number">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminAddress">Organization Address<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="address" name="address" class="form-control col-md-7 col-xs-12" value="<?php echo $row['address'];?>"></textarea>
-                            </div>
-                        </div>
-							 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Profile Pic<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="file" id="image" class="form-control col-md-7 col-xs-12"  name="image" Value="<?php echo $row['state'];?>" required="required" >
-                                </div>
-                            </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Update</button>
-                             </div>
-                        </div>
-                        </div>
-                    </form>
-                 </div>
-            </div>
-         </div>
-    </div>
-</div>
+         
  <footer >
                     <div class="">
                         <p class="pull-right">We are the Human Resource WAH.. |
@@ -746,15 +633,16 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
             });
         });
     </script>
-	<script type="text/javascript">
-         function readURL(input) {
+	 <script>
+    //load image
+        function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#img')
+                    $('#ADP')
                         .attr('src', e.target.result)
-						.width(220)
+                        .width(220)
                         .height(220);
                         
                 };
@@ -762,7 +650,7 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
                 reader.readAsDataURL(input.files[0]);
             }
         }
-</script>
+    </script>
     <script>
         NProgress.done();
     </script>

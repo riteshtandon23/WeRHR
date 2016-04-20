@@ -1,19 +1,10 @@
-var x;
-$.ajax({
-	
-    data: 'orderid=' + '1',
-    url: 'test3.php',
-	async: false,
-    method: 'POST', // or GET
-    success: function(msg) {
-		x=msg;
-      
-    }
-});
- 
-
-
-
+<?php
+ require_once("../includes/dbconnection.php");
+session_start();
+$que=mysqli_query("select count(*) as demo from employers where WHERE email='" . $_SESSION["email"] . "'");
+$row=mysqli_fetch_array($que,MYSQL_ASSOC)
+?>
+<script>
 var opts = {
     lines: 12, // The number of lines to draw
     angle: 0, // The length of each line
@@ -34,7 +25,7 @@ var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 gauge.maxValue = 10; // set max gauge value
 gauge.animationSpeed = 32; // set animation speed (32 is default value)
 
-gauge.set(x); // set actual value
-
+gauge.set(5); // set actual value
 gauge.setTextField(document.getElementById("gauge-text"));
+</script>
 

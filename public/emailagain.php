@@ -10,11 +10,15 @@
 		$pmark = $_POST['Pmark'];
 		$nmark = $_POST['Nmark'];
 		
+			
+			
+				$name=$course. '_ '.$date;
+		
 			$e_date=DateTime::createFromFormat('d/m/Y',$date);
         $date1=$e_date->format('Y-m-d');
 		
 		
-		$query1 = mysqli_query($connection,"INSERT INTO exam_generation(course_name,exam_date,start_time,end_time,email,total_que,positive_marks,negative_marks) VALUES('$course','$e_date','$stime','$etime','$email','$que','$pmark','$nmark')");
+		$query1 = mysqli_query($connection,"INSERT INTO exam_generation(exam_name,course_name,exam_date,start_time,end_time,email,total_que,positive_marks,negative_marks) VALUES('$name','$course','$date1','$stime','$etime','$email','$que','$pmark','$nmark')");
 		
 		
 
@@ -48,7 +52,7 @@ $mytemp=str_replace("{{stime}}",$stime,$mytemp);
 $mytemp=str_replace("{{etime}}",$etime,$mytemp);
 $sendgrid = new SendGrid("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");
 $email    = new SendGrid\Email();
-print_r($mytemp);
+//print_r($mytemp);
 $i=0;
 while($i<$n)
 {
@@ -64,4 +68,5 @@ $email->addTo($arr[$i])
 $sendgrid->send($email);
 $i=$i+1;
 }
+header('location:exam_company.php');
 ?>

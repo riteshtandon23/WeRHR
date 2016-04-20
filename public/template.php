@@ -13,7 +13,7 @@
 <p>start time: {{stime}}</p>
 <p>end time: {{etime}}</p>
 
-<a href="http://localhost/weRHr/public/lexam.php">click here to attempt the Exam</a>
+<a href="http://localhost/weRHr/public/login_demo.php">click here to attempt the Exam</a>
 <h4>Thanks</h4> 
 </center>
 </div>

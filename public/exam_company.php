@@ -1,58 +1,11 @@
 <?php require_once("../includes/dbconnection.php");?>
+<?php require_once("../includes/all_functions.php");?>
 <?php session_start(); 
 $type=$_SESSION['Type'];
     if($type!=="employer")
     {
         header('Location: login.php');
     }
-	
-if(isset($_POST['submit']))
-{
-	if(!empty($_FILES['image']) || $_FILES['image']['size']>0){
-		
-        $name = mysqli_escape_string($connection,$_FILES['image']['name']);
-	//echo	$name;
-        $type = $_FILES['image']['type'];
-        $error = $_FILES['image']['error'];
-        $size = $_FILES['image']['size'];
-        $temp = $_FILES['image']['tmp_name'];
-
-
-        if($error > 0)
-        {
-       //  echo "eer";
-        }
-        else
-        {
-            if($size > 10000000)
-                echo "Format not allowed or file size is too big!";
-            elseif (substr($type,0,5)=='image') {
-               
-                    if($name)
-                        move_uploaded_file($temp,"images/".$name);   
-						}
-		}
-		
-}
-	
-
-
-	$fname= ($_POST['fname']);
-		$lname = $_POST['lname'];
-		$email = $_POST['email'];
-		$o_name = ($_POST['oname']);
-		$country = ($_POST['country']);
-		$state = ($_POST['state']);
-		$city = ($_POST['city']);
-		$o_url= ($_POST['url']);
-		$contact= ($_POST['contact']);
-		$o_add= ($_POST['address']);
-		
-		
-	$query1 = mysqli_query($connection,"update employers set firstname='$fname',lastname='$lname',email='$email',companyName='$o_name',state='$state',country='$country',city='$city',companyWebsite='$o_url',address='$o_add',contact='$contact',Profile_pic='$name' WHERE email='" . $_SESSION["email"] . "'");
-	//echo $query1;
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -341,128 +294,82 @@ if(isset($_POST['submit']))
 			<div class="x_content" >
     <div class="" role="tabpanel" data-example-id="togglable-tabs">
         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-             <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Company Profile</a>
+             <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Exam Details</a>
              </li>
         </ul>
       
-         <div id="myTabContent" class="tab-content">
-             <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-             
-                 <div class="x_content">
-                    <form class="form-horizontal form-label-left" action="cprofile.php" method="POST" novalidate enctype="multipart/form-data">
-					<?php 
-$result = mysqli_query($connection,"SELECT * FROM employers WHERE email='". $_SESSION["email"]."'");
-$row=mysqli_fetch_array($result,MYSQL_ASSOC)
-	
- ?>
-                            <div class="col-lg-2 col-md-2 col-sm-2 pull-left">
-                                <div class="item form-group">
-                               
-							
-								 <img src="images/<?php echo $row['Profile_pic'];?>" alt="Avatar" name="img"  id="img" style='border-radius:10px;  height:220px ;width:200px;position:absolute; z-index:1;' >
-                                <input type='x' name='image' id="image" style='border-radius:20px;width:220px; height:220px; position:relative;  z-index:2; opacity:0; '   /> 
-								
-                           <!--<img src="images/<?php echo $row['Profile_pic'];?>" id="ADP" name="ADP" alt="Avatar">-->
-								
-                                <input type="hidden" id="name" name="name" value="">	
-                               
-								
-                               <!-- <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'> -->
-								  
-                                </div> 
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pull-right">
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminName">First Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="fname" class="form-control col-md-7 col-xs-12"  name="fname" Value="<?php echo $row['firstname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminLName">Last Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="lname" class="form-control col-md-7 col-xs-12"  name="lname" Value="<?php echo $row['lastname'];?>" required="required" type="text">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AEmail">Email<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $row['email'];?>">
-                                </div>
-                            </div>
-							 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization Name<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="oname" class="form-control col-md-7 col-xs-12"  name="oname" Value="<?php echo $row['companyName'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">City<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="city" class="form-control col-md-7 col-xs-12"  name="city" Value="<?php echo $row['city'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">State<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="state" class="form-control col-md-7 col-xs-12"  name="state" Value="<?php echo $row['state'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Country<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="country" class="form-control col-md-7 col-xs-12"  name="country" Value="<?php echo $row['country'];?>" required="required" >
-                                </div>
-                            </div>
-								 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Organization URL<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="url" class="form-control col-md-7 col-xs-12"  name="url" Value="<?php echo $row['companyWebsite'];?>" required="required" >
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Contact No<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="contact" class="form-control col-md-7 col-xs-12"  name="contact" Value="<?php echo $row['contact'];?>" required="required" type="number">
-                                </div>
-                            </div>
-                            <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminAddress">Organization Address<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="address" name="address" class="form-control col-md-7 col-xs-12" value="<?php echo $row['address'];?>"></textarea>
-                            </div>
-                        </div>
-							 <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminContact">Profile Pic<span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="file" id="image" class="form-control col-md-7 col-xs-12"  name="image" Value="<?php echo $row['state'];?>" required="required" >
-                                </div>
-                            </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-3">
-                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Update</button>
-                             </div>
-                        </div>
-                        </div>
-                    </form>
-                 </div>
+        <form class="form-horizontal form-label-left" novalidate>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+            <label id="test"></label>
+                <table id="example" class="table table-striped responsive-utilities jambo_table">
+                    <thead>
+                        <tr class="headings">
+						     <th>Exam Name</th>
+                             <th>Course Name</th>
+                             <th>Exam Date</th>
+                             <th>Start Time</th>
+                             <th>End Time</th>
+                             <th>Candidate</th>
+                             <th>Total question</th>
+                             <th>Positive Marks</th>
+							 <th>Negative Marks</th>
+                           
+                             </th>
+                        </tr>
+                        <script>
+                        $(document).ready(function(){
+                        console.log("anything is "+$("#anything").parent().closest('div').attr('class'));
+                        $("#anything").parent().change(function() {
+                        alert("Welcome");
+                        if(this.checked) {
+                            //Do stuff
+                            alert("Yahooo!");
+                        }                       
+                        });
+                    });
+                        </script>
+                    </thead>
+                    <tbody>
+                    <?php
+                   
+                    	$result= select_details();
+                    	while($row=$result->fetch_assoc())
+						{
+                            $QuestionChecked=$row["course_name"];
+                               echo "<td class=\" \">".$row["exam_name"]."</td>";
+                            echo "<td class=\" \">".$row["course_name"]."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["exam_date"])."</td>";
+                            echo "<td class=\" \">".$row["start_time"]."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["end_time"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["email"])."</td>";
+							echo "<td class=\" \">".htmlspecialchars($row["total_que"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["positive_marks"])."</td>";
+                            echo "<td class=\" \">".htmlspecialchars($row["negative_marks"])."</td>";
+                           
+                            
+                        
+                            echo "</td>";
+                            echo "</tr>";
+                    	   //echo "";
+                    	}
+                    ?>
+                    </tbody>
+                 </table>
             </div>
-         </div>
+        </div>
     </div>
+
+    <br />
+    <br />
+    <br />
+
 </div>
- <footer >
+</form>
+             
+         
                     <div class="">
                         <p class="pull-right">We are the Human Resource WAH.. |
                             <span class="lead"> <i class="fa fa-paw"></i> Lovely Infotech!</span>
@@ -746,15 +653,16 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
             });
         });
     </script>
-	<script type="text/javascript">
-         function readURL(input) {
+	 <script>
+    //load image
+        function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#img')
+                    $('#ADP')
                         .attr('src', e.target.result)
-						.width(220)
+                        .width(220)
                         .height(220);
                         
                 };
@@ -762,7 +670,7 @@ $row=mysqli_fetch_array($result,MYSQL_ASSOC)
                 reader.readAsDataURL(input.files[0]);
             }
         }
-</script>
+    </script>
     <script>
         NProgress.done();
     </script>

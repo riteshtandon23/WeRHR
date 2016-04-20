@@ -127,7 +127,7 @@ if(isset($_POST['submit']))
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="cspecification.php">Company Specification</a>
                                         </li>
-                                        <li><a href="media_gallery.html">Media Gallery</a>
+                                        <li><a href="exam_company.php">Exam details</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
@@ -318,24 +318,24 @@ if(isset($_POST['submit']))
     <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
         <div class="x_content">
-    <form method="post" id="passwordForm" action="change_password.php">
-<input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
+    <form method="post" id="passwordForm" action="change_password.php" style="margin-left:300px;margin-right:300px">
+<input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off"></br>
 <div class="row">
 <div class="col-sm-6">
 <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Characters Long<br>
 <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase Letter
 </div>
-<div class="col-sm-6">
+<div class="col-sm-6" >
 <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase Letter<br>
 <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
 </div>
-</div>
-<input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+</div></br>
+<input type="password" class="input-lg form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off"></br>
 <div class="row">
 <div class="col-sm-12">
 <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
 </div>
-</div>
+</div></br>
 <input type="submit" class="col-xs-12 btn btn-primary btn-load btn-lg" data-loading-text="Changing Password..." value="Change Password" id="submit" name="submit">
 </form>
 

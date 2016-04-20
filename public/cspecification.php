@@ -118,7 +118,7 @@ $type=$_SESSION['Type'];
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="cspecification.php">Company Specification</a>
                                         </li>
-                                        <li><a href="media_gallery.html">Media Gallery</a>
+                                        <li><a href="exam_company.php">Exam details</a>
                                         </li>
                                         <li><a href="typography.html">Typography</a>
                                         </li>
@@ -198,15 +198,8 @@ $type=$_SESSION['Type'];
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
                                     <li><a href="cprofile.php">  Profile</a>
                                     </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Help</a>
-                                    </li>
+                                   
+                                   
                                     <li><a href="logout_process.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                                     </li>
                                 </ul>
