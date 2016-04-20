@@ -23,7 +23,64 @@
         <div class="clearfix"></div>
         <div id="notif-group" class="tabbed_notifications"></div>
     </div>
- 
+    <div class="modal fade" id="replyfeedback" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+          <form class="form-horizontal form-label-left" action="controllers/sendemails.php" method="POST" novalidate>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+             <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Messagebody">To:<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                     <input id="multiplesendemail" class="form-control col-md-7 col-xs-12"  name="multiplesendemail[]" placeholder="subject" required="required" type="text">
+                     <input id="Subject" class="form-control col-md-7 col-xs-12"  name="Subject" placeholder="subject" required="required" type="hidden" value="reply to your feedback">
+                </div>
+            </div>
+              <div class="item form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Messagebody">Message<span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <textarea id="Messagebody" name="Messagebody" class="form-control col-md-7 col-xs-12" placeholder="e.g Message body" required="required"></textarea>
+                     <input type="hidden" id="fromfeedback" name="fromfeedback"></input>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button id="sendmail" name="sendmail" type="submit" class="btn btn-primary">Send</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    <div class="modal fade" id="readfeedback" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span class="fa fa-check fa-2x" style="color: green"></span>Email read</h4>
+                </div>
+                <div class="modal-body">
+                    <p><h5><b>From:</b> <label id="from"></h5> </label></p>
+                    <p><h5><b>Message:</b></h5></p>
+                    <p><label id="message"></label></p>
+                   
+                </div>
+                <div class="modal-footer">
+                    <button id="reply" type="button" class="btn btn-info" data-dismiss="modal">Reply</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+          </div>
+        </div>
+
+        
     <script src="js/bootstrap.min.js"></script>
 
     <script src="js/custom/gettingquestion/QuestionVisibility.js"></script>
@@ -59,173 +116,7 @@
     <script type="text/javascript" src="js/flot/jquery.flot.stack.js"></script>
     <script type="text/javascript" src="js/flot/curvedLines.js"></script>
     <script type="text/javascript" src="js/flot/jquery.flot.resize.js"></script>
-    <script type="text/javascript">
-        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
-        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
-
-        //generate random number for charts
-        randNum = function () {
-            return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
-        }
-
-        function graph() {
-            var d1 = [];
-            //var d2 = [];
-
-            //here we generate data for chart
-            for (var i = 0; i < 30; i++) {
-                d1.push([new Date(Date.today().add(i).days()).getTime(), randNum() + i + i + 10]);
-                //    d2.push([new Date(Date.today().add(i).days()).getTime(), randNum()]);
-            }
-
-            var chartMinDate = d1[0][0]; //first day
-            var chartMaxDate = d1[20][0]; //last day
-
-            var tickSize = [1, "day"];
-            var tformat = "%d/%m/%y";
-
-            //graph options
-            var options = {
-                grid: {
-                    show: true,
-                    aboveData: true,
-                    color: "#3f3f3f",
-                    labelMargin: 10,
-                    axisMargin: 0,
-                    borderWidth: 0,
-                    borderColor: null,
-                    minBorderMargin: 5,
-                    clickable: true,
-                    hoverable: true,
-                    autoHighlight: true,
-                    mouseActiveRadius: 100
-                },
-                series: {
-                    lines: {
-                        show: true,
-                        fill: true,
-                        lineWidth: 2,
-                        steps: false
-                    },
-                    points: {
-                        show: true,
-                        radius: 4.5,
-                        symbol: "circle",
-                        lineWidth: 3.0
-                    }
-                },
-                legend: {
-                    position: "ne",
-                    margin: [0, -25],
-                    noColumns: 0,
-                    labelBoxBorderColor: null,
-                    labelFormatter: function (label, series) {
-                        // just add some space to labes
-                        return label + '&nbsp;&nbsp;';
-                    },
-                    width: 40,
-                    height: 1
-                },
-                colors: chartColours,
-                shadowSize: 0,
-                tooltip: true, //activate tooltip
-                tooltipOpts: {
-                    content: "%s: %y.0",
-                    xDateFormat: "%d/%m",
-                    shifts: {
-                        x: -30,
-                        y: -50
-                    },
-                    defaultTheme: false
-                },
-                yaxis: {
-                    min: 0
-                },
-                xaxis: {
-                    mode: "time",
-                    minTickSize: tickSize,
-                    timeformat: tformat,
-                    min: chartMinDate,
-                    max: chartMaxDate
-                }
-            };
-            var plot = $.plot($("#placeholder33x"), [{
-                label: "Email Sent",
-                data: d1,
-                lines: {
-                    fillColor: "rgba(150, 202, 89, 0.12)"
-                }, //#96CA59 rgba(150, 202, 89, 0.42)
-                points: {
-                    fillColor: "#fff"
-                }
-            }], options);
-            graph1();
-        }
-    </script>
-    <!-- /flot -->
-    <!--  -->
-    <script>
-        function graph1(){
-            $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
-                type: 'bar',
-                height: '125',
-                barWidth: 13,
-                colorMap: {
-                    '7': '#a1a1a1'
-                },
-                barSpacing: 2,
-                barColor: '#26B99A'
-            });
-
-            $(".sparkline11").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3], {
-                type: 'bar',
-                height: '40',
-                barWidth: 8,
-                colorMap: {
-                    '7': '#a1a1a1'
-                },
-                barSpacing: 2,
-                barColor: '#26B99A'
-            });
-
-            $(".sparkline22").sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6], {
-                type: 'line',
-                height: '40',
-                width: '200',
-                lineColor: '#26B99A',
-                fillColor: '#ffffff',
-                lineWidth: 3,
-                spotColor: '#34495E',
-                minSpotColor: '#34495E'
-            });
-
-            var doughnutData = [
-                {
-                    value: 30,
-                    color: "#455C73"
-                },
-                {
-                    value: 30,
-                    color: "#9B59B6"
-                },
-                {
-                    value: 60,
-                    color: "#BDC3C7"
-                },
-                {
-                    value: 100,
-                    color: "#26B99A"
-                },
-                {
-                    value: 120,
-                    color: "#3498DB"
-                }
-        ];
-            var myDoughnut = new Chart(document.getElementById("canvas1i").getContext("2d")).Doughnut(doughnutData);
-            var myDoughnut = new Chart(document.getElementById("canvas1i2").getContext("2d")).Doughnut(doughnutData);
-            var myDoughnut = new Chart(document.getElementById("canvas1i3").getContext("2d")).Doughnut(doughnutData);
-        }
-    </script>
+   
 
     <!-- daterangepicker -->
     <script type="text/javascript" src="js/moment.min2.js"></script>
@@ -436,8 +327,68 @@
             }
         }
     </script>
-   
+   <script type="text/javascript">
+       // $(".child_menu li").click(function(){
+       //      //alert($(this)[0].firstChild.textContent);
+       //      //alert($(this)[0].parent().textContent);
+       // });
+       //  $(".side-menu li ul li").click(function(){
+            
+       //      alert($(this)[0].firstChild.textContent);
+       // });
+       var i=0;
+        $(".side-menu li").click(function(){
+            if(i==0)
+            {
+                //alert("0");
+                var child=$(this)[0].firstChild.textContent;
+                localStorage.setItem('Children',JSON.stringify(child));
+                i=1;
+            }else{
+                //alert("1");
+                var parent=$(this)[0].firstChild.textContent;
+                localStorage.setItem('Parent',JSON.stringify(parent));
+                i=0;
+            }
+            //alert($(this)[0].firstChild.textContent);
+       });
+ $(document).ready(function(){
+          var parent=JSON.parse(localStorage.getItem('Parent'));
+          var child=JSON.parse(localStorage.getItem('Children'));
+         if(parent!==null && child!==null)
+         {
+             $('#parent123').text(parent);
+             $('#child123').text(child);
+         }
+        });
+   </script>
+<script type="text/javascript">
 
+    $(document).on('click','#menu121',function(){
+        //alert($(this).data('id'));
+        var data=$(this).data('id');
+        var res=data.split("$$");
+        $('#inputemail').val(res[0]);
+        $('#multiplesendemail').val(res[0]);
+        $('#from').text(res[0]);
+        $('#message').text(res[1]);
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/changeAdminPass.php',
+            data:'key='+res[0],
+            success:function(data){
+
+            }
+        });
+        $("#readfeedback").modal('show');
+    });
+    $('#reply').on('click',function(){
+        
+         
+          $("#replyfeedback").modal('show');
+    });
+</script>
 </body>
 
 </html>

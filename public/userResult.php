@@ -21,6 +21,12 @@
 </head>
     <?php 
     session_start();
+    if(!isset($_SESSION['CName']))
+    {
+        redirect_to("userHome.php");
+    }
+
+    unset($_SESSION['CName']);
      $arr6=array();
      $arr2=array();
 
@@ -123,36 +129,51 @@
             }else{
                 $counter=0;
                 $sizeofAns=0;
+                $combine=null;
                 //$tempj=0;
                 $Oans=explode("::", $arr2[$i]);
-                //var_dump($Oans);
+                
                 for($j=0;$j<sizeof($ans1);$j++){
                    // $tempj=$j;
                     $Uans=explode("::", $ans1[$j]);
+                    // var_dump($Uans);
                     $Oans1=explode("/",$Oans[1]);
                     $sizeofAns=sizeof($Oans1);
                     if($Oans[0]===$Uans[0])
                     {
+                        // var_dump($Oans);
+                        // var_dump($Uans);
+                        
                         $Uans1=explode("/", $Uans[1]);
+                        //var_dump($Oans);
+                        //var_dump($Uans1);
                         for($k=0;$k<sizeof($Oans1);$k++)
                         {
+                            //var_dump($Oans1[$k]);
                             for($l=0;$l<sizeof($Uans1);$l++)
                             {
+                                //var_dump($Uans1[$l]);
                                 if($Oans1[$k]===$Uans1[$l])
                                 {
+                                    $combine .=$Uans1[$k]."/";
                                     $counter++;
                                 }
                             }
+                            
                         }
+                        $combine=substr($combine,0,-1);
+                        $combine = $Uans[0]."::".$combine;
 
                     }
                 }
                 if($counter===$sizeofAns)
                 {
-                    //echo "equal";
+                   // echo $arr2[$i];
                     //$score+=1;
-                    $checkForNegative[]=$arr2[$i];
+                    //$checkForNegative[]=$arr2[$i];
+                    $checkForNegative[]=$combine;
                     $score+=(int)$positiveMarks[$i];
+                    //echo $score;
 
                 }
             }
@@ -190,13 +211,18 @@
         while ($row=$totalquestion->fetch_assoc()) {
             $TotalQuestion=$row['Visible'];
         }
+        // echo $Total;
+        
+        // echo $TotalQuestion;
         $score=($score/$Total)*$TotalQuestion;
         //Negative marking
+        //echo $score;
          for($i=0;$i<sizeof($ans1);$i++)
         {
             if(!in_array($ans1[$i], $checkForNegative))
             {
-                //echo $ans1[$i];
+                 // var_dump($checkForNegative);
+                 // echo $ans1[$i];
                 $QN=explode("::", $ans1[$i]);
                 $qn=$QN[0];
                 $qn=($qn-1);

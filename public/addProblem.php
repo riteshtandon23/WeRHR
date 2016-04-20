@@ -48,7 +48,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="questionType">Type of Question<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select id="questionType" name="questionType" class="form-control" required>
+                                <select id="questionType" name="questionType" class="form-control" onchange="checkme(this.value)" required>
                                     <option>Single Choice</option>
                                     <option>Multiple Choice</option>
                                 </select>
@@ -101,7 +101,7 @@
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <button id="submit" name="submit" type="submit" class="btn btn-dark">Submit</button>
+                                <button id="submitQuestion" name="submitQuestion" type="submit" class="btn btn-dark">Submit</button>
                              </div>
                         </div>
                     </form>
@@ -110,6 +110,7 @@
          </div>
     </div>
 </div>
+
 
                                             
 <?php include("../includes/layouts/footer.php");?>

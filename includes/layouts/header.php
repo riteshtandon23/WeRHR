@@ -114,6 +114,8 @@
                                         </li>
                                         <li><a href="examGeneration.php">Exam Generation</a>
                                         </li>
+                                         <li><a href="choseParticipant.php">Chose Participant</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-area-chart"></i> Algorithm <span class="fa fa-chevron-down"></span></a>
@@ -133,15 +135,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">Chart JS</a>
-                                        </li>
-                                        <li><a href="#">Chart JS2</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </li>
+                                
                             </ul>
                         </div>
                         <div class="menu_section">
@@ -151,32 +145,13 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="addAdmin.php">Add Admin</a>
                                         </li>
-                                        <li><a href="updateAdminProfile.php">Update Profile</a>
+                                        <li><a href="sendmails.php">Send Email</a>
                                         </li>
                                         <li><a href="#">Project Detail</a>
                                         </li>
                                         <li><a href="#">Contacts</a>
                                         </li>
-                                        <li><a href="#">Profile</a>
-                                        </li>
                                     </ul>
-                                </li>
-                                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="#">404 Error</a>
-                                        </li>
-                                        <li><a href="#">500 Error</a>
-                                        </li>
-                                        <li><a href="#">Plain Page</a>
-                                        </li>
-                                        <li><a href="#">Login Page</a>
-                                        </li>
-                                        <li><a href="#">Pricing Tables</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -219,12 +194,11 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
+                                    <li><a href="updateAdminProfile.php">  Profile</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
+                                        <a href="changeAdminPass.php">
+                                            <span>Change Password</span>
                                         </a>
                                     </li>
                                     <li>
@@ -238,65 +212,61 @@
                             <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
+                                    <span class="badge bg-green"><?php $result125=countUnreadFeedback(); 
+                                    while ($row125=$result125->fetch_assoc()) {
+                                         echo $row125['unread'];
+                                     } ?></span>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                    <li>
+                                   <?php 
+                                    $result126=selectFeedback();
+                                    while ($row126=$result126->fetch_assoc()) {
+                                        ?>
+                                    <li id="menu121" data-id="<?php echo $row126['Email']."$$".$row126['Message']; ?>">
                                         <a>
                                             <span class="image">
                                         <img src="images/img.jpg" alt="Profile Image" />
                                     </span>
                                             <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
+                                        <span><?php echo $row126['Name']; ?></span>
+                                            <span class="time"><?php $fromtime=$row126['Date']." ".$row126['Time']; 
+                                               //echo $fromtime;
+                                                $fromtime=strtotime($fromtime);
+                                                $totime=date("Y-m-d")." ".date("h:i:s");
+                                                 //echo $totime;
+                                                $totime=strtotime($totime);
+                                                //echo $fromtime;
+                                                //echo round(abs($totime-$fromtime)/60)." Minutes ago";
+                                                $timet=round(abs($totime-$fromtime)/60,2);
+                                                if($timet>=60)
+                                                {
+                                                    $Hours=round(abs($timet)/60,2);
+                                                    if($Hours>24)
+                                                    {
+                                                            echo round(abs($Hours)/24)." Days ago";
+                                                    }else{
+                                                        echo round(abs($timet)/60)." Hours ago";
+                                                    }
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    echo round(abs($totime-$fromtime)/60)." Minutes ago";
+                                                }
+                                                
+                                            ?></span>
                                             </span>
                                             <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
+                                       <?php $message=$row126['Message'];
+                                            $message=substr($message,0,50);
+                                            echo $message.".......";
+                                        ?>
                                     </span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span>John Smith</span>
-                                            <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where... 
-                                    </span>
-                                        </a>
-                                    </li>
+                                <?php
+                                    }
+                                 ?>
                                     <li>
                                         <div class="text-center">
                                             <a>
@@ -338,7 +308,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    
+                     <h2><label id="parent123">Home</label><small><label id="child123">Home</label></small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                              </li>

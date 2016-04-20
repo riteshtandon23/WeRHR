@@ -66,7 +66,7 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Transaction Summary <small>Weekly progress</small></h2>
+                        <h2>Visitors to our website <small>Monthly progress</small></h2>
                         <div class="filter">
 
                             <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
@@ -78,31 +78,8 @@
                     </div>
                     <div class="x_content">
                         <div class="col-md-9 col-sm-12 col-xs-12">
-                            <div class="demo-container" style="height:280px">
+                            <div class="demo-container" style="height:340px">
                                 <div id="placeholder33x" class="demo-placeholder"></div>
-                            </div>
-                            <div class="tiles">
-                                <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;">
-                            <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                        </span>
-                                </div>
-                                <div class="col-md-4 tile">
-                                    <span>Total Revenue</span>
-                                    <h2>$231,809</h2>
-                                    <span class="sparkline22 graph" style="height: 160px;">
-                            <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                        </span>
-                                </div>
-                                <div class="col-md-4 tile">
-                                    <span>Total Sessions</span>
-                                    <h2>231,809</h2>
-                                    <span class="sparkline11 graph" style="height: 160px;">
-                            <canvas width="200" height="60" style="display: inline-block; vertical-align: top; width: 94px; height: 30px;"></canvas>
-                        </span>
-                                </div>
                             </div>
 
                         </div>
@@ -163,8 +140,6 @@
             </div>
         </div>
 
-
-
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
@@ -218,10 +193,199 @@
                 </div>
             </div>
         </div>
-
+        <?php 
+             $data1=array();
+            $data2=array();
+            $result=DisplayVisitor();
+            while ($row=$result->fetch_assoc()) {
+                $date[]=$row['Date'];
+                $tot[]=$row['totalVisitor'];
+                $data1=implode("$", $date);
+                $data2=implode("$", $tot);
+            }
+         ?>
     </div>
 </div>
+    <script type="text/javascript">
+        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+        var indate='<?php echo $data1; ?>';
+        var total='<?php echo $data2; ?>';
+        var totalV=total.split("$");
+        var vdate=indate.split("$");
+        //alert(vdate[1]);
+        var chartColours = ['#96CA59', '#3F97EB', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
 
+        //generate random number for charts
+        randNum = function () {
+            return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
+        }
+        function gd(year,month,day)
+        {
+            return new Date(year,month-1,day).getTime();
+        }
+        function graph() {
+            var d1 = [];
+            //var d2 = [];
+            //var bb=new Date(Date.today().add(i).days()).getTime();
+            //alert(bb);
+            //here we generate data for chart
+            for (var i = 0; i < totalV.length; i++) {
+                //var vdate2=vdate[0].split("-");
+                //d1.push([new Date(Date.today().add(i).days()).getTime(), totalV[i]]);
+                d1.push([new Date(vdate[i]).getTime(), totalV[i]]);
+                //d1.push([totalV[i]]);
+                //    d2.push([new Date(Date.today().add(i).days()).getTime(), randNum()]);
+            }
+
+            var chartMinDate = d1[0][0]; //first day
+            var chartMaxDate = d1[28][0]; //last day
+
+            var tickSize = [1, "day"];
+            var tformat = "%Y-%m-%d";
+
+            //graph options
+            var options = {
+                grid: {
+                    show: true,
+                    aboveData: true,
+                    color: "#3f3f3f",
+                    labelMargin: 10,
+                    axisMargin: 0,
+                    borderWidth: 0,
+                    borderColor: null,
+                    minBorderMargin: 5,
+                    clickable: true,
+                    hoverable: true,
+                    autoHighlight: true,
+                    mouseActiveRadius: 100
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: true,
+                        lineWidth: 2,
+                        steps: false
+                    },
+                    points: {
+                        show: true,
+                        radius: 4.5,
+                        symbol: "circle",
+                        lineWidth: 3.0
+                    }
+                },
+                legend: {
+                    position: "ne",
+                    margin: [0, -25],
+                    noColumns: 0,
+                    labelBoxBorderColor: null,
+                    labelFormatter: function (label, series) {
+                        // just add some space to labes
+                        return label + '&nbsp;&nbsp;';
+                    },
+                    width: 40,
+                    height: 1
+                },
+                colors: chartColours,
+                shadowSize: 0,
+                tooltip: true, //activate tooltip
+                tooltipOpts: {
+                    content: "%s: %y.0",
+                    xDateFormat: "%d/%m",
+                    shifts: {
+                        x: -30,
+                        y: -50
+                    },
+                    defaultTheme: false
+                },
+                yaxis: {
+                    min: 0
+                },
+                xaxis: {
+                    mode: "time",
+                    minTickSize: tickSize,
+                    timeformat: tformat,
+                    min: chartMinDate,
+                    max: chartMaxDate
+                }
+            };
+            var plot = $.plot($("#placeholder33x"), [{
+                label: "Total Visitor",
+                data: d1,
+                lines: {
+                    fillColor: "rgba(150, 202, 89, 0.12)"
+                }, //#96CA59 rgba(150, 202, 89, 0.42)
+                points: {
+                    fillColor: "#fff"
+                }
+            }], options);
+            graph1();
+        }
+    </script>
+    <!-- /flot -->
+    <!--  -->
+    <script>
+        function graph1(){
+            $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
+                type: 'bar',
+                height: '125',
+                barWidth: 13,
+                colorMap: {
+                    '7': '#a1a1a1'
+                },
+                barSpacing: 2,
+                barColor: '#26B99A'
+            });
+
+            $(".sparkline11").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3], {
+                type: 'bar',
+                height: '40',
+                barWidth: 8,
+                colorMap: {
+                    '7': '#a1a1a1'
+                },
+                barSpacing: 2,
+                barColor: '#26B99A'
+            });
+
+            $(".sparkline22").sparkline([2, 4, 3, 4, 7, 5, 4, 3, 5, 6, 2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 6], {
+                type: 'line',
+                height: '40',
+                width: '200',
+                lineColor: '#26B99A',
+                fillColor: '#ffffff',
+                lineWidth: 3,
+                spotColor: '#34495E',
+                minSpotColor: '#34495E'
+            });
+
+            var doughnutData = [
+                {
+                    value: 30,
+                    color: "#455C73"
+                },
+                {
+                    value: 30,
+                    color: "#9B59B6"
+                },
+                {
+                    value: 60,
+                    color: "#BDC3C7"
+                },
+                {
+                    value: 100,
+                    color: "#26B99A"
+                },
+                {
+                    value: 120,
+                    color: "#3498DB"
+                }
+        ];
+            var myDoughnut = new Chart(document.getElementById("canvas1i").getContext("2d")).Doughnut(doughnutData);
+            var myDoughnut = new Chart(document.getElementById("canvas1i2").getContext("2d")).Doughnut(doughnutData);
+            var myDoughnut = new Chart(document.getElementById("canvas1i3").getContext("2d")).Doughnut(doughnutData);
+            
+        }
+    </script>
 <?php include("../includes/layouts/footer.php");?>
 <?php
 if(isset($connection))

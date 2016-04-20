@@ -128,14 +128,14 @@ function CountVisibleQuestion($cname,$Edate)
 	return $result;
 } 
 //select Date and Time of Exam
-function SelectExamDateTime($Eid)
+function SelectExamDateTime($Eid,$email)
 {
 	global $connection;
 	// $stmt=$connection->prepare("call SelectExamDate(?,?)");
 	// $stmt->bind_param('ss',$cid,$todayDate);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select SerialNo from participant where ExamName='$Eid' AND Users='lamaredaoyit@yahoo.com'";
+	$query="select SerialNo from participant where ExamName='$Eid' AND Users='$email'";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -770,6 +770,42 @@ function getUserforDisplay($id){
 	// $result=$stmt->get_result();
 	//$query="select u1.firstname,u1.email from users u1 left join participant p1 on p1.users=u1.email AND p1.ExamName ='$examName' where p1.users is null";
 	$query="SELECT firstname,lastname FROM users WHERE email='$id' LIMIT 1";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function countUnreadFeedback()
+{
+	global $connection;
+	$query="select count(status) as unread from feedback where status=0";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function selectFeedback()
+{
+	global $connection;
+	$query="select Name,Email,Message,Date,Time from feedback where status=0 ORDER BY Date DESC";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function selectAllEmail()
+{
+	global $connection;
+	// $stmt=$connection->prepare("call Academic_Result(?,?)");
+	// $stmt->bind_param('ss',$course,$AcademicPercentage);
+	// $stmt->execute();
+	// $result=$stmt->get_result();
+	$query="select email from users UNION ALL select email from employers";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;	
+}
+function DisplayVisitor(){
+	global $connection;
+	//$query="select Date,totalVisitor from visitors ORDER BY Date ASC";
+	$query="select * FROM (select Date,totalVisitor from visitors ORDER BY Date DESC LIMIT 29) tmp order by tmp.Date asc";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

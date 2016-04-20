@@ -61,6 +61,11 @@ $(document).ready(function() {
            var anss = $('#questionAns').val();
            var bla = $('#option1').val();
            var Qtype=$('#questionType').val();
+            if(Qtype==="Single Choice")
+           {
+              $('#questionAns').val('');
+              anss='';
+           }
            if(bla!="")
            {
             if(this.checked)
@@ -85,7 +90,11 @@ $(document).ready(function() {
            var anss = $('#questionAns').val();
            var bla = $('#option2').val();
            var Qtype=$('#questionType').val();
-           
+            if(Qtype==="Single Choice")
+           {
+              $('#questionAns').val('');
+              anss='';
+           }
            if(bla!="")
            {
             if(this.checked)
@@ -109,6 +118,11 @@ $(document).ready(function() {
            var anss = $('#questionAns').val();
            var bla = $('#option3').val();
            var Qtype=$('#questionType').val();
+           if(Qtype==="Single Choice")
+           {
+              $('#questionAns').val('');
+              anss='';
+           }
            if(bla!="")
            {
             if(this.checked)
@@ -133,6 +147,11 @@ $(document).ready(function() {
            var anss = $('#questionAns').val();
            var bla = $('#option4').val();
            var Qtype=$('#questionType').val();
+           if(Qtype==="Single Choice")
+           {
+              $('#questionAns').val('');
+              anss='';
+           }
            if(bla!="")
            {
             if(this.checked)
@@ -157,6 +176,11 @@ $(document).ready(function() {
            var anss = $('#questionAns').val();
            var bla = $('#option5').val();
            var Qtype=$('#questionType').val();
+           if(Qtype==="Single Choice")
+           {
+              $('#questionAns').val('');
+              anss='';
+           }
            if(bla!="")
            {
             if(this.checked)
@@ -180,8 +204,17 @@ $(document).ready(function() {
 
         
 });
+function checkme(value)
+{
+  if(value==="Single Choice")
+  {
+    $('#questionAns').val('');
+    $('input[type=checkbox]').attr('checked',false);
+  }
+}
 function checkForChoice(val)
 {
+  
   if(val==="Single Choice")
   {
     $('input[type=checkbox]').attr('checked',false);
