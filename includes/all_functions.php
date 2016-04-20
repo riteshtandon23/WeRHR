@@ -63,6 +63,18 @@ function selectQuestion()
 	return $result;
 
 }
+function select_details()
+{
+	global $connection;
+	// $stmt = $connection->prepare("call selectQuestion()");
+	// $stmt->execute();
+	// $result = $stmt->get_result();
+	$query="select exam_name,course_name,exam_date,start_time,end_time,email,total_que,positive_marks,negative_marks from exam_generation ORDER BY exam_date Desc";
+    $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+
+}
 function selectOption($id)
 {
 	global $connection;
