@@ -798,4 +798,44 @@ function DisplayVisitor(){
 	confirm_query($result);
 	return $result;
 }
+function getExamconductEmonth($fday,$lday)
+{
+	global $connection;
+	$query="select count(Exam_Date) as total from exam_details where (Exam_Date between '$fday' and '$lday')";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getUserAtemmpExam($fday,$lday)
+{
+	global $connection;
+	$query="select count(Exam_Date) as total from userresults where (Exam_Date between '$fday' and '$lday')";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getUserCourseInterest($value)
+{
+	global $connection;
+	$query="select count(courses) as total FROM `user_courses` WHERE courses REGEXP '$value'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getTopperreult()
+{
+	global $connection;
+	$query="select Scores,Total,Course_Name,users from userresults";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getTopperName($value)
+{
+	global $connection;
+	$query="select firstname from users where email='$value'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>

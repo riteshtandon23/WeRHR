@@ -86,8 +86,10 @@
     <script src="js/custom/gettingquestion/QuestionVisibility.js"></script>
     <!-- chart js -->
     <script src="js/chartjs/chart.min.js"></script>
+    
     <!-- bootstrap progress js -->
     <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
     <!-- icheck -->
 
     <script src="js/icheck/icheck.min.js"></script>
@@ -389,6 +391,9 @@
           $("#replyfeedback").modal('show');
     });
 </script>
+ <script>
+        NProgress.done();
+    </script>
 </body>
 
 </html>

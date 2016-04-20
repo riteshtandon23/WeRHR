@@ -37,7 +37,10 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-   
+     <script src="js/nprogress.js"></script>
+    <script>
+        NProgress.start();
+    </script>
  <?php 
  session_start(); 
     $type=$_SESSION['Type'];
@@ -94,11 +97,13 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
-                            <h3>General</h3>
+                            <h3>General</h3>HomeAdmin2.php
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="adminHome.php">Home</a>
+                                        </li>
+                                        <li><a href="HomeAdmin2.php">Exam/user Details</a>
                                         </li>
                                     </ul>
                                 </li>
