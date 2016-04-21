@@ -204,7 +204,7 @@ function selectPwdUnm($uname,$pword)
 	// $stmt->bind_param('ss',$uname,$pword);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select Admin_Name,Admin_Lastname,Contact,Address,A_ID,type from we_are_hr_admin where Admin_password='$pword' AND A_ID='$uname'";
+	$query="select Admin_Name,Admin_Lastname,Contact,Address,A_ID,type,Email from we_are_hr_admin where Admin_password='$pword' AND A_ID='$uname'";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -845,7 +845,27 @@ function getTopperreult()
 function getTopperName($value)
 {
 	global $connection;
-	$query="select firstname from users where email='$value'";
+	$query="select firstname,contact from users where email='$value'";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getAdminContact()
+{
+	global $connection;
+	$query="select `Admin_Name`, `Contact`, `Address`, `Email`, `Profile_pic` FROM `we_are_hr_admin` ";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getEmployerContact($val)
+{
+	global $connection;
+	if($val==="comp")
+	{
+		$query="select `firstname`,`email`, `address`, `contact`, `Profile_pic` FROM `employers` union all select `firstname`,`email`, `address`, `contact`, `Profile_pic` FROM `users`";	
+	}
+	
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

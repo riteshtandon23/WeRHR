@@ -32,6 +32,7 @@
             $_SESSION['Name']=$row['Admin_Name'];
             $_SESSION['LName']=$row['Admin_Lastname'];
             $_SESSION['AID']=$row['A_ID'];
+            $_SESSION["email"]=$row['Email'];
             $_SESSION['UName']=$inputUname;
             $_SESSION['Type']=$row['type'];
             // $data1=array();
@@ -101,8 +102,8 @@
         $AdminContact=$_POST['AdminContact'];
         $AdminAddress=$_POST['AdminAddress'];
         $AEmail=$_POST['AEmail'];
-        $stmt=$connection->prepare("call UpdateAdminProfile(?,?,?,?,?,?,?)");
-        $stmt->bind_param('issssss',$id,$AdminName,$AdminLName,$AdminContact,$AdminAddress,$profilepic,$AEmail);
+        $stmt=$connection->prepare("call UpdateAdminProfile(?,?,?,?,?,?)");
+        $stmt->bind_param('isssss',$id,$AdminName,$AdminLName,$AdminContact,$AdminAddress,$AEmail);
         $result=$stmt->execute();
         if($result)
         {
@@ -114,6 +115,6 @@
 <?php
 if(isset($connection))
 {
-	mysqli_close($connection);
+    mysqli_close($connection);
 }
 ?>

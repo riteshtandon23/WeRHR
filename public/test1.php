@@ -25,22 +25,22 @@
 </div>
 <?php
 session_start();
-$number=array(20,1,5,20,7,3,8);
-$number1=$number;
-sort($number);
-$number=array_reverse($number);
-$number=array_slice($number,0,5,true);
-var_dump($number);
-echo "<br>";
-$key=array_search(20, $number1);
-echo $key."<br>";
-echo date("Y-m-d",strtotime(date('Y-01-01')));
-echo "<br>";
-echo date("Y-m-d",strtotime("last day of previous month"));
-echo "<br>";
-echo date("Y-m-t",strtotime("2016-02-04"));
-echo "<br>";
-echo date("F",strtotime("2016-02-04"));
+// $number=array(20,1,5,20,7,3,8);
+// $number1=$number;
+// sort($number);
+// $number=array_reverse($number);
+// $number=array_slice($number,0,5,true);
+// var_dump($number);
+// echo "<br>";
+// $key=array_search(20, $number1);
+// echo $key."<br>";
+// echo date("Y-m-d",strtotime(date('Y-01-01')));
+// echo "<br>";
+// echo date("Y-m-d",strtotime("last day of previous month"));
+// echo "<br>";
+// echo date("Y-m-t",strtotime("2016-02-04"));
+// echo "<br>";
+// echo date("F",strtotime("2016-02-04"));
 $counter_name = "counter.txt";
 // Check if a text file exists. If not create one and initialize it to zero.
 if (!file_exists($counter_name)) {
@@ -57,20 +57,20 @@ fclose($f);
 if(!isset($_SESSION['hasVisited'])){
   $_SESSION['hasVisited']="yes";
   $counterVal++;
-  $todaydate=date("2016-04-13");
+  $todaydate=date("Y-m-d");
   $que="select date from visitors where date='$todaydate'";
   $result = $connection->query($que);
   $row = mysqli_fetch_assoc($result);
-//var_dump($row);
-  //echo $row['date'];
+var_dump($row);
+  echo $row['date'];
   if($row['date']!==$todaydate)
   {
-    //echo "string";
+    echo "string";
     $stmt=$connection->prepare("call addvisitor(?,?)");
     $stmt->bind_param('si',$todaydate,$counterVal);
     $stmt->execute();
   }else{
-    //echo "stud";
+    echo "stud";
     $stmt=$connection->prepare("call updatevisitor(?,?)");
     $stmt->bind_param('si',$todaydate,$counterVal);
     $stmt->execute();
@@ -82,7 +82,7 @@ if(!isset($_SESSION['hasVisited'])){
   fclose($f); 
 }
 echo "You are visitor number $counterVal to this site";
-//session_destroy();
+session_destroy();
 ?>
  </div>
   <script src="js/bootstrap.min.js"></script>

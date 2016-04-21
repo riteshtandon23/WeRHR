@@ -17,15 +17,7 @@
              
                  <div class="x_content">
                     <form class="form-horizontal form-label-left" action="addAdmintoDB.php" method="POST" novalidate enctype="multipart/form-data">
-                            <div class="col-lg-2 col-md-2 col-sm-2 pull-left">
-                                <div class="item form-group">
-                                <div class="avatar-view col-lg-4" title="Change the avatar">
-                                <img src="images/userImage/<?php if($pic!==""){echo $pic;}else{ echo "admin.png";}?>" id="ADP" name="ADP" alt="Avatar">
-                                <input type="hidden" id="temp" name="temp" value="<?php echo $pic;?>">
-                                </div>
-                                <input type="file" class="form-control" id="image" name="image" onchange='readURL(this)'>
-                                </div> 
-                            </div>
+                           
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pull-right">
                             <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="AdminName">Admin Name<span class="required">*</span>

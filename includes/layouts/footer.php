@@ -313,21 +313,21 @@
 <script src="js/select/select2.full.js"></script>
     <script>
     //load image
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+        // function readURL(input) {
+        //     if (input.files && input.files[0]) {
+        //         var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#ADP')
-                        .attr('src', e.target.result)
-                        .width(220)
-                        .height(220);
+        //         reader.onload = function (e) {
+        //             $('#ADP')
+        //                 .attr('src', e.target.result)
+        //                 .width(220)
+        //                 .height(220);
                         
-                };
+        //         };
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        //         reader.readAsDataURL(input.files[0]);
+        //     }
+        // }
     </script>
    <script type="text/javascript">
        // $(".child_menu li").click(function(){
