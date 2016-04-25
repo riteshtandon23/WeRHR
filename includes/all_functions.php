@@ -858,14 +858,35 @@ function getAdminContact()
 	confirm_query($result);
 	return $result;
 }
-function getEmployerContact($val)
+function getEmployerContact()
 {
 	global $connection;
-	if($val==="comp")
-	{
-		$query="select `firstname`,`email`, `address`, `contact`, `Profile_pic` FROM `employers` union all select `firstname`,`email`, `address`, `contact`, `Profile_pic` FROM `users`";	
-	}
+		$query="select `firstname`,`email`, `address`, `contact`,`type`, `Profile_pic` FROM `employers` union all select `firstname`,`email`, `address`, `contact`,`type`, `Profile_pic` FROM `users`";	
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getAdminContactWithkey($key)
+{
+	global $connection;
+	$query="select `Admin_Name`, `Contact`, `Address`, `Email`, `Profile_pic` FROM `we_are_hr_admin` where Admin_Name LIKE '%{$key}%' ";
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getEmployerContactwithkey($key)
+{
+	global $connection;
+		$query="select `firstname`,`email`, `address`, `contact`,`type`, `Profile_pic` FROM `employers` where firstname LIKE '%{$key}%' union all select `firstname`,`email`, `address`, `contact`,`type`, `Profile_pic` FROM `users` where firstname LIKE '%{$key}%'";	
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getAllUsersfromparticipant($coursename)
+{
 	
+	global $connection;
+		$query="SELECT `username` FROM `user_courses` WHERE courses REGEXP '$coursename'";	
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

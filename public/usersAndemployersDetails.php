@@ -56,6 +56,7 @@
 </div>
 </form>
 <script type="text/javascript">
+   
     $(document).on('click','button',function(){
         //alert($('#stat').val());
         var utype=$('#Utype').val();

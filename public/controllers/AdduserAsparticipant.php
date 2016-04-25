@@ -57,6 +57,47 @@
  		echo json_encode($data);
  	}
   ?>
+    <?php 
+ 	if(isset($_GET['coursenameforall'])){
+ 		echo "successqqq";
+ 		$coursename=$_GET['coursenameforall'];
+ 		$examName=$_GET['examNameforall'];
+ 		$vis=$_GET['vis'];
+ 		$data=array();
+ 		$result=getAllUsersfromparticipant($coursename);
+ 		while ($row=$result->fetch_assoc()) {
+ 			$data[]=$row['username'];
+ 		}
+ 		foreach ($data as $key => $value) {
+
+			if($vis==="1")
+			{
+				$stmt=$connection->prepare('call setParticipant(?,?)');
+				$stmt->bind_param('ss',$value,$examName);
+				$result=$stmt->execute();
+				if($result)
+				{
+					echo "success";
+				}else
+				{
+					echo "Fail to update";
+				}
+			}else{
+				$stmt=$connection->prepare('call unsetParticipant(?,?)');
+				$stmt->bind_param('ss',$value,$examName);
+				$result=$stmt->execute();
+				if($result)
+				{
+					echo "success";
+				}else
+				{
+					echo "Fail to update";
+				}
+			}
+ 		}
+ 		//echo json_encode("success");
+ 	}
+  ?>
 <?php
 if(isset($connection))
 {

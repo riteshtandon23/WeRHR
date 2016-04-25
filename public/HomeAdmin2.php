@@ -226,7 +226,7 @@
                     </div>
                     <div class="w_center w_55">
                         <div class="progress">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value; ?>%;">
+                            <div class="progress-bar bg-green" title="<?php echo $value; ?>%" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $value; ?>%;">
                                 <span class="sr-only">60% Complete</span>
                             </div>
                         </div>
@@ -382,6 +382,12 @@
     ];
      $(document).ready(function () {
         var myDoughnut = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+    });
+     
+    </script>
+    <script>
+        $(document).ready(function () {
+       $('[data-toggle="tooltip"]').tooltip();
     });
     </script>
 <?php include("../includes/layouts/footer.php");?>

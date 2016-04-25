@@ -55,7 +55,7 @@
                             <td class=" "><?php echo $data9[$pos]; ?></td>
                             <td class=" "><?php echo $Topercontact[$pos]; ?></td>
                             <td class=" "><?php echo $data8[$pos]; ?></td>
-                            <td class=" "><?php echo $value; ?></td>
+                            <td class=" "><?php echo $value; ?>%</td>
                             
                         </tr>
                        <?php

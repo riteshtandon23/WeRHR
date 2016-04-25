@@ -328,7 +328,9 @@ $('#AgeRange').find('option').remove();
     }
  });
  function DisplayActiveParticipant(){
+    //alert("kk");
     $('#DisplayAll').attr('checked',false);
+    
     $('#error').html("");
     var coursename=$('#topicId').val();
     var Examdate=$('#Examdate').val();
@@ -401,4 +403,40 @@ $('#AgeRange').find('option').remove();
     DisplayActiveParticipant();
    }
     
+ });
+ $(document).on('change','#SelectAll',function(){
+    var coursename=$('#topicId').val();
+    var Examdate=$('#Examdate').val();
+    if(Examdate!==null && Examdate!=="null")
+    {
+        $('#error').html("");
+        var examName=coursename+Examdate;
+        if(this.checked)
+        {
+            //alert("checked");
+            vis=1;
+        }else{
+             vis=0;
+            //alert("unchecked");
+        }
+       
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:'controllers/AdduserAsparticipant.php',
+            data:'coursenameforall='+coursename+'&examNameforall='+examName+'&vis='+vis,
+            success:function(data){
+                //alert("jj");
+                 DisplayActiveParticipant();
+            },
+            error:function(tt)
+            {
+                //OnError(cartObject.productionID);
+                 DisplayActiveParticipant();
+            }
+        });
+    }else{
+        $('#error').html("select exam date first");
+        $(this).removeAttr('checked');
+    }
  });

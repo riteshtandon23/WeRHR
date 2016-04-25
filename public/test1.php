@@ -4,19 +4,21 @@
 <html>
 <head>
     <title></title>
-     <!-- link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/dist/bootstrap-clockpicker.min.css">
-    <link rel="stylesheet" type="text/css" href="css/github.min.css"> -->
-    <!-- Custom styling plus plugins -->
-<!--     <link href="css/custom.css" rel="stylesheet"> -->
- 
-<!--     <link href="css/icheck/flat/green.css" rel="stylesheet"> -->
-   
-
     <script src="js/jquery.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    <script>
+      var OneSignal = OneSignal || [];
+      OneSignal.push(["init", {
+        appId: "AIzaSyBALebQJM3rBojwvCi9x4qTMHl7Pe60Tqo",
+        autoRegister: false,
+         subdomainName: 'https://werhr.onesignal.com', 
+        notifyButton: {
+          enable: true, // Required to use the notify button
+    
+      }
+      }]);
+      </script>
 </head>
 <body>
  <div class="row">
@@ -96,6 +98,7 @@ session_destroy();
             
         });
     </script>
+    <script type="text/javascript"></script>
 </body>
 </html>
 <?php

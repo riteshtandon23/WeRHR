@@ -30,12 +30,20 @@
         </div>
     </div>
     <div class="item form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Examdate">Display All Users<span class="required">*</span>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Examdate"><span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="checkbox" name="DisplayAll" id="DisplayAll"/>
+            <label class="checkbox-inline"><input type="checkbox" name="DisplayAll" id="DisplayAll"/> Display All Users</label>
+            <label class="checkbox-inline"><input type="checkbox" name="SelectAll" id="SelectAll"/> Select All</label>
         </div>
     </div>
+    <!-- <div class="item form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Examdate">Select all<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" name="SelectAll" id="SelectAll"/>
+        </div>
+    </div> -->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
