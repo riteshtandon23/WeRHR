@@ -8,7 +8,7 @@ $(document).ready(function() {
     
     
     $('#surveyForm')
-        .on('click','#submit',function(e){
+        .on('click','#submitQuestion',function(e){
             var isValid=true;
             $('#option1,#option2,#option3,#option4,#option5').each(function(){
                 if($.trim($(this).val())==''){

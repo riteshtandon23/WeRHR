@@ -127,8 +127,6 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="addAlgoDetails.php">Add Details</a>
                                         </li>
-                                        <li><a href="#">Media Gallery</a>
-                                        </li>
                                         
                                     </ul>
                                 </li>
@@ -153,8 +151,6 @@
                                         <li><a href="sendmails.php">Send Email</a>
                                         </li>
                                         <li><a href="contact.php">Contacts</a>
-                                        </li>
-                                        <li><a href="#">Project Detail</a>
                                         </li>
                                         
                                     </ul>
@@ -225,16 +221,21 @@
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
                                    <?php 
+                                   $ppic="";
                                     $result126=selectFeedback();
                                     while ($row126=$result126->fetch_assoc()) {
+                                        $email=$row126['Email'];
+                                        $result129=getProfilepicfeedback($email);
+                                            $row129=$result129->fetch_assoc();
+                                            $ppic=$row129['Profile_pic'];
                                         ?>
                                     <li id="menu121" data-id="<?php echo $row126['Email']."$$".$row126['Message']; ?>">
                                         <a>
                                             <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
+                                        <img src="images/userImage/<?php if($ppic!==""){echo $ppic;}else{ echo "default.jpg";}?>" alt="Profile Image" />
                                     </span>
                                             <span>
-                                        <span><?php echo $row126['Name']; ?></span>
+                                        <span><?php echo $row126['Name'];?></span>
                                             <span class="time"><?php $fromtime=$row126['Date']." ".$row126['Time']; 
                                                //echo $fromtime;
                                                 $fromtime=strtotime($fromtime);
@@ -321,9 +322,7 @@
                              <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                  <ul class="dropdown-menu" role="menu">
-                                 <li><a href="#">Settings 1</a>
-                                 </li>
-                                 <li><a href="#">Settings 2</a>
+                                 <li><a href="#">My Color</a>
                                  </li>
                                 </ul>
                                  </li>

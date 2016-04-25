@@ -33,9 +33,10 @@
     		if($result)
     		{
         		echo "Success";
-        		redirect_to("addProblem.php");
+        		redirect_to("addProblem.php?key=000000001111100");
     		}else
     		{
+                redirect_to("addProblem.php?key=000000001111111");
 	        	die("Database connection fail".$connection->connect_errno." ".$temp);
     		}
     	}

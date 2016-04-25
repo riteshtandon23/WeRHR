@@ -21,6 +21,21 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="topicName" class="form-control col-md-7 col-xs-12"  name="topicName" placeholder="e.g PHP,JAVA, etc" required="required" type="text">
+                            <span>
+                            <?php
+                                 if (isset($_GET['key'])&&$_GET['key']==="000000001111111") 
+                                {
+                             ?>
+                                    <label style="color:red" class="control-label col-md-12 col-sm-12 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "Course You enter is already exist. Please check!!!";?></h4></Label> 
+
+                            <?php
+                                } elseif(isset($_GET['key'])&&$_GET['key']==="000000001111100"){
+                                    ?>
+                                    <label style="color:green" class="control-label col-md-12 col-sm-12 col-xs-12"><h4><strong><span class="fa fa-check fa-2x"></span></strong><?php echo "Sucessfully added.";?></h4></Label> 
+                                    <?php
+                                }
+                            ?>
+                        </span>
                         </div>
                     </div>
 
@@ -30,6 +45,7 @@
 
                             <button id="submit" name="submit" type="submit" class="btn btn-primary">ADD</button>
                         </div>
+                        
                     </div>
             </form>
         </div>

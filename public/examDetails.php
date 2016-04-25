@@ -60,9 +60,10 @@ if(isset($_POST['submit']))
                     }
 
                 }
-        		redirect_to("Exam_Details.php");
+        		redirect_to("Exam_Details.php?key=000000001111100");
     		}else
     		{
+                redirect_to("Exam_Details.php?key=000000001111111");
 	        	die("Database connection fail".$connection->connect_errno);
     		}
     	}

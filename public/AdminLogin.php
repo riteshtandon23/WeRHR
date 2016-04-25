@@ -58,11 +58,22 @@
                                 <button type="submit" class="btn btn-success btn-sm" name="Login" id="Login">LogIn</button>
                                 <button type="reset" class="btn btn-default btn-sm">Reset</button>
                             </div>
-                        
+                         
                         </div>
+
                         <div class="clearfix"></div>
                         <div class="separator">
+                             <span>
+                            <?php
+                                 if (isset($_GET['key'])&&$_GET['key']==="111111000000") 
+                                {
+                             ?>
+                                    <label style="color:red" class="control-label col-md-12 col-sm-12 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "Wrong Password or Username";?></h4></Label> 
 
+                            <?php
+                                }  
+                            ?>
+                        </span>
                             <div class="clearfix"></div>
                             <br />
                             <div>

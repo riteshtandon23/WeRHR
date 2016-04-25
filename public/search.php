@@ -6,9 +6,11 @@
         $key=$_GET['key'];
         $data = array();
         global $connection;
-        $stmt = $connection->prepare("select Topic_Name from topic where Topic_Name LIKE '%{$key}%'");
-        $stmt->execute();
-        $result = $stmt->get_result();
+        //$stmt = $connection->prepare("select Topic_Name from topic where Topic_Name LIKE '%{$key}%'");
+        // $stmt->execute();
+        // $result = $stmt->get_result();
+    $query="select Topic_Name from topic where Topic_Name LIKE '%{$key}%'";
+    $result = mysqli_query($connection,$query);
         while($row=$result->fetch_assoc())
         {
           echo "<li>".$row['Topic_Name']."</li>";

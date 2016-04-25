@@ -88,14 +88,31 @@
 
                      ?>
                 </select>
-            </div>
-        </div>
+                 <span>
+            <?php
+                 if (isset($_GET['key'])&&$_GET['key']==="000000001111111") 
+                {
+             ?>
+                    <label style="color:red" class="control-label col-md-12 col-sm-12 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "Cannot add at this moment. please try Later!!!";?></h4></Label> 
 
+            <?php
+                } elseif(isset($_GET['key'])&&$_GET['key']==="000000001111100"){
+                    ?>
+                    <label style="color:green" class="control-label col-md-12 col-sm-12 col-xs-12"><h4><strong><span class="fa fa-check fa-2x"></span></strong><?php echo "Sucessfully added.";?></h4></Label> 
+                    <?php
+                }
+            ?>
+        </span>
+            </div>
+
+        </div>
+       
         <div class="ln_solid"></div>
         <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
                 <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
             </div>
+             
         </div>
     </form>
 </div>

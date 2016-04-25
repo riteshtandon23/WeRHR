@@ -13,14 +13,11 @@ if(isset($_POST['submit']))
     $result = $stmt->execute();
     if($result)
     {
-        echo "<script>
-        $(document).ready(function(){
-            $('.bs-example-modal-sm').modal('show');
-        });
-        </script>";
-        redirect_to("addChallenge.php");
+       
+        redirect_to("addChallenge.php?key=000000001111100");
     }else
     {
+        redirect_to("addChallenge.php?key=000000001111111");
         die("Database connection fail".mysqli_error($connection));
     }
 }

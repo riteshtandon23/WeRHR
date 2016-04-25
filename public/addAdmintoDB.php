@@ -49,12 +49,7 @@
             redirect_to("adminHome.php");
             }else{
 
-                ?>
-                <script type="text/javascript">
-                    alert("Wrong credentials! Please check");
-                    window.location="http://localhost/WeRHR/public/AdminLogin.php"
-                    </script>
-                <?php
+                redirect_to("AdminLogin.php?key=111111000000");
             }
     }
 

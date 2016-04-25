@@ -785,7 +785,7 @@ function countUnreadFeedback()
 function selectFeedback()
 {
 	global $connection;
-	$query="select Name,Email,Message,Date,Time from feedback where status=0 ORDER BY Date DESC";
+	$query="select Name,Email,Message,Date,Time from feedback where status=0 ORDER BY Date DESC, Time DESC";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -894,6 +894,14 @@ function getAllUsersfromparticipant($coursename)
 function checkforExamName($tid,$Edate){
 	global $connection;
 		$query="SELECT `Topic_id`, `Exam_Date` FROM `exam_details` WHERE `Topic_id`='$tid' and `Exam_Date`='$Edate'";	
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function getProfilepicfeedback($email)
+{
+	global $connection;
+	$query="select `Profile_pic` FROM `employers` where email='$email' union all select `Profile_pic` FROM `users` where email='$email'";	
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
