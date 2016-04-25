@@ -331,7 +331,7 @@
         });
         function Didplaycontact(data1,data2,data3,data4,data5,data6)
         {
-
+            var dir;
             var output='<div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">';
             output +='<div class="well profile_view">';
                 output +='<div class="col-sm-12" style="height:180px; overflow: scroll;">';
@@ -359,13 +359,23 @@
                             output +='<a href="#"><span class="fa fa-star"></span></a>';
                             output +='<a href="#"><span class="fa fa-star"></span></a>';
                             output +='<a href="#"><span class="fa fa-star-star"></span></a>';
-
+                            if(data6!=="Administrator")
+                            {
+                                if(data6==="user")
+                                {
+                                    dir=111111;
+                                }else{
+                                    dir=111112;
+                                }
+                            }else{
+                                dir="111111";
+                            }
                         output +='</p>';
                     output +='</div>';
                     output +='<div class="col-xs-12 col-sm-6 emphasis passval">';
                         output +='<button type="button" value="'+data2+'" class="btn btn-success btn-xs" onclick="Displaymodal(this.value);"> <i class="fa fa-user">';
                             output +='</i> <i class="fa fa-comments-o"></i> </button>';
-                        output +='<a href="usersAndemployersDetails.php?key=111112" class="btn btn-primary btn-xs"> <i class="fa fa-user">';
+                        output +='<a href="usersAndemployersDetails.php?key='+dir+'" class="btn btn-primary btn-xs"> <i class="fa fa-user">';
                             output +='</i> View Status </a>';
                     output +='</div>';
                 output +='</div>';
