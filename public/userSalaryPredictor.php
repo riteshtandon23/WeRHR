@@ -59,6 +59,7 @@
 	 {
 	 	compname=$('#InputCompanyName').val();
 	 	role=$('#InputRole').val();
+	 	
 	 	//alert(role);
 	    if(value2!=="null" && role!=="null")
 	    {

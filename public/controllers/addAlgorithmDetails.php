@@ -14,7 +14,7 @@ if(isset($_POST['AddAge']))
 	$result=$stmt->execute();
 	if($result)
 	{
-		 	redirect_to("../addAlgoDetails.php");
+		 	redirect_to("../addAlgoDetails.php?id=000011");
 	}
 	else{
 		die("Fail to execute".mysqli_error($connection));
@@ -33,7 +33,7 @@ if(isset($_POST['AddAge']))
 	$result1=$stmt1->execute();
 	if($result1)
 	{
-		 	redirect_to("../addAlgoDetails.php");
+		 	redirect_to("../addAlgoDetails.php?id=000011");
 		//echo $company;
 	}
 
@@ -51,7 +51,7 @@ if(isset($_POST['AddAge']))
 	$result2=$stmt2->execute();
 	if($result2)
 	{
-		 	redirect_to("../addAlgoDetails.php");
+		 	redirect_to("../addAlgoDetails.php?id=000011");
 	}
  }
 
@@ -60,15 +60,34 @@ if(isset($_POST['AddAge']))
  if(isset($_POST['AddTest'])){
  	$company=$_POST['Company_Name3'];
  	$_SESSION["COMPNAME"]=$company;
-	$Test=$_POST['TestName'];
+	$courseName=$_POST['topicId'];
+	$Edate=$_POST['inputExamdate'];
+	// $exam_date=date_create($Edate);
+ //    $exam_date=date_format($exam_date,"Y-m-d");
+	$exam_date=DateTime::createFromFormat('d/m/Y',$Edate);
+        $exam_date=$exam_date->format('Y-m-d');
 	$TestPercentage=$_POST['TestPercentage'];
-	$stmt3=$connection->prepare("call addTestnPercentage(?,?,?)");
-	$stmt3->bind_param('sss',$Test,$TestPercentage,$company);
-	$result3=$stmt3->execute();
-	if($result3)
-	{
-		 	redirect_to("../addAlgoDetails.php");
+	$result25=select_Domain_id($courseName);
+	while ($row25=$result25->fetch_assoc()) {
+		$tid=$row25['Topic_id'];
 	}
+	$result26=checkforExamName($tid,$exam_date);
+	if($result26->num_rows > 0){
+		$Test=$courseName.$exam_date;
+		$stmt3=$connection->prepare("call addTestnPercentage(?,?,?)");
+		$stmt3->bind_param('sss',$Test,$TestPercentage,$company);
+		$result3=$stmt3->execute();
+		if($result3)
+		{
+			 	redirect_to("../addAlgoDetails.php?id=000011");
+		}
+	}else{
+		redirect_to("../addAlgoDetails.php?id=000001");
+		echo $exam_date." ".$tid;
+	}
+
+
+	
  }
 
   ?>

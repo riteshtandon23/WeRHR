@@ -8,13 +8,30 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
         <input id="CompanyNameAlgo" class="form-control col-md-7 col-xs-12"  name="CompanyNameAlgo" placeholder="Company Name e.g Microsoft" required="required" type="text" value="<?php if(isset($_SESSION["COMPNAME"])){echo $_SESSION["COMPNAME"];} ?>">
         <label id="messages" style="color:red"></label>
+
+        <span>
+            <?php
+                 if (isset($_GET['id'])&&$_GET['id']!=="000011") 
+                {
+             ?>
+                    <label style="color:red" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You Have not set the Exam Date!!!";?></h4></Label> 
+
+            <?php
+                }elseif (isset($_GET['id'])&&$_GET['id']==="000011"){
+
+                
+            ?>
+            <label style="color:green" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-check fa-2x"></span></strong><?php echo "Successfully Done!!!.";?></h4></Label>
+            <?php } ?>
+        </span>
     </div>
+
 </div>
 <div class="x_content">
     <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="x_panel">
+        <div class="x_panel" >
             
-            <div class="x_content">
+            <div class="x_content" style="height:300px; overflow: scroll;">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 
@@ -51,18 +68,41 @@
      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
         
-            <div class="x_content">
+            <div class="x_content" style="height:300px; overflow: scroll;">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 
                     <span class="section">Test</span>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestName">Test Name<span class="required">*</span>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="topicId">Select Course Name <span class="required">*</span>
                         </label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
-                            <input id="TestName" class="form-control col-md-7 col-xs-12"  name="TestName" placeholder="Marks for particular test " required="required" type="text">
+                            <select id="topicId" name="topicId" class="form-control" required>
+                            <?php
+                                $result=select_Domain();
+                                while($row =$result->fetch_assoc())
+                                {
+                                    //var_dump($row);
+                                    echo  "<option>".$row["topic_Name"]."</option>";
+                                }
+                            ?>
+                            </select>
                         </div>
                     </div>
+                      <div class="item form-group">
+                        <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Edate">Exam Date<span class="required">*</span>
+                        </label>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="col-md-9 col-sm-9 col-xs-9 has-feedback">
+                                        <input type="text" name="inputExamdate" class="form-control has-feedback-right col-md-7 col-xs-12" id="inputExamdate" placeholder="select Date" aria-describedby="inputSuccess2Status">
+                                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="false"></span>
+         
+                                    </div>
+                                </div>
+                            </div>
+                    </div> 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" for="TestPercentage">Percentage or Marks<span class="required">*</span>
                         </label>
@@ -88,7 +128,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
             
-            <div class="x_content">
+            <div class="x_content" style="height:300px; overflow: scroll;">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 
@@ -124,7 +164,7 @@
      <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="x_panel">
         
-            <div class="x_content">
+            <div class="x_content" style="height:300px; overflow: scroll;">
                 <br />
                 <form class="form-horizontal form-label-left" action="controllers/addAlgorithmDetails.php" method="post" novalidate>
 

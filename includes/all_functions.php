@@ -891,4 +891,11 @@ function getAllUsersfromparticipant($coursename)
 	confirm_query($result);
 	return $result;
 }
+function checkforExamName($tid,$Edate){
+	global $connection;
+		$query="SELECT `Topic_id`, `Exam_Date` FROM `exam_details` WHERE `Topic_id`='$tid' and `Exam_Date`='$Edate'";	
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
 ?>
