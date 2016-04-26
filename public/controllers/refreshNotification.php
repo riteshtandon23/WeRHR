@@ -62,7 +62,6 @@
 <?php
     if(isset($_GET['id']))
     {
-        echo "string";
         $key=$_GET['id'];
         $data = array();
         $result=DisplayAllUsersDetails($key);

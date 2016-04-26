@@ -64,11 +64,11 @@
         var vis=0;
         //var uname=uname.split('/');
         //alert(uname[1]);
-        if($(this).text()==="unblock"){
-            $(this).html(" block ");
+        if($(this).text()==="unBlock"){
+            $(this).html(" Block ");
             vis=1;
         }else{
-            $(this).html("unblock");
+            $(this).html("unBlock");
             vis=0;
         }
         $.ajax({
@@ -96,6 +96,7 @@
         data:'id='+id,
         success:function(data)
         {
+            //alert(data);
             var table = $('#example22').DataTable({
                 "autoWidth":false,
                 "destroy": true,
@@ -113,13 +114,13 @@
                 var Data4=myObject[i].address;
                 var Data5=myObject[i].city;
                 var Data6=myObject[i].country;
-                var Data7=myObject[i].status;
+                var Data8=myObject[i].status;
                 var Data7=myObject[i].stat;
                     if(Data7==="1")
                     {
-                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data7,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>Block</button>"]).draw(false);
+                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data8,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>Block</button>"]).draw(false);
                     }else{
-                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data7,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>UnBlock</button>"]).draw(false);
+                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data8,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>unBlock</button>"]).draw(false);
                     }
             }
 

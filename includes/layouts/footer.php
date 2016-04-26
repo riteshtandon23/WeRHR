@@ -367,7 +367,7 @@
 <script type="text/javascript">
 
     $(document).on('click','#menu121',function(){
-        alert($(this).data('id'));
+       // alert($(this).data('id'));
         var data=$(this).data('id');
         var res=data.split("$$");
         $('#inputemail').val(res[0]);
