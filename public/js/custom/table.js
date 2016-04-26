@@ -25,6 +25,14 @@ var oTable = $('#example').dataTable({
         "sSwfPath": "<?php echo base_url('js/datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
     }
 });
+$(document).ready(function () {
+var table = $('#example22').DataTable({
+                "autoWidth":false,
+                "destroy": true,
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers"
+            });
+});
 $("tfoot input").keyup(function () {
     /* Filter on the column based on the index of this element's parent <th> */
     oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));

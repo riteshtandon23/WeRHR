@@ -60,34 +60,16 @@
     
 ?>
 <?php
-    if(isset($_GET['date']) && isset($_GET['time']))
+    if(isset($_GET['id']))
     {
-        $key1=$_GET['date'];
-        $key2=$_GET['time'];
-        $fromtime=$key1." ".$key2; 
-           //echo $fromtime;
-            $fromtime=strtotime($fromtime);
-            $totime=date("Y-m-d")." ".date("h:i:s");
-             //echo $totime;
-            $totime=strtotime($totime);
-            //echo $fromtime;
-            //echo round(abs($totime-$fromtime)/60)." Minutes ago";
-            $timet=round(abs($totime-$fromtime)/60,2);
-            if($timet>=60)
-            {
-                $Hours=round(abs($timet)/60,2);
-                if($Hours>24)
-                {
-                        $data=round(abs($Hours)/24)." Days ago";
-                }else{
-                    $data=round(abs($timet)/60)." Hours ago";
-                }
-                
-            }
-            else
-            {
-                $data=round(abs($totime-$fromtime)/60)." Minutes ago";
-            }
+        echo "string";
+        $key=$_GET['id'];
+        $data = array();
+        $result=DisplayAllUsersDetails($key);
+        while($row=$result->fetch_assoc())
+        {
+            $data[]=array("Name"=>$row["firstname"],"LName"=>$row["lastname"],"email"=>$row["email"],"status"=>$row["Status"],"address"=>$row["address"],"city"=>$row["city"],"country"=>$row["country"],"stat"=>$row["act_status"]);
+        }
         echo json_encode($data);
     }
     

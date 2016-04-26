@@ -43,6 +43,7 @@
 	}
 ?>
 <?php  
+ date_default_timezone_set('Asia/Kolkata');
     if(isset($_POST['Agree']) && isset($_SESSION["email"]))
     {
         //echo $_SESSION["email"];

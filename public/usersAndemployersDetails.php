@@ -7,16 +7,16 @@
         <div class="x_panel">
             <div class="btn-gx_content">
             <label id="test"></label>
-                <table id="example" class="table table-striped responsive-utilities jambo_table">
+                <table id="example22" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                         <tr class="headings">
                              <th>Name</th>
                              <th>LastName</th>
                              <th>Email</th>
-                             <th>Status</th>
                              <th>Address</th>
                              <th>City</th>
                              <th>Country</th>
+                             <th>Status</th>
                              <th>Action</th>
                              </th>
                         </tr>
@@ -81,6 +81,52 @@
 
             }
         });
+    });
+    $(document).ready(function () {
+        window.setInterval(function(){
+            //alert("j");
+            var id='<?php if(isset($_GET['key'])){echo $_GET['key'];} ?>';
+            //alert(id);
+            if(id!=="")
+            {
+                 $.ajax({
+        type:'GET',
+        dataType:'json',
+        url:'controllers/refreshNotification.php',
+        data:'id='+id,
+        success:function(data)
+        {
+            var table = $('#example22').DataTable({
+                "autoWidth":false,
+                "destroy": true,
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers"
+            });
+            table.clear().draw(false);
+            var myOb=JSON.stringify(data);
+            var myObject = JSON.parse(myOb);
+            for(i=0;i<myObject.length;i++)
+            {
+                var Data1=myObject[i].Name;
+                var Data2=myObject[i].LName;
+                var Data3=myObject[i].email;
+                var Data4=myObject[i].address;
+                var Data5=myObject[i].city;
+                var Data6=myObject[i].country;
+                var Data7=myObject[i].status;
+                var Data7=myObject[i].stat;
+                    if(Data7==="1")
+                    {
+                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data7,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>Block</button>"]).draw(false);
+                    }else{
+                        table.row.add([Data1,Data2,Data3,Data4,Data5,Data6,Data7,"<button type='button' class='btn btn-primary' id='blockOrunblock' value='"+Data3+"'>UnBlock</button>"]).draw(false);
+                    }
+            }
+
+        }
+    });
+            }
+        },5000);
     });
 </script>
 <?php include("../includes/layouts/footer.php");?>
