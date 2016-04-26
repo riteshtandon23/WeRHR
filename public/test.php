@@ -63,9 +63,11 @@
                                 </div>
 </body>
 <script type="text/javascript">
-  $('.mecolor li a').click(function(){
-    var col=$(this).text();
-    $('.background').css("background:blue");
+  $(document).ready(function(){
+    //setTimeout(function(){call();},2000);
+window.setInterval(function(){
+alert("hh");
+},2000);
   });
 </script>
 <script type="text/javascript"></script>

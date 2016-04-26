@@ -367,7 +367,7 @@
 <script type="text/javascript">
 
     $(document).on('click','#menu121',function(){
-        //alert($(this).data('id'));
+        alert($(this).data('id'));
         var data=$(this).data('id');
         var res=data.split("$$");
         $('#inputemail').val(res[0]);
@@ -390,6 +390,90 @@
          
           $("#replyfeedback").modal('show');
     });
+</script>
+<!-- refresh notification -->
+<script>
+    $(document).ready(function () {
+        
+        $(".select2_multiple").select2({
+            // maximumSelectionLength: 10,
+            placeholder: "Mutiple Selection Email here",
+            allowClear: true
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+var Data1=0;
+//var tim="";
+    window.setInterval(function(){
+         $.ajax({
+                    type: 'GET',
+                    url:'controllers/refreshNotification.php',
+                    data:'callcount=all',
+                    success:function(data1)
+                    {
+                        //alert(data1);
+                         //var myOb=JSON.stringify(data);
+                        var myObject = JSON.parse(data1);
+                        //alert(myObject[0].Name);
+                        for(i=0;i<myObject.length;i++)
+                        {
+                            //alert(myObject[i].name);
+                            Data1=myObject[i].unread;
+                            $('#totnot').text(Data1);
+                        }
+                             
+                    }
+
+                });
+      
+       
+    },5000);
+function CallwhenNotification()
+{
+     $('#menu1').empty();
+     $.ajax({
+            type: 'GET',
+            url:'controllers/refreshNotification.php',
+            data:'callmessage=all',
+            success:function(data1)
+            {
+                //alert(data1);
+                 //var myOb=JSON.stringify(data);
+                var myObject = JSON.parse(data1);
+                //alert(myObject[0].Name);
+                for(i=0;i<myObject.length;i++)
+                {
+                    //alert(myObject[i].name);
+                    var Data2=myObject[i].Name;
+                    var Data3=myObject[i].email;
+                     var Data4=myObject[i].time1;
+                    var Data6=myObject[i].mesg;
+                    var data7=myObject[i].pic;
+                   var mesformodal=Data3+"$$"+Data6;
+                   var output='<li id="menu121" data-id="'+mesformodal+'">';
+                    Data6=Data6.substring(0,50);
+                        output+='<a>';
+                            output+='<span class="image">';
+                            output+='<img src="images/userImage/'+data7+'" alt="Profile Image" />';
+                            output+='</span>';
+                            output+='<span>';
+                            output+='<span>'+Data2+'</span>';
+                            output+='<span class="time">'+Data4+'</span>';
+                            output+='</span>';
+                            output+='<span class="message">'+Data6+'.............</span>';
+                        output+='</a>';
+                    output+='</li>';
+                    $('#menu1').append(output);
+                }
+                     
+            }
+
+        });
+}
+
 </script>
  <script>
         NProgress.done();

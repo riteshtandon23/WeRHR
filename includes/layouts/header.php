@@ -42,6 +42,7 @@
         NProgress.start();
     </script>
  <?php 
+ date_default_timezone_set('Asia/Kolkata');
  session_start(); 
     $type=$_SESSION['Type'];
     if($type!=="Admin")
@@ -115,6 +116,10 @@
                                         </li>
                                         <li><a href="setQuestion.php">All Question</a>
                                         </li>
+                                    </ul>
+                                </li>
+                                 <li><a><i class="fa fa-edit"></i> Exam Generation <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
                                         <li><a href="Exam_Details.php">Exam Date/Time</a>
                                         </li>
                                         <li><a href="examGeneration.php">Exam Generation</a>
@@ -211,77 +216,16 @@
                                 </ul>
                             </li>
 
-                            <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                            <li role="presentation" class="dropdown" id="notifyme">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" onclick="CallwhenNotification();">
                                     <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green"><?php $result125=countUnreadFeedback(); 
+                                    <span class="badge bg-green" id="totnot"><?php $result125=countUnreadFeedback(); 
                                     while ($row125=$result125->fetch_assoc()) {
                                          echo $row125['unread'];
-                                     } ?></span>
+                                     } ?></label></span>
                                 </a>
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-                                   <?php 
-                                   $ppic="";
-                                    $result126=selectFeedback();
-                                    while ($row126=$result126->fetch_assoc()) {
-                                        $email=$row126['Email'];
-                                        $result129=getProfilepicfeedback($email);
-                                            $row129=$result129->fetch_assoc();
-                                            $ppic=$row129['Profile_pic'];
-                                        ?>
-                                    <li id="menu121" data-id="<?php echo $row126['Email']."$$".$row126['Message']; ?>">
-                                        <a>
-                                            <span class="image">
-                                        <img src="images/userImage/<?php if($ppic!==""){echo $ppic;}else{ echo "default.jpg";}?>" alt="Profile Image" />
-                                    </span>
-                                            <span>
-                                        <span><?php echo $row126['Name'];?></span>
-                                            <span class="time"><?php $fromtime=$row126['Date']." ".$row126['Time']; 
-                                               //echo $fromtime;
-                                                $fromtime=strtotime($fromtime);
-                                                $totime=date("Y-m-d")." ".date("h:i:s");
-                                                 //echo $totime;
-                                                $totime=strtotime($totime);
-                                                //echo $fromtime;
-                                                //echo round(abs($totime-$fromtime)/60)." Minutes ago";
-                                                $timet=round(abs($totime-$fromtime)/60,2);
-                                                if($timet>=60)
-                                                {
-                                                    $Hours=round(abs($timet)/60,2);
-                                                    if($Hours>24)
-                                                    {
-                                                            echo round(abs($Hours)/24)." Days ago";
-                                                    }else{
-                                                        echo round(abs($timet)/60)." Hours ago";
-                                                    }
-                                                    
-                                                }
-                                                else
-                                                {
-                                                    echo round(abs($totime-$fromtime)/60)." Minutes ago";
-                                                }
-                                                
-                                            ?></span>
-                                            </span>
-                                            <span class="message">
-                                       <?php $message=$row126['Message'];
-                                            $message=substr($message,0,50);
-                                            echo $message.".......";
-                                        ?>
-                                    </span>
-                                        </a>
-                                    </li>
-                                <?php
-                                    }
-                                 ?>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
+                                  
                                 </ul>
                             </li>
 
