@@ -57,6 +57,12 @@
             line-height: 0.1;
             border-radius: 30px;
         }
+        .badge{
+            position: absolute;
+            top:0px;
+            left: 15px;
+           
+        }
     </style>
     <script src="js/jquery.min.js"></script>
     <script src="js/custom/gettingquestion/gettingQuestion.js"></script>
@@ -91,6 +97,7 @@
             </div>
         </div>
         <div class="panel-body" style="max-height: 300px;min-height: 300px;">
+        <div class="pull-right"><h5>Positive Marks: <b style="color: black"><label id="potive"></label></b></h5><h5>Negative Marks:<b style="color: black"><label id="netive"></label></b></h5></div>
             <div class="container-fluid panel-container">
                 <div class="col-xs-8 question">
                     <div class="row">
@@ -133,9 +140,9 @@
             
         </div>
         <div style="bottom: 0; position: absolute;">
-         <label><button id="prev" name="previous" type="button" class="btn btn-primary btn-circle"></button>Not Visit</label>
-         <label><button id="next" type="button" name="next" class="btn btn-circle" style="background-color: yellow"></button>Answered</label>
-         <label><button id="reset" type="button" name="reset" class="btn btn-circle" style="background-color: red"></button>Not Answered</label>
+         <label style="color: black"><button id="prev" name="previous" type="button" class="btn btn-primary btn-circle"><span class="badge bg-green" id="TotaluserNotVisit">0</span></button>Not Visit</label>
+         <label style="color: black"><button id="next" type="button" name="next" class="btn btn-circle" style="background-color: yellow"><span class="badge bg-green" id="TotaluserAnswer">0</span></button>Answered</label>
+         <label style="color: black"><button id="reset" type="button" name="reset" class="btn btn-circle" style="background-color: red"><span class="badge bg-green" id="TotaluserNotAnswer">0</span></button>Not Answered</label>
         </div>
         </div>
         <div class="panel-footer"></div>

@@ -9,6 +9,7 @@ $(document).ready(function(){
 	var selectedOption;
 	var questionlength;
 	var QuestionType;
+	var potive,netive;
 	//checking for Question Exixst or not to resume
 	//localStorage.clear();
 	$.ajax({
@@ -18,6 +19,7 @@ $(document).ready(function(){
 	    data:'key='+x,
 	    success:function(data)
 	    {
+	    	//alert(data);
 	    	var myOb=JSON.stringify(data);
 	    	myObject = JSON.parse(myOb);
 	    	var CheckQuestionExist = JSON.parse(localStorage.getItem('QuestionNumber'));
@@ -32,23 +34,33 @@ $(document).ready(function(){
 				Qname = JSON.parse(retrievedData1);
 				var retrievedData2 = localStorage.getItem("QuestionOption");
 				Optname = JSON.parse(retrievedData2);
+				var Ptive = localStorage.getItem("Positive");
+				 potive = JSON.parse(Ptive);
+				var Ntive= localStorage.getItem("Negative");
+				 netive= JSON.parse(Ntive);
 				var arr=Qname[j].split(":");
 				QuestionType=arr[0];
 				temp2=arr[1];
 				temp=Optname[j];
+				pootive=potive[j];
+				neetive=netive[j];
 			}else{
 				localStorage.clear();
 		    	for(var i in myObject)
 		    	{
-		    		
+		    		//alert("jj");
 		    		//console.log(myObject.Question);
 	    			//console.log(myObject[i].QuestionOption);
 	    			var Data1=myObject[i].Question;
 	    			var Data2=myObject[i].QuestionOption;
 	    			var Data3=myObject[i].QuestionType;
+	    			var Data22=myObject[i].PMark;
+	    			var Data33=myObject[i].NMark;
 	    			Data1=Data3+":"+Data1;
 	    			var QuestionName= JSON.parse(localStorage.getItem('QuestionName'));
 					var QuestionOption= JSON.parse(localStorage.getItem('QuestionOption'));
+					var Positive= JSON.parse(localStorage.getItem('Positive'));
+					var Negative= JSON.parse(localStorage.getItem('Negative'));
 					if (QuestionName=== null)
 					{
 					    QuestionName = [];
@@ -61,23 +73,43 @@ $(document).ready(function(){
 					}
 					QuestionOptio ={QOption:Data2};
 					QuestionOption.push(Data2);
+					if(Positive=== null)
+					{
+						Positive= [];
+					}
+					Positiv ={Positi:Data22};
+					Positive.push(Data22);
+					if(Negative=== null)
+					{
+						Negative= [];
+					}
+					Negativ={Negati:Data33};
+					Negative.push(Data33);
 					localStorage.setItem("QuestionName", JSON.stringify(QuestionName))
 					localStorage.setItem("QuestionOption", JSON.stringify(QuestionOption))	
+					localStorage.setItem("Positive", JSON.stringify(Positive))
+					localStorage.setItem("Negative", JSON.stringify(Negative))
 					var retrievedData1 = localStorage.getItem("QuestionName");
 					Qname = JSON.parse(retrievedData1);
 					var retrievedData2 = localStorage.getItem("QuestionOption");
 					Optname = JSON.parse(retrievedData2);
+					var Ptive = localStorage.getItem("Positive");
+					 potive = JSON.parse(Ptive);
+					var Ntive= localStorage.getItem("Negative");
+					 netive= JSON.parse(Ntive);
 					var arr=Qname[0].split(":");
 					QuestionType=arr[0];
 					// temp2=Qname[0];
 					// temp=Optname[0];
+					pootive=potive[j];
+					neetive=netive[j];
 					temp2=arr[1];
 					temp=Optname[0];
 					k=Number(i)+1;	
 		    	}
 		    }
 			$('#QNumber'+j).css('background-color','red');
-	    	Display(temp,temp2);
+	    	Display(temp,temp2,pootive,neetive);
 	    	trackQuestion();
 	    	highlight();
 	    	checkedOption();
@@ -101,7 +133,7 @@ $(document).ready(function(){
 				$('.option').empty();
 				var arr=Qname[j].split(":");
 				QuestionType=arr[0];
-				Display(Optname[j],arr[1]);
+				Display(Optname[j],arr[1],potive[j],netive[j]);
 			}else{
 				j=questionlength-1;
 			}
@@ -127,7 +159,7 @@ $(document).ready(function(){
 				$('.option').empty();
 				var arr=Qname[j].split(":");
 				QuestionType=arr[0];
-				Display(Optname[j],arr[1]);
+				Display(Optname[j],arr[1],potive[j],netive[j]);
 			}else
 			{
 				j=0;
@@ -172,7 +204,7 @@ $(document).ready(function(){
 		$('.option').empty();
 		var arr=Qname[j].split(":");
 		QuestionType=arr[0];
-		Display(Optname[j],arr[1]);
+		Display(Optname[j],arr[1],potive[j],netive[j]);
 		trackQuestion();
 		if($('#QNumber'+j).css('background-color')!=="rgb(255, 255, 0)"){	
 				$('#QNumber'+j).css('background-color','red');
@@ -262,11 +294,33 @@ $(document).ready(function(){
 		}
 
 	});
-	function Display(temp,temp2)
+	function Display(temp,temp2,potive,netive)
 	{
 		//Display question and option in a page
+		var totaluserans= localStorage.getItem("UserAns");
+		totalusrans= JSON.parse(totaluserans);
+		var totalusernotans= localStorage.getItem("unAnswer");
+		totalusernoans= JSON.parse(totalusernotans);
+		var totalusernovisit= localStorage.getItem("QuestionName");
+		totalusernovsit= JSON.parse(totalusernovisit);
+		var ab=0,bc=0;
+		//alert(totalusrans.length);TotaluserAnswer
+		if(totalusrans!==null)
+		{
+			document.getElementById('TotaluserAnswer').innerHTML = totalusrans.length;
+			ab=totalusrans.length;
+		}
+		if(totalusernoans!==null)
+		{
+			document.getElementById('TotaluserNotAnswer').innerHTML = totalusernoans.length;
+			bc=totalusernoans.length;
+
+		}
+		document.getElementById('TotaluserNotVisit').innerHTML = (totalusernovsit.length)-(ab+bc);
 		
 		document.getElementById('question').innerHTML = Number(j)+1+".  "+temp2;
+		document.getElementById('potive').innerHTML = potive;
+		document.getElementById('netive').innerHTML = netive;
 		if(temp!==null)
 		{
 			if(QuestionType === "Multiple Choice")

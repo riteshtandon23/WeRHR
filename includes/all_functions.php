@@ -108,7 +108,7 @@ function getQuestion($cname)
 	// $stmt->bind_param('s',$cname);
 	// $stmt->execute();
 	// $result = $stmt->get_result();
-	$query="select Question_Name,Question_Type,Answer_Option,Question_Id from question where Topic_Id='$cname' AND Final_Question=1 ORDER BY Question_Id ASC";
+	$query="select Question_Name,Question_Type,Answer_Option,Question_Id,Positive_Mark,Negative_Mark from question where Topic_Id='$cname' AND Final_Question=1 ORDER BY Question_Id ASC";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -902,6 +902,13 @@ function getProfilepicfeedback($email)
 {
 	global $connection;
 	$query="select `Profile_pic` FROM `employers` where email='$email' union all select `Profile_pic` FROM `users` where email='$email'";	
+     $result = mysqli_query($connection,$query);
+	confirm_query($result);
+	return $result;
+}
+function checkFormultipleattemp($em,$tn){
+	global $connection;
+	$query="SELECT `SerialNo` FROM `userresults` WHERE users='$em' and ExamName='$tn'";	
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;

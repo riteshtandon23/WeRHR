@@ -48,46 +48,58 @@
     {
         //echo $_SESSION["email"];
         $cn=$_SESSION["CName"];
-          $todayDate=date("Y-m-d");
-        $result3=CountVisibleQuestion($_SESSION["CName"],$todayDate);
-        while ($row1=$result3->fetch_assoc()) {
-            $visi=(int)$row1['Visible'];
-        }
-        $result=select_Domain_id($_SESSION["CName"]);
-        $id="";
-        $time="";
-        while($row=$result->fetch_assoc())
-        {
-            $id=$row["Topic_id"];
-        }
-        $result4=SelectExamDateTime($_SESSION["CName"].$todayDate,$_SESSION["email"]);
-        while ($row2=$result4->fetch_assoc()) {
-            $examDate=$row2['SerialNo'];
-        }
-        if($visi !== 0)
-        {
-            
-            if(isset($examDate))
+           $todayDate=date("Y-m-d");
+        //$todayDate=date("2016-04-13");
+          $em=$_SESSION["email"];
+          $tn=$cn.$todayDate;
+          $result25=checkFormultipleattemp($em,$tn);
+          //while ($row25=$result25->fetch_assoc())
+            $row25=$result25->fetch_assoc();
+            if(!isset($row25['SerialNo']))
             {
-                $result2=SelectExamTime($id);
-                while($row=$result2->fetch_assoc())
-                {
-                    $time=$row["Time"];
-                }
-                $_SESSION["CId"]=$id;
-                $_SESSION["TtoGo"]=$time;
-                redirect_to("attempExam.php");
-               // echo "success";
-            }else
-            {
-               redirect_to("Instruction.php?CName=".$cn."&key=111000111");
-                //echo "no exam Available for u";
-            }
-        }else
-        {
-            redirect_to("Instruction.php?CName=".$cn."&key=111111000");
-            //echo "no question";
-        }
+                    $result3=CountVisibleQuestion($_SESSION["CName"],$todayDate);
+                    while ($row1=$result3->fetch_assoc()) {
+                        $visi=(int)$row1['Visible'];
+                    }
+                    $result=select_Domain_id($_SESSION["CName"]);
+                    $id="";
+                    $time="";
+                    while($row=$result->fetch_assoc())
+                    {
+                        $id=$row["Topic_id"];
+                    }
+                    $result4=SelectExamDateTime($_SESSION["CName"].$todayDate,$_SESSION["email"]);
+                    while ($row2=$result4->fetch_assoc()) {
+                        $examDate=$row2['SerialNo'];
+                    }
+                    if($visi !== 0)
+                    {
+                        
+                        if(isset($examDate))
+                        {
+                            $result2=SelectExamTime($id);
+                            while($row=$result2->fetch_assoc())
+                            {
+                                $time=$row["Time"];
+                            }
+                            $_SESSION["CId"]=$id;
+                            $_SESSION["TtoGo"]=$time;
+                            redirect_to("attempExam.php");
+                           // echo "success";
+                        }else
+                        {
+                           redirect_to("Instruction.php?CName=".$cn."&key=111000111&id=".$_SESSION['encryptid']);
+                            //echo "no exam Available for u";
+                        }
+                    }else
+                    {
+                        redirect_to("Instruction.php?CName=".$cn."&key=111111000&id=".$_SESSION['encryptid']);
+                        //echo "no question";
+                    }
+            }else{
+                 redirect_to("Instruction.php?CName=".$cn."&key=11100011111&id=".$_SESSION['encryptid']);
+            }  
+          
     }
 ?>
 <?php

@@ -18,6 +18,7 @@
     	{
     		$id=bindec($_GET['id']);
     		$id=(int)($id-11111);
+    		$_SESSION['encryptid']=$_GET['id'];
     		//echo $id;
     		$result=selectUserWithId($id);
     		while ($row=$result->fetch_assoc()) {
@@ -64,20 +65,25 @@
 			</form>	
 		</div>	
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-12 col-sm-12 col-xs-12 col-lg-12">
 	    <span>
 	        <?php
 	             if (isset($_GET['key'])&&$_GET['key']==="111111000") 
 	            {
 	         ?>
-	                <label style="color:red" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label> 
+	                <label style="color:red" class="control-label col-md-12 col-sm-12 col-xs-12 col-lg-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label> 
 
 	        <?php
 	            }elseif (isset($_GET['key'])&&$_GET['key']==="111000111"){
 
 	            
 	        ?>
-	        <label style="color:green" class="control-label col-md-7 col-sm-4 col-xs-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label>
+	        <label style="color:green" class="control-label col-md-12 col-sm-12 col-xs-12 col-lg-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not select for the Exam.";?></h4></Label>
+	        <?php }elseif (isset($_GET['key'])&&$_GET['key']==="11100011111"){
+
+	            
+	        ?>
+	        <label style="color:green" class="control-label col-md-12 col-sm-12 col-xs-12 col-lg-12"><h4><strong><span class="fa fa-close fa-2x"></span></strong><?php echo "You were not allowed to Attemp the Exam twice.";?></h4></Label>
 	        <?php } ?>
 	    </span>
 	</div>
