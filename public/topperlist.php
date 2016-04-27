@@ -38,7 +38,7 @@
                             $result69=getTopperName($value);
                             while ($row69=$result69->fetch_assoc()) {
                                 $ToperName[]=$row69['firstname'];
-                                $Topercontact[]=$row69['firstname'];
+                                $Topercontact[]=$row69['contact'];
                             }
                         }
                         $totalscorecopy=$totalscore;
@@ -48,7 +48,8 @@
                      <?php 
                         foreach ($totalscore as $key => $value) {
                          $pos=array_search($value, $totalscorecopy);
-                         unset($totalscorecopy[$pos]);
+                         if(isset($ToperName[$pos]))
+                         {
                          ?>
                           <tr class="even pointer">
                             <td class=" "><?php echo $ToperName[$pos]; ?></td>
@@ -59,6 +60,8 @@
                             
                         </tr>
                        <?php
+                   }
+                       unset($totalscorecopy[$pos]);
                     }                             
                  ?>
                     </tbody>

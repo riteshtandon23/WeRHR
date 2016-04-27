@@ -183,6 +183,8 @@ function selectQuestionforEgeneration($cname)
 function selectDate($cname)
 {
 	global $connection;
+	 date_default_timezone_set('Asia/Kolkata');
+	 $todayDate=date("Y-m-d");
 	$result1=select_Domain_id($cname);
 	while ($row=$result1->fetch_assoc()) {
 		$id=$row['Topic_id'];
@@ -191,7 +193,7 @@ function selectDate($cname)
 	// $stmt->bind_param('i',$id);
 	// $stmt->execute();
 	// $result=$stmt->get_result();
-	$query="select Exam_Date from exam_details where Topic_id='$id'";
+	$query="select Exam_Date from exam_details where Topic_id='$id' and Exam_Date >= '$todayDate' ORDER BY Exam_Date ASC";
     $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
@@ -837,7 +839,7 @@ function getUserCourseInterest($value)
 function getTopperreult()
 {
 	global $connection;
-	$query="select Scores,Total,Course_Name,users from userresults";
+	$query="select Scores,Total,Course_Name,users from userresults order by Scores desc,Total desc";
      $result = mysqli_query($connection,$query);
 	confirm_query($result);
 	return $result;
